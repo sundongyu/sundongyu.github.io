@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>博客显示测试 |  樱花小镇</title>
+      <title>算法Day01:链表队列栈 |  樱花小镇</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -53,7 +53,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-博客显示测试"
+  id="post-算法Day01-链表队列栈"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -64,7 +64,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  博客显示测试
+  算法Day01:链表队列栈
 </h1>
  
 
@@ -72,15 +72,19 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2022/04/29/%E5%8D%9A%E5%AE%A2%E6%98%BE%E7%A4%BA%E6%B5%8B%E8%AF%95/" class="article-date">
-  <time datetime="2022-04-29T11:12:43.000Z" itemprop="datePublished">2022-04-29</time>
-</a>   
+      <a href="/2022/04/29/%E7%AE%97%E6%B3%95Day01-%E9%93%BE%E8%A1%A8%E9%98%9F%E5%88%97%E6%A0%88/" class="article-date">
+  <time datetime="2022-04-29T14:50:13.000Z" itemprop="datePublished">2022-04-29</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+  </div>
+  
 <div class="word_count">
     <span class="post-time">
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">17</span>
+            <span class="post-count">613</span>
         </span>
     </span>
 
@@ -89,7 +93,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1 分钟</span>
+            <span class="post-count">2 分钟</span>
         </span>
     </span>
 </div>
@@ -104,7 +108,30 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h2 id="标题显示正常！！！"><a href="#标题显示正常！！！" class="headerlink" title="标题显示正常！！！"></a>标题显示正常！！！</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(<span class="string">&quot;代码显示正常&quot;</span>)</span><br></pre></td></tr></table></figure>
+  <blockquote>
+<p>记录算法学习过程中的算法模板，主要以 &#x3D;&#x3D;<strong>数组</strong>&#x3D;&#x3D; 模拟各种数据结构为主</p>
+</blockquote>
+<h2 id="单链表"><a href="#单链表" class="headerlink" title="单链表"></a>单链表</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> N = <span class="number">100010</span>, idx, head;</span><br><span class="line"><span class="type">int</span> e[N], ne[N]; <span class="comment">// 记录节点值，和下一个节点位置</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    head = <span class="number">-1</span>;</span><br><span class="line">    idx = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 头插法</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add_Firdt</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">    e[idx] = x;</span><br><span class="line">    ne[idx] = head;</span><br><span class="line">    head = idx++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除头结点（头结点要存在）</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">remove</span><span class="params">(<span class="type">int</span> a)</span> </span>&#123;</span><br><span class="line">    head = ne[head];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="双链表"><a href="#双链表" class="headerlink" title="双链表"></a>双链表</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> N = <span class="number">100010</span>, idx;</span><br><span class="line"><span class="type">int</span> l[N], r[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 手动设置头尾节点，在01之间插入数据</span></span><br><span class="line">    l[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    r[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    idx = <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在节点a的右边插入x</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">insert</span> <span class="params">(<span class="type">int</span> a, <span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">    e[idx] = x;</span><br><span class="line">    r[idx] = r[a];</span><br><span class="line">    l[idx] = a;</span><br><span class="line">    l[r[idx]] = idx;</span><br><span class="line">    r[a] = idx++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除节点a</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">remove</span> <span class="params">(<span class="type">int</span> a)</span> </span>&#123;</span><br><span class="line">    r[l[a]] = r[a];</span><br><span class="line">    l[r[a]] = l[a];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> tt = <span class="number">0</span>, N = <span class="number">100010</span>; <span class="comment">// 表示栈顶</span></span><br><span class="line"><span class="type">int</span> skt[N];</span><br><span class="line"><span class="comment">// 添加,数组从1号位开始使用，这样当栈顶tt==0时可以直接判空</span></span><br><span class="line">skt[++tt] = x;</span><br><span class="line"><span class="comment">// 删除</span></span><br><span class="line">tt--;</span><br><span class="line"><span class="comment">// 栈顶的值</span></span><br><span class="line">skt[tt];</span><br><span class="line"><span class="comment">// 判空</span></span><br><span class="line"><span class="keyword">if</span> (tt &gt; <span class="number">0</span>) &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="普通队列"><a href="#普通队列" class="headerlink" title="普通队列"></a>普通队列</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> q[N], hh = <span class="number">0</span>, tt = <span class="number">-1</span>;</span><br><span class="line"><span class="comment">// 尾插</span></span><br><span class="line">q[++tt] = x;</span><br><span class="line"><span class="comment">// 从队头弹出</span></span><br><span class="line">hh++;</span><br><span class="line"><span class="comment">// 队头的值</span></span><br><span class="line">q[hh];</span><br><span class="line"><span class="comment">// 判空</span></span><br><span class="line"><span class="keyword">if</span> (hh &lt;= tt) &#123;</span><br><span class="line">    <span class="string">&quot;非空&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="循环队列"><a href="#循环队列" class="headerlink" title="循环队列"></a>循环队列</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cout&lt;&lt;<span class="string">&quot;helloword&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="单调栈"><a href="#单调栈" class="headerlink" title="单调栈"></a>单调栈</h2><blockquote>
+<p>单调栈的使用有限，经典的题目：给定一个数组，返回距离每个数，最近的，左（有）边，比他大(小)的数</p>
+</blockquote>
+<p><strong>思路分析</strong>：以比他大的为例</p>
+<p><strong>暴力算法</strong>，遍历每个数，然后从哪个数向左右两边遍历</p>
+<p><strong>单调栈做法</strong>：将数组中的数从左到右挨个放入栈中，保证栈内元素是单调递减的，当某个数加入栈失败（意思就是当前这个数比栈顶元素<strong>大</strong>，一旦入栈就破坏了单调栈的规则）那么此时的栈顶元素，右侧，最近的比他大的数就是待入栈元素，左侧最近比他大的元素就是栈顶元素前一个元素，可以理解为二次函数，对称轴就是栈顶元素，左右两侧都比他大，同理求比他小的话，要保证栈内元素单调增</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 大</span></span><br><span class="line"><span class="type">int</span> skt[N], n, tt = <span class="number">0</span>;</span><br><span class="line"><span class="type">int</span> l[N], r[N];<span class="comment">// 保存左右两边目标值下标</span></span><br><span class="line"><span class="type">int</span> <span class="variable">tt</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    <span class="type">int</span> x;</span><br><span class="line">    cin &gt;&gt; x;</span><br><span class="line">    <span class="keyword">while</span> (tt &gt; <span class="number">0</span> &amp;&amp; x &gt; skt[tt]) &#123;</span><br><span class="line">        <span class="comment">// 如果队列不为空，且大于栈顶</span></span><br><span class="line">        r[i] = x;</span><br><span class="line">        tt--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
 
  
       <!-- reward -->
@@ -170,26 +197,24 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://sundongyu.github.io/2022/04/29/%E5%8D%9A%E5%AE%A2%E6%98%BE%E7%A4%BA%E6%B5%8B%E8%AF%95/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://sundongyu.github.io/2022/04/29/%E7%AE%97%E6%B3%95Day01-%E9%93%BE%E8%A1%A8%E9%98%9F%E5%88%97%E6%A0%88/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li></ul>
+
     </footer>
   </div>
 
    
   <nav class="article-nav">
     
-      <a href="/2022/04/29/%E7%AE%97%E6%B3%95Day01-%E9%93%BE%E8%A1%A8%E9%98%9F%E5%88%97%E6%A0%88/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            算法Day01:链表队列栈
-          
-        </div>
-      </a>
     
+      <a href="/2022/04/29/%E5%8D%9A%E5%AE%A2%E6%98%BE%E7%A4%BA%E6%B5%8B%E8%AF%95/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">博客显示测试</div>
+      </a>
     
   </nav>
 
