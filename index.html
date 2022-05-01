@@ -214,42 +214,21 @@
 <p>优化：类似于单调栈，将没有用的数据从队列中弹出，求以窗口最大值为例，保持队列中下标的值是单调减的（求的就是窗口中的最大值），那么新添加的下标的值如果小于等于队尾，那么直接添加，如果大于队尾，不停出队，直到可以保证单调性添加为止。每次输出用队头元素下标和当前下标相比，判断窗口是否经过，如果经过了，收缩队头。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">100010</span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> n, k;</span><br><span class="line">    <span class="comment">// 输入n个数，窗口大小k</span></span><br><span class="line">	cin &gt;&gt; n &gt;&gt; k;</span><br><span class="line">	<span class="type">int</span> a[N];</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) cin &gt;&gt; a[i];</span><br><span class="line">	<span class="type">int</span> q[N];</span><br><span class="line">	<span class="type">int</span> hh = <span class="number">0</span>, tt = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="comment">// 队不为空，且队头下标小于窗口左侧，即窗口已经离开，收缩队列</span></span><br><span class="line">		<span class="keyword">if</span> (hh &lt;= tt &amp;&amp; i - k + <span class="number">1</span> &gt; q[hh]) hh++; </span><br><span class="line">        <span class="comment">// 收缩队尾</span></span><br><span class="line">		<span class="keyword">while</span> (hh &lt;= tt &amp;&amp; a[q[tt]] &gt;= a[i]) tt--;</span><br><span class="line">		q[++tt] = i;</span><br><span class="line">		<span class="keyword">if</span> (i &gt;= k - <span class="number">1</span>) cout &lt;&lt; a[q[hh]]; </span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">    hh = <span class="number">0</span>, tt = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="comment">// 队不为空，且队头下标小于窗口左侧，即窗口已经离开，收缩队列</span></span><br><span class="line">		<span class="keyword">if</span> (hh &lt;= tt &amp;&amp; i - k + <span class="number">1</span> &gt; q[hh]) hh++; </span><br><span class="line">        <span class="comment">// 收缩队尾</span></span><br><span class="line">		<span class="keyword">while</span> (hh &lt;= tt &amp;&amp; a[q[tt]] &lt;= a[i]) tt--;<span class="comment">// 这里改成&lt;=就是求窗口最大值</span></span><br><span class="line">		q[++tt] = i;</span><br><span class="line">		<span class="keyword">if</span> (i &gt;= k - <span class="number">1</span>) cout &lt;&lt; a[q[hh]]; </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h2 id="KMP"><a href="#KMP" class="headerlink" title="KMP"></a>KMP</h2><blockquote>
+<p>模式串匹配算法</p>
+</blockquote>
+<p> 暴力解法：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">s[n],p[m]</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">    <span class="type">bool</span> flag;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= m; j++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (s[i] != p[j]) &#123;</span><br><span class="line">            flag = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<p>问题：<strong>在BF算法中</strong>，用模式串去和目标串的某个子串比较时，如果不全部匹配，就要回溯到起始位置，然后后移。</p>
+<p><strong>KMP算法的思想</strong>是，设法利用已知信息，<strong>跳过前面已经比较过的位置</strong>，继续把它向后移，这样就提高了效率。</p>
+<p>由此可知，KMP算法其实有两大要点：</p>
+<p>(1) 计算跳转位置信息，这里我们称之为部分匹配表。</p>
+<p>(2) 后移到指定位置，重新开始匹配。</p>
+<p><strong>算法性能</strong></p>
+<p>假设模式串的长度是m，目标串的长度是n。</p>
+<p>在KMP算法中求next数组的时间复杂度为O(m)，在后面的匹配中因目标串T的下标不用回溯，所以比较次数可记为n。</p>
+<p>由此，得出KMP算法的<strong>总的时间复杂度</strong>为**O(n+m)**。</p>
  
       <!-- reward -->
       
@@ -400,6 +379,10 @@
     
     <li class="nav-item">
       <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/my">关于我</a>
     </li>
     
   </ul>
