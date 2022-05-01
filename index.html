@@ -221,7 +221,7 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">s[n],p[m]</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">    <span class="type">bool</span> flag;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= m; j++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (s[i] != p[j]) &#123;</span><br><span class="line">            flag = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>问题：<strong>在BF算法中</strong>，用模式串去和目标串的某个子串比较时，如果不全部匹配，就要回溯到起始位置，然后后移。</p>
-<p><strong>KMP算法的思想</strong>是，设法利用已知信息，<strong>跳过前面已经比较过的位置</strong>，继续把它向后移，这样就提高了效率。</p>
+<p><strong>KMP算法的思想</strong>是，设法利用已知信息，<strong>跳过前面已经比较过的位置</strong>，把模式串后移，使前缀的一块移动到目标串后缀的位置，再次比较不匹配的字符，再不匹配再回退，直到回退到模式串的第一个字符，这样就提高了效率。</p>
 <p>由此可知，KMP算法其实有两大要点：</p>
 <p>(1) 计算跳转位置信息，这里我们称之为部分匹配表。</p>
 <p>(2) 后移到指定位置，重新开始匹配。</p>
@@ -339,6 +339,8 @@
     <ul>
       <li>
         <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1281106713&amp;web_id=1281106713'></script>
         
       </li>
     </ul>
