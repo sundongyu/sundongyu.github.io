@@ -189,7 +189,7 @@
 <h2 id="添加环境变量"><a href="#添加环境变量" class="headerlink" title="添加环境变量"></a>添加环境变量</h2><ul>
 <li>电脑-属性-高级系统设置-环境变量，在Path 环境变量增加mysql的安装目录\bin目录, 如下图</li>
 </ul>
-<p><img src="https://img2022.cnblogs.com/blog/2801997/202203/2801997-20220325235522198-1630402026.png" alt="image"></p>
+<p><img src="https://s3.bmp.ovh/imgs/2022/05/02/d04c6c3dc614a9c7.png"></p>
 <h2 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h2><h3 id="添加配置文件"><a href="#添加配置文件" class="headerlink" title="添加配置文件"></a>添加配置文件</h3><ol>
 <li><p>在D:\mysql-5.7.19-winx64 目录下下创建 my.ini 文件, 需要我们自己创建</p>
 <p>文件内容为：</p>
@@ -201,7 +201,7 @@
 <li><p>始化数据库: mysqld –initialize-insecure –user&#x3D;mysql</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\mysql-5.7.19-winx64\bin&gt;mysqld <span class="attr">--initialize-insecure</span> <span class="attr">--user</span>=mysql</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://img2022.cnblogs.com/blog/2801997/202203/2801997-20220325235554209-1366801372.png" alt="image"></p>
+<p><img src="https://s3.bmp.ovh/imgs/2022/05/02/36cd2a0fe6df3ca5.png"></p>
 </li>
 <li><p>启动mysql 服务: net start mysql 【停止mysql服务指令 net stop mysql】, 如果成功:</p>
 <figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">D:\mysql-5.7.19-winx64\bin&gt;net start mysql</span></span><br><span class="line">MySQL 服务正在启动 .</span><br><span class="line">MySQL 服务已经启动成功。</span><br></pre></td></tr></table></figure>
