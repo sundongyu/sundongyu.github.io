@@ -149,6 +149,84 @@
     
     
     <article
+  id="post-算法Day02-KMP"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2022/05/02/%E7%AE%97%E6%B3%95Day02-KMP/"
+    >算法Day02:KMP</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/05/02/%E7%AE%97%E6%B3%95Day02-KMP/" class="article-date">
+  <time datetime="2022-05-02T03:03:31.000Z" itemprop="datePublished">2022-05-02</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="KMP"><a href="#KMP" class="headerlink" title="KMP"></a>KMP</h2><blockquote>
+<p>模式串匹配算法</p>
+</blockquote>
+<p> 暴力解法：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">s[n],p[m]</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">    <span class="type">bool</span> flag;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= m; j++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (s[i] != p[j]) &#123;</span><br><span class="line">            flag = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>问题：<strong>在BF算法中</strong>，用模式串去和目标串的某个子串比较时，如果不全部匹配，就要回溯到起始位置，然后后移。</p>
+<p><strong>KMP算法的思想</strong>是，设法利用已知信息，<strong>跳过前面已经比较过的位置</strong>，把模式串后移，使最长前缀的一块后移到模式串最长后缀的位置，再次比较不匹配的字符，再不匹配再回退，直到回退到模式串的第一个字符，还不匹配就后移目标串，这样就提高了效率。</p>
+<p>由此可知，KMP算法其实有两大要点：</p>
+<p>(1) 计算跳转位置信息，也就是计算next数组值。</p>
+<p>(2) 后移到指定位置，重新开始匹配。</p>
+<p><strong>算法性能</strong></p>
+<p>假设模式串的长度是m，目标串的长度是n。</p>
+<p>在KMP算法中求next数组的时间复杂度为O(m)，在后面的匹配中因目标串T的下标不用回溯，所以比较次数可记为n。</p>
+<p>由此，得出KMP算法的<strong>总的时间复杂度</strong>为O(n+m)。</p>
+<p>javacode</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n, m;</span><br><span class="line">String pstr, sstr;</span><br><span class="line"><span class="type">int</span>[] ne = <span class="keyword">new</span> <span class="title class_">int</span>[N];</span><br><span class="line"><span class="type">Scanner</span> <span class="variable">scanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">pstr = scanner.next();</span><br><span class="line">sstr = scanner.next();</span><br><span class="line">m = pstr.length();</span><br><span class="line">n = sstr.length();</span><br><span class="line"><span class="type">char</span>[] p = <span class="keyword">new</span> <span class="title class_">char</span>[m + <span class="number">1</span>];</span><br><span class="line"><span class="type">char</span>[] s = <span class="keyword">new</span> <span class="title class_">char</span>[n + <span class="number">1</span>];</span><br><span class="line">System.arraycopy(pstr.toCharArray(), <span class="number">0</span>, p, <span class="number">1</span>, m);</span><br><span class="line">System.arraycopy(sstr.toCharArray(), <span class="number">0</span>, s, <span class="number">1</span>, n);</span><br><span class="line">-----求next数组模板---------</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">2</span>, j = <span class="number">0</span>; i &lt;= m; i++) &#123;</span><br><span class="line">    <span class="keyword">while</span> (j != <span class="number">0</span> &amp;&amp; p[i] != p[j + <span class="number">1</span>]) &#123;</span><br><span class="line">        j = ne[j];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (p[i] == p[j + <span class="number">1</span>]) &#123;</span><br><span class="line">        j++;</span><br><span class="line">    &#125;</span><br><span class="line">    ne[i] = j;</span><br><span class="line">&#125;</span><br><span class="line">------匹配模板--</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>, j = <span class="number">0</span>; i &lt;= n; i++) &#123;</span><br><span class="line">    <span class="keyword">while</span> (j != <span class="number">0</span> &amp;&amp; s[i] != p[j + <span class="number">1</span>]) &#123;</span><br><span class="line">        j = ne[j];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (s[i] == p[j + <span class="number">1</span>]) &#123;</span><br><span class="line">        j++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (j == m) &#123;</span><br><span class="line">        System.out.println(i - m);</span><br><span class="line">        j = ne[j];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>cppcode</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> n, m;</span><br><span class="line">	<span class="type">char</span> p[<span class="number">10010</span>], s[<span class="number">10010</span>];</span><br><span class="line">	<span class="type">int</span> next[<span class="number">1000</span>];</span><br><span class="line">	cin &gt;&gt; m &gt;&gt; p + <span class="number">1</span> &gt;&gt; n &gt;&gt; s + <span class="number">1</span>;</span><br><span class="line">	<span class="comment">// 	// s是长文本，p是模式串，n是s的长度，m是p的长度 </span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>, j = <span class="number">0</span>; i &lt;= m; i++) &#123;</span><br><span class="line">		<span class="keyword">while</span> (j &amp;&amp; p[i] != p[j + <span class="number">1</span>]) j = next[j];</span><br><span class="line">		<span class="keyword">if</span> (p[i] == p[j + <span class="number">1</span>]) j++;</span><br><span class="line">		next[i] = j;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>, j = <span class="number">0</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		<span class="keyword">while</span> (j &amp;&amp; s[i] != p[j + <span class="number">1</span>]) j = next[j];</span><br><span class="line">		<span class="keyword">if</span> (s[i] == p[j + <span class="number">1</span>]) j++;</span><br><span class="line">		<span class="keyword">if</span> (j == m) </span><br><span class="line">		&#123;</span><br><span class="line">			cout &lt;&lt; i - m &lt;&lt; endl;</span><br><span class="line">			j = next[j];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D/" rel="tag">模式匹配</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-算法Day01-链表队列栈"
   class="article article-type-post"
   itemscope
@@ -214,27 +292,6 @@
 <p>优化：类似于单调栈，将没有用的数据从队列中弹出，求以窗口最大值为例，保持队列中下标的值是单调减的（求的就是窗口中的最大值），那么新添加的下标的值如果小于等于队尾，那么直接添加，如果大于队尾，不停出队，直到可以保证单调性添加为止。每次输出用队头元素下标和当前下标相比，判断窗口是否经过，如果经过了，收缩队头。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">100010</span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> n, k;</span><br><span class="line">    <span class="comment">// 输入n个数，窗口大小k</span></span><br><span class="line">	cin &gt;&gt; n &gt;&gt; k;</span><br><span class="line">	<span class="type">int</span> a[N];</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) cin &gt;&gt; a[i];</span><br><span class="line">	<span class="type">int</span> q[N];</span><br><span class="line">	<span class="type">int</span> hh = <span class="number">0</span>, tt = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="comment">// 队不为空，且队头下标小于窗口左侧，即窗口已经离开，收缩队列</span></span><br><span class="line">		<span class="keyword">if</span> (hh &lt;= tt &amp;&amp; i - k + <span class="number">1</span> &gt; q[hh]) hh++; </span><br><span class="line">        <span class="comment">// 收缩队尾</span></span><br><span class="line">		<span class="keyword">while</span> (hh &lt;= tt &amp;&amp; a[q[tt]] &gt;= a[i]) tt--;</span><br><span class="line">		q[++tt] = i;</span><br><span class="line">		<span class="keyword">if</span> (i &gt;= k - <span class="number">1</span>) cout &lt;&lt; a[q[hh]]; </span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">    hh = <span class="number">0</span>, tt = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="comment">// 队不为空，且队头下标小于窗口左侧，即窗口已经离开，收缩队列</span></span><br><span class="line">		<span class="keyword">if</span> (hh &lt;= tt &amp;&amp; i - k + <span class="number">1</span> &gt; q[hh]) hh++; </span><br><span class="line">        <span class="comment">// 收缩队尾</span></span><br><span class="line">		<span class="keyword">while</span> (hh &lt;= tt &amp;&amp; a[q[tt]] &lt;= a[i]) tt--;<span class="comment">// 这里改成&lt;=就是求窗口最大值</span></span><br><span class="line">		q[++tt] = i;</span><br><span class="line">		<span class="keyword">if</span> (i &gt;= k - <span class="number">1</span>) cout &lt;&lt; a[q[hh]]; </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="KMP"><a href="#KMP" class="headerlink" title="KMP"></a>KMP</h2><blockquote>
-<p>模式串匹配算法</p>
-</blockquote>
-<p> 暴力解法：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">s[n],p[m]</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">    <span class="type">bool</span> flag;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= m; j++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (s[i] != p[j]) &#123;</span><br><span class="line">            flag = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>问题：<strong>在BF算法中</strong>，用模式串去和目标串的某个子串比较时，如果不全部匹配，就要回溯到起始位置，然后后移。</p>
-<p><strong>KMP算法的思想</strong>是，设法利用已知信息，<strong>跳过前面已经比较过的位置</strong>，把模式串后移，使前缀的一块移动到目标串后缀的位置，再次比较不匹配的字符，再不匹配再回退，直到回退到模式串的第一个字符，这样就提高了效率。</p>
-<p>由此可知，KMP算法其实有两大要点：</p>
-<p>(1) 计算跳转位置信息，这里我们称之为部分匹配表。</p>
-<p>(2) 后移到指定位置，重新开始匹配。</p>
-<p><strong>算法性能</strong></p>
-<p>假设模式串的长度是m，目标串的长度是n。</p>
-<p>在KMP算法中求next数组的时间复杂度为O(m)，在后面的匹配中因目标串T的下标不用回溯，所以比较次数可记为n。</p>
-<p>由此，得出KMP算法的<strong>总的时间复杂度</strong>为**O(n+m)**。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> KMP;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 孙东宇</span></span><br><span class="line"><span class="comment"> * 创建时间：2022/05/01</span></span><br><span class="line"><span class="comment"> * 介绍：acwing kmp模板</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MuBan</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="type">int</span> <span class="variable">N</span> <span class="operator">=</span> <span class="number">10010</span>, M = <span class="number">100010</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">int</span> n, m;</span><br><span class="line">        String pstr, sstr;</span><br><span class="line">        <span class="type">int</span>[] ne = <span class="keyword">new</span> <span class="title class_">int</span>[N];</span><br><span class="line">        <span class="type">Scanner</span> <span class="variable">scanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">        pstr = scanner.next();</span><br><span class="line">        sstr = scanner.next();</span><br><span class="line">        n = pstr.length();</span><br><span class="line">        m = sstr.length();</span><br><span class="line">        <span class="type">char</span>[] p = <span class="keyword">new</span> <span class="title class_">char</span>[n + <span class="number">1</span>];</span><br><span class="line">        <span class="type">char</span>[] s = <span class="keyword">new</span> <span class="title class_">char</span>[m + <span class="number">1</span>];</span><br><span class="line">        System.arraycopy(pstr.toCharArray(), <span class="number">0</span>, p, <span class="number">1</span>, n);</span><br><span class="line">        System.arraycopy(sstr.toCharArray(), <span class="number">0</span>, s, <span class="number">1</span>, m);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">2</span>, j = <span class="number">0</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            <span class="keyword">while</span> (j != <span class="number">0</span> &amp;&amp; p[i] != p[j + <span class="number">1</span>]) &#123;</span><br><span class="line">                j = ne[j];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (p[i] == p[j + <span class="number">1</span>]) &#123;</span><br><span class="line">                j++;</span><br><span class="line">            &#125;</span><br><span class="line">            ne[i] = j;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>, j = <span class="number">0</span>; i &lt;= m; i++) &#123;</span><br><span class="line">            <span class="keyword">while</span> (j != <span class="number">0</span> &amp;&amp; s[i] != p[j + <span class="number">1</span>]) &#123;</span><br><span class="line">                j = ne[j];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (s[i] == p[j + <span class="number">1</span>]) &#123;</span><br><span class="line">                j++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (j == n) &#123;</span><br><span class="line">                System.out.println(i - n);</span><br><span class="line">                j = ne[j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-
-
 
 
 
@@ -263,55 +320,6 @@
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li></ul>
 
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-博客显示测试"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2022/04/29/%E5%8D%9A%E5%AE%A2%E6%98%BE%E7%A4%BA%E6%B5%8B%E8%AF%95/"
-    >博客显示测试</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2022/04/29/%E5%8D%9A%E5%AE%A2%E6%98%BE%E7%A4%BA%E6%B5%8B%E8%AF%95/" class="article-date">
-  <time datetime="2022-04-29T11:12:43.000Z" itemprop="datePublished">2022-04-29</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h2 id="标题显示正常！！！"><a href="#标题显示正常！！！" class="headerlink" title="标题显示正常！！！"></a>标题显示正常！！！</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(<span class="string">&quot;代码显示正常&quot;</span>)</span><br></pre></td></tr></table></figure>
-
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
     </footer>
   </div>
 
