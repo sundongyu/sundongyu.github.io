@@ -167,7 +167,7 @@
   <entry>
     <title>MySql的使用</title>
     <url>/2022/05/02/MySql%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="mysql使用"><a href="#mysql使用" class="headerlink" title="mysql使用"></a><center>mysql使用<center/></h1><h1 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h1><ol>
+    <content><![CDATA[<h1 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h1><ol>
 <li>连接mysql端口3306(一般为了安全起见会将默认端口修改，修改后则需要连接修改后的端口)</li>
 <li>连接到mysql服务（mysql数据库）的指令    mysql [-h 主机ip] [-p 端口号] -u  用户名 -p[密码]<ol>
 <li>-p密码没有空格</li>
