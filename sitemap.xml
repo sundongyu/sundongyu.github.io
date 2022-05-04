@@ -2,15 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://sundongyu.github.io/2022/05/04/%E8%BF%91%E6%9C%9F%E6%80%BB%E7%BB%93%E5%92%8C%E8%A7%84%E5%8C%96/</loc>
-    
-    <lastmod>2022-05-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://sundongyu.github.io/2022/05/02/MySql%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
     
     <lastmod>2022-05-02</lastmod>
@@ -107,13 +98,6 @@
   
   <url>
     <loc>https://sundongyu.github.io/categories/MySql/</loc>
-    <lastmod>2022-05-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sundongyu.github.io/categories/%E6%97%A5%E5%BF%97/</loc>
     <lastmod>2022-05-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
