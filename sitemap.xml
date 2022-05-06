@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://sundongyu.github.io/2022/05/06/Git%E5%AD%A6%E4%B9%A0/</loc>
+    
+    <lastmod>2022-05-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://sundongyu.github.io/2022/05/05/English/</loc>
     
     <lastmod>2022-05-05</lastmod>
@@ -76,7 +85,7 @@
 
   <url>
     <loc>https://sundongyu.github.io/</loc>
-    <lastmod>2022-05-05</lastmod>
+    <lastmod>2022-05-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -84,21 +93,28 @@
   
   <url>
     <loc>https://sundongyu.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
-    <lastmod>2022-05-05</lastmod>
+    <lastmod>2022-05-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://sundongyu.github.io/tags/%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D/</loc>
-    <lastmod>2022-05-05</lastmod>
+    <lastmod>2022-05-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://sundongyu.github.io/tags/English/</loc>
-    <lastmod>2022-05-05</lastmod>
+    <lastmod>2022-05-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sundongyu.github.io/tags/Git/</loc>
+    <lastmod>2022-05-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -107,21 +123,28 @@
   
   <url>
     <loc>https://sundongyu.github.io/categories/%E7%AE%97%E6%B3%95/</loc>
-    <lastmod>2022-05-05</lastmod>
+    <lastmod>2022-05-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://sundongyu.github.io/categories/MySql/</loc>
-    <lastmod>2022-05-05</lastmod>
+    <lastmod>2022-05-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://sundongyu.github.io/categories/English/</loc>
-    <lastmod>2022-05-05</lastmod>
+    <lastmod>2022-05-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sundongyu.github.io/categories/Git/</loc>
+    <lastmod>2022-05-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
