@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://sundongyu.github.io/2022/05/07/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%AF%BC%E8%AE%BA/</loc>
+    
+    <lastmod>2022-05-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://sundongyu.github.io/2022/05/07/%E7%AE%97%E6%B3%95Day03-Trie%E6%A0%91%E5%B9%B6%E6%9F%A5%E9%9B%86/</loc>
     
     <lastmod>2022-05-07</lastmod>
@@ -153,6 +162,13 @@
   
   <url>
     <loc>https://sundongyu.github.io/categories/Git/</loc>
+    <lastmod>2022-05-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sundongyu.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%AF%BC%E8%AE%BA/</loc>
     <lastmod>2022-05-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
