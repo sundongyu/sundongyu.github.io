@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>算法Day01:链表队列栈</title>
-    <url>/2022/04/29/%E7%AE%97%E6%B3%95Day01-%E9%93%BE%E8%A1%A8%E9%98%9F%E5%88%97%E6%A0%88/</url>
+    <url>/2022/04/29/suan-fa-day01-lian-biao-dui-lie-zhan/</url>
     <content><![CDATA[<blockquote>
 <p>记录算法学习过程中的算法模板，主要以 <code>数组</code> 模拟各种数据结构为主</p>
 </blockquote>
@@ -63,7 +63,7 @@
   </entry>
   <entry>
     <title>算法Day02:KMP</title>
-    <url>/2022/05/02/%E7%AE%97%E6%B3%95Day02-KMP/</url>
+    <url>/2022/05/02/suan-fa-day02-kmp/</url>
     <content><![CDATA[<h2 id="KMP"><a href="#KMP" class="headerlink" title="KMP"></a>KMP</h2><blockquote>
 <p>模式串匹配算法</p>
 </blockquote>
@@ -100,7 +100,7 @@
   </entry>
   <entry>
     <title>MySql安装与配置</title>
-    <url>/2022/05/02/MySql%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</url>
+    <url>/2022/05/02/mysql-an-zhuang-yu-pei-zhi/</url>
     <content><![CDATA[<h1 id="mysql的安装和配置"><a href="#mysql的安装和配置" class="headerlink" title="mysql的安装和配置"></a>mysql的安装和配置</h1><h2 id="软件下载"><a href="#软件下载" class="headerlink" title="软件下载"></a>软件下载</h2><ol>
 <li>Mysql5.7软件下载</li>
 <li>下载后会得到zip 安装文件</li>
@@ -166,7 +166,7 @@
   </entry>
   <entry>
     <title>MySql的使用</title>
-    <url>/2022/05/02/MySql%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <url>/2022/05/02/mysql-de-shi-yong/</url>
     <content><![CDATA[<h1 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h1><ol>
 <li>连接mysql端口3306(一般为了安全起见会将默认端口修改，修改后则需要连接修改后的端口)</li>
 <li>连接到mysql服务（mysql数据库）的指令    mysql [-h 主机ip] [-p 端口号] -u  用户名 -p[密码]<ol>
@@ -704,7 +704,7 @@
   </entry>
   <entry>
     <title>English</title>
-    <url>/2022/05/05/English/</url>
+    <url>/2022/05/05/english/</url>
     <content><![CDATA[<ol>
 <li>ignore             忽略</li>
 <li>ignorecasee         忽略大小写</li>
@@ -863,7 +863,7 @@
   </entry>
   <entry>
     <title>Git学习</title>
-    <url>/2022/05/06/Git%E5%AD%A6%E4%B9%A0/</url>
+    <url>/2022/05/06/git-xue-xi/</url>
     <content><![CDATA[<h1 id="git基础"><a href="#git基础" class="headerlink" title="git基础"></a>git基础</h1><h2 id="本地常用命令"><a href="#本地常用命令" class="headerlink" title="本地常用命令"></a>本地常用命令</h2><ol>
 <li><p>git init</p>
 <p>初始化仓库</p>
@@ -1119,7 +1119,7 @@
   </entry>
   <entry>
     <title>算法Day03-Trie树并查集</title>
-    <url>/2022/05/07/%E7%AE%97%E6%B3%95Day03-Trie%E6%A0%91%E5%B9%B6%E6%9F%A5%E9%9B%86/</url>
+    <url>/2022/05/07/suan-fa-day03-trie-shu-bing-cha-ji/</url>
     <content><![CDATA[<h1 id="Trie树"><a href="#Trie树" class="headerlink" title="Trie树"></a>Trie树</h1><blockquote>
 <p>高效的存储和查找字符串集合的数据结构。</p>
 </blockquote>
@@ -1153,7 +1153,7 @@
   </entry>
   <entry>
     <title>大数据导论</title>
-    <url>/2022/05/07/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%AF%BC%E8%AE%BA/</url>
+    <url>/2022/05/07/da-shu-ju-dao-lun/</url>
     <content><![CDATA[<p>#导论简答题总结</p>
 <p><strong>1.试述键值数据库、列族数据库、文档数据库和图数据库的使用场合和优缺点。</strong></p>
 <p>（1）键值数据库</p>
@@ -1242,7 +1242,7 @@
   </entry>
   <entry>
     <title>Idea + Vim 使用教程</title>
-    <url>/2022/05/10/Idea-Vim-%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</url>
+    <url>/2022/05/10/idea-vim-shi-yong-jiao-cheng/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>想要在idea中使用vim需要在idea中安装以下三个插件：</p>
 <ul>
 <li><code>IdeaVim</code></li>
