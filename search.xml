@@ -1240,4 +1240,65 @@
         <category>大数据导论</category>
       </categories>
   </entry>
+  <entry>
+    <title>Idea + Vim 使用教程</title>
+    <url>/2022/05/10/Idea-Vim-%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>想要在idea中使用vim需要在idea中安装以下三个插件：</p>
+<ul>
+<li><code>IdeaVim</code></li>
+<li><code>IdeaVim-EasyMotion</code></li>
+<li><code>IdeaVimExtension</code></li>
+</ul>
+<h1 id="为什么要学习Vim？"><a href="#为什么要学习Vim？" class="headerlink" title="为什么要学习Vim？"></a>为什么要学习Vim？</h1><p>作为一名后端开发同学，还是会经常需要在 <code>linux</code> 服务器上去修改服务器的系统配置文件。而在<code>linux</code>中最常见的编辑器就是Vim。所以Vim时必须会的，我身边不乏使用vim的大佬，但是他们大多以Cpp和python为主，对于我这个java使用者来说实在是太折磨了，更多的的使用者喜欢idea，而在idea中安装Vim就起到了相互弥补的作用，既有了idea的便捷，又有了Vim的快速体验。</p>
+<h1 id="Vim"><a href="#Vim" class="headerlink" title="Vim"></a>Vim</h1><p> <code>vim</code> 的学习成本还是很高的，典型的入门很难入门之后就会爱不释手。下面就来学习吧。</p>
+<h2 id="基本光标移动"><a href="#基本光标移动" class="headerlink" title="基本光标移动"></a>基本光标移动</h2><p>使用<code>h j k l</code>进行上(<code>k</code>)下(<code>j</code>)左(<code>h</code>)右(<code>l</code>)的光标移动。</p>
+<h2 id="各种插入模式"><a href="#各种插入模式" class="headerlink" title="各种插入模式"></a>各种插入模式</h2><ul>
+<li><code>i</code>在光标之前，进入插入模式</li>
+<li><code>I</code>在本行开头，进入插入模式</li>
+<li><code>a</code>在光标之后，进入插入模式</li>
+<li><code>A</code>在本行结尾，进入插入模式</li>
+<li><code>o</code>在本行之后新增一行，并进入插入模式</li>
+<li><code>O</code>在本行之前新增一行，并进入插入模式</li>
+<li><code>s</code>删除当前字符，并进入插入模式</li>
+<li><code>S</code>删除当前行中的所有文本，并进入插入模式</li>
+</ul>
+<h2 id="复制粘贴"><a href="#复制粘贴" class="headerlink" title="复制粘贴"></a>复制粘贴</h2><ul>
+<li><code>yy</code> 复制当前行</li>
+<li><code>p</code> 粘贴</li>
+</ul>
+<h2 id="进阶操作"><a href="#进阶操作" class="headerlink" title="进阶操作"></a>进阶操作</h2><ul>
+<li><code>dd</code>删除当前行</li>
+<li><code>x</code>删除当前字符</li>
+<li><code>V</code> 进入内容选择模式</li>
+<li><code>d</code> 删除选中部分</li>
+<li><code>gg</code>回到文章开头</li>
+<li><code>G</code>回到文章结尾</li>
+<li><code>f;</code>跳转到行末</li>
+<li><code>ciw</code>删除当前<strong>单词</strong>，并进入插入模式</li>
+<li><code>di&quot;</code>删除<code>&quot;&quot;</code>中的内容</li>
+<li><code>ci&quot;</code>删除<code>&quot;&quot;</code>中的内容，并进入插入模式</li>
+<li><code>di(</code>删除<code>()</code>中的内容</li>
+<li><code>f&#123;word&#125;</code>查找在<strong>当前行</strong> 当前光标<strong>后</strong>是否存在某个字符 <code>&#123;word&#125;</code> 如果存在则将光标移动过去</li>
+<li><code>$</code>  跳转到行尾</li>
+<li><code>^</code> 跳转到行首</li>
+<li><code>%</code> 括号匹配跳转 <code>() [] &#123;&#125;</code>，当前光标在括号上，跳转到另一边</li>
+<li><code>*</code> 跳转到上一个单词的定位处</li>
+<li><code>[n]h/j/k/l</code> 数字加上方向键 代表重复运行多少次</li>
+<li><code>H | M | L</code></li>
+<li>H 移动到当前页的第一行</li>
+<li>M 移动到编辑器中部</li>
+<li>L 移动到当前页的最后一行</li>
+<li><code>[n]w</code> 移动到后面 word 的开始位置，前面加上数字 代表重复多少次</li>
+<li><code>e</code> 移动到下一个词语的末尾</li>
+<li><code>b</code> 移动到上一个单词的开头</li>
+<li><code>zz</code> 改变窗口的整体位置，将当前光标所在处 移动到窗口中部</li>
+</ul>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>Vim</tag>
+      </tags>
+  </entry>
 </search>
