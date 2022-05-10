@@ -1490,4 +1490,76 @@
         <tag>数据结构</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Bug记录</title>
+    <url>/2022/05/10/jdbc-pi-chu-li-shi-xiao-ji-lu/</url>
+    <content><![CDATA[<ol>
+<li><p>配置文件的url没有添加参数 <code>rewriteBatchedStatements=true</code></p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">url</span>=<span class="string">jdbc:mysql://localhost:3306/db00?rewriteBatchedStatements=true</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>sql语句的问题，插入语句中<strong>values</strong>后面要加空格</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">insert into table <span class="title function_">values</span> <span class="params">(?)</span>;<span class="comment">// true</span></span><br><span class="line">insert into table <span class="title function_">values</span><span class="params">(?)</span>;<span class="comment">// false</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Bug</category>
+      </categories>
+      <tags>
+        <tag>mysql批处理失效</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL查询异常(err:1630)</title>
+    <url>/2022/05/10/mysql-cha-xun-yi-chang-err-1630/</url>
+    <content><![CDATA[<p>使用mysql进行字符串相关函数的学习时发现，当时用函数substring时，可以正常运行，但是使用SQLyog的SQL格式器格式化SQL语句后报错，后来经过排查发现，格式化后自动在函数名后面加了空格，导致错误</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 格式化前：</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  <span class="built_in">SUBSTRING</span>(ename, <span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  emp;</span><br><span class="line">  </span><br><span class="line"><span class="comment">-- 格式化后：</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  <span class="built_in">SUBSTRING</span> (ename, <span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  emp;</span><br></pre></td></tr></table></figure>
+
+<p>后来发现，大部分的函数名和参数列表之间添加空格都不会影响SQL语句的执行，但是为了一劳永逸，查找了解决办法<br>在mysql的安装路径的个人配置文件<code>my.ini</code>文件中添加下面语句，切记不要在末尾添加分号！</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">sql_mode<span class="operator">=</span><span class="string">&#x27;IGNORE_SPACE&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>添加完毕后使用管理员身份运行cmd,输入以下指令重启mysql服务器</p>
+<figure class="highlight dos"><table><tr><td class="code"><pre><span class="line"><span class="built_in">net</span> stop mysql</span><br><span class="line"><span class="built_in">net</span> <span class="built_in">start</span> mysql</span><br></pre></td></tr></table></figure>
+
+<p>这样即使函数之间有空格也不会报错啦！</p>
+]]></content>
+      <categories>
+        <category>Bug记录</category>
+      </categories>
+      <tags>
+        <tag>Mysql查询异常</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>group by分组异常</title>
+    <url>/2022/05/10/group-by-fen-zu-yi-chang/</url>
+    <content><![CDATA[<p>今天使用<code>group by</code>对数据进行分组查询，然后发现一个问题</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">	deptno <span class="keyword">AS</span> <span class="string">&#x27;部门编号&#x27;</span>, </span><br><span class="line">	<span class="built_in">COUNT</span>(empno) <span class="keyword">AS</span> <span class="string">&#x27;人数&#x27;</span>,</span><br><span class="line"><span class="keyword">FROM</span> emp,</span><br><span class="line"><span class="keyword">WHERE</span> temp.deptno <span class="operator">=</span> emp.`deptno`</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="string">&#x27;部门编号&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>这样的查询结果是错误的，这样的结果等价于不进行分组，这是为什么呢，我找了好些资料，如果这是发生在标准的SQL里是非常正常的，这是因为在标准的SQL里，是有执行顺序的</p>
+<ol>
+<li>FROM…</li>
+<li>WHERE…</li>
+<li>GROUP BY…</li>
+<li>SELECT…<br>按照执行顺序，在执行到<code>GROUP BY</code>的时候，还没有执行到SELECT语句，所以就获取不到AS的别名，因此分组失败！</li>
+</ol>
+<hr>
+<p>但是这里是mysql，mysql是支持group by使用别名分组的，但是为什么不行呢，我测试了一下，当别名不使用单引号包围，这样的话是可以成功分组的，但是一旦使用单引号包围的别名就会导致分组失败<br>也就是说这样使可以分组成功的，但是为了保险起见，顺便遵循标准的SQL语法，group by后面还是尽量不要使用别名！</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">	deptno <span class="keyword">AS</span> asdf, </span><br><span class="line">	<span class="built_in">COUNT</span>(empno) <span class="keyword">AS</span> <span class="string">&#x27;人数&#x27;</span>,</span><br><span class="line"><span class="keyword">FROM</span> emp</span><br><span class="line"><span class="keyword">WHERE</span> temp.deptno <span class="operator">=</span> emp.`deptno`</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> asdf</span><br></pre></td></tr></table></figure>
+
+<p>顺便一提，当子查询表的字段取的别名加了引号后，在select中查询这个带引号的字段就会报错</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 正常查询</span></span><br><span class="line"><span class="keyword">SELECT</span>  dept.`dname`,dept.loc, temp.哈哈 </span><br><span class="line"><span class="keyword">FROM</span> dept, </span><br><span class="line">	(</span><br><span class="line">	<span class="keyword">SELECT</span> deptno, <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="keyword">AS</span> 哈哈 <span class="keyword">FROM</span> emp</span><br><span class="line">	<span class="keyword">GROUP</span> <span class="keyword">BY</span> deptno</span><br><span class="line">	) temp</span><br><span class="line"><span class="keyword">WHERE</span> temp.deptno <span class="operator">=</span> dept.`deptno`</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 随便取啥别名都报错</span></span><br><span class="line"><span class="keyword">SELECT</span>  dept.`dname`,dept.loc, temp.<span class="string">&#x27;随便放啥都报错&#x27;</span> </span><br><span class="line"><span class="keyword">FROM</span> dept, </span><br><span class="line">	(</span><br><span class="line">	<span class="keyword">SELECT</span> deptno, <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="keyword">AS</span> <span class="string">&#x27;随便方啥都报错&#x27;</span> <span class="keyword">FROM</span> emp</span><br><span class="line">	<span class="keyword">GROUP</span> <span class="keyword">BY</span> deptno</span><br><span class="line">	) temp</span><br><span class="line"><span class="keyword">WHERE</span> temp.deptno <span class="operator">=</span> dept.`deptno`</span><br></pre></td></tr></table></figure>
+
+<p>总结：</p>
+<ol>
+<li>取别名不要加引号，即使是中文别名（所有问题都解决）</li>
+<li>GROUP BY 后待分组字段名尽量不要使用别名，即使用了也一定要用不带引号的别名，否则不报错但是查询结果错误</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Bug记录</category>
+      </categories>
+      <tags>
+        <tag>group by分组异常</tag>
+      </tags>
+  </entry>
 </search>

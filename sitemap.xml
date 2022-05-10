@@ -2,6 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://sundongyu.github.io/2022/05/10/group-by-fen-zu-yi-chang/</loc>
+    
+    <lastmod>2022-05-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sundongyu.github.io/2022/05/10/mysql-cha-xun-yi-chang-err-1630/</loc>
+    
+    <lastmod>2022-05-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sundongyu.github.io/2022/05/10/jdbc-pi-chu-li-shi-xiao-ji-lu/</loc>
+    
+    <lastmod>2022-05-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://sundongyu.github.io/2022/05/10/jdbc-de-shi-yong/</loc>
     
     <lastmod>2022-05-10</lastmod>
@@ -178,6 +205,27 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>https://sundongyu.github.io/tags/mysql%E6%89%B9%E5%A4%84%E7%90%86%E5%A4%B1%E6%95%88/</loc>
+    <lastmod>2022-05-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sundongyu.github.io/tags/Mysql%E6%9F%A5%E8%AF%A2%E5%BC%82%E5%B8%B8/</loc>
+    <lastmod>2022-05-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sundongyu.github.io/tags/group-by%E5%88%86%E7%BB%84%E5%BC%82%E5%B8%B8/</loc>
+    <lastmod>2022-05-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
   
   <url>
@@ -224,6 +272,20 @@
   
   <url>
     <loc>https://sundongyu.github.io/categories/Java/</loc>
+    <lastmod>2022-05-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sundongyu.github.io/categories/Bug/</loc>
+    <lastmod>2022-05-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sundongyu.github.io/categories/Bug%E8%AE%B0%E5%BD%95/</loc>
     <lastmod>2022-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
