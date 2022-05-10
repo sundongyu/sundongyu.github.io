@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8" />
+        
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>JDBC的使用 |  樱花小镇</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-JDBC的使用"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  JDBC的使用
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/05/10/jdbc-de-shi-yong/" class="article-date">
+  <time datetime="2022-05-10T09:13:22.000Z" itemprop="datePublished">2022-05-10</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">4.4k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">18 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="JDBC概述"><a href="#JDBC概述" class="headerlink" title="JDBC概述"></a>JDBC概述</h2><ul>
+<li><p>JDBC为了访问不同的数据库提供了统一的接口，为使用者屏蔽细节问题</p>
+</li>
+<li><p>规定一套接口规范，让不同的数据库厂商实现，在java程序中统计调用接口的方法即可  </p>
+<p><img src="https://s3.bmp.ovh/imgs/2022/05/10/507113deee40bd71.png"></p>
+</li>
+<li><p>JDBC API 是一系列的接口，他统一和规范了应用程序和数据库之间的链接，执行sql语句，并得到返回结果等各种操作，java关于jdbc相关的类和接口在java.sql和javax.sql(扩展包)中</p>
+</li>
+</ul>
+<p><img src="https://s3.bmp.ovh/imgs/2022/05/10/5027c30204ca871e.png"></p>
+<h2 id="JDBC程序编写步骤"><a href="#JDBC程序编写步骤" class="headerlink" title="JDBC程序编写步骤"></a>JDBC程序编写步骤</h2><blockquote>
+<p>相关的jar包（数据库厂商根据java提供的jdbc接口做的相应实现）在使用之前必须引入项目中！</p>
+<p>在项目下创建一个文件夹比如 libs  </p>
+<p>将 mysql.jar 拷贝到该目录下，点击 add to project ..加入到项目中</p>
+</blockquote>
+<h3 id="注册驱动-加载Driver类-获取连接"><a href="#注册驱动-加载Driver类-获取连接" class="headerlink" title="注册驱动 - 加载Driver类 - 获取连接"></a>注册驱动 - 加载Driver类 - 获取连接</h3><blockquote>
+<p> url，user，password通过读取properties文件获得，也可以手动给出，推荐使用配置文件的形式，更加灵活。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> <span class="string">&quot;jdbc:mysql://IP地址:端口号/datsbasename&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>new Driver对象，用来获取连接</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Driver</span> <span class="variable">driver</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Driver</span>();</span><br><span class="line"><span class="type">Connection</span> <span class="variable">connect</span> <span class="operator">=</span> driver.connect(url, properties);<span class="comment">// 实例方法</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用反射得到Driver对象，通过这个对象获取连接</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Class&lt;?&gt; aClass = Class.forName(<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>);</span><br><span class="line"><span class="type">Driver</span> <span class="variable">driver</span> <span class="operator">=</span> (Driver) aClass.newInstance();</span><br><span class="line"><span class="type">Connection</span> <span class="variable">connect</span> <span class="operator">=</span> driver.connect(url, properties);<span class="comment">// 实例方法</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用反射机制加载Driver类，执行了Driver类的静态代码块，自动获取连接</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用forname自动完成驱动注册，简化代码，使用最多，推荐使用</span></span><br><span class="line">Class.forName(<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>);</span><br><span class="line"><span class="type">Connection</span> <span class="variable">connection</span> <span class="operator">=</span> DriverManager.getConnection(url, user, password);<span class="comment">//(静态方法)</span></span><br></pre></td></tr></table></figure>
+
+<p>Driver类的静态代码块</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//反射机制也是要加载类的，在类加载的过程中，执行了静态代码块，完成注册驱动</span></span><br><span class="line"><span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            DriverManager.registerDriver(<span class="keyword">new</span> <span class="title class_">Driver</span>());<span class="comment">// 在这里进行</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException var1) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;Can&#x27;t register driver!&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>最简洁方式</p>
+<p>mysql驱动从5.1.6版本开始，无需显示调用<code>Class.forName(&quot;com.mysql.Driver&quot;)</code>，而是自动调用驱动jar包下的META-INF&#x2F;services&#x2F;java.sql.Driver文本中的类名称去注册</p>
+<p>但是建议还是写上，更加明确</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 可省略Class.forName(&quot;com.mysql.jdbc.Driver&quot;);</span></span><br><span class="line"><span class="type">Connection</span> <span class="variable">connection</span> <span class="operator">=</span> DriverManager.getConnection(url, user, password);<span class="comment">//(静态方法)</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="执行增删改查-发送SQL给mysql执行"><a href="#执行增删改查-发送SQL给mysql执行" class="headerlink" title="执行增删改查 - 发送SQL给mysql执行"></a>执行增删改查 - 发送SQL给mysql执行</h3><p>Statement接口实现类负责执行静态sql语句</p>
+<blockquote>
+<p>Statement 是 Java 执行数据库操作的一个重要接口，用于在已经建立数据库连接的基础上，向数据库发送要执行的SQL语句。Statement对象，用于执行不带参数的简单SQL语句。还有子接口，后面介绍 CallableStatement, PreparedStatement</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;delete from actor where id = 1&quot;</span>;</span><br><span class="line"><span class="comment">// statement 用于执行静态sql语句并返回其生成的结果对象</span></span><br><span class="line"><span class="type">Statement</span> <span class="variable">statement</span> <span class="operator">=</span> connect.createStatement();</span><br><span class="line"><span class="comment">// 返回受影响的行数</span></span><br><span class="line"><span class="type">int</span> <span class="variable">rows</span> <span class="operator">=</span> statement.executeUpdate(sql);</span><br></pre></td></tr></table></figure>
+
+<p>这里演示的删除操作，增和改的操作是一样的，<strong>查的操作是不一样的！</strong>这一点后面介绍。</p>
+<h3 id="释放资源-关闭相关连接"><a href="#释放资源-关闭相关连接" class="headerlink" title="释放资源 - 关闭相关连接"></a>释放资源 - 关闭相关连接</h3><p>将connect，statement，resultset全部close</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">connect.close();</span><br><span class="line">statement.close();</span><br><span class="line">resuletSet.close();</span><br></pre></td></tr></table></figure>
+
+<p>练习</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> sdy</span></span><br><span class="line"><span class="comment"> * 创建时间：2022/04/18</span></span><br><span class="line"><span class="comment"> * 介绍：创建表news 添加数据，修改数据，删除数据</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HomeWork01</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">		<span class="comment">// 设置配置</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> <span class="string">&quot;jdbc:mysql://localhost:3306/db00&quot;</span>;</span><br><span class="line">        <span class="comment">// 调用库函数读取properties文件（该文件需在类目录下）</span></span><br><span class="line">        <span class="type">ResourceBundle</span> <span class="variable">bundle</span> <span class="operator">=</span> ResourceBundle.getBundle(<span class="string">&quot;mysql&quot;</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">user</span> <span class="operator">=</span> bundle.getString(<span class="string">&quot;user&quot;</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> bundle.getString(<span class="string">&quot;password&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 获取连接得到connection对象（省略了Class.forName步骤）</span></span><br><span class="line">        <span class="type">Connection</span> <span class="variable">connection</span> <span class="operator">=</span> DriverManager.getConnection(url, user, password);</span><br><span class="line">        <span class="comment">// 执行静态sql语句并返回结果对象</span></span><br><span class="line">        <span class="type">Statement</span> <span class="variable">statement</span> <span class="operator">=</span> connection.createStatement();</span><br><span class="line">        <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;create table news (id int not null, `name` varchar(32) not null default &#x27;&#x27;, age int not null)&quot;</span>;</span><br><span class="line">        <span class="comment">// 执行</span></span><br><span class="line">        statement.executeUpdate(sql);</span><br><span class="line">        <span class="type">String</span> <span class="variable">sql1</span> <span class="operator">=</span> <span class="string">&quot;insert into news values (1, &#x27;sdy&#x27;, 20)&quot;</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">sql2</span> <span class="operator">=</span> <span class="string">&quot;insert into news values (2, &#x27;sll&#x27;, 25)&quot;</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">sql3</span> <span class="operator">=</span> <span class="string">&quot;insert into news values (3, &#x27;sxc&#x27;, 40)&quot;</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">update</span> <span class="operator">=</span> <span class="string">&quot;update news set name = &#x27;sundongyu&#x27; where id = 1&quot;</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">dele</span> <span class="operator">=</span> <span class="string">&quot;delete from news where id = 3&quot;</span>;</span><br><span class="line">        statement.executeUpdate(sql1);</span><br><span class="line">        statement.executeUpdate(sql2);</span><br><span class="line">        statement.executeUpdate(sql3);</span><br><span class="line">        statement.executeUpdate(update);</span><br><span class="line">        statement.executeUpdate(dele);</span><br><span class="line"> 		<span class="comment">// 关流</span></span><br><span class="line">        statement.close();</span><br><span class="line">        connection.close();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="结果集（ResultSet）"><a href="#结果集（ResultSet）" class="headerlink" title="结果集（ResultSet）"></a>结果集（ResultSet）</h2><blockquote>
+<p>表示数据库结果集的数据表，通常通过执行查询数据库语句生成</p>
+<p>ResultSet对象保持一个光标指向当前的数据行，最初光标在第一行之前，执行next方法将光标移动到下一行，当移动到最后时返回false，类似于<code>iterator.hasNext()</code></p>
+</blockquote>
+<h3 id="底层实现"><a href="#底层实现" class="headerlink" title="底层实现"></a>底层实现</h3><p>resuletSet对象底层有一个属性rowData属性，用于存放各种数据，rowDate中有metedata数组用于存放数据库表的字段field，index表示当前指针指向哪个位置，owner表示一个引用数据类型，表示的是JDBC4Result</p>
+<p>Set类，该类实现了Result接口是resultSet对象的运行时类型，rows属性(ArrayList类型)用于保存具体查询到的数据，以byte类型数组保存</p>
+<p><img src="https://s3.bmp.ovh/imgs/2022/05/10/c20a6e26e7c723c1.png"></p>
+<p>查询语句实例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 查询语句的执行使用excuteQuery(sql),返回一个结果集</span></span><br><span class="line"><span class="comment">// excuteUpdata(sql)用于执行增删改操作，返回受影响的行数</span></span><br><span class="line"><span class="type">ResultSet</span> <span class="variable">resultSet</span> <span class="operator">=</span> statement.executeQuery(sql);</span><br><span class="line"><span class="comment">// 取出数据 boolean next()</span></span><br><span class="line"><span class="keyword">while</span> (resultSet.next()) &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">anInt</span> <span class="operator">=</span> resultSet.getInt(<span class="number">1</span>);</span><br><span class="line">    <span class="type">String</span> <span class="variable">string</span> <span class="operator">=</span> resultSet.getString(<span class="number">2</span>);</span><br><span class="line">    <span class="type">int</span> <span class="variable">age</span> <span class="operator">=</span> resultSet.getInt(<span class="number">3</span>);</span><br><span class="line">    System.out.println(anInt + <span class="string">&quot;\t&quot;</span> + string + <span class="string">&quot;\t&quot;</span> + age);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对比集合中迭代器的使用 boolean hasNext()  E next();</span></span><br><span class="line"><span class="type">Iterator</span> <span class="variable">iterator</span> <span class="operator">=</span> List1.iterator();</span><br><span class="line"><span class="keyword">while</span> (iterator.hasNext()) &#123;</span><br><span class="line">   <span class="type">Object</span> <span class="variable">next</span> <span class="operator">=</span>  iterator.next();</span><br><span class="line">   System.out.println(next);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Statement和PreparedStatement的区别"><a href="#Statement和PreparedStatement的区别" class="headerlink" title="Statement和PreparedStatement的区别;"></a>Statement和PreparedStatement的区别;</h2><blockquote>
+<p><strong>Statement是java执行数据库操作的一个重要方法，用于在已经建立数据库连接的基础上，向数据库发送要执行的SQL语句。</strong></p>
+</blockquote>
+<p>Statement 对象用于将 SQL 语句发送到数据库中。</p>
+<p>实际上有三种 Statement 对象，它们都作为在给定连接上执行 SQL语句的包容器：Statement、PreparedStatement（它从 Statement 继承而来）和CallableStatement（它从 PreparedStatement 继承而来）。</p>
+<p>它们都专用于发送特定类型的 SQL 语句：</p>
+<p>Statement 对象用于执行<strong>不带参数</strong>的简单 SQL 语句；（存在SQL注入风险）</p>
+<p>PreparedStatement 对象用于执行带或不带参数的<strong>预编译</strong> SQL 语句；</p>
+<p>CallableStatement 对象用于执行对数据库<strong>已存储过程</strong>的调用。</p>
+<h3 id="效率分析"><a href="#效率分析" class="headerlink" title="效率分析"></a>效率分析</h3><p>Statement每次执行sql语句，数据库都要执行sql语句的编译，最好用于仅执行一次查询并返回结果的情形，效率高于PreparedStatement.但存在sql注入风险。</p>
+<p>PreparedStatement是预编译执行的。在执行可变参数的一条SQL时，PreparedStatement要比Statement的效率高，因为DBMS预编译一条SQL当然会比多次编译一条SQL的效率高。安全性更好，有效防止SQL注入的问题。对于多次重复执行的语句，使用PreparedStatement效率会更高一点。执行SQL语句是可以带参数的，并支持批量执行SQL。由于采用了Cache机制，则预编译的语句，就会放在Cache中，下次执行相同的SQL语句时，则可以直接从Cache中取出来。</p>
+<p>那么CallableStatement扩展了PreparedStatement的接口，用来调用存储过程，它提供了对于输入和输出参数的支持，CallableStatement 接口还有对 PreparedStatement 接口提供的输入参数的sql查询的支持。</p>
+<h3 id="什么是SQL注入，怎么防止SQL注入？"><a href="#什么是SQL注入，怎么防止SQL注入？" class="headerlink" title="什么是SQL注入，怎么防止SQL注入？"></a>什么是SQL注入，怎么防止SQL注入？</h3><blockquote>
+<p>利用某些系统没有对用户输入的数据进行充分的检查，而在用户输入数据中注入非法的sql语句或者命令，恶意攻击数据库</p>
+</blockquote>
+<p>怎么防止SQL注入，使用存储过程来执行所有的查询；检查用户输入的合法性；将用户的登录名、密码等数据加密保存。</p>
+<p>要防范sql注入只要用PreparedStatement即可</p>
+<h3 id="preparedStatement"><a href="#preparedStatement" class="headerlink" title="preparedStatement"></a>preparedStatement</h3><h5 id="占位符只能替代字段名！！！！"><a href="#占位符只能替代字段名！！！！" class="headerlink" title="占位符只能替代字段名！！！！"></a><strong>占位符只能替代字段名！！！！</strong></h5><ol>
+<li>preparedStatement通过使用占位符<code>?</code>，对占位符赋值，解决了sql注入问题</li>
+<li>preparedStetement执行的SQL语句中的参数用问号(?)来表示，调用两个参数，第一个参数是要设置的Sql语句中的参数的索引，（从1开始）第二个参数是设置SQL语句中的参数的值</li>
+<li>调用executeQuery()返回ResultSet对象</li>
+<li>调用executeUpdate();执行更新，包括增删改</li>
+<li>不再使用+ 拼接sql语句，减少语法错误</li>
+<li>有效解决了sql注入问题</li>
+<li>大大减少了编译次数，大大提高效率</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Scanner</span> <span class="variable">scanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line"><span class="type">String</span> <span class="variable">i</span> <span class="operator">=</span> scanner.next();</span><br><span class="line"><span class="type">ResourceBundle</span> <span class="variable">bundle</span> <span class="operator">=</span> ResourceBundle.getBundle(<span class="string">&quot;mysql&quot;</span>);</span><br><span class="line"><span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> bundle.getString(<span class="string">&quot;url&quot;</span>);</span><br><span class="line"><span class="type">String</span> <span class="variable">user</span> <span class="operator">=</span> bundle.getString(<span class="string">&quot;user&quot;</span>);</span><br><span class="line"><span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> bundle.getString(<span class="string">&quot;password&quot;</span>);</span><br><span class="line"><span class="type">Connection</span> <span class="variable">connection</span> <span class="operator">=</span> DriverManager.getConnection(url, user, password);</span><br><span class="line"><span class="comment">// sql语句的问号就相当于占位符</span></span><br><span class="line"><span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;select * from news where age = ? and id = ? and name = ?&quot;</span>;</span><br><span class="line"><span class="type">PreparedStatement</span> <span class="variable">preparedStatement</span> <span class="operator">=</span> connection.prepareStatement(sql);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 给问号赋值</span></span><br><span class="line">preparedStatement.setInt(<span class="number">1</span>, <span class="number">25</span>);</span><br><span class="line">preparedStatement.setInt(<span class="number">2</span>, <span class="number">2</span>);</span><br><span class="line">preparedStatement.setString(<span class="number">3</span>, <span class="string">&quot;sll&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这里执行的时候不要再赋值sql了，因为sql已经被处理过了！！！</span></span><br><span class="line"><span class="type">ResultSet</span> <span class="variable">resultSet</span> <span class="operator">=</span> preparedStatement.executeQuery();</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (resultSet.next()) &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">id</span> <span class="operator">=</span> resultSet.getInt(<span class="string">&quot;id&quot;</span>);</span><br><span class="line">    <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> resultSet.getString(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">    <span class="type">int</span> <span class="variable">age</span> <span class="operator">=</span> resultSet.getInt(<span class="string">&quot;age&quot;</span>);</span><br><span class="line">    System.out.println(id + name + age);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="JDBC-API-小结"><a href="#JDBC-API-小结" class="headerlink" title="JDBC API 小结"></a>JDBC API 小结</h2><p><img src="https://s3.bmp.ovh/imgs/2022/05/10/2d9fc1a494ca3b08.png"></p>
+<p><img src="https://s3.bmp.ovh/imgs/2022/05/10/f6c65b1ab4403599.png"></p>
+<p><img src="https://s3.bmp.ovh/imgs/2022/05/10/ab756a5c229acd89.png"></p>
+<h2 id="封装JDBCUtils"><a href="#封装JDBCUtils" class="headerlink" title="封装JDBCUtils"></a>封装JDBCUtils</h2><blockquote>
+<p>在操作中获取连接和释放资源操作是非常&#x3D;&#x3D;<strong>常用</strong>&#x3D;&#x3D;的，为了使用方便可以包装成工具类 </p>
+</blockquote>
+<h2 id="JDBC-事务"><a href="#JDBC-事务" class="headerlink" title="JDBC 事务"></a>JDBC 事务</h2><ol>
+<li>jdbc程序中当一个Connction对象创建时默认自动提交事务，无法回滚，每次执行一个sql语句时，如果执行成功就会向数据库提交，不能回滚</li>
+<li>为了让多个sql语句作为整体，需要使用事务</li>
+<li>调用Connection接口的<code>setAutoCommit(false)</code>方法可以取消自动提交事务</li>
+<li>在所有sql语句执行结束后，调用Connecion的commit()方法提交</li>
+<li>在其中某个操作失败或者出现异常时，可以调用<code>Connection.rollback()</code>方法回滚</li>
+</ol>
+<h4 id="应用实例"><a href="#应用实例" class="headerlink" title="应用实例"></a>应用实例</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">noTransaction</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 1. 得到连接</span></span><br><span class="line">        <span class="comment">// 在默认情况下，connection是默认自动提交</span></span><br><span class="line">        <span class="type">Connection</span> <span class="variable">connection</span> <span class="operator">=</span> JDBCUtils.getConnection();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2. 组织sql语句</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;update account set balance = balance - 100 where id = 1 &quot;</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">sql1</span> <span class="operator">=</span> <span class="string">&quot;update account set balance = balance + 100 where id = 2&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3. 创建PreparedStatement</span></span><br><span class="line">        <span class="type">PreparedStatement</span> <span class="variable">preparedStatement</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            preparedStatement = connection.prepareStatement(sql);</span><br><span class="line">            preparedStatement.executeUpdate();</span><br><span class="line">            <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span> / <span class="number">0</span>;</span><br><span class="line">            preparedStatement = connection.prepareStatement(sql1);</span><br><span class="line">            preparedStatement.executeUpdate();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            JDBCUtils.close(<span class="literal">null</span>, preparedStatement);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用事务解决</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">userTransaction</span><span class="params">()</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">        <span class="comment">// 1. 得到连接</span></span><br><span class="line">        <span class="comment">// 在默认情况下，connection是默认自动提交</span></span><br><span class="line">        <span class="type">Connection</span> <span class="variable">connection</span> <span class="operator">=</span> JDBCUtils.getConnection();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2. 组织sql语句</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;update account set balance = balance - 100 where id = 1 &quot;</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">sql1</span> <span class="operator">=</span> <span class="string">&quot;update account set balance = balance + 100 where id = 2&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3. 创建PreparedStatement</span></span><br><span class="line">        <span class="type">PreparedStatement</span> <span class="variable">preparedStatement</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 将这个连接设置成不自动提交</span></span><br><span class="line">            connection.setAutoCommit(<span class="literal">false</span>);</span><br><span class="line">            preparedStatement = connection.prepareStatement(sql);</span><br><span class="line">            preparedStatement.executeUpdate();</span><br><span class="line"></span><br><span class="line">            preparedStatement = connection.prepareStatement(sql1);</span><br><span class="line">            preparedStatement.executeUpdate();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 所有操作无异常执行后可以提交</span></span><br><span class="line">            connection.commit();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;执行发生了异常，撤销事务&quot;</span>);</span><br><span class="line">            <span class="comment">// 在这里我们有机会回滚，进行撤销rollback</span></span><br><span class="line">            <span class="comment">// 默认回滚到事务开始状态</span></span><br><span class="line">            connection.rollback();</span><br><span class="line">            <span class="comment">// 指点回滚到哪个时间点</span></span><br><span class="line">            <span class="comment">// connection.rollback(xx);</span></span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            JDBCUtils.close(<span class="literal">null</span>, preparedStatement);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="批处理"><a href="#批处理" class="headerlink" title="批处理"></a>批处理</h2><blockquote>
+<p>当需要成批插入或者更新记录时，可以采用java的批处理机制，这一机制允许多条语句一次性提交给数据库批量处理，通常情况下比单独提交更有效率、</p>
+</blockquote>
+<ul>
+<li>jdbc的批量处理语句包括下面方法：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 添加需要批处理的sql语句或者参数</span></span><br><span class="line">addBatch()</span><br><span class="line"><span class="comment">// 执行批处理语句</span></span><br><span class="line">executeBatch()</span><br><span class="line"><span class="comment">// 清空批量处理包语句</span></span><br><span class="line">cleatBatch()</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>jdbc连接数据库的时候如果要是用批处理的功能，必须在url中添加参数<code>rewriteBatchedStatements = true </code></p>
+</li>
+<li><p>批处理通常和<code>PreparedStatement</code>一起搭配使用，减少编译次数和运行次数，提高效率</p>
+</li>
+</ul>
+<h4 id="应用实例-1"><a href="#应用实例-1" class="headerlink" title="应用实例"></a>应用实例</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将 sql 语句加入到批处理包中 -&gt; 看源码</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">//1. //第一就创建 ArrayList - elementData =&gt; Object[]</span></span><br><span class="line"><span class="comment">//2. elementData =&gt; Object[] 就会存放我们预处理的 sql 语句</span></span><br><span class="line"><span class="comment">//3. 当 elementData 满后,就按照 1.5 扩容</span></span><br><span class="line"><span class="comment">//4. 当添加到指定的值后，就 executeBatch</span></span><br><span class="line"><span class="comment">//5. 批量处理会减少我们发送 sql 语句的网络开销，而且减少编译次数，因此效率提高*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">noBatch</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="type">Connection</span> <span class="variable">connection</span> <span class="operator">=</span> JDBCUtils.getConnection();</span><br><span class="line">        <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;insert into admin2 values (null, ?, ?)&quot;</span>;</span><br><span class="line">        <span class="type">PreparedStatement</span> <span class="variable">preparedStatement</span> <span class="operator">=</span> connection.prepareStatement(sql);</span><br><span class="line">        System.out.println(<span class="string">&quot;开始&quot;</span>);</span><br><span class="line">        <span class="type">long</span> <span class="variable">j</span> <span class="operator">=</span> System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">50000</span>; i++) &#123;</span><br><span class="line">            preparedStatement.setString(<span class="number">1</span>, <span class="string">&quot;jack&quot;</span> + i);</span><br><span class="line">            preparedStatement.setString(<span class="number">2</span>, <span class="string">&quot;666&quot;</span>);</span><br><span class="line">            preparedStatement.executeUpdate();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">long</span> <span class="variable">i</span> <span class="operator">=</span> System.currentTimeMillis();</span><br><span class="line">        System.out.println(i - j);</span><br><span class="line">        JDBCUtils.close(<span class="literal">null</span>, preparedStatement);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">userBatch</span><span class="params">()</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">        <span class="type">Connection</span> <span class="variable">connection</span> <span class="operator">=</span> JDBCUtils.getConnection();</span><br><span class="line">        <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;insert into admin2 values (null, ?, ?)&quot;</span>;</span><br><span class="line">        <span class="type">PreparedStatement</span> <span class="variable">preparedStatement</span> <span class="operator">=</span> connection.prepareStatement(sql);</span><br><span class="line">        System.out.println(<span class="string">&quot;开始&quot;</span>);</span><br><span class="line">        <span class="type">long</span> <span class="variable">j</span> <span class="operator">=</span> System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">50000</span>; i++) &#123;</span><br><span class="line">            preparedStatement.setString(<span class="number">1</span>, <span class="string">&quot;jack&quot;</span> + i);</span><br><span class="line">            preparedStatement.setString(<span class="number">2</span>, <span class="string">&quot;666&quot;</span>);</span><br><span class="line">            preparedStatement.addBatch();</span><br><span class="line">            <span class="keyword">if</span> ((i + <span class="number">1</span>) % <span class="number">1000</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                preparedStatement.executeBatch();</span><br><span class="line">                preparedStatement.clearBatch();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">long</span> <span class="variable">i</span> <span class="operator">=</span> System.currentTimeMillis();</span><br><span class="line">        System.out.println(i - j);</span><br><span class="line">        JDBCUtils.close(<span class="literal">null</span>, preparedStatement);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="jdbc连接池"><a href="#jdbc连接池" class="headerlink" title="jdbc连接池"></a>jdbc连接池</h2><blockquote>
+<p>当有大量的程序连接mysql但是不关闭connection的时候就会抛出异常 Too many connections</p>
+<p>当有大量的程序连接mysql并且关闭connection的时候会浪费大量时间</p>
+</blockquote>
+<h3 id="传统获取Connection问题分析"><a href="#传统获取Connection问题分析" class="headerlink" title="传统获取Connection问题分析"></a>传统获取Connection问题分析</h3><ol>
+<li>每次向数据库建立连接的时候都要将Connection加载到内存中，再验证ip地址，用户名和密码，需要数据库连接的时候就想数据库要求一个，频繁的进行数据库的连接操作将占用很多的资源，容易造成崩溃</li>
+<li>每一次数据库连接，使用完就要关闭，如果出现异常未能关闭，就会造成&#x3D;&#x3D;内存泄漏&#x3D;&#x3D;，最终将导致重启数据库</li>
+<li>传统方式无法控制连接数量，如果连接过多，也可能导致内存泄漏，mysql崩溃</li>
+</ol>
+<p>解决传统开发中的数据库连接问题，可以使用数据库连接池技术(connection pool)</p>
+<h3 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h3><ol>
+<li>预先在缓冲池中放入一定数量的连接，当需要建立连接时，只需从“缓冲池”中取出一个，使用完毕之后再放回去</li>
+<li>数据库连接池负责分配管理和释放数据库连接，他允许应用程序重复使用一个现有的数据库连接，而不是重新创建一个</li>
+<li>当应用程序向连接池请求的连接数超过最大连接数量时，这些请求将会被添加到等待队列中</li>
+</ol>
+<h3 id="原理图"><a href="#原理图" class="headerlink" title="原理图"></a>原理图</h3><p><img src="https://s3.bmp.ovh/imgs/2022/05/10/0a103c045b4c4944.png"></p>
+<h3 id="常用的连接池种类"><a href="#常用的连接池种类" class="headerlink" title="常用的连接池种类"></a>常用的连接池种类</h3><p><img src="/../../../studynotes/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/assets/JDBC%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220426232043875.png" alt="image-20220426232043875"></p>
+<p>Druid最常用，C3P0也比较常用</p>
+<blockquote>
+<p>由于DaraSource是一个接口，由各种数据库去实现，所有使用之前需要引入数据库提供的相应版本的jar包，到项目目录，并将这个jar包添加到<strong>库</strong>中</p>
+</blockquote>
+<h3 id="C3P0应用实例"><a href="#C3P0应用实例" class="headerlink" title="C3P0应用实例"></a>C3P0应用实例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 方式1：相关参数在程序中指定，user password等</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testC3P001</span><span class="params">()</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">    <span class="comment">// 1.创建数据源对象</span></span><br><span class="line">    <span class="type">ComboPooledDataSource</span> <span class="variable">comboPooledDataSource</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ComboPooledDataSource</span>();</span><br><span class="line">    <span class="comment">// 2. 通过配置文件mysql获取相关信息</span></span><br><span class="line">    <span class="type">ResourceBundle</span> <span class="variable">bundle</span> <span class="operator">=</span> ResourceBundle.getBundle(<span class="string">&quot;mysql&quot;</span>);</span><br><span class="line">    <span class="type">String</span> <span class="variable">user</span> <span class="operator">=</span> bundle.getString(<span class="string">&quot;user&quot;</span>);</span><br><span class="line">    <span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> bundle.getString(<span class="string">&quot;password&quot;</span>);</span><br><span class="line">    <span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> bundle.getString(<span class="string">&quot;url&quot;</span>);</span><br><span class="line">    <span class="type">String</span> <span class="variable">driver</span> <span class="operator">=</span> bundle.getString(<span class="string">&quot;driver&quot;</span>);</span><br><span class="line">    <span class="comment">// 3. 给数据源设置相关参数，整个连接的管理已经交给数据源了</span></span><br><span class="line">    comboPooledDataSource.setDriverClass(driver);</span><br><span class="line">    comboPooledDataSource.setJdbcUrl(url);</span><br><span class="line">    comboPooledDataSource.setUser(user);</span><br><span class="line">    comboPooledDataSource.setPassword(password);</span><br><span class="line">    <span class="comment">// 设置初始化连接数（创建了这个数量的连接放进连接池待用）</span></span><br><span class="line">    comboPooledDataSource.setInitialPoolSize(<span class="number">10</span>);</span><br><span class="line">    <span class="comment">// 设置最大连接数（超过了就会进入等待队列等待）</span></span><br><span class="line">    comboPooledDataSource.setMaxPoolSize(<span class="number">50</span>);</span><br><span class="line">    <span class="comment">// 连接数据库，从DataSource接口实现的方法，经过测试，连接5000次耗时不到400ms</span></span><br><span class="line">    <span class="type">Connection</span> <span class="variable">connection</span> <span class="operator">=</span> comboPooledDataSource.getConnection();</span><br><span class="line">    System.out.println(<span class="string">&quot;连接成功&quot;</span>);</span><br><span class="line">    <span class="comment">// 关闭连接</span></span><br><span class="line">    connection.close();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 方式2：使用配置文件模板完成</span></span><br><span class="line"><span class="comment">     * 1. 将c3p0-config.xml拷贝到src目录下</span></span><br><span class="line"><span class="comment">     * 2. 改文件指定了连接数据库和连接池的相关参数</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testC3P002</span><span class="params">()</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">    <span class="type">ComboPooledDataSource</span> <span class="variable">comboPooledDataSource</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ComboPooledDataSource</span>(<span class="string">&quot;sdy&quot;</span>);</span><br><span class="line">    <span class="type">Connection</span> <span class="variable">connection</span> <span class="operator">=</span> comboPooledDataSource.getConnection();</span><br><span class="line">    System.out.println(<span class="string">&quot;连接成功&quot;</span>);</span><br><span class="line">    connection.close();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="Druid应用实例"><a href="#Druid应用实例" class="headerlink" title="Druid应用实例"></a>Druid应用实例</h3><p>使用实例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testDruid</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="comment">// 1, 加入jar包</span></span><br><span class="line">        <span class="comment">// 2. 加入配置文件，拷贝到项目src目录下</span></span><br><span class="line">        <span class="comment">// 3. 创建Properties对象，读取配置文件</span></span><br><span class="line">        <span class="type">Properties</span> <span class="variable">properties</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">        properties.load(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;src\\druid.properties&quot;</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 4. 创建一个指定参数的数据源</span></span><br><span class="line">        <span class="type">DataSource</span> <span class="variable">dataSource</span> <span class="operator">=</span> DruidDataSourceFactory.createDataSource(properties);</span><br><span class="line">        <span class="type">Connection</span> <span class="variable">connection</span> <span class="operator">=</span> dataSource.getConnection();</span><br><span class="line">        System.out.println(<span class="string">&quot;连接成功&quot;</span>);</span><br><span class="line">        connection.close();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>编写基于Druid的工具类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JDBCUtilsByDruid</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> DataSource ds;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="type">Properties</span> <span class="variable">properties</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            properties.load(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;src\\druid.properties&quot;</span>));</span><br><span class="line">            ds = DruidDataSourceFactory.createDataSource(properties);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 编写获取连接</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Connection <span class="title function_">getConnection</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="keyword">return</span> ds.getConnection();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 关闭连接（druid连接池技术中，不是真的断掉连接，而是放回连接池）</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">close</span> <span class="params">(ResultSet result, Statement statment, Connection connection)</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">        <span class="keyword">if</span> (result != <span class="literal">null</span>) result.close();</span><br><span class="line">        <span class="keyword">if</span> (statment != <span class="literal">null</span>) statment.close();</span><br><span class="line">        <span class="comment">// connection接口的druid实现，close方法适合mysql不一样的</span></span><br><span class="line">        <span class="keyword">if</span> (connection != <span class="literal">null</span>) connection.close();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="Apache-DBUtils"><a href="#Apache-DBUtils" class="headerlink" title="Apache-DBUtils"></a>Apache-DBUtils</h3><p>问题：</p>
+<ol>
+<li>关闭connection后，resultSet结果集无法使用</li>
+<li>resultSet不利于数据管理</li>
+<li>使用返回信息不太方便</li>
+</ol>
+<p>解决：</p>
+<p><img src="https://s3.bmp.ovh/imgs/2022/05/10/83f680f1fb61c2a0.png"></p>
+<p>创建一个java类（JavaBean,PoJO,Domain），将resultset结果集内容映射成java对象。一个对象对应一条表中的记录，然后将所有对象放进ArrayList&lt;java对象&gt;中，这样表中的所有数据都保存下来了，connection连接就可以断开了，resultset结果集也用不到了。</p>
+<p>土方法解决resultset封装：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 得到连接</span></span><br><span class="line"><span class="type">Connection</span> <span class="variable">connection</span> <span class="operator">=</span> JDBCUtilsByDruid.getConnection();</span><br><span class="line"><span class="type">ResultSet</span> <span class="variable">set</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">ArrayList&lt;Actor&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;Actor&gt;();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 组织sql语句</span></span><br><span class="line"><span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;select * from actor&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 创建PreparedStatement</span></span><br><span class="line"><span class="type">PreparedStatement</span> <span class="variable">preparedStatement</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    preparedStatement = connection.prepareStatement(sql);</span><br><span class="line"></span><br><span class="line">    set = preparedStatement.executeQuery();</span><br><span class="line">    <span class="keyword">while</span> (set.next()) &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> set.getString(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">        <span class="type">int</span> <span class="variable">id</span> <span class="operator">=</span> set.getInt(<span class="string">&quot;id&quot;</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">sex</span> <span class="operator">=</span> set.getString(<span class="string">&quot;sex&quot;</span>);</span><br><span class="line">        <span class="type">Date</span> <span class="variable">date</span> <span class="operator">=</span> set.getDate(<span class="string">&quot;borndate&quot;</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">phone</span> <span class="operator">=</span> set.getString(<span class="string">&quot;phone&quot;</span>);</span><br><span class="line">        <span class="comment">// 把得到的resultset集合所有内容全部放进列表中</span></span><br><span class="line">        list.add(<span class="keyword">new</span> <span class="title class_">Actor</span>(id, name, sex, date, phone));</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(list);</span><br><span class="line">&#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    JDBCUtilsByDruid.close(set, preparedStatement, connection);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用Apache_DBUtils：</p>
+<h4 id="基本介绍："><a href="#基本介绍：" class="headerlink" title="基本介绍："></a>基本介绍：</h4><p>1. </p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://sundongyu.github.io/2022/05/10/jdbc-de-shi-yong/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDBC/" rel="tag">JDBC</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+    
+      <a href="/2022/05/10/idea-zhong-vim-de-nian-tie-ban/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Idea中Vim的粘贴板</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.staticfile.org/valine/1.4.16/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "7fmVNU1rnfX3SER1Vc6icbGj-gzGzoHsz",
+    app_key: "UKXhxHwWFH07WuTFirdHiNMP",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+    
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2022
+        <i class="ri-heart-fill heart_icon"></i> sdy
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1281106713&amp;web_id=1281106713'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/mysvg.svg" alt="樱花小镇"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/my">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+ 
+<script src="/js/clickLove.js"></script>
+ 
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+ 
+<script src="/js/dz.js"></script>
+ 
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+
+</html>
