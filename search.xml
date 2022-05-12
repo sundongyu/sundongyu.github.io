@@ -1491,7 +1491,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Bug记录</title>
+    <title>mysql批处理失效</title>
     <url>/2022/05/10/jdbc-pi-chu-li-shi-xiao-ji-lu/</url>
     <content><![CDATA[<ol>
 <li><p>配置文件的url没有添加参数 <code>rewriteBatchedStatements=true</code></p>
@@ -1502,7 +1502,7 @@
 </ol>
 ]]></content>
       <categories>
-        <category>Bug</category>
+        <category>Bug记录</category>
       </categories>
       <tags>
         <tag>mysql批处理失效</tag>
