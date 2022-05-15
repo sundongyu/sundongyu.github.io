@@ -1562,4 +1562,31 @@
         <tag>mysql批处理失效</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Java_Scanner类详解</title>
+    <url>/2022/05/15/java-scanner-lei-xiang-jie/</url>
+    <content><![CDATA[<h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><p>前些日子在写一道算法题的时候遇到一件怪事，关于输入输出格式化的问题，当时稀里糊涂的就Ac了，现在来研究一下。</p>
+<h2 id="问题回顾："><a href="#问题回顾：" class="headerlink" title="问题回顾："></a>问题回顾：</h2><p>输入一个整数N，接下来输入大于N行的字符串</p>
+<p>要求：前N行数据直接输出，剩余行数据按照空格分割输出。</p>
+<h2 id="input"><a href="#input" class="headerlink" title="input"></a>input</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">3</span><br><span class="line">aa aaa</span><br><span class="line">bbb bb</span><br><span class="line">cccc c</span><br><span class="line">aa bb cc dd</span><br></pre></td></tr></table></figure>
+
+<h2 id="print"><a href="#print" class="headerlink" title="print"></a>print</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">aa aaa</span><br><span class="line">bbb bb</span><br><span class="line">cccc c</span><br><span class="line">aa</span><br><span class="line">bb</span><br><span class="line">cc</span><br><span class="line">dd</span><br></pre></td></tr></table></figure>
+
+<h2 id="代码回顾："><a href="#代码回顾：" class="headerlink" title="代码回顾："></a>代码回顾：</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Scanner</span> <span class="variable">s</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">        <span class="type">int</span> <span class="variable">N</span> <span class="operator">=</span> s.nextInt();</span><br><span class="line">        <span class="keyword">while</span> (s.hasNextLine())&#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">cin</span> <span class="operator">=</span> s.nextLine();</span><br><span class="line">            N--;</span><br><span class="line">            <span class="keyword">if</span> (N &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                System.out.println(cin);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                String[] arr = cin.split(<span class="string">&quot; &quot;</span>);</span><br><span class="line">                <span class="keyword">for</span> (String str : arr) &#123;</span><br><span class="line">                    System.out.println(str);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我的第一版代码是这样的，可是wa了，运行结果和我想的有点出入，我调试了一下，发现少了一行数据，输出结果是这样的：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">aa aaa</span><br><span class="line">bbb bb</span><br><span class="line">cccc </span><br><span class="line">c</span><br><span class="line">aa</span><br><span class="line">bb</span><br><span class="line">cc</span><br><span class="line">dd</span><br></pre></td></tr></table></figure>
+
+<p>原本应该输出3行原格式字符串的，这是为什么呢？</p>
+<p>后来我才while循环外面加了一个<code>s.nextLine()</code>结果就Ac了。</p>
+<p>我看了一下源码，并结合调试结果找到了答案。</p>
+<p>首先<code>nextInt()</code>方法是没法读入回车的，这就导致在输入3之后的那个回车留在了while循环里读了，所以这个回车就占了一次输入次数，所以结果少了一次。</p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Scanner输入类</tag>
+      </tags>
+  </entry>
 </search>
