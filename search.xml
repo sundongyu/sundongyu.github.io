@@ -1182,7 +1182,7 @@
       </tags>
   </entry>
   <entry>
-    <title>算法Day03-Trie树并查集</title>
+    <title>Trie树并查集</title>
     <url>/2022/05/07/trie-shu-bing-cha-ji/</url>
     <content><![CDATA[<h1 id="Trie树"><a href="#Trie树" class="headerlink" title="Trie树"></a>Trie树</h1><blockquote>
 <p>高效的存储和查找字符串集合的数据结构。</p>
@@ -1216,7 +1216,7 @@
       </tags>
   </entry>
   <entry>
-    <title>算法Day02:KMP</title>
+    <title>KMP</title>
     <url>/2022/05/02/kmp/</url>
     <content><![CDATA[<h2 id="KMP"><a href="#KMP" class="headerlink" title="KMP"></a>KMP</h2><blockquote>
 <p>模式串匹配算法</p>
@@ -1430,7 +1430,7 @@
       </tags>
   </entry>
   <entry>
-    <title>算法Day01:链表队列栈</title>
+    <title>链表队列栈</title>
     <url>/2022/04/29/lian-biao-dui-lie-zhan/</url>
     <content><![CDATA[<blockquote>
 <p>记录算法学习过程中的算法模板，主要以 <code>数组</code> 模拟各种数据结构为主</p>
@@ -1491,24 +1491,6 @@
       </tags>
   </entry>
   <entry>
-    <title>mysql批处理失效</title>
-    <url>/2022/05/10/jdbc-pi-chu-li-shi-xiao-ji-lu/</url>
-    <content><![CDATA[<ol>
-<li><p>配置文件的url没有添加参数 <code>rewriteBatchedStatements=true</code></p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">url</span>=<span class="string">jdbc:mysql://localhost:3306/db00?rewriteBatchedStatements=true</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>sql语句的问题，插入语句中<strong>values</strong>后面要加空格</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">insert into table <span class="title function_">values</span> <span class="params">(?)</span>;<span class="comment">// true</span></span><br><span class="line">insert into table <span class="title function_">values</span><span class="params">(?)</span>;<span class="comment">// false</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
-      <categories>
-        <category>Bug记录</category>
-      </categories>
-      <tags>
-        <tag>mysql批处理失效</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MySQL查询异常(err:1630)</title>
     <url>/2022/05/10/mysql-cha-xun-yi-chang-err-1630/</url>
     <content><![CDATA[<p>使用mysql进行字符串相关函数的学习时发现，当时用函数substring时，可以正常运行，但是使用SQLyog的SQL格式器格式化SQL语句后报错，后来经过排查发现，格式化后自动在函数名后面加了空格，导致错误</p>
@@ -1560,6 +1542,24 @@
       </categories>
       <tags>
         <tag>group by分组异常</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Mysql批处理失效</title>
+    <url>/2022/05/10/mysql-pi-chu-li-shi-xiao-ji-lu/</url>
+    <content><![CDATA[<ol>
+<li><p>配置文件的url没有添加参数 <code>rewriteBatchedStatements=true</code></p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">url</span>=<span class="string">jdbc:mysql://localhost:3306/db00?rewriteBatchedStatements=true</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>sql语句的问题，插入语句中<strong>values</strong>后面要加空格</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">insert into table <span class="title function_">values</span> <span class="params">(?)</span>;<span class="comment">// true</span></span><br><span class="line">insert into table <span class="title function_">values</span><span class="params">(?)</span>;<span class="comment">// false</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Bug记录</category>
+      </categories>
+      <tags>
+        <tag>mysql批处理失效</tag>
       </tags>
   </entry>
 </search>
