@@ -605,165 +605,6 @@
       </categories>
   </entry>
   <entry>
-    <title>English</title>
-    <url>/2022/05/05/english/</url>
-    <content><![CDATA[<ol>
-<li>ignore             忽略</li>
-<li>ignorecasee         忽略大小写</li>
-<li>delete              删除</li>
-<li>upper               上面的，上层的，较高的；顶部的</li>
-<li>lower               较下的，下方的；在底部的，</li>
-<li>touppercase         转为大写</li>
-<li>tolowercase         转为小写</li>
-<li>concat              合并多个数组；合并多个字符串</li>
-<li>replace             取代；（用……）替换</li>
-<li>split              分开，分割</li>
-<li>compare            比较，对比</li>
-<li>comparable         可比的，可比较的；类似的，同类的</li>
-<li>exception          异常</li>
-<li>format             格式化</li>
-<li>before             在·····之前</li>
-<li>trim               切除剪掉</li>
-<li>start              开始</li>
-<li>end                末尾</li>
-<li>synchroniz         同步</li>
-<li>synchronized       同步的</li>
-<li>ceiling            天花板，吊顶；上限，最高限度；最高飞行限度，升限</li>
-<li>floor              地板，地面；楼层</li>
-<li>round              取整，四舍五入</li>
-<li>fill               填充</li>
-<li>exit               退出</li>
-<li>current            当前的，现行的</li>
-<li>milli              毫秒</li>
-<li>decimal            小数</li>
-<li>subtract           减去</li>
-<li>multiply           乘</li>
-<li>add                加</li>
-<li>divide             除</li>
-<li>local              当地的</li>
-<li>collection         集合</li>
-<li>iterrable          可迭代的</li>
-<li>contanis           由·······组成的，包含</li>
-<li>iterator           迭代器；迭代程序</li>
-<li>capacity           容量</li>
-<li>ensure             确保</li>
-<li>internal           内部的</li>
-<li>element            元素</li>
-<li>explicit           明确的</li>
-<li>grow               增加</li>
-<li>resize             调整大小</li>
-<li>custom             自定义</li>
-<li>graphics           图形</li>
-<li>panel              面板</li>
-<li>frame              框架</li>
-<li>operation          运作，实施；运转，操作</li>
-<li>draw               画画</li>
-<li>circle             画圆</li>
-<li>oval               椭圆形</li>
-<li>font               字体</li>
-<li>fill               填满填充</li>
-<li>file               文件</li>
-<li>color              颜色</li>
-<li>resource           资源</li>
-<li>deque              双端队列</li>
-<li>state              状态</li>
-<li>blocked            阻塞</li>
-<li>interrupt          中断</li>
-<li>daemon             守护进程</li>
-<li>timedwaiting       定时等待</li>
-<li>blocked            阻塞</li>
-<li>directory          目录</li>
-<li>exists             存在</li>
-<li>store              存储</li>
-<li>yield              退让</li>
-<li>lock               锁</li>
-<li>pool               池</li>
-<li>closeable          可关闭的</li>
-<li>left               剩下，左边</li>
-<li>pipe               管道</li>
-<li>ensure             确保</li>
-<li>create             创建</li>
-<li>comments           注释</li>
-<li>flush              冲洗, 刷新</li>
-<li>standard           标准     </li>
-<li>repeat             重复</li>
-<li>repeatable      可重复</li>
-<li>server             服务器端</li>
-<li>clinet             客户端</li>
-<li>socket             插座，套接字</li>
-<li>accept             接受，接收</li>
-<li>local              当地</li>
-<li>skip               跳过</li>
-<li>fast               快速的</li>
-<li>slow               慢速的</li>
-<li>receive            接受</li>
-<li>send               发送</li>
-<li>sender             发件人</li>
-<li>datagram           数据报</li>
-<li>character set     数据集</li>
-<li>collate                 校对规则，整理</li>
-<li>general           普遍的，大概的</li>
-<li>database       数据库</li>
-<li>dump           （内存信息）转储，转存</li>
-<li>source            信息来源;</li>
-<li>unsigned   无符号</li>
-<li>alter             改变，修改</li>
-<li>modify         修改</li>
-<li>distinct      取消重复</li>
-<li>Source       来源</li>
-<li>stamp       邮票，时间戳</li>
-<li>like           喜欢，像</li>
-<li>between       之间</li>
-<li>convert          转换</li>
-<li>floor                 地板地面</li>
-<li>least             最小的</li>
-<li>concat     连接</li>
-<li>primary key    主键</li>
-<li>foreign  外国的</li>
-<li>reference   参考</li>
-<li>transaction      事务</li>
-<li>save          保存</li>
-<li>savepoint   保存点</li>
-<li>rollback       回降</li>
-<li>isolation    隔离</li>
-<li>global 全球的</li>
-<li>level   等级</li>
-<li>simple    简单的易于理解的</li>
-<li>invoke    调用</li>
-<li>method  方法</li>
-<li>reflection    反射</li>
-<li>question   问题</li>
-<li>constructor 构造器</li>
-<li>field     场地（代表成员变量）</li>
-<li>declared  宣布</li>
-<li>modifiers    修饰符</li>
-<li>parmeter   parmeter  </li>
-<li>bundle 捆;(一)包;(一)扎;一批(同类事物或出售的货品);</li>
-<li>execute  执行</li>
-<li>query      询问查询</li>
-<li>previous   先前的</li>
-<li>seed   种子（时间种子那一块的词汇）</li>
-<li>branch 分支</li>
-<li>checkout    结账（git里面选择分支的指令）</li>
-<li>merge       合并</li>
-<li>tag  标签</li>
-<li>origin    起源、源头、起因、身世、出身</li>
-<li>status   地位;状态;身份;职位;高级职位;社会上层地位;重视（或崇尚）程度;（进展的）状况，情形</li>
-<li>alias      别名</li>
-<li>diff   差别</li>
-<li>stash    藏匿，存放，隐藏</li>
-<li>apply   申请，请求，使用，应用</li>
-<li>conflicts   冲突</li>
-</ol>
-]]></content>
-      <categories>
-        <category>English</category>
-      </categories>
-      <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Git学习</title>
     <url>/2022/05/06/git-xue-xi/</url>
     <content><![CDATA[<h1 id="git基础"><a href="#git基础" class="headerlink" title="git基础"></a>git基础</h1><h2 id="本地常用命令"><a href="#本地常用命令" class="headerlink" title="本地常用命令"></a>本地常用命令</h2><ol>
@@ -1581,6 +1422,12 @@
 <p>后来我才while循环外面加了一个<code>s.nextLine()</code>结果就Ac了。</p>
 <p>我看了一下源码，并结合调试结果找到了答案。</p>
 <p>首先<code>nextInt()</code>方法是没法读入回车的，这就导致在输入3之后的那个回车留在了while循环里读了，所以这个回车就占了一次输入次数，所以结果少了一次。</p>
+<h2 id="源码解析"><a href="#源码解析" class="headerlink" title="源码解析"></a>源码解析</h2><h3 id="字段"><a href="#字段" class="headerlink" title="字段"></a>字段</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//缓冲区是特定原始类型元素的线性、有限序列。除了内容之外，缓冲区的基本属性还有capacity、limit和position：</span></span><br><span class="line">capacity <span class="comment">//缓冲区的容量是它包含的元素数。缓冲区的容量永远不会是负数，也永远不会改变。</span></span><br><span class="line">limit <span class="comment">//缓冲区的限制是不应读取或写入的第一个元素的索引。缓冲区的限制永远不会是负数，也永远不会大于其容量。</span></span><br><span class="line">position <span class="comment">//缓冲区的位置是要读取或写入的下一个元素的索引。缓冲区的位置永远不会是负数，也永远不会大于其限制</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="next方法"><a href="#next方法" class="headerlink" title="next方法"></a>next方法</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> String <span class="title function_">next</span><span class="params">()</span> &#123;</span><br><span class="line">    ensureOpen();</span><br><span class="line">    <span class="comment">//清理规则缓存和类型缓存 hasNextPattern = null;typeCache = null;</span></span><br><span class="line">    clearCaches();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">token</span> <span class="operator">=</span> getCompleteTokenInBuffer(<span class="literal">null</span>);</span><br><span class="line">        <span class="keyword">if</span> (token != <span class="literal">null</span>) &#123;</span><br><span class="line">            matchValid = <span class="literal">true</span>;</span><br><span class="line">            skipped = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">return</span> token;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (needInput)</span><br><span class="line">            readInput();</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            throwFor();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="getCompleteTokenInBuffer方法"><a href="#getCompleteTokenInBuffer方法" class="headerlink" title="getCompleteTokenInBuffer方法"></a>getCompleteTokenInBuffer方法</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> String <span class="title function_">getCompleteTokenInBuffer</span><span class="params">(Pattern pattern)</span> &#123;</span><br><span class="line">    matchValid = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 首先跳过delim</span></span><br><span class="line">    <span class="comment">//设置matcher的parentPattern为delimPattern</span></span><br><span class="line">    matcher.usePattern(delimPattern);</span><br><span class="line">    <span class="keyword">if</span> (!skipped) &#123; <span class="comment">// 仅强制执行前导delim的一次跳过</span></span><br><span class="line">        <span class="comment">// 设定matcher匹配区域，默认from=0，end=0</span></span><br><span class="line">        matcher.region(position, buf.limit());</span><br><span class="line">        <span class="keyword">if</span> (matcher.lookingAt()) &#123;</span><br><span class="line">            <span class="comment">//如果更多的输入可以扩展分隔符，那么我们必须等待</span></span><br><span class="line">            <span class="comment">//获得更多输入</span></span><br><span class="line">            <span class="keyword">if</span> (matcher.hitEnd() &amp;&amp; !sourceClosed) &#123;</span><br><span class="line">                needInput = <span class="literal">true</span>;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// delims 是完整的，matcher 应该跳过它们</span></span><br><span class="line">            skipped = <span class="literal">true</span>;</span><br><span class="line">            position = matcher.end();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// If we are sitting at the end, no more tokens in buffer</span></span><br><span class="line">    <span class="keyword">if</span> (position == buf.limit()) &#123;</span><br><span class="line">        <span class="keyword">if</span> (sourceClosed)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        needInput = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Must look for next delims. Simply attempting to match the</span></span><br><span class="line">    <span class="comment">// pattern at this point may find a match but it might not be</span></span><br><span class="line">    <span class="comment">// the first longest match because of missing input, or it might</span></span><br><span class="line">    <span class="comment">// match a partial token instead of the whole thing.</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Then look for next delims</span></span><br><span class="line">    matcher.region(position, buf.limit());</span><br><span class="line">    <span class="type">boolean</span> <span class="variable">foundNextDelim</span> <span class="operator">=</span> matcher.find();</span><br><span class="line">    <span class="keyword">if</span> (foundNextDelim &amp;&amp; (matcher.end() == position)) &#123;</span><br><span class="line">        <span class="comment">// Zero length delimiter match; we should find the next one</span></span><br><span class="line">        <span class="comment">// using the automatic advance past a zero length match;</span></span><br><span class="line">        <span class="comment">// Otherwise we have just found the same one we just skipped</span></span><br><span class="line">        foundNextDelim = matcher.find();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (foundNextDelim) &#123;</span><br><span class="line">        <span class="comment">// In the rare case that more input could cause the match</span></span><br><span class="line">        <span class="comment">// to be lost and there is more input coming we must wait</span></span><br><span class="line">        <span class="comment">// for more input. Note that hitting the end is okay as long</span></span><br><span class="line">        <span class="comment">// as the match cannot go away. It is the beginning of the</span></span><br><span class="line">        <span class="comment">// next delims we want to be sure about, we don&#x27;t care if</span></span><br><span class="line">        <span class="comment">// they potentially extend further.</span></span><br><span class="line">        <span class="keyword">if</span> (matcher.requireEnd() &amp;&amp; !sourceClosed) &#123;</span><br><span class="line">            needInput = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> <span class="variable">tokenEnd</span> <span class="operator">=</span> matcher.start();</span><br><span class="line">        <span class="comment">// There is a complete token.</span></span><br><span class="line">        <span class="keyword">if</span> (pattern == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="comment">// Must continue with match to provide valid MatchResult</span></span><br><span class="line">            pattern = FIND_ANY_PATTERN;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//  Attempt to match against the desired pattern</span></span><br><span class="line">        matcher.usePattern(pattern);</span><br><span class="line">        matcher.region(position, tokenEnd);</span><br><span class="line">        <span class="keyword">if</span> (matcher.matches()) &#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> matcher.group();</span><br><span class="line">            position = matcher.end();</span><br><span class="line">            <span class="keyword">return</span> s;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123; <span class="comment">// Complete token but it does not match</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// If we can&#x27;t find the next delims but no more input is coming,</span></span><br><span class="line">    <span class="comment">// then we can treat the remainder as a whole token</span></span><br><span class="line">    <span class="keyword">if</span> (sourceClosed) &#123;</span><br><span class="line">        <span class="keyword">if</span> (pattern == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="comment">// Must continue with match to provide valid MatchResult</span></span><br><span class="line">            pattern = FIND_ANY_PATTERN;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// Last token; Match the pattern here or throw</span></span><br><span class="line">        matcher.usePattern(pattern);</span><br><span class="line">        matcher.region(position, buf.limit());</span><br><span class="line">        <span class="keyword">if</span> (matcher.matches()) &#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> matcher.group();</span><br><span class="line">            position = matcher.end();</span><br><span class="line">            <span class="keyword">return</span> s;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// Last piece does not match</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// There is a partial token in the buffer; must read more</span></span><br><span class="line">    <span class="comment">// to complete it</span></span><br><span class="line">    needInput = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
         <category>Java</category>
