@@ -1,10 +1,1481 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>博客显示测试</title>
-    <url>/2022/04/29/%E5%8D%9A%E5%AE%A2%E6%98%BE%E7%A4%BA%E6%B5%8B%E8%AF%95/</url>
-    <content><![CDATA[<h2 id="标题显示正常！！！"><a href="#标题显示正常！！！" class="headerlink" title="标题显示正常！！！"></a>标题显示正常！！！</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">System.out.println(<span class="string">&quot;代码显示正常&quot;</span>)</span><br></pre></td></tr></table></figure>
+    <title>MySql安装与配置</title>
+    <url>/2022/05/02/mysql-an-zhuang-yu-pei-zhi/</url>
+    <content><![CDATA[
+简单介绍mysql5.7的安装和配置
+
+
+
+mysql的安装和配置软件下载
+Mysql5.7软件下载
+下载后会得到zip 安装文件
+解压的路径最好不要有中文和空格
+我解压到 D:\mysql-5.7.19-winx64 目录下 【根据自己的情况来指定目录,尽量选择空间大的盘】
+
+添加环境变量
+电脑-属性-高级系统设置-环境变量，在Path 环境变量增加mysql的安装目录\bin目录, 如下图
+
+
+软件安装添加配置文件
+在D:\mysql-5.7.19-winx64 目录下下创建 my.ini 文件, 需要我们自己创建
+文件内容为：
+[client]port=3306default-character-set=utf8[mysqld]# 设置为自己MYSQL的安装目录basedir=D:\mysql-5.7.19-winx64\# 设置为MYSQL的数据目录datadir=D:\mysql-5.7.19-winx64\data\port=3306character_set_server=utf8#跳过安全检查（就是无需密码登录，待会要注释掉）skip-grant-tables
+
+使用管理员身份打开 cmd , 并切换到 D:\mysql-5.7.19-winx64\bin 目录下, 执行mysqld -install
+D:\mysql-5.7.19-winx64\bin&gt;mysqld -installService successfully installed.
+
+始化数据库: mysqld –initialize-insecure –user&#x3D;mysql
+D:\mysql-5.7.19-winx64\bin&gt;mysqld --initialize-insecure --user=mysql
+
+
+
+启动mysql 服务: net start mysql 【停止mysql服务指令 net stop mysql】, 如果成功:
+D:\mysql-5.7.19-winx64\bin&gt;net start mysqlMySQL 服务正在启动 .MySQL 服务已经启动成功。
+
+进入mysql 管理终端: mysql -u root -p 【当前root 用户密码为 空】
+D:\mysql-5.7.19-winx64\bin&gt;mysql -u root -pEnter password:Welcome to the MySQL monitor.  Commands end with ; or \g.Your MySQL connection id is 3Server version: 5.7.19 MySQL Community Server (GPL)Copyright (c) 2000, 2017, Oracle and/or its affiliates. All rights reserved.Oracle is a registered trademark of Oracle Corporation and/or itsaffiliates. Other names may be trademarks of their respectiveowners.Type &#x27;help;&#x27; or &#x27;\h&#x27; for help. Type &#x27;\c&#x27; to clear the current input statement.
+
+修改root 用户密码
+use mysql;
+update user set authentication_string&#x3D;password(‘sdy’) where user&#x3D;’root’ and Host&#x3D;’localhost’;
+上面的语句就是修改 root用户的密码为 hsp
+注意：在后面需要带 分号，回车即可执行该指令
+执行: flush privileges; 刷新权限
+退出: quit
+mysql&gt; use mysql;Database changedmysql&gt; use mysql; update user set authentication_string=password(&#x27;sdy&#x27;) where user=&#x27;root&#x27; and Host=&#x27;localhost&#x27;;Database changedQuery OK, 1 row affected, 1 warning (0.00 sec)Rows matched: 1  Changed: 1  Warnings: 1mysql&gt; flush privileges;Query OK, 0 rows affected (0.00 sec)mysql&gt; quitBye
+
+修改my.ini , 再次进入就会进行权限验证了
+注释掉配置文件中这行
+#skip-grant-tables
+
+重新启动mysql
+net stop mysqlnet start mysql
+D:\mysql-5.7.19-winx64\bin&gt;net stop mysqlMySQL 服务正在停止.MySQL 服务已成功停止。D:\mysql-5.7.19-winx64\bin&gt;net start mysqlMySQL 服务正在启动 .MySQL 服务已经启动成功。
+
+再次进入Mysql, 输入正确的用户名和密码
+D:\mysql-5.7.19-winx64\bin&gt;mysql -u root -pEnter password: ***Welcome to the MySQL monitor.  Commands end with ; or \g.Your MySQL connection id is 4Server version: 5.7.19 MySQL Community Server (GPL)Copyright (c) 2000, 2017, Oracle and/or its affiliates. All rights reserved.Oracle is a registered trademark of Oracle Corporation and/or itsaffiliates. Other names may be trademarks of their respectiveowners.Type &#x27;help;&#x27; or &#x27;\h&#x27; for help. Type &#x27;\c&#x27; to clear the current input statement.mysql&gt;
+
+安装配置结束
+安装过程中，一定要按照步骤来，不然会错误.
+如果真的错误了， 清除mysql服务, 再次安装.
+清除mysql服务指令:
+sc delete mysql 
+
+【删除已经安装好的mysql服务 ,提示：慎重!】
+
 
 ]]></content>
+      <categories>
+        <category>MySql</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>MySql的使用</title>
+    <url>/2022/05/02/mysql-de-shi-yong/</url>
+    <content><![CDATA[
+记录sql的学习
+
+
+
+1. 前言
+连接mysql端口3306(一般为了安全起见会将默认端口修改，修改后则需要连接修改后的端口)
+连接到mysql服务（mysql数据库）的指令    mysql [-h 主机ip] [-p 端口号] -u  用户名 -p[密码]
+-p密码没有空格
+-p后面没有写密码回车会要求 输入
+-h  -p可以不写默认本机和3306
+
+
+所谓安装数据库就是在主机上安装了一个数据库管理系统DBMS，这个管理程序可以管理多个数据库
+一个数据库中可以创建多个表，用来保存数据
+
+数据库储存在哪
+安装路径下data目录下
+表 在数据库目录下
+
+
+mysql数据库-普通表的本质仍然是文件（更利于数据管理的文件格式）（有些是映射在内存中，有些是硬盘内存共用）
+数据在数据库中的储存方式
+主要是表（行 row 列 column）
+表的一行被称为一条记录（在java程序中往往使用一个对象来表示一条记录）
+
+
+sql语句分类
+DDL：数据定义语句【create 表库】
+DML:数据操作语句【insert，update , delete】
+DQL:数据查询语句【select】
+DCL:数据控制语句【管理数据库：不如用户权限，grant， revoke】
+
+
+
+启动mysql 服务 : net start mysql
+停止mysql服务指令 : net stop mysql
+
+2. 数据库2.1 创建数据库
+CHARACTER SET ：制定数据库采用的字符集，如果不指定，默认&#x3D;&#x3D;utf8&#x3D;&#x3D;
+COLLATE:制定数据库字符集的校对规则（常用utf8_bin,utf8_general_ci），默认是utf8_general_ci意思是不区分大小写，utf8_bin是区分大小写
+DROP DATABASE :删除数据库
+CREATE DATABASE :创建数据库
+
+#创建数据库db00CREATE DATABASE db00#删除数据库db00DROP DATABASE db00#创建一个使用utf8字符集的数据库db01CREATE DATABASE db01 CHARACTER SET utf8#创建一个使用utf8字符集的数据库,并带校对规则的数据库db02CREATE DATABASE db02 CHARACTER SET utf8 COLLATE utf8_bin	#utf8_bin是区分大小写的
+
+2.2 查看删除数据库
+显示所有数据库（带s，注意）：SHOW DATABASES
+显示数据库创建语句: SHOW CREATE DATABASE db_name
+数据库删除语句(一定要慎重):DROP DATABASE [IF EXISTS] db_name
+
+# 查看当前服务器中所有的数据库SHOW DATABASES#查看前面创建xxx数据库的定义信息SHOW CREATE DATABASE db00#在创建数据库，表的时候为了规避关键字，可以使用反引号解决CREATE DATABASE CREATE #创建失败CREATE DATABASE `CREATE` #创建成功过# 删除前面创建的数据库DROP DATABASE `CREATE`
+
+2.3 备份数据库（dos命令）mysqldump -u用户名  -p -B 数据库1 数据库2  &gt; 文件名.sql
+2.4恢复数据库（进入mysql命令行再执行）Source 文件名.sql
+2.5 备份数据库的表mysqldump -u用户名  -p  数据库1 表1 表2  &gt; d:\文件名.sql
+注意：-p后面写不写密码都可以，不写让你填写，写了就直接进入了
+3. 表3.1 创建CREATE TABLE table_name( 			fileld1 datatype,			fileld2 datatype) CHARACTER SET 字符集  COLLATE  校对规则   ENGINE   引擎;
+
+
+参数介绍：
+fileld ：指定列名
+datatype :指定列类型
+character set 字符集（不指定默认为数据库的字符集类型）
+collate  校对规则（不指定默认数据库的校对规则）
+engine  存储引擎
+3.2 删除
+删除表
+DROP TABLE 表名
+
+删除列
+-- 删除列ALTER TABLE t77	DROP sex;
+
+3.3 修改-- 增加列ALTER TABLE t7 ADD image VARCHAR(255) NOT NULL DEFAULT &#x27;&#x27; AFTER `RESUME`-- 修改列类型ALTER TABLE t77MODIFY job VARCHAR(600);-- 删除列ALTER TABLE t77	DROP sex;-- 改表名RENAME TABLE t7 TO t77;-- 改字符集ALTER TABLE t77 CHARACTER SET utf8;-- 改列名和类型，可同时修改ALTER TABLE t77 	CHANGE `brithday` shenei VARCHAR(255)SELECT * FROM t77DESC t77 -- 显示表结构DROP TABLE t77
+
+
+
+3.4 写入数据INSERT INTO 表名 VALUES ()
+
+4. mysql数据库常用的数据类型类型（列类型）
+4.1 数值型（整数）的基本使用：说明，使用规范：在能满足需求的情况下使用占用空间最小的数据类型
+4.2 bit类型使用# 创建bit表create table t (    num bit(8));# 插入数据2insert into t values(2);
+
+bit(m) m 在1-64区间内，表示多少字节范围
+显示按照二进制显示，查找可以按照添加的数查找，例如：insert 10，表中为1010，查找可按10查找
+如果一个值只有0，1可以考虑bit(1) ，节省空间
+使用不多
+4.3 数值型小数的使用DECIMAL[M, D]
+可以支持更加精确地小数位，M是整体长度总数，D是小数点（标度）后面的位数（例：123.45678    M &#x3D; 8，D &#x3D; 5）
+如果D是0， 则值没有小数点或分数部分，M最大&#x3D;&#x3D;65&#x3D;&#x3D;，D最大&#x3D;&#x3D;30&#x3D;&#x3D;，D默认0， M默认10
+建议：高精度小数推荐使用DCIMAL
+CREATE TABLE test (id INT, shenggao DECIMAL(8, 5));INSERT INTO test VALUES (1, 123.45679);SELECT * FROM test 
+
+
+
+4.4 字符串的基本使用char(size)
+固定长度字符串 最大255 &#x3D;&#x3D;字符&#x3D;&#x3D;
+varchar（size） 
+size指的是字符长度，长度范围受字节编码影响
+可变长度字符串，最大65524&#x3D;&#x3D;字节&#x3D;&#x3D;，其中1-3字节用于记录大小，剩余65521字节储存数据（utf8编码最大21844字符 ，剩余字节数除以使用的字符编码的单个字节长度等于size， 例如utf8编码的话，能保存（65535-3）&#x2F;  3 个字符）
+细节
+char(4) &#x2F;&#x2F; 4表示字符，最大255， 不是字节，不管是中文还是字母都是放四个，按字符计算，
+vachar(4),4表示字符数，不管是字母还是中文，都是以定义好的表的编码来存放数据
+
+4.5 日期类型的基本使用 CREATE TABLE t6 (	birthday DATE,-- 生日	jobtime DATETIME,-- 记录年月日时分秒	login_time TIMESTAMP 	NOT NULL DEFAULT CURRENT_TIMESTAMP	 -- 登录时间,如果需要自动更新，需要配置    ON UPDATE CURRENT_TIMESTAMP);SELECT * FROM t6;INSERT INTO t6 (birthday, jobtime)VALUES (&#x27;2022-11-11&#x27;, &#x27;2022-11-11 10:10:10&#x27;)-- 如果我们更新了表的某条数据，login就会按照当前时间更新 因为有-- 	ON UPDATE CURRENT_TIMESTAMP
+
+小测试CREATE TABLE t7 (	id INT,	`name` VARCHAR(255),	sex CHAR(1),	brithday DATE,	entry_date DATETIME,	job VARCHAR(255),	salary DOUBLE,	`resume` TEXT);INSERT INTO t7 VALUES (100, &#x27;sdy&#x27;, &#x27;男&#x27;, &#x27;2002-02-02&#x27;, &#x27;2022-03-30&#x27;, &#x27;程序员&#x27;, &#x27;30000&#x27;, &#x27;nb&#x27;);SELECT * FROM t7;
+
+5. CRUDCRUD is create read update delete.
+5.1 insertINSERT INTO table_name[(column[,column.])]VALUES (value [,value....])# 练习insertCREATE TABLE `goods` (	id INT,	goods_name VARCHAR(10),	price DOUBLE);# 添加数据INSERT INTO goods (id, goods_name, price) 	VALUES (10, &#x27;华为&#x27;, 2000);	INSERT INTO goods (id, goods_name, price) 	VALUES (20, &#x27;华为mate30&#x27;, 4000);INSERT INTO goods VALUES(100, &#x27;华为r&#x27;, 2000);	SELECT * FROM goods
+
+注意点：
+
+插入数据类型应与字段的数据类型相同
+
+数据长度应在列规定的范围之内
+
+在VALUES 中添加的数据必须与被加入的列的排列位置相对应
+
+字符和日期型数据必须包含在单引号中
+
+列可以为空，前提是该字段允许为空，insert into  table value(null)
+
+insert into tab_name (列名) values (), (), ()……形式添加多条记录
+
+如果给表中所有列添加数据，则按顺序可以省略列名
+INSERT INTO goods (id, goods_name, price) 	VALUES (20, &#x27;华为mate30&#x27;, 4000);INSERT INTO goods VALUE(100, &#x27;华为r&#x27;, 2000);
+
+当不给某个字段值时，如果有默认值就会使用默认值，否则报错，如果某个列没有制定not null， 那么添加数据时，没有给定值，就会默认给null，如果想给默认值就可以在创建表的时候指定
+price DOUBLE [NOT NULL] DEFAULT 100
+
+5.2 updateUPDATE 表名 SET 字段名 = xxx	where 筛选条件# 演示update语句# 将所有价格改为100UPDATE goods SET price = 200, id = 200;# 将id为100的价格price改为2000UPDATE goods SET price = 2000 	WHERE id = 100;# 查询SELECT * FROM goods;
+
+使用细节：
+
+SET子句指示要修改哪些列和要赋值的各列
+可以同时修改多个列（字段）
+不带where子句将修改该字段所有数据
+
+5.3 deletedelete from table_name    [where XXXX]    # 删除名字为华为的数据DELETE FROM goods     WHERE goods_name = &#x27;华为&#x27;;# 删除所有数据DELETE FROM goods    
+
+细节：
+
+如果不使用where将删除所有数据
+delete不能删除某一列的值，只能使用update设为null或者’’
+使用delete语句仅删除记录，不删除表本身，如果要删除表，使用drop table 表名
+
+5.4 select(单表查询)基本语法
+SELECT [DISTINCT] * | column1, column2....		FROM table_name		# 查所有数据SELECT * FROM student# 查询所有学生姓名和英语成绩SELECT `name`, english FROM student;# 查询所有学生姓名和英语成绩(distinct 去重)-- 注意要查询出来的所有字段都相同才能去重SELECT DISTINCT `name`, english FROM student;-- 统计所有学生总分，设置别名SELECT `name` AS 名字,(chinese + english + math) AS 总分 FROM student-- 所有学生总分加10SELECT `name` ,(chinese + english +  math + 10) FROM student
+
+注意事项：
+
+select指定查询那些列的数据
+column指定列名
+*表示表示查询所有列
+from表示指定查询哪张表
+DISTINCT关键字，顾名思义，此关键字指示MySQL 只返回不同的值。
+DISTINCT关键字，它必须直接放在列名的前面，对所有的列生效
+
+5.4.1 where子句在where字句中经常用的运算符
+使用where子句进行过滤查询
+
+5.4.2 order by子句排序查询结果
+SELECT * FROM 表名
+ORDER BY  XXX   [DESC] [, xxx [DESC]]            – desc是descend（下降）的缩写
+
+注意：DESC 只能作用于他前面一个字段，如果需要每个字段都降序的话，每个字段之前都要添加DESC(如果第一个字段无重复的话，后面字段不排序)
+# 演示orderby使用-- 对数学成绩升序输出SELECT * FROM student	ORDER BY math;	-- 对数学成绩升序英语降序输出SELECT * FROM student	ORDER BY math, english DESC;	-- 降序输出SELECT `name` ,(chinese + math + english) AS &#x27;总分&#x27; FROM student    ORDER BY &#x27;总分&#x27; DESC
+
+5.4.3 group by子句
+将待查询序列按照要求分组，对每个组进行过滤查找查找
+
+
+CREATE TABLE dept (  /*部门表*/  deptno MEDIUMINT UNSIGNED NOT NULL DEFAULT 0,  dname VARCHAR (20) NOT NULL DEFAULT &#x27;&#x27;,  loc VARCHAR (13) NOT NULL DEFAULT &#x27;&#x27;);SELECT  *FROM  dept  INSERT INTO dept  VALUES    (10, &#x27;ACCOUNTING&#x27;, &#x27;NEW YORK&#x27;),    (20, &#x27;RESEARCH&#x27;, &#x27;DALLAS&#x27;),    (30, &#x27;SALES&#x27;, &#x27;CHICAGO&#x27;),    (40, &#x27;OPERATIONS&#x27;, &#x27;BOSTON&#x27;);#创建表EMP雇员 CREATE TABLE emp (  empno MEDIUMINT UNSIGNED NOT NULL DEFAULT 0,  /*编号*/  ename VARCHAR (20) NOT NULL DEFAULT &quot;&quot;,  /*名字*/  job VARCHAR (9) NOT NULL DEFAULT &quot;&quot;,  /*工作*/  mgr MEDIUMINT UNSIGNED,  /*上级编号*/  hiredate DATE NOT NULL,  /*入职时间*/  sal DECIMAL (7, 2) NOT NULL,  /*薪水*/  comm DECIMAL (7, 2),  /*红利*/  deptno MEDIUMINT UNSIGNED NOT NULL DEFAULT 0  /*部门编号*/);SELECT  *FROM  emp#工资级别表 CREATE TABLE salgrade (  grade MEDIUMINT UNSIGNED NOT NULL DEFAULT 0,  losal DECIMAL (17, 2) NOT NULL,  hisal DECIMAL (17, 2) NOT NULL);SELECT  *FROM  salgrade-- 部门平均工资和最高工资 SELECT  AVG (sal),  MAX (sal),  deptnoFROM  empGROUP BY deptno;-- 每个岗位的平均工资和最低工资 SELECT  AVG (sal),  MIN (sal),  deptnoFROM  empGROUP BY deptno;SELECT  AVG (sal),  MAX (sal),  deptno,  jobFROM  empGROUP BY deptno,  job;-- 显示各个部门平均工资低于2000的平均工资和部门号 SELECT  AVG (sal) AS avg_sal,  deptnoFROM  empGROUP BY deptnoHAVING avg_sal &lt; 2000
+
+当一个语句中同时含有where、group by 、having及聚集函数时，执行顺序如下：
+
+执行where子句查找符合条件的数据；
+使用group by 子句对数据进行分组；对group by 子句形成的组运行聚集函数计算每一组的值；
+最后用having 子句去掉不符合条件的组。
+
+需要注意的是，
+
+having 子句中的每一个元素也必须出现在select列表中。有些数据库例外，如oracle.
+having子句和where子句都可以用来设定限制条件以使查询结果满足一定的条件限制。
+having子句限制的是组，而不是行。where子句中不能使用聚集函数，而having子句中可以。
+
+当加上其他sql语句时，执行顺序如下：
+select –&gt;where –&gt; group by–&gt; having–&gt;order by
+5.5 select(单表加强)
+使用where子句查找1992.1.1后入职的员工
+如何使用like操作符
+%：表示0到多个字符
+_：表示单个字符
+如何显示首字符为s的员工的姓名和工资
+如何显示第三个字符为0的所有员工姓名和工资
+
+
+如何显示没有上级的员工
+
+-- * 使用where子句查找1992.1.1后入职的员工-- 在mysql中日期类型可以直接比较SELECT  *FROM  empWHERE hiredate &gt; &#x27;1992-01-01&#x27;;-- * 如何使用like操作符(模糊查询)--     %：表示0到多个字符--     _：表示单个字符--   * 如何显示首字符为s的员工的姓名和工资SELECT  ename,  salFROM  empWHERE 	ename LIKE 	&#x27;S%&#x27; -- 如何显示第三个是oSELECT  	ename,sal FROM 	emp WHERE 	ename LIKE 	&#x27;__O%&#x27;-- * 如何显示没有上级的员工SELECT   *FROM   empWHERE 	mgr IS 	NULL;
+
+5.5.1 分页查询案例：按雇员id升序，每页显示3条，并显示第一页第二页第三页
+基本语法：
+select …. limit start, rows
+start 表示从start + 1行开始取rows行，start从0 开始
+-- 按雇员id升序，每页显示3条，并显示第一页第二页第三页-- 第一页SELECT * FROM emp ORDER BY empnoLIMIT 0, 3;-- 第二页SELECT * FROM emp ORDER BY empnoLIMIT 3, 3-- 按员工id降序，每页5条记录SELECT * FROM emp ORDER BY empno DESC LIMIT 10, 5
+
+5.6 select(多表查询)案例引入
+返回员工信息及部门名字
+分析：同时查询员工表和部门表
+SELECT * FROM emp, dept// 运行结果会将emp表中的每一条记录和dept中的记录进行拼接，返回结果的列是两张表的所有		列，行为两张表的列的乘积的结果，称为笛卡尔集// 解决办法是使用where过滤
+
+注意：多表查询的过滤条件不能少于表的数量减一否则会出现笛卡尔集合
+SELECTename, sal, dname, emp.`deptno` FROM emp, deptWHERE dept.`deptno` = emp.`deptno`
+
+5.6.1 自连接
+
+将同一张表当做两张表查询
+
+需要费表取别名
+
+列名不明确可以指定列的别名
+
+
+
+查询员工姓名及上级姓名
+-- 查询员工姓名及上级姓名-- 对用表使用别名不用as，直接取别名-- as当对列取别名时才使用SELECT yg.ename, sj.ename FROM emp yg, emp sjWHERE yg.mgr = sj.empno
+
+5.6.2 子查询嵌套查询
+-- 显示与smith同一部门的所有员工-- 1. 先查询部门号-- 2. 再用编号查询SELECT  *FROM  empWHERE deptno =  ( SELECT    	deptno	FROM    	emp	WHERE    		ename = &#x27;SMITH&#x27;  )      -- 多行子查询 -- 查询和10号部门工作一样的员工，不包含10号部门的员工SELECT DISTINCT  jobFROM  empWHERE deptno = 20SELECT  ename,  job,  sal,  deptnoFROM  empWHERE 	job IN  (    SELECT DISTINCT    	job  	FROM    	emp	WHERE      	deptno = 20  )	AND 		deptno != 10
+
+
+ 将子查询当做临时表使用
+
+all和any操作符all：所有
+any：任何
+查询工资大于30部门里面所有人
+select enam, sal, deptno	from emp	where sal &gt; all(    	select sal        	from emp        	where deptno = 30    )-- 可以用max(sal) 替代
+
+查询大于30部门工资最低的（只要大于30部门里面任何一人就行）
+select enam, sal, deptno	from emp	where sal &gt; any(    	select sal          from emp        where deptno = 30    )    -- 可以使用min(sal) 替代
+
+多列子查询
+查询与smith的部门和岗位完全相同的所有人
+
+-- 得到他的部门和岗位SELECT deptno, job FROM empWHERE ename = &#x27;SMITH&#x27;-- 把上面的查询当做子查询使用SELECT * FROM emp WHERE (deptno, job) = (	SELECT deptno, job     FROM emp	WHERE ename = &#x27;SMITH&#x27;) AND ename != &#x27;SMITH&#x27;	-- 查询和宋江成绩完全相同的学生SELECT * 	FROM student	WHERE (chinese, english, math) = (        	SELECT chinese, english, math     		FROM student     		WHERE `name` = &#x27;宋江&#x27;    )
+
+子查询练习
+-- 每个部门工资最高的人SELECT MAX(sal) FROM emp GROUP BY deptnoSELECT * FROM emp, (    SELECT MAX(sal) AS ma 	FROM emp     GROUP BY deptno)tempWHERE emp.sal = temp.ma-- 查询每个部门信息人数地址部门名字SELECT  dept.`dname`, dept.loc, temp.人数 FROM dept, 	(		SELECT deptno, COUNT(*) AS 人数 FROM emp		GROUP BY deptno	) tempWHERE temp.deptno = dept.`deptno`
+
+
+
+6. 函数6.1 合计&#x2F;统计函数
+注意：sum函数仅对数值起作用，否则报错
+
+SELECT * FROM student# 统计有多少学生SELECT COUNT(*) FROM student;-- 数学大于80SELECT COUNT(*) FROM student	WHERE math &gt; 80-- sount(*) 和 count(列)区别-- count（列）返回该列非空的条数-- 统计数学总成绩SELECT SUM(math) FROM student;-- 统计各科总成绩SELECT SUM(math),SUM(english) FROM student-- 统计英语均分SELECT (SUM(english) / COUNT(english)) AS &#x27;均分&#x27; FROM student-- 数学均分SELECT AVG(math) FROM student;-- 最高分SELECT MAX(math) FROM student
+
+6.3 字符串相关函数
+-- 返回字串字符集SELECT  CHARSET (ename)FROM  emp;-- 连接字符串SELECT  CONCAT (ename, &#x27; job is &#x27;, job)FROM  emp;-- 返回出现位置类似indexof-- DUAL 亚元表，可以作为测试表使用SELECT  INSTR (&#x27;sdy&#x27;, &#x27;d&#x27;)FROM  DUAL;-- 转换为大写 SELECT  UCASE (ename)FROM  emp;-- 转换为小写 SELECT  LCASE (ename)FROM  emp;-- LEFT (string, length)从字符串左边起取length个字符SELECT  LEFT (ename, 2)FROM  emp;SELECT  RIGHT (ename, 2)FROM  emp;-- LENGHT(string) string 长度（按照  字节  ） SELECT  LENGTH (&#x27;速度&#x27;)FROM  DUAL;-- replace(str, search_str, replace_str) SELECT  ename,  REPLACE (job, &#x27;MANAGER&#x27;, &#x27;经理&#x27;)FROM  emp -- STRCMP(string1, string2) 逐字符比较字符串   SELECT    STRCMP (&#x27;qwe&#x27;, &#x27;asd&#x27;)  FROM    DUAL;-- substring(str, position [, length]) 从str的第一个位置，取length个字符 SELECT  SUBSTRING (ename, 1, 2)FROM  emp;-- ltrim rtrim trim 取出左，右， 左右空格 SELECT  LTRIM (&#x27;   sdf&#x27;)FROM  DUAL -- 将首字母转化为小写       SELECT    CONCAT (      LCASE (LEFT (&#x27;Sundongyu&#x27;, 1)),      SUBSTRING (        &#x27;Sundongyu&#x27;,        2,        (LENGTH (&#x27;Sundongyu&#x27;) - 1)      )    ) AS NEW  FROM    DUAL
+
+6.4 数学相关函数
+-- abs绝对值SELECT ABS(-100) FROM DUAL;-- 十进制转二进制SELECT BIN (10) FROM DUAL;-- ceiling 向上取整SELECT CEILING (1.1) FROM DUAL;-- conv ()进制转换SELECT CONV (8, 10, 2) FROM DUAL;# 将十进制的8 转化为2进制-- floor 向下取整SELECT FLOOR(1.2) FROM DUAL;-- format(number) 保留小数位数SELECT FORMAT(78.1234,2) FROM DUAL;# 对小数进行保留2位小数，四舍五入-- hex()转为16进制-- least (num1, num2, num3) 集合最小值SELECT LEAST(1, 3, 3, 4, 5, 6) FROM DUAL;-- mod(num, num1) 求余数 num % num1SELECT MOD(3, 2) FROM DUAL;-- rand([seed])随机数范围[0,1]-- 当给seed赋值后，随机数将不变SELECT RAND() FROM DUAL;
+
+6.5 时间日期相关函数
+6.6 加密和系统函数-- user 查询用户SELECT USER() FROM DUAL;-- 可以查看登录到mysql的有哪些用户和ip-- databade 数据库名称SELECT DATABASE();-- md5(str) 为字符串算出一个md5 32 的字符串，常用（用户密码）加密SELECT MD5(&#x27;sdy&#x27;) FROM DUAL;SELECT LENGTH(MD5(&#x27;sdy&#x27;)) FROM DUAL; -- 32 位-- 演示用户表，存放密码时 时md5CREATE TABLE users2 (  id INT,  name1 VARCHAR(32) NOT NULL DEFAULT &#x27;&#x27;,  pwd CHAR(32) NOT NULL DEFAULT &#x27;&#x27;)SELECT * FROM users2INSERT INTO users2 VALUES(100, &#x27;sdy&#x27;, MD5(&#x27;sdy&#x27;));-- password (str) 加密函数 mysql数据库密码就是用这个函数加密的SELECT PASSWORD (&#x27;sdy&#x27;) FROM DUAL;
+
+
+
+6.7 流程控制函数
+7. 表复制为了对某个sql语句进行效率测试，使用此法为表创建海量数据
+CREATE TABLE my (    id INT,    `name` VARCHAR(32),    sal DOUBLE,    job VARCHAR(32),    deptno INT)SELECT * FROM my-- 把emp表的数据复制到myINSERT INTO my    (id, `name`, sal, job, deptno)SELECT empno, ename, sal, job, deptno FROM emp-- 自我赋值 把my表中的数据插入my表INSERT INTO mySELECT * FROM my
+
+8. 表去重-- 考虑去重/*	1. 创建一张临时表my_temp	2. 把my的数据通过distinct关键字处理后，把记录复制到my_temp	3. 清除my表内容，把my记录复制到my_temp*/-- 1.CREATE TABLE my_tempLIKE my-- 2.INSERT INTO my_temp(	SELECT DISTINCT * FROM my)-- 3. 清除my表数据DELETE FROM my-- 4. 添加数据INSERT INTO mySELECT * FROM my_temp-- 5. 删除临时表内容DROP TABLE my_temp
+
+9. 合并查询合并多条select语句的结果，可以使用操作符
+union:去重
+union all：不去重
+select * from xxxunion [all]select * from xxx
+
+10. mysql 表外连接
+左外连接：当两表数据不匹配时，左侧表完全显示
+右外连接：当两表数据不匹配时，右侧表完全显示
+用的不算太多
+
+语法格式
+-- 左外连接select .. from table1 left join table2 on 条件-- 表一就是左表-- 右外连接select .. from table1 right join table2 on 条件-- table2 是右表
+
+测试：显示所有成绩，如果没有成绩显示空
+CREATE TABLE `idandname` (	id INT,	`name` VARCHAR(32))CREATE TABLE `idandcj` (	id INT,	cj INT)INSERT INTO idandname VALUES(1, &#x27;sdy&#x27;), (2, &#x27;lx&#x27;), (3, &#x27;zyx&#x27;)INSERT INTO idandcj VALUES(1, 111),(2,333)-- 传统写法，不能将没成绩的输出为空SELECT * FROM idandname, idandcjWHERE idandname.`id` = idandcj.`id`-- 左外连接,完成需求SELECT * FROM idandname LEFT JOIN idandcjON idandname.`id` = idandcj.`id`
+
+11. mysql约束11.1 主键
+唯一标识表中记录的列，主键列数据不能重复
+复合主键写在末尾，priamry key (列名， 列名2)     列名一定要用括号包围，即使只有一个列作为主键，如果写在属性最后就不用括号
+
+-- 主键定义样例create table xx (	id int primary ket)-- 或者使用写在所有字段后面create table xx (	id int     primary ket (id) -- 字段id设为主键（一定加括号）)-- 复合主键样例create table xx (	id int,    name varchar(32)    primary key(id, name) -- 这就是复合主键)
+
+
+
+细节：
+
+主键不能重复，且不能为空，相当于使用了unique not null
+主键可以使用多个列同时作为主键（复合主键），多个列的组合不能重复即可
+
+11.2 not null
+如果在列上定义了not null 则表示插入数据时必须为列提供数据
+
+11.3 unique
+当定义了唯一约束后，该列值时不能重复的
+如果字段没有定义not null ，则可以添加多个空，即使使用了unique标识
+
+11.4 外键 foreign key
+将主表中的主键约束列或者unique约束列和从表中的外键列建立联系，要求外键列数据必须在主键列存在或者为空
+主表要求具有主键约束或者unique约束
+
+语法
+foreign 外键字段 references 主键所在表名(主键列名)-- 示例create table a (	id int)create table b (	id int ,    name varchar(32) ,    foreign b.id references a.id)
+
+注意事项：
+
+外键指向表的字段要求是primary key或者是unique
+表引擎为innodb才支持外键
+外键字段的类型要与主键字段的类型一致，长度可以不同
+外键字段的值必须在主键字段中出现过，或者为空
+一旦建立外键关系数据就不能随意删除，欲删除主键字段必须将外键中与该字段关联的外键数据全部删除方可删除主键字段
+
+11.5 check约束
+用于强制生效的列数据，如果不满足就会报错（mysql5.7不生效）
+
+基本语法：列名   类型   check  （check条件）
+注意check条件必须写在括号里
+-- 实例id限制在10，和20两个数之间create table xx (	id int check(id in (10, 20)))
+
+11.6 章节测试-- 创建数据库CREATE DATABASE shop_db-- 商品表goodsCREATE TABLE goods (	goods_id INT ,	goods_name VARCHAR(32) ,	unitprice DOUBLE CHECK (unitprice &gt;= 1.0 AND unitprice &lt;= 9999.99),	category VARCHAR(32) ,	provider VARCHAR(32) ,	PRIMARY KEY (goods_id))-- 客户表CREATE TABLE customer (	customer_id INT ,	`name` VARCHAR (32) NOT NULL ,	address VARCHAR (64) ,	email VARCHAR (32) UNIQUE,	sex enum (&#x27;男&#x27;, &#x27;女&#x27;) , -- 枚举类型可以使用	card_id VARCHAR (18) ,	PRIMARY KEY (customer_id))-- 订单表CREATE TABLE purchase (	`order_id` INT ,	customer_id INT ,	goods_id INT ,	nums INT ,	PRIMARY KEY (`order_id`) ，    foreign key (oustomer_id) references customer (oustomer_id),    foreign key (goods_id) references goods(goods_id))
+
+12. 自增长实际开发中需要一种自动增长的功能，不用编号，每添加一个数据就为其编号
+基本语法：
+字段名 字段类型 auto_increment
+细节：
+
+一般来说自增长是和primary key配合使用
+
+不使用主键就必须使用unique修饰列
+
+自增长默认从1开始增长，但是可以修改
+alter table 表名  auto_inctement = xxx-- 这条语句的用途是将下一个自增长的值设为xxx，那么下一次在自增长就会是xxx + 1-- 注意，也可以在添加数据时给这个自增长变量赋值，那么也会从赋的值开始增长测试ALTER TABLE t24 AUTO_INCREMENT = 100CREATE TABLE t24 (	id int PRIMARY KEY AUTO_INCREMENT)INSERT INTO t24 VALUES (NULL) -- 100INSERT INTO t24 VALUES (NULL) -- 101INSERT INTO t24 VALUES (NULL) -- 102INSERT INTO t24 VALUES (NULL) -- 103INSERT INTO t24 VALUES (200) -- 200INSERT INTO t24 VALUES (NULL) -- 201
+
+一般来说自增长是修饰整型的（虽然小数也可以但是用的很少）
+
+
+13. mysql 索引提高数据库性能，不用加内存，不用改程序，不用调sql，查询速度提高百倍千倍
+
+索引本身会占用空间
+创建索引后只会对创建缩印的列有效，其他列查询速度依旧
+
+基本语法：
+create index 索引名 on 表名（字段名） -- 给表的某字段创建索引
+
+索引的原理：
+
+没有索引为什么会慢？
+因为每次查询都会进行全表查询
+
+
+使用索引为什么快？
+形成一个数据结构，比如二叉树，B树，B+树等
+
+
+
+索引的代价：
+
+磁盘占用
+对update，delete， insert语句的效率影响，因为会维护索引
+
+索引种类
+主键索引，主键自动为主索引（类型为primary key）
+
+唯一索引（unique）
+
+普通索引（index）
+
+全文索引（fulltext）【适用于myisam】
+一般开发不使用mysql自带的全文索引，而是使用全文搜索Solr和ElasticSearch（Es）
+
+
+索引使用
+CREATE TABLE t99 (	id INT,	`name` VARCHAR(32));-- 添加[唯一]索引方式1CREATE [unique] INDEX id_index ON t99 (id);-- 索引方法2ALTER TABLE t99 ADD [unique] INDEX id_index (id)-- 删除索引（普通索引和唯一索引）DROP INDEX id_index ON t99alter table table_name drop index index_name-- 添加主键索引方法1，创建时设置为主键PRIMARY KEY (id)id INT PRIMARY KEY-- 添加主键索引方法2ALTER TABLE t99 ADD PRIMARY KEY (id)-- 删除主键索引ALTER TABLE t99 DROP PRIMARY KEY-- 修改索引 先删除再添加新的索引-- 查询索引-- 1. SHOW INDEX FROM t99-- 2.SHOW INDEXES FROM t99-- 3. SHOW KEYS FROM t99-- 4. DESC t99
+
+
+
+小结
+经常查询的列应该建立索引
+唯一性太差的字段不适合单独建立索引，即使频繁作为查询条件
+更新频繁的字段不适合创建索引
+
+14. mysql 事务14.1 事务管理
+事务用于保证数据的一致性，他由一组相关的dml语句组成，该组语句要不全部成功要不全部失败
+例如：转账，如果转出方转出失败，接收方就不能接受成功，反之亦然
+
+
+事务和锁
+
+当执行事务操作时，mysql会在表上加锁，防止其他用户修改表的数据，在实务操作commit之前的所有操作其他用户是看不见的
+
+
+mysql数据库控制台事务的重要操作
+
+start transaction    开始一个事务
+savepoint  保存点名字         设置保存点
+rollback to 保存点名字         回退事务
+rollback                回退全部事务
+commit                    提交事务，删除保存点，释放锁，所有的操作生效，不能回退
+
+注意事项：
+
+回退以后，该保存点后面的保存点将被删除
+rollback回退至事务建立之初
+如果不开启事务，是dml自动提交的，不能回滚
+开启事务是默认创建一个保存点，即rollback回退的保存点
+innodb存储引擎才支持事务机制
+开启事务也可以用set autocommit&#x3D;off
+
+CREATE TABLE shiwu (	id INT)INSERT INTO shiwu VALUE(1234);-- 建立事务START TRANSACTIONINSERT INTO shiwu VALUES(134);SAVEPOINT aINSERT INTO shiwu VALUE(555);SAVEPOINT bINSERT INTO shiwu VALUE (999)SELECT * FROM shiwuROLLBACK  -- 11234
+
+14.2 事务隔离级别
+脏读：当一个事务读取到了另一个事务未提交的修改
+不可重复读：同一个查询在同一个事务中多次进行，由于其他提交事务所做的修改删除，每次返回不同的结果
+幻读：同一个查询在同一个事务中多次进行，由于其他提交事务所做的插入，每次返回不同的结果
+
+
+mysql的隔离级别有哪些？（√表示会出现，×表示不会出现）
+
+
+
+
+隔离级别
+脏读
+不可重复读
+幻读
+加锁读
+
+
+
+读未提交（read uncommitted）
+√
+√
+√
+×
+
+
+读已提交（read committed）
+×
+√
+√
+×
+
+
+可重复读（repeatable read）
+×
+×
+×
+×
+
+
+可串行化（serializable）
+×
+×
+×
+√
+
+
+
+常用指令
+
+查看当前会话隔离等级
+select @@tx_isolation
+
+查看系统当前隔离等级
+select @@global.tx_isolation
+
+设置当前会话隔离等级
+set session transaction isolation level repeatable read;
+
+设置当前系统隔离等级
+set global transaction isolation level repeatable read;
+
+
+mysql默认事务等级是repeatable read
+
+
+14.3 mysql 事务ACID
+15. mysql表的类型和存储引擎
+
+如何选择存储引擎？
+
+测试：
+-- innodb 存储引擎，支持事务，支持外键，支持行级锁-- myisam 1. 添加速度快，2. 不支持外键和事务，支持表级锁CREATE TABLE myisam_table (	id INT,	`name` VARCHAR(32)) ENGINE MYISAM;START TRANSACTION;SAVEPOINT t1;INSERT INTO myisam_table VALUES(3, &#x27;sdy&#x27;);SELECT * FROM myisam_table;ROLLBACK TO t1;//报警告，不支持事务，回滚失败-- memory 存储引擎-- 1. 数据存储在内存中(重启Mysql服务将会丢失数据)，执行速度很快（没有IO读写），默认支持索引（hash索引）CREATE TABLE memory_table (	id INT,	`name` VARCHAR(32)) ENGINE MEMORY	SELECT * FROM memory_tableINSERT INTO memory_table VALUES(1, &#x27;sdy&#x27;);-- 指令修改存储引擎ALTER TABLE memory_table ENGINE = MYISAM;
+
+16. 视图（view）
+视图是一个虚拟表，其内容由查询定义，同真实的表一样，视图包含列，其数据来自对应的真实的表，通过视图是可以修改基表，修改基表也会影响视图。
+
+视图的基本使用
+create view 视图名 as select 语句
+alter view 视图名 as select语句
+show create view 视图名
+drop view 视图名
+
+细节：
+
+当我们创建视图后去对应的数据库文件查看只能看到视图结构文件，没有数据文件，数据仍来自基表
+视图的数据变化会影响到基表，基表变化也会影响视图（就像java引用，指向同一个数据文件，无论从哪边修改都会修改成功）
+视图中可以再使用视图
+
+-- 视图的作用CREATE VIEW emp_view AS SELECT empno, ename, job, deptno FROM emp;-- 查看视图DESC emp_viewSELECT * FROM emp_view-- 查看创建视图的指令SHOW CREATE VIEW emp_view-- 删除视图DROP VIEW emp_view-- 通过修改视图UPDATE emp_view SET job = &#x27;sdy&#x27; WHERE empno = 7369;SELECT * FROM empUPDATE emp SET job = &#x27;sss&#x27; WHERE empno = 7369;-- 视图中可以在视图，比如从emp_view中选出两列作为新视图CREATE VIEW emp_view2AS SELECT empno, ename FROM emp_view;SELECT * FROM emp_view2
+
+视图最佳实践：  
+
+多表联合查询使用视图：
+
+17. mysql管理mysql用户创建用户
+create user &#39;用户名&#39; @ 允许登陆位置 IDENTIFIED BY &#39;setpassword&#39;
+修改密码
+删除用户
+查询用户 
+-- mysql用户管理-- 根据不同的开发人员，赋给它相应的权限-- root用户根据需要创建不同的用户，赋给不同的权限，共开发人员使用-- 1. 创建新用户-- 解读&#x27;sdy&#x27; @ &#x27;localhost&#x27; 用户完整信息，用户名和登录的ip-- 123456 是登录密码，但是存放是password加密存放的CREATE USER &#x27;hbusdy&#x27;@&#x27;localhost&#x27; IDENTIFIED BY &#x27;123456&#x27;-- 查询用户SELECT &#x27;user&#x27;, &#x27;host&#x27;, &#x27;autentication&#x27; FROM mysql.user-- 创建用户时报错FLUSH PRIVILEGES-- 删除用户DROP USER &#x27;hbusdy&#x27;@&#x27;localhost&#x27;-- 修改密码（可以修改自己密码，修改他人密码需要权限）SET PASSWORD = PASSWORD(&#x27;xxxxx&#x27;)-- 修改他人SET PASSWORD FOR &#x27;用户名&#x27;@&#x27;登录位置&#x27; = PASSWORD(&#x27;密码&#x27;)
+
+用户权限
+
+-- 创建用户，sundongyu 密码 123CREATE USER  &#x27;sundongyu&#x27;@&#x27;localhost&#x27; IDENTIFIED BY &#x27;123&#x27;; -- 创建testdb， 表newsCREATE DATABASE testdbCREATE TABLE news (	id INT,	content VARCHAR(32));INSERT INTO news VALUES(100, &#x27;北京新闻&#x27;);SELECT * FROM news-- 给sundongyu用户分配查看news表和添加news的权限GRANT SELECT , INSERT ON testdb.newsTO &#x27;sundongyu&#x27;@&#x27;localhost&#x27;SELECT * FROM mysql.user-- 修改密码为’abc‘SET PASSWORD FOR &#x27;sundongyu&#x27;@&#x27;localhost&#x27; = PASSWORD(&#x27;abc&#x27;);-- 回收所有权限REVOKE INSERT , SELECT  ON testdb.`news` FROM &#x27;sundongyu&#x27;@&#x27;localhost&#x27;REVOKE ALL ON testdb.`news` FROM &#x27;sundongyu&#x27;@&#x27;localhost&#x27;-- 删除用户DROP USER &#x27;hbusdy&#x27;@&#x27;localhost&#x27;
+
+细节
+创建用户时如果不指定host，则为%,%表示可以从任何ip登录
+可以像  192.168.1.*   这样指定登录ip范围，都可以登录
+删除用户时如果host不是%，必须明确确定  ‘user‘@’host’
+
+]]></content>
+      <categories>
+        <category>MySql</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Git学习</title>
+    <url>/2022/05/06/git-xue-xi/</url>
+    <content><![CDATA[
+记录git常用命令
+
+
+
+git基础本地常用命令
+git init
+初始化仓库
+
+git status
+查看状态
+
+git add
+添加到暂存区
+
+git commit -m ‘first commit’
+提交
+
+git log
+查看日志
+
+git branch
+分支的意思，查看当前分支状态
+
+git branch a
+新建分支a
+
+git checkout a
+切换到分支a
+
+git checkout -b a
+新建分支a并切换到分支a
+
+git merge  a
+合并分支a到master
+
+git branch -d a
+删除分支agit
+
+git branch -D a
+强制删除分支a
+
+git tag
+
+我们在客户端开发的时候经常有版本的概念，比如v1.0、v1.1之类的，不同的版本肯定对应不 同的代码，所以我一般要给我们的代码加上标签，这样假设v1.1版本出了一个新bug，但是又 不晓得v1.0是不是有这个bug，有了标签就可以顺利切换到v1.0的代码，重新打个包测试了。所以如果想要新建一个标签很简单，比如 git tag v1.0 就代表我在当前代码状态下新建了一个v1.0的标签，输入 git tag 可以查看历史 tag 记录
+想要切换到某个tag怎么办？也很简单，执行 git checkout v1.0 ，这样就顺利的切换到 v1.0 tag的代码状态了。
+
+
+
+向Github提交代码SSHSSH是一种网络协议，用于计算机之间的加密登录。目前 是每一台 Linux 电脑的标准配置。而大多数 Git 服务器都会选择使用 SSH 公钥来进行授权，所以想要在 GitHub 提交代码的第一步就是要先添加 SSH key 配置。
+生成SSH key
+打开Git Bash，输入ssh - keygen -t rsa
+就是指定 rsa 算法生成密钥
+
+接着连续三个回 车键（不需要输入密码），然后就会生成两个文件 id_rsa 和 id_rsa.pub ，而 id_rsa 是密钥，id_rsa.pub 就是公钥。
+
+找到生成的秘钥文件，将id_rsa.pub中的内容添加到github中，这样本地的秘钥和github上的公钥配对，授权成功才可以提交代码。
+
+到github上添加ssh
+
+
+Push &amp; PullPush ：直译过来就是「推」的意思，什么意思呢？如果你本地代码有更新了，那么就需要把 本地代码推到远程仓库，这样本地仓库跟远程仓库就可以保持同步了。
+// 将本地代码提交到master分支git push origin master
+
+
+Pull：直译过来就是「拉」的意思，如果别人提交代码到远程仓库，这个时候你需要把远程仓 库的最新代码拉下来，然后保证两端代码的同步。 
+git pull origin master
+
+意思就是把远程最新的代码更新到本地。一般我们在 push 之前都会先 pull ，这样不容易冲突。
+提交代码添加 SSH key 成功之后，我们就有权限向 GitHub 上我们自己的项目提交代码了，而提交代 码有两种方法：
+
+clone自己的项目
+
+找到自己项目的的地址，使用clone命令克隆到本地，直接就是一个git仓库，不需要init初始化，甚至已经关联远程仓库了，在这个目录下修改添加文件，commit后push即可提交
+
+
+关联本地已有项目
+假设我们本地有个 test2 的项目，我们需要的是在 GitHub 上建一个 test 的项目，然后把本地 test2 上的所有代码 commit 记录提交到 GitHub 上的 test 项目。
+第一步就是在 GitHub 上建一个 test 项目，这个想必大家都会了，就不用多讲了。第二步把本地 test2 项目与 GitHub 上的 test 项目进行关联，切换到 test2 目录，执行如下命令：
+git remote add origin https://github.com/sundongyu/sundongyu.github.io.git
+
+添加一个远程仓库，他的地址是 https://github.com/sundongyu/sundongyu.github.io.git ， 而 origin 是给这个项目的远程仓库起的名字，只不过只有一个远程仓库时名字公认为 origin ，为什么要给远程仓库取名字？因为我们可能一个项目 有多个远程仓库？比如 GitHub 一个，比如公司一个，这样的话提交到不同的远程仓库就需要指定不同的仓库名字了。
+
+
+查看当前项目有哪些远程仓库
+git remote -v
+
+Git进阶1.用户名和邮箱每一次commit都会产生一条log，这条log标记了提交人的姓名与邮箱，以 便其他人方便的查看与联系提交人，所以我们在进行提交代码的第一步就是要设置自己的用户名与邮箱。执行以下代码：
+// 全局设置，如果不想全局设置去掉global即可git config --global user.name &quot;sundongyu&quot; git config --global user.email &quot;dongyusun@hotmail.com&quot;
+
+ps：我们在 GitHub 的每次提交理论上都会在 主页的下面产生一条绿色小方块的记录，如果提交了，但是没有绿色方块显示，那肯定是你提交代码配置的邮箱跟你 GitHub 上的邮箱不一致，GitHub 上的邮箱可以到 Setting -&gt; Emails里查看。
+2.alias（别名）很多Git命令使用频繁，每次输入有些麻烦，因此可以使用别名，进行缩写
+git config --global alias.co checkout # 别名 git config --global alias.ci commit git config --global alias.st statusgit config --global alias.br branch
+
+当然以上别名不是固定的，你完全可以根据自己的习惯去定制，除此之外还可以设置组合， 比如：
+git config --global alias.psm &#x27;push origin master&#x27; git config --global alias.plm &#x27;pull origin master&#x27;
+
+之后经常用到的git push origin master 和 git pull origin master 直接就用 git psm 和 git plm 代替了。
+告诉大家一个比较屌的命令，优化了log的显示
+git log --graph --pretty=format:&#x27;%Cred%h%Creset %C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#x27; --abbrev-commit --date=relative
+
+但是每次都要输这么一大串是不是也很烦？这 时候你就该想到 alias 啊：
+git config --global alias.lg &quot;log --graph --pretty=format:&#x27;%Cred%h%Creset -%C(yellow)% d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#x27; --abbrev-commit --date=relative&quot;
+
+3.diffgit diff
+
+
+用来查看代码改动
+
+值得一提的是直接输入 git diff 只能比较当前文件和暂存区文件差异，什么是暂存区？就是你 还没有执行 git add 的文件。
+当然跟暂存区做比较之外，他还可以有其他用法，如比较两次 commit 之间的差异，比较两个 分支之间的差异，比较暂存区和版本库之间的差异等，具体用法如下：
+git diff &lt;$id1&gt; &lt;$id2&gt; # 比较两次提交之间的差异 git diff &lt;branch1&gt;..&lt;branch2&gt; # 在两个分支之间比较git diff --staged # 比较暂存区和版本库差异
+
+4.checkout
+切换分支
+切换tag
+切换到某次commit
+
+git checkout v1.0   //切换到1.0版本git checkout commit_id  //commitid可以通过git log查看
+
+除了切换，checkout还有撤销的意思
+如果你在一个分支开发，结果需求变化，之前写的代码全部用不了，但是你没有将代码提交到缓存区(git add .)，这个时候可以还原
+git checkout xxx(文件名)git checkout a.md
+
+注意：只能撤销没有add进缓存区的文件
+5.stash这里知鸟大佬讲过，如果我代码写了一般，但是来了紧急的bug需要修复，而且修复完就要上线，现在只有两个选择，第一个是将写一半的代码提交，然后转到bug分支修复
+问题：产生垃圾commit，因为每一次的commit都有实际意义，这写了一半的代码还没有什么实际意义，不建议提交。
+:star:那有没有一种办法，可以让我暂时切换到别的分支修复bug，修复结束再切回来，而且代码也能保留？有，stach命令。
+
+前提：代码没有commit，哪怕执行了add也没事。
+第一步：把当前分支所有没有 commit 的代码先暂存起来。
+git stash
+
+第二步：查看被藏匿起来的代码。
+git stash list
+
+第三步：切换回其他分支，赶紧把bug修复好，然后发布。
+第四步：还原之前藏匿的代码
+git stash apply
+
+第五步：清楚缓存区中的stash记录。
+git stash drop
+
+ 第四步和第五步经常一起使用，两条命令太过于麻烦，所以：
+// 替代 apply 命令和 drop 命令git stash pop
+
+最后一条命令：
+清除所有stash记录
+git stash clear
+
+就是清空所有暂存区的记录，drop 是只删除一条，当然后面可以跟 stash_id 参数来删除指 定的某条记录，不跟参数就是删除最近的，而 clear 是清空。
+6.merge &amp; rebase分支合并该如何进行？
+场景：现在在dev分支完成了功能的开发，想在想把这个功能合并到主分支
+第一步：回到主分支
+git checkout master
+
+第二步：合并
+git merge dev
+
+merge 可以用 rebase 来替代
+两者有什么区别？
+
+rebase 跟 merge 的区别你们可以理解成有两个书架，你需要把两个书架的书整理到一起 去，第一种做法是 merge（合并的意思） ，比较粗鲁暴力，就直接腾出一块地方把另一个书架的书全部放进 去，虽然暴力，但是这种做法你可以知道哪些书是来自另一个书架的；第二种做法就是 rebase（重构的意思） ，他会把两个书架的书先进行比较，按照购书的时间来给他重新排序，然后重新放置好，这样做的好处就是合并之后的书架看起来很有逻辑，但是你很难清晰的知道哪些书来自哪个书架的。
+
+各有好处，各有用处。
+7.解决冲突两个不同分支，开发不同功能，两个分支都同时master中的一个内容进行了改动，然后功能开发完毕，A分支合并到主分支，OK合并完毕，但是当B分支想合并到主分支的时候就出现了冲突。
+因为A和B同时改了同一个地方，Git本身没法判断谁改的对，但是他会提示conflicts，需要手动解决冲突后重新进行commit提交。
+
+以上截图里就是冲突的示例，冲突的地方由 ====  分出了上下两个部分，上部分一个叫 HEAD 的字样代表是我当前所在分支的代码，下半部分是一个叫 baidu_activity 分支的代 码，可以看到 HEAD 对 gradle 插件进行了升级，同时新增了一个插件，所以我们很容易判断 哪些代码该保留，哪些代码该删除，我们只需要移除掉那些老旧代码，而且同时也要把那些 &lt;&lt;&lt; HEAD、&#x3D;&#x3D;&#x3D;&#x3D; 以及 &gt;&gt;&gt;&gt;&gt;&gt;baidu_activity 这些标记符号也一并删除，最后进行一次commit 就ok了。
+Git分支管理1.什么是分支？可以这么理解，几个人一 起去旅行，中间走到一个三岔口，每条路可能有不同的风景，你们约定 3 天之后在某地汇 聚，然后各自出发了。而这三条分叉路就可以理解成你们各自的分支，而等你们汇聚的时候相当于把你们的分支进行了合并。
+2.分支的常用操作
+新建名叫develop的分支
+
+git branch develop
+
+提醒：当前在哪个分支，新建的分支就是基于这个分支建立的，新建分支的内容适合当前分支完全相同的。
+
+切换到develop分支
+
+git checkout develop
+
+
+如果把以上两步合并，即新建并且自动切换到 develop 分支：
+
+git checkout -b develop
+
+
+推送develop分支到远程仓库
+
+git push origin develop
+
+
+查看本地分支
+
+git branch
+
+
+查看远程分支列表
+
+git branch -r
+
+
+删除本地分支
+
+git branch -d developgit branch -D develop(强制删除)
+
+
+删除远程分支
+
+git push origin :develop
+
+
+如果远程分支有个 develop，而本地没有，把远程分支迁移到本地
+
+git checkout develop origin/develop
+
+
+同样的把远程分支迁到本地顺便切换到该分支：
+
+git checkout -b develop origin/develop
+
+3.基本的团队协作流程一般来说，如果你是一个人开发，可能只需要 master、develop 两个分支就 ok 了。
+平时开发 在 develop 分支进行，开发完成之后，发布之前合并到 master 分支，这个流程没啥大问题。
+
+如果你是 3、5 个人，那就不一样了，有人说也没多大问题啊，直接可以新建 A、B、C 三个 人的分支啊，每人各自开发各自的分支，然后开发完成之后再逐步合并到 master 分支。然而 现实却是，你正在某个分支开发某个功能呢，这时候突然发现线上有一个很严重的 bug ，不 得不停下手头的工作优先处理 bug ，而且很多时候多人协作下如果没有一个规范，很容易产 生问题，所以多人协作下的分支管理规范很重要，就跟代码规范一样重要，以下就跟大家推荐一种我们内部在使用的一种分支管理流程 Git Flow。
+4.Git Flow一般开发来说，大部分情况下都会拥有两个分支 master 和 develop，他们的职责分别是：
+
+master：永远处在即将发布(production-ready)状态。
+develop ：最新的开发状态。
+
+确切的说 master、develop 分支大部分情况下都会保持一致，只有在上线前的测试阶段 develop 比 master 的代码要多，一旦测试没问题，准备发布了，这时候会将 develop 合并到master 上。
+但是我们发布之后又会进行下一版本的功能开发，开发中间可能又会遇到需要紧急修复 bug ，一个功能开发完成之后突然需求变动了等情况，所以 Git Flow 除了以上 master 和 develop两个主要分支以外，还提出了以下三个辅助分支：
+
+feature: 开发新功能的分支, 基于 develop, 完成后 merge 回 develop
+release: 准备要发布版本的分支, 用来修复 bug，基于 develop，完成后 merge 回 develop 和 master
+hotfix: 修复 master 上的问题, 等不及 release 版本就必须马上上线. 基于 master, 完成后 merge 回 master 和 develop
+
+什么意思呢？ 
+举个例子，假设我们已经有 master 和 develop 两个分支了，这个时候我们准备做一个功能A，第一步我们要做的，就是基于 develop 分支新建个分支：
+git branch feature/A
+
+看到了吧，其实就是一个规范，规定了所有开发的功能分支都以 feature 为前缀。
+但是这个时候做着做着发现线上有一个紧急的 bug 需要修复，那赶紧停下手头的工作，立刻 切换到 master 分支，然后再此基础上新建一个分支：
+git branch hotfix/B
+
+代表新建了一个紧急修复分支，修复完成之后直接合并到 develop 和 master ，然后发布。 然后再切回我们的 feature&#x2F;A 分支继续着我们的开发，如果开发完了，那么合并回 develop 分 支，然后在 develop 分支属于测试环境，跟后端对接并且测试的差不多了，感觉可以发布到正式环境了，这个时候再新建一个 release 分支：
+git branch release/1.0
+
+这个时候所有的 api、数据等都是正式环境，然后在这个分支上进行最后的测试，发现 bug 直 接进行修改，直到测试 ok 达到了发布的标准，最后把该分支合并到 develop 和 master 然后 进行发布。以上就是 Git Flow 的概念与大概流程，看起来很复杂，但是对于人数比较多的团队协作现实开发中确实会遇到这么复杂的情况，是目前很流行的一套分支管理流程。
+每次都要各种操作，合并来合并去，有点麻烦，哈哈，这点 Git Flow 早就想到了，为此还专门推 出了一个 Git Flow 的工具，并且是开源的：GitHub 开源地址：https://github.com/nvie/gitflow
+]]></content>
+      <categories>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>大数据导论</title>
+    <url>/2022/05/07/da-shu-ju-dao-lun/</url>
+    <content><![CDATA[
+导论简答题总结
+
+
+
+1.试述键值数据库、列族数据库、文档数据库和图数据库的使用场合和优缺点。
+（1）键值数据库
+使用场合：内容缓存，如会话、配置文件、参数、购物车等。
+优点：扩展性好、灵活性好，进行大量写操作时性能高；
+缺点：无法存储结构化信息、条件查询效率较低。
+（2）列族数据库
+使用场合：分布式数据存储和管理。
+优点：查找速度快，可扩展性强，容易进行分布式扩展，复杂性低。
+缺点：功能较少，大多不支持事务一致性。
+（3）文档数据库
+使用场合：存储、索引并管理面向文档的数据或者类似的半结构化数据。
+优点：性能好，灵活性高，复杂性低，数据结构灵活。
+缺点：缺乏统一的查询语法。
+（4）图数据库
+使用场合：可用于大量复杂、互连接、低结构化的图结构场合，如社交网络、推荐系统等。
+优点：灵活性高，支持复杂的图算法，可用于构建复杂的关系图谱。
+缺点：复杂性高，只能支持一定的数据规模。
+2.试述Hadoop生态系统及每个部分的具体功能。
+包括HDFS、MapReduce、ZooKeeper、HBase、Hive、Pig、Mahout、Sqoop、Flume、Ambari等。
+具体功能：
+（1）HDFS，分布式文件系统，作为Hadoop的底层数据存储系统。
+（2）HBase，提供高可靠性、高性能、可伸缩、实时读写、分布式的列式数据库。
+（3）MapReduce，一种编程模式，用于大规模数据集的并行运算。
+（4）Hive，基于Hadoop的数据仓库工具，可以对Hadoop文件中的数据集进行数据整理、特殊查询和分析存储。
+（5）Pig，一种数据流语言和运行环境，适合于使用Hadoop和MapReduce平台来查询大型半结构化数据集。
+（6）Mahout，提供可扩展的机器学习领域经典算法的实现。
+（7）ZooKeeper，高效可靠的协同工作系统，提供分布式锁之类的基本服务（如统一命名服务、状态同步服务、集群管理、分布式应用配置项的管理）。
+（8）Flume，提供高可靠的、高可用的、分布式的海量日志采集、聚合和传输系统。
+（9）Sqoop，SQL-to-Hadoop的缩写，用来在Hadoop和关系型数据库之间交换数据，可以改进数据的互操作性。
+（10）Ambari，一种基于Web的工具，支持Apache Hadoop集群的安装、部署、配置和管理。
+3.试述数据仓库有哪些特性？
+（1）面向主题；
+（2）集成：数据来自分散的操作型数据，将所需数据从原数据抽取处理，并进行加工、集成、统一与综合后才能进入数据仓库。
+（3）相对稳定：不可更新，为决策分析提供数据，涉及操作主要是数据的查询。
+（4）反映历史变化：每隔一定时间从数据源抽取数据并加载到数据仓库。
+4.试述关系数据库有哪些特性？
+（1）存储方式：采用表格存储，数据以行和列的方式存储，读取查询方便。
+（2）存储结构：结构化方法存储，数据表结构必须事先定义好，然后才能根据表结构输入数据。数据表的可靠性和稳定性好；但数据模型不够灵活，存入数据后修改数据表结构十分困难。
+（3）存储范式：数据按照最小关系表的形式存储；存在多个表时，通过主、外键发生关联，并通过连接查询获得相关结构。
+（4）扩展方式：只能通过提升硬件性能提高数据库处理能力，只具有有限的纵向扩展能力。
+（5）查询方式：采用结构化查询语言SQL对数据库进行查询，具有极大的灵活性和强大的功能。
+（6）事务性：支持事务的ACID特性—原子性（Atomicity）、一致性（Consistency）、隔离性（Isolation）、持久性（Durability）。
+（7）连接方式：遵循统一的数据库连接接口标准，即开放数据库连接（ODBC），具有良好的平台无关性和可移植性。
+5.请简述数据清洗的内容和注意事项。
+内容：（1）缺失值处理，如估算、整行删除、变量删除、成对删除；（2）异常值处理；（3）数据类型转换；（4）重复值处理。
+注意事项：（1）清洗顺序：缺失值、异常值、数据类型转换，最后进行重复值删除。
+（2）根据业务需求，选择合适的处理方法；
+（3）了解表的结构和发现需要处理的值；
+（4）数据量的大小关系着数据的处理方式；
+（5）一般需要对所有列依次进行清洗，来保证数据处理的彻底性。
+6.请阐述数据采集方法有哪些？
+
+系统日志采集，如Flume;
+分布式消息订阅分发，如Kafka.
+ETL，常用于数据仓库中的数据采集和预处理环节，具体包括从原系统中抽取数据，并根据实际需求对数据进行转换，把转换结果加载到目标数据存储中。
+网络数据采集，指通过网络爬虫或网站公开应用程序编程结构（API）等方式从网站上获取数据信息。
+
+7.请阐述数据脱敏的原则和方法？
+原则：（1）保持原有数据特征；（2）保持数据之间的一致性；（3）保持业务规则的关联性；（4）多次脱敏数据之间的数据一致性。
+方法：（1）数据替换；（2）无效化；（3）随机化；（4）偏移和取整；（5）掩码屏蔽；（6）灵活编码。
+8.请阐述云计算概念，并给出云计算的主要优点？
+所谓的“云计算”，是指通过网络、以服务的方式为政府、企业和个人提供非常廉价的IT资源的技术。
+云计算的主要优点：（1）初期零成本，瞬时可获得；（2）后期免维护，使用成本低；（3）在供应IT资源量方面“予取予求”。
+9.请阐述大数据与云计算、物联网的相互关系。
+区别：大数据侧重于对海量数据存储、处理与分析，从海量数据中发现价值，服务于生产和生活；云计算旨在整合和优化各种IT资源，并通过网络以服务的形式，廉价地提供给用户；物联网的发展目标是实现“物物相连”，应用创新是物联网发展的核心。
+联系：云计算为大数据提供了技术基础，物联网是大数据的重要来源，反过来大数据分别为云计算提供用武之地，为物联网数据分析提供支撑；另外，云计算为物联网提供海量数据存储能力，物联网为云计算技术提供了广阔的应用空间。
+10.请阐述人工智能的概念，并阐述人工智能的关键技术，以及与大数据的关系。
+人工智能（Artificial Intelligence, AI）是研究、开发用于模拟、延伸和扩展人的智能的理论、方法、技术及应用系统的一门新的技术学科。其关键技术包括机器学习、知识图谱、自然语言处理、人机交互、计算机视觉、生物特征识别、AR&#x2F;VR等。
+两者联系：人工智能需要数据来建立其智能，特别是机器学习，大数据为人工智能提供了海量数据，使得人工智能技术有了长足的发展；此外，大数据也为AI提供了强大的存储能力和计算能力，从而使得基于大数据的机器学习成为可能。
+11.请阐述大数据的“4V”特征。（要求给出英文含义及简要解释）
+数据量大（Volume），数据类型繁多（Variety），处理速度快（Velocity），价值密度低（Value）。
+12.请分别从学科角度和大数据分析角度阐述高校大数据专业的知识体系。
+学科角度：跨多学科的从数据中心获取知识的科学方法、技术和习题的集合。涵盖计算机、数学、统计学等多个学科，包括应用数学、统计学、模式识别、机器学习、人工智能、深度学习、数据可视化、数据挖掘、数据仓库、分布式计算、云计算、系统架构设计等。
+大数据分析角度：涵盖数据采集与预处理、数据存储与管理、数据处理与分析技术、数据可视化技术等。同时，分析过程中相关人员需对商业领域的业务知识有一定理解。
+13.请阐述人类社会的数据产生方式大致经历了哪3个阶段？
+运营式系统阶段，用户原创内容阶段，感知式习题阶段。
+14.请阐述人类IT发展史上3次信息化浪潮的发生时间、标志及其解决的问题
+第一次浪潮的发生时间是1980年前后，标志是个人计算机的出现和使用，解决的问题是信息处理的问题；
+第二次浪潮的发生时间是1995年前后，标志是互联网的出现和使用，解决的问题是信息传输的问题；
+第三次浪潮的发生时间是2010年前后，标志是物联网、云计算和大数据的出现和使用，解决的问题是信息爆炸的问题。
+]]></content>
+      <categories>
+        <category>大数据导论</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Idea + Vim 使用教程</title>
+    <url>/2022/05/10/idea-vim-shi-yong-jiao-cheng/</url>
+    <content><![CDATA[
+记录vim的学习
+
+
+
+前言想要在idea中使用vim需要在idea中安装以下三个插件：
+
+IdeaVim
+IdeaVim-EasyMotion
+IdeaVimExtension
+
+为什么要学习Vim？作为一名后端开发同学，还是会经常需要在 linux 服务器上去修改服务器的系统配置文件。而在linux中最常见的编辑器就是Vim。所以Vim时必须会的，我身边不乏使用vim的大佬，但是他们大多以Cpp和python为主，对于我这个java使用者来说实在是太折磨了，更多的的使用者喜欢idea，而在idea中安装Vim就起到了相互弥补的作用，既有了idea的便捷，又有了Vim的快速体验。
+Vim vim 的学习成本还是很高的，典型的入门很难入门之后就会爱不释手。下面就来学习吧。
+基本光标移动使用h j k l进行上(k)下(j)左(h)右(l)的光标移动。
+各种插入模式
+i在光标之前，进入插入模式
+I在本行开头，进入插入模式
+a在光标之后，进入插入模式
+A在本行结尾，进入插入模式
+o在本行之后新增一行，并进入插入模式
+O在本行之前新增一行，并进入插入模式
+s删除当前字符，并进入插入模式
+S删除当前行中的所有文本，并进入插入模式
+
+复制粘贴
+yy 复制当前行
+p 粘贴
+
+进阶操作
+dd删除当前行
+x删除当前字符
+V 进入内容选择模式
+d 删除选中部分
+gg回到文章开头
+G回到文章结尾
+f;跳转到行末
+ciw删除当前单词，并进入插入模式
+di&quot;删除&quot;&quot;中的内容
+ci&quot;删除&quot;&quot;中的内容，并进入插入模式
+di(删除()中的内容
+f&#123;word&#125;查找在当前行 当前光标后是否存在某个字符 &#123;word&#125; 如果存在则将光标移动过去
+$  跳转到行尾
+^ 跳转到行首
+% 括号匹配跳转 () [] &#123;&#125;，当前光标在括号上，跳转到另一边
+* 跳转到上一个单词的定位处
+[n]h/j/k/l 数字加上方向键 代表重复运行多少次
+H | M | L
+H 移动到当前页的第一行
+M 移动到编辑器中部
+L 移动到当前页的最后一行
+[n]w 移动到后面 word 的开始位置，前面加上数字 代表重复多少次
+e 移动到下一个词语的末尾
+b 移动到上一个单词的开头
+zz 改变窗口的整体位置，将当前光标所在处 移动到窗口中部
+
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>Vim</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Trie树并查集</title>
+    <url>/2022/05/07/trie-shu-bing-cha-ji/</url>
+    <content><![CDATA[Trie树
+高效的存储和查找字符串集合的数据结构。
+
+
+
+介绍：在计算机科学中，trie，又称前缀树或字典树，是一种有序树，用于保存关联数组，其中的键通常是字符串。与二叉查找树不同，键不是直接保存在节点中，而是由节点在树中的位置决定。一个节点的所有子孙都有相同的前缀，也就是这个节点对应的字符串，而根节点对应空字符串。一般情况下，不是所有的节点都有对应的值，只有叶子节点和部分内部节点所对应的键才有相关的值。
+代码实现：public class Template &#123;    // 下标是0的点既是根节点也是空节点    static int N = 1000, idx;    // 每个节点所有儿子    static int[][] son = new int[N][26];    // 当前这个节点结尾的单词有多少个    static int[] cnt = new int[N];    // 向树中插入字符串    static void insert(String str) &#123;        // 用来记录最后一个字母        int p = 0;        for (int i = 0; i &lt; str.length(); i++) &#123;            int u = str.charAt(i) - &#x27;a&#x27;;            // 如果这个节点没有被走过，就新建里一个节点            if (son[p][u] == 0) son[p][u] = ++ idx;            p = son[p][u];        &#125;        cnt[p]++;    &#125;    // 返回树中的字符串出现的次数    static int query(String str) &#123;        int p = 0;        for (int i = 0; i &lt; str.length(); i++) &#123;            int u = str.charAt(i) - &#x27;a&#x27;;            // 如果这里没有被走过，直接退出，因为这条路已经到头了            if (son[p][u] == 0) return 0;            p = son[p][u];        &#125;        return cnt[p];    &#125;&#125;
+
+并查集快速处理：
+集合合并
+
+询问两个元素是否在一个集合中
+
+
+基本原理：每一个集合用一棵树来表示，树根的编号就是整个集合的编号，每个节点存储其父节点，p[x]表示x的父节点
+问题1：如何判断树根：if（p[x] &#x3D;&#x3D; x）
+问题2：如何求x的集合编号：while（p[x] !&#x3D; x）x &#x3D; p[x]
+问题3：如何合并两个集合：p[x] &#x3D; y 
+路径压缩优化：由于每次找一个数是哪个集合的都要从子节点向上找到树的根节点，时间复杂度取决有输的深度。
+优化：每次找到根节点后，就将路径上的所有的点指向根节点。
+按质合并：优化效果没有那么明显，几乎用不到。时间复杂度：近乎O(1)
+代码实现：(1)朴素并查集：int p[N]; //存储每个点的祖宗节点// 返回x的祖宗节点int find(int x)&#123;    if (p[x] != x) p[x] = find(p[x]);    return p[x];&#125;// 初始化，假定节点编号是1~nfor (int i = 1; i &lt;= n; i ++ ) p[i] = i;// 合并a和b所在的两个集合：p[find(a)] = find(b);(2)维护size的并查集：    int p[N], size[N];//p[]存储每个点的祖宗节点, size[]只有祖宗节点的有意义，表示祖宗节点所在集合中的点的数量// 返回x的祖宗节点int find(int x)&#123;    if (p[x] != x) p[x] = find(p[x]);    return p[x];&#125;// 初始化，假定节点编号是1~nfor (int i = 1; i &lt;= n; i ++ )&#123;    p[i] = i;    size[i] = 1;&#125;// 合并a和b所在的两个集合：size[find(b)] += size[find(a)];p[find(a)] = find(b);(3)维护到祖宗节点距离的并查集：    int p[N], d[N];//p[]存储每个点的祖宗节点, d[x]存储x到p[x]的距离// 返回x的祖宗节点int find(int x)&#123;    if (p[x] != x)    &#123;        int u = find(p[x]);        d[x] += d[p[x]];        p[x] = u;    &#125;    return p[x];&#125;// 初始化，假定节点编号是1~nfor (int i = 1; i &lt;= n; i ++ )&#123;    p[i] = i;    d[i] = 0;&#125;// 合并a和b所在的两个集合：p[find(a)] = find(b);d[find(a)] = distance; // 根据具体问题，初始化find(a)的偏移量
+
+
+
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>KMP</title>
+    <url>/2022/05/02/kmp/</url>
+    <content><![CDATA[
+KMP算法模板及原理
+
+
+
+KMP
+模式串匹配算法
+
+ 暴力解法：
+s[n],p[m]for(int i = 1; i &lt;= n; i++) &#123;    bool flag;    for (int j = 1; j &lt;= m; j++) &#123;        if (s[i] != p[j]) &#123;            flag = false;            break;        &#125;    &#125;&#125;
+
+问题：在BF算法中，用模式串去和目标串的某个子串比较时，如果不全部匹配，就要回溯到起始位置，然后后移。
+KMP算法的思想是，设法利用已知信息，跳过前面已经比较过的位置，把模式串后移，使最长前缀的一块后移到模式串最长后缀的位置，再次比较不匹配的字符，再不匹配再回退，直到回退到模式串的第一个字符，还不匹配就后移目标串，这样就提高了效率。
+由此可知，KMP算法其实有两大要点：
+(1) 计算跳转位置信息，也就是计算next数组值。
+(2) 后移到指定位置，重新开始匹配。
+算法性能
+假设模式串的长度是m，目标串的长度是n。
+在KMP算法中求next数组的时间复杂度为O(m)，在后面的匹配中因目标串T的下标不用回溯，所以比较次数可记为n。
+由此，得出KMP算法的总的时间复杂度为O(n+m)。
+javacode
+int n, m;String pstr, sstr;int[] ne = new int[N];Scanner scanner = new Scanner(System.in);pstr = scanner.next();sstr = scanner.next();m = pstr.length();n = sstr.length();char[] p = new char[m + 1];char[] s = new char[n + 1];System.arraycopy(pstr.toCharArray(), 0, p, 1, m);System.arraycopy(sstr.toCharArray(), 0, s, 1, n);-----求next数组模板---------for (int i = 2, j = 0; i &lt;= m; i++) &#123;    while (j != 0 &amp;&amp; p[i] != p[j + 1]) &#123;        j = ne[j];    &#125;    if (p[i] == p[j + 1]) &#123;        j++;    &#125;    ne[i] = j;&#125;------匹配模板--for (int i = 1, j = 0; i &lt;= n; i++) &#123;    while (j != 0 &amp;&amp; s[i] != p[j + 1]) &#123;        j = ne[j];    &#125;    if (s[i] == p[j + 1]) &#123;        j++;    &#125;    if (j == m) &#123;        System.out.println(i - m);        j = ne[j];    &#125;&#125;
+
+cppcode
+#include&lt;iostream&gt;using namespace std;int main()&#123;	int n, m;	char p[10010], s[10010];	int next[1000];	cin &gt;&gt; m &gt;&gt; p + 1 &gt;&gt; n &gt;&gt; s + 1;	// s是长文本，p是模式串，n是s的长度，m是p的长度     	for (int i = 2, j = 0; i &lt;= m; i++) &#123;        //求next数组的过程其实就是对模式串本身求kmp匹配的过程，前缀和后缀匹配		while (j &amp;&amp; p[i] != p[j + 1]) j = next[j];		if (p[i] == p[j + 1]) j++;		next[i] = j;	&#125;	for (int i = 1, j = 0; i &lt;= n; i++) &#123;		while (j &amp;&amp; s[i] != p[j + 1]) j = next[j];		if (s[i] == p[j + 1]) j++;		if (j == m) 		&#123;			cout &lt;&lt; i - m &lt;&lt; endl;			j = next[j];		&#125;	&#125;&#125;
+
+kmp匹配过程中是模式串和目标串匹配，i指向目标串中的字符，j+1指向模式串中的字符，当s[i] != p[j + 1]的时候，就会让j回退到next[j]，用p[j + 1]和s[i]再次比较，因此p[j] == p[next[j]]，除非回退到开头，所以在求next数组的时候j++
+if (p[i] == p[j + 1]) j++;next[i] = j;
+
+是为了让p[j] == p[next[j]]。
+所以以上过程中，next[j]的含义是，当第&#x3D;&#x3D;j + 1&#x3D;&#x3D;位置上的字符不匹配时，j回退到哪，而匹配始终是j + 1个字符进行和目标串匹配。
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>模式匹配</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JDBC的使用</title>
+    <url>/2022/05/10/jdbc-de-shi-yong/</url>
+    <content><![CDATA[
+java学习值JDBC
+
+
+
+JDBC概述
+JDBC为了访问不同的数据库提供了统一的接口，为使用者屏蔽细节问题
+
+规定一套接口规范，让不同的数据库厂商实现，在java程序中统计调用接口的方法即可  
+
+
+JDBC API 是一系列的接口，他统一和规范了应用程序和数据库之间的链接，执行sql语句，并得到返回结果等各种操作，java关于jdbc相关的类和接口在java.sql和javax.sql(扩展包)中
+
+
+
+JDBC程序编写步骤
+相关的jar包（数据库厂商根据java提供的jdbc接口做的相应实现）在使用之前必须引入项目中！
+在项目下创建一个文件夹比如 libs  
+将 mysql.jar 拷贝到该目录下，点击 add to project ..加入到项目中
+
+注册驱动 - 加载Driver类 - 获取连接
+ url，user，password通过读取properties文件获得，也可以手动给出，推荐使用配置文件的形式，更加灵活。
+
+String url = &quot;jdbc:mysql://IP地址:端口号/datsbasename&quot;;
+
+
+new Driver对象，用来获取连接
+Driver driver = new Driver();Connection connect = driver.connect(url, properties);// 实例方法
+
+使用反射得到Driver对象，通过这个对象获取连接
+Class&lt;?&gt; aClass = Class.forName(&quot;com.mysql.jdbc.Driver&quot;);Driver driver = (Driver) aClass.newInstance();Connection connect = driver.connect(url, properties);// 实例方法
+
+使用反射机制加载Driver类，执行了Driver类的静态代码块，自动获取连接
+//使用forname自动完成驱动注册，简化代码，使用最多，推荐使用Class.forName(&quot;com.mysql.jdbc.Driver&quot;);Connection connection = DriverManager.getConnection(url, user, password);//(静态方法)
+
+Driver类的静态代码块
+//反射机制也是要加载类的，在类加载的过程中，执行了静态代码块，完成注册驱动static &#123;        try &#123;            DriverManager.registerDriver(new Driver());// 在这里进行        &#125; catch (SQLException var1) &#123;            throw new RuntimeException(&quot;Can&#x27;t register driver!&quot;);        &#125;&#125;
+
+最简洁方式
+mysql驱动从5.1.6版本开始，无需显示调用Class.forName(&quot;com.mysql.Driver&quot;)，而是自动调用驱动jar包下的META-INF&#x2F;services&#x2F;java.sql.Driver文本中的类名称去注册
+但是建议还是写上，更加明确
+// 可省略Class.forName(&quot;com.mysql.jdbc.Driver&quot;);Connection connection = DriverManager.getConnection(url, user, password);//(静态方法)
+
+执行增删改查 - 发送SQL给mysql执行Statement接口实现类负责执行静态sql语句
+
+Statement 是 Java 执行数据库操作的一个重要接口，用于在已经建立数据库连接的基础上，向数据库发送要执行的SQL语句。Statement对象，用于执行不带参数的简单SQL语句。还有子接口，后面介绍 CallableStatement, PreparedStatement
+
+String sql = &quot;delete from actor where id = 1&quot;;// statement 用于执行静态sql语句并返回其生成的结果对象Statement statement = connect.createStatement();// 返回受影响的行数int rows = statement.executeUpdate(sql);
+
+这里演示的删除操作，增和改的操作是一样的，查的操作是不一样的！这一点后面介绍。
+释放资源 - 关闭相关连接将connect，statement，resultset全部close
+connect.close();statement.close();resuletSet.close();
+
+练习
+/** * @author sdy * 创建时间：2022/04/18 * 介绍：创建表news 添加数据，修改数据，删除数据 */public class HomeWork01 &#123;    public static void main(String[] args) throws Exception&#123;		// 设置配置        String url = &quot;jdbc:mysql://localhost:3306/db00&quot;;        // 调用库函数读取properties文件（该文件需在类目录下）        ResourceBundle bundle = ResourceBundle.getBundle(&quot;mysql&quot;);        String user = bundle.getString(&quot;user&quot;);        String password = bundle.getString(&quot;password&quot;);        // 获取连接得到connection对象（省略了Class.forName步骤）        Connection connection = DriverManager.getConnection(url, user, password);        // 执行静态sql语句并返回结果对象        Statement statement = connection.createStatement();        String sql = &quot;create table news (id int not null, `name` varchar(32) not null default &#x27;&#x27;, age int not null)&quot;;        // 执行        statement.executeUpdate(sql);        String sql1 = &quot;insert into news values (1, &#x27;sdy&#x27;, 20)&quot;;        String sql2 = &quot;insert into news values (2, &#x27;sll&#x27;, 25)&quot;;        String sql3 = &quot;insert into news values (3, &#x27;sxc&#x27;, 40)&quot;;        String update = &quot;update news set name = &#x27;sundongyu&#x27; where id = 1&quot;;        String dele = &quot;delete from news where id = 3&quot;;        statement.executeUpdate(sql1);        statement.executeUpdate(sql2);        statement.executeUpdate(sql3);        statement.executeUpdate(update);        statement.executeUpdate(dele); 		// 关流        statement.close();        connection.close();    &#125;&#125;
+
+
+结果集（ResultSet）
+表示数据库结果集的数据表，通常通过执行查询数据库语句生成
+ResultSet对象保持一个光标指向当前的数据行，最初光标在第一行之前，执行next方法将光标移动到下一行，当移动到最后时返回false，类似于iterator.hasNext()
+
+底层实现resuletSet对象底层有一个属性rowData属性，用于存放各种数据，rowDate中有metedata数组用于存放数据库表的字段field，index表示当前指针指向哪个位置，owner表示一个引用数据类型，表示的是JDBC4Result
+Set类，该类实现了Result接口是resultSet对象的运行时类型，rows属性(ArrayList类型)用于保存具体查询到的数据，以byte类型数组保存
+
+查询语句实例：
+// 查询语句的执行使用excuteQuery(sql),返回一个结果集// excuteUpdata(sql)用于执行增删改操作，返回受影响的行数ResultSet resultSet = statement.executeQuery(sql);// 取出数据 boolean next()while (resultSet.next()) &#123;    int anInt = resultSet.getInt(1);    String string = resultSet.getString(2);    int age = resultSet.getInt(3);    System.out.println(anInt + &quot;\t&quot; + string + &quot;\t&quot; + age);&#125;// 对比集合中迭代器的使用 boolean hasNext()  E next();Iterator iterator = List1.iterator();while (iterator.hasNext()) &#123;   Object next =  iterator.next();   System.out.println(next);&#125;
+
+Statement和PreparedStatement的区别;
+Statement是java执行数据库操作的一个重要方法，用于在已经建立数据库连接的基础上，向数据库发送要执行的SQL语句。
+
+Statement 对象用于将 SQL 语句发送到数据库中。
+实际上有三种 Statement 对象，它们都作为在给定连接上执行 SQL语句的包容器：Statement、PreparedStatement（它从 Statement 继承而来）和CallableStatement（它从 PreparedStatement 继承而来）。
+它们都专用于发送特定类型的 SQL 语句：
+Statement 对象用于执行不带参数的简单 SQL 语句；（存在SQL注入风险）
+PreparedStatement 对象用于执行带或不带参数的预编译 SQL 语句；
+CallableStatement 对象用于执行对数据库已存储过程的调用。
+效率分析Statement每次执行sql语句，数据库都要执行sql语句的编译，最好用于仅执行一次查询并返回结果的情形，效率高于PreparedStatement.但存在sql注入风险。
+PreparedStatement是预编译执行的。在执行可变参数的一条SQL时，PreparedStatement要比Statement的效率高，因为DBMS预编译一条SQL当然会比多次编译一条SQL的效率高。安全性更好，有效防止SQL注入的问题。对于多次重复执行的语句，使用PreparedStatement效率会更高一点。执行SQL语句是可以带参数的，并支持批量执行SQL。由于采用了Cache机制，则预编译的语句，就会放在Cache中，下次执行相同的SQL语句时，则可以直接从Cache中取出来。
+那么CallableStatement扩展了PreparedStatement的接口，用来调用存储过程，它提供了对于输入和输出参数的支持，CallableStatement 接口还有对 PreparedStatement 接口提供的输入参数的sql查询的支持。
+什么是SQL注入，怎么防止SQL注入？
+利用某些系统没有对用户输入的数据进行充分的检查，而在用户输入数据中注入非法的sql语句或者命令，恶意攻击数据库
+
+怎么防止SQL注入，使用存储过程来执行所有的查询；检查用户输入的合法性；将用户的登录名、密码等数据加密保存。
+要防范sql注入只要用PreparedStatement即可
+preparedStatement占位符只能替代字段名！！！！
+preparedStatement通过使用占位符?，对占位符赋值，解决了sql注入问题
+preparedStetement执行的SQL语句中的参数用问号(?)来表示，调用两个参数，第一个参数是要设置的Sql语句中的参数的索引，（从1开始）第二个参数是设置SQL语句中的参数的值
+调用executeQuery()返回ResultSet对象
+调用executeUpdate();执行更新，包括增删改
+不再使用+ 拼接sql语句，减少语法错误
+有效解决了sql注入问题
+大大减少了编译次数，大大提高效率
+
+Scanner scanner = new Scanner(System.in);String i = scanner.next();ResourceBundle bundle = ResourceBundle.getBundle(&quot;mysql&quot;);String url = bundle.getString(&quot;url&quot;);String user = bundle.getString(&quot;user&quot;);String password = bundle.getString(&quot;password&quot;);Connection connection = DriverManager.getConnection(url, user, password);// sql语句的问号就相当于占位符String sql = &quot;select * from news where age = ? and id = ? and name = ?&quot;;PreparedStatement preparedStatement = connection.prepareStatement(sql);// 给问号赋值preparedStatement.setInt(1, 25);preparedStatement.setInt(2, 2);preparedStatement.setString(3, &quot;sll&quot;);// 这里执行的时候不要再赋值sql了，因为sql已经被处理过了！！！ResultSet resultSet = preparedStatement.executeQuery();while (resultSet.next()) &#123;    int id = resultSet.getInt(&quot;id&quot;);    String name = resultSet.getString(&quot;name&quot;);    int age = resultSet.getInt(&quot;age&quot;);    System.out.println(id + name + age);&#125;
+
+JDBC API 小结
+
+
+封装JDBCUtils
+在操作中获取连接和释放资源操作是非常&#x3D;&#x3D;常用&#x3D;&#x3D;的，为了使用方便可以包装成工具类 
+
+JDBC 事务
+jdbc程序中当一个Connction对象创建时默认自动提交事务，无法回滚，每次执行一个sql语句时，如果执行成功就会向数据库提交，不能回滚
+为了让多个sql语句作为整体，需要使用事务
+调用Connection接口的setAutoCommit(false)方法可以取消自动提交事务
+在所有sql语句执行结束后，调用Connecion的commit()方法提交
+在其中某个操作失败或者出现异常时，可以调用Connection.rollback()方法回滚
+
+应用实例public void noTransaction() &#123;        // 1. 得到连接        // 在默认情况下，connection是默认自动提交        Connection connection = JDBCUtils.getConnection();        // 2. 组织sql语句        String sql = &quot;update account set balance = balance - 100 where id = 1 &quot;;        String sql1 = &quot;update account set balance = balance + 100 where id = 2&quot;;        // 3. 创建PreparedStatement        PreparedStatement preparedStatement = null;        try &#123;            preparedStatement = connection.prepareStatement(sql);            preparedStatement.executeUpdate();            int i = 1 / 0;            preparedStatement = connection.prepareStatement(sql1);            preparedStatement.executeUpdate();        &#125; catch (SQLException e) &#123;            throw new RuntimeException(e);        &#125; finally &#123;            JDBCUtils.close(null, preparedStatement);        &#125;    &#125;    // 使用事务解决    @Test    public void userTransaction() throws SQLException &#123;        // 1. 得到连接        // 在默认情况下，connection是默认自动提交        Connection connection = JDBCUtils.getConnection();        // 2. 组织sql语句        String sql = &quot;update account set balance = balance - 100 where id = 1 &quot;;        String sql1 = &quot;update account set balance = balance + 100 where id = 2&quot;;        // 3. 创建PreparedStatement        PreparedStatement preparedStatement = null;        try &#123;            // 将这个连接设置成不自动提交            connection.setAutoCommit(false);            preparedStatement = connection.prepareStatement(sql);            preparedStatement.executeUpdate();            preparedStatement = connection.prepareStatement(sql1);            preparedStatement.executeUpdate();            // 所有操作无异常执行后可以提交            connection.commit();        &#125; catch (SQLException e) &#123;            System.out.println(&quot;执行发生了异常，撤销事务&quot;);            // 在这里我们有机会回滚，进行撤销rollback            // 默认回滚到事务开始状态            connection.rollback();            // 指点回滚到哪个时间点            // connection.rollback(xx);            throw new RuntimeException(e);        &#125; finally &#123;            JDBCUtils.close(null, preparedStatement);        &#125;    &#125;
+
+批处理
+当需要成批插入或者更新记录时，可以采用java的批处理机制，这一机制允许多条语句一次性提交给数据库批量处理，通常情况下比单独提交更有效率、
+
+
+jdbc的批量处理语句包括下面方法：
+
+// 添加需要批处理的sql语句或者参数addBatch()// 执行批处理语句executeBatch()// 清空批量处理包语句cleatBatch()
+
+
+jdbc连接数据库的时候如果要是用批处理的功能，必须在url中添加参数rewriteBatchedStatements = true 
+
+批处理通常和PreparedStatement一起搭配使用，减少编译次数和运行次数，提高效率
+
+
+应用实例//将 sql 语句加入到批处理包中 -&gt; 看源码/*//1. //第一就创建 ArrayList - elementData =&gt; Object[]//2. elementData =&gt; Object[] 就会存放我们预处理的 sql 语句//3. 当 elementData 满后,就按照 1.5 扩容//4. 当添加到指定的值后，就 executeBatch//5. 批量处理会减少我们发送 sql 语句的网络开销，而且减少编译次数，因此效率提高*/public void noBatch() throws Exception &#123;        Connection connection = JDBCUtils.getConnection();        String sql = &quot;insert into admin2 values (null, ?, ?)&quot;;        PreparedStatement preparedStatement = connection.prepareStatement(sql);        System.out.println(&quot;开始&quot;);        long j = System.currentTimeMillis();        for (int i = 0; i &lt; 50000; i++) &#123;            preparedStatement.setString(1, &quot;jack&quot; + i);            preparedStatement.setString(2, &quot;666&quot;);            preparedStatement.executeUpdate();        &#125;        long i = System.currentTimeMillis();        System.out.println(i - j);        JDBCUtils.close(null, preparedStatement);    &#125;    @Test    public void userBatch() throws Exception&#123;        Connection connection = JDBCUtils.getConnection();        String sql = &quot;insert into admin2 values (null, ?, ?)&quot;;        PreparedStatement preparedStatement = connection.prepareStatement(sql);        System.out.println(&quot;开始&quot;);        long j = System.currentTimeMillis();        for (int i = 0; i &lt; 50000; i++) &#123;            preparedStatement.setString(1, &quot;jack&quot; + i);            preparedStatement.setString(2, &quot;666&quot;);            preparedStatement.addBatch();            if ((i + 1) % 1000 == 0) &#123;                preparedStatement.executeBatch();                preparedStatement.clearBatch();            &#125;        &#125;        long i = System.currentTimeMillis();        System.out.println(i - j);        JDBCUtils.close(null, preparedStatement);    &#125;
+
+jdbc连接池
+当有大量的程序连接mysql但是不关闭connection的时候就会抛出异常 Too many connections
+当有大量的程序连接mysql并且关闭connection的时候会浪费大量时间
+
+传统获取Connection问题分析
+每次向数据库建立连接的时候都要将Connection加载到内存中，再验证ip地址，用户名和密码，需要数据库连接的时候就想数据库要求一个，频繁的进行数据库的连接操作将占用很多的资源，容易造成崩溃
+每一次数据库连接，使用完就要关闭，如果出现异常未能关闭，就会造成&#x3D;&#x3D;内存泄漏&#x3D;&#x3D;，最终将导致重启数据库
+传统方式无法控制连接数量，如果连接过多，也可能导致内存泄漏，mysql崩溃
+
+解决传统开发中的数据库连接问题，可以使用数据库连接池技术(connection pool)
+基本介绍
+预先在缓冲池中放入一定数量的连接，当需要建立连接时，只需从“缓冲池”中取出一个，使用完毕之后再放回去
+数据库连接池负责分配管理和释放数据库连接，他允许应用程序重复使用一个现有的数据库连接，而不是重新创建一个
+当应用程序向连接池请求的连接数超过最大连接数量时，这些请求将会被添加到等待队列中
+
+原理图
+常用的连接池种类
+Druid最常用，C3P0也比较常用
+
+由于DaraSource是一个接口，由各种数据库去实现，所有使用之前需要引入数据库提供的相应版本的jar包，到项目目录，并将这个jar包添加到库中
+
+C3P0应用实例/*** 方式1：相关参数在程序中指定，user password等*/@Testpublic void testC3P001() throws Exception&#123;    // 1.创建数据源对象    ComboPooledDataSource comboPooledDataSource = new ComboPooledDataSource();    // 2. 通过配置文件mysql获取相关信息    ResourceBundle bundle = ResourceBundle.getBundle(&quot;mysql&quot;);    String user = bundle.getString(&quot;user&quot;);    String password = bundle.getString(&quot;password&quot;);    String url = bundle.getString(&quot;url&quot;);    String driver = bundle.getString(&quot;driver&quot;);    // 3. 给数据源设置相关参数，整个连接的管理已经交给数据源了    comboPooledDataSource.setDriverClass(driver);    comboPooledDataSource.setJdbcUrl(url);    comboPooledDataSource.setUser(user);    comboPooledDataSource.setPassword(password);    // 设置初始化连接数（创建了这个数量的连接放进连接池待用）    comboPooledDataSource.setInitialPoolSize(10);    // 设置最大连接数（超过了就会进入等待队列等待）    comboPooledDataSource.setMaxPoolSize(50);    // 连接数据库，从DataSource接口实现的方法，经过测试，连接5000次耗时不到400ms    Connection connection = comboPooledDataSource.getConnection();    System.out.println(&quot;连接成功&quot;);    // 关闭连接    connection.close();&#125;/**     * 方式2：使用配置文件模板完成     * 1. 将c3p0-config.xml拷贝到src目录下     * 2. 改文件指定了连接数据库和连接池的相关参数     */@Testpublic void testC3P002() throws Exception&#123;    ComboPooledDataSource comboPooledDataSource = new ComboPooledDataSource(&quot;sdy&quot;);    Connection connection = comboPooledDataSource.getConnection();    System.out.println(&quot;连接成功&quot;);    connection.close();&#125;
+
+Druid应用实例使用实例
+public void testDruid() throws Exception &#123;        // 1, 加入jar包        // 2. 加入配置文件，拷贝到项目src目录下        // 3. 创建Properties对象，读取配置文件        Properties properties = new Properties();        properties.load(new FileInputStream(&quot;src\\druid.properties&quot;));        // 4. 创建一个指定参数的数据源        DataSource dataSource = DruidDataSourceFactory.createDataSource(properties);        Connection connection = dataSource.getConnection();        System.out.println(&quot;连接成功&quot;);        connection.close();    &#125;
+
+
+
+编写基于Druid的工具类
+public class JDBCUtilsByDruid &#123;    private static DataSource ds;    static &#123;        Properties properties = new Properties();        try &#123;            properties.load(new FileInputStream(&quot;src\\druid.properties&quot;));            ds = DruidDataSourceFactory.createDataSource(properties);        &#125; catch (IOException e) &#123;            throw new RuntimeException(e);        &#125; catch (Exception e) &#123;            throw new RuntimeException(e);        &#125;    &#125;    // 编写获取连接    public static Connection getConnection() throws Exception &#123;        return ds.getConnection();    &#125;    // 关闭连接（druid连接池技术中，不是真的断掉连接，而是放回连接池）    public static void close (ResultSet result, Statement statment, Connection connection) throws SQLException &#123;        if (result != null) result.close();        if (statment != null) statment.close();        // connection接口的druid实现，close方法适合mysql不一样的        if (connection != null) connection.close();    &#125;&#125;
+
+Apache-DBUtils问题：
+
+关闭connection后，resultSet结果集无法使用
+resultSet不利于数据管理
+使用返回信息不太方便
+
+解决：
+
+创建一个java类（JavaBean,PoJO,Domain），将resultset结果集内容映射成java对象。一个对象对应一条表中的记录，然后将所有对象放进ArrayList&lt;java对象&gt;中，这样表中的所有数据都保存下来了，connection连接就可以断开了，resultset结果集也用不到了。
+土方法解决resultset封装：
+// 1. 得到连接Connection connection = JDBCUtilsByDruid.getConnection();ResultSet set = null;ArrayList&lt;Actor&gt; list = new ArrayList&lt;Actor&gt;();// 2. 组织sql语句String sql = &quot;select * from actor&quot;;// 3. 创建PreparedStatementPreparedStatement preparedStatement = null;try &#123;    preparedStatement = connection.prepareStatement(sql);    set = preparedStatement.executeQuery();    while (set.next()) &#123;        String name = set.getString(&quot;name&quot;);        int id = set.getInt(&quot;id&quot;);        String sex = set.getString(&quot;sex&quot;);        Date date = set.getDate(&quot;borndate&quot;);        String phone = set.getString(&quot;phone&quot;);        // 把得到的resultset集合所有内容全部放进列表中        list.add(new Actor(id, name, sex, date, phone));    &#125;    System.out.println(list);&#125; catch (SQLException e) &#123;    throw new RuntimeException(e);&#125; finally &#123;    JDBCUtilsByDruid.close(set, preparedStatement, connection);&#125;
+
+使用Apache_DBUtils：
+基本介绍：1. 
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>JDBC</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>链表队列栈</title>
+    <url>/2022/04/29/lian-biao-dui-lie-zhan/</url>
+    <content><![CDATA[
+记录算法学习过程中的算法模板，主要以 数组 模拟各种数据结构为主
+
+
+
+单链表int N = 100010, idx, head;int e[N], ne[N]; // 记录节点值，和下一个节点位置void init () &#123;    head = -1;    idx = 0;&#125;// 头插法void add_Firdt(int x) &#123;    e[idx] = x;    ne[idx] = head;    head = idx++;&#125;// 删除头结点（头结点要存在）void remove(int a) &#123;    head = ne[head];&#125;
+
+双链表int N = 100010, idx;int l[N], r[N];void init () &#123;    // 手动设置头尾节点，在01之间插入数据    l[1] = 0;    r[0] = 1;    idx = 2;&#125;// 在节点a的右边插入xvoid insert (int a, int x) &#123;    e[idx] = x;    r[idx] = r[a];    l[idx] = a;    l[r[idx]] = idx;    r[a] = idx++;&#125;// 删除节点avoid remove (int a) &#123;    r[l[a]] = r[a];    l[r[a]] = l[a];&#125;
+
+栈int tt = 0, N = 100010; // 表示栈顶int skt[N];// 添加,数组从1号位开始使用，这样当栈顶tt==0时可以直接判空skt[++tt] = x;// 删除tt--;// 栈顶的值skt[tt];// 判空if (tt &gt; 0) &#123;&#125;
+
+普通队列int q[N], hh = 0, tt = -1;// 尾插q[++tt] = x;// 从队头弹出hh++;// 队头的值q[hh];// 判空if (hh &lt;= tt) &#123;    &quot;非空&quot;&#125;
+
+循环队列// hh 表示队头，tt表示队尾的后一个位置int q[N], hh = 0, tt = 0;// 向队尾插入一个数q[tt ++ ] = x;if (tt == N) tt = 0;// 从队头弹出一个数hh ++ ;if (hh == N) hh = 0;// 队头的值q[hh];// 判断队列是否为空if (hh != tt)&#123;&#125;
+
+单调栈
+单调栈的使用有限，经典的题目：给定一个数组，返回距离每个数，最近的，左（有）边，比他大(小)的数
+
+思路分析：以比他大的为例
+暴力算法，遍历每个数，然后从哪个数向左右两边遍历
+单调栈做法：
+
+求左右两侧：将数组中的数从左到右挨个放入栈中，保证栈内元素是单调递减的(栈底到栈顶)，当某个数加入栈失败（意思就是当前这个数比栈顶元素大，一旦入栈就破坏了单调栈的规则）那么此时的栈顶元素，右侧，最近的比他大的数就是待入栈元素，左侧最近比他大的元素就是栈顶元素前一个元素，可以理解为二次函数，对称轴就是栈顶元素，左右两侧都比他大，将结果保存在数组中，栈和数组都只保存下标,另开数组保存值和结果，同理求比他小的话，要保证栈内元素单调增。
+
+求单侧：如果只求一侧最大或者最小值的话，不需要输入数组保存输入值，如果是左侧不需要专门用一个数组来保存结果，因为每个数放进去就知道答案了（小于栈顶就是栈顶，大于栈顶就出栈到能放入时的栈顶），如果求的是右侧，就需要一个数组保存结果了，因为你不知道你的右侧什么时候会来符合结果的解，只能放进数组中保存，等所有数据入栈完毕，结果数组也就被填充完毕！
+
+
+// 求左侧大static int N = 100010;public static void main(String[] args) &#123;    int[] s = new int [N];    int tt = 0;    int n = scanner.nextInt();    for (int i = 0; i &lt; n; i++) &#123;        int x = scanner.nextInt();        while (tt &gt; 0 &amp;&amp; x &gt;= s[tt]) &#123; // 栈不为空，且栈顶元素小于当前元素            tt--;        &#125;        if (tt == 0) &#123;            System.out.print(&quot;-1 &quot;);        &#125;        if (x &lt; s[tt]) &#123;            System.out.println(tt + &quot; &quot;);        &#125;        s[++tt] = x;    &#125;&#125;// 求左侧小，直接将第九行while(tt &gt; 0 &amp;&amp; x &gt;= s[tt])中的&gt;= 改为&lt;=,其他完全一样while (tt &gt; 0 &amp;&amp; x &lt;= s[tt])// 求两侧大static int N;public static void main(String[] args) &#123;    N = scanner.nextInt() + 10;     int[] s = new int[N];    int[] e = new int[N];    int[] l = new int[N];    int[] r = new int[N];    int tt = 0;// 栈顶    Arrays.fill(l, -1);    Arrays.fill(r, -1);    int n = scanner.nextInt();    for (int i = 1; i &lt;= n; i++) &#123;        int x = scanner.nextInt();        e[i] = x;        while (tt &gt; 0 &amp;&amp; x &gt;= e[s[tt]]) &#123; // 栈不为空，且栈顶元素小于当前元素            r[s[tt]] = i;            tt--;        &#125;        if (tt == 0) &#123;            l[i] = -1;        &#125; else &#123;            l[i] = s[tt];        &#125;        s[++tt] = i;    &#125;    for (int i = 1; i &lt;= n; i++) &#123;        System.out.println(l[i] + &quot; &quot; + r[i]);    &#125;&#125;
+
+单调队列
+滑动窗口：返回窗口从左到右过程中，每一刻窗口中最大值或者最小值
+
+暴力做法：每次遍历窗口中所有数据，时间复杂度O(nk)
+优化：类似于单调栈，将没有用的数据从队列中弹出，求以窗口最大值为例，保持队列中下标的值是单调减的（求的就是窗口中的最大值），那么新添加的下标的值如果小于等于队尾，那么直接添加，如果大于队尾，不停出队，直到可以保证单调性添加为止。每次输出用队头元素下标和当前下标相比，判断窗口是否经过，如果经过了，收缩队头。
+const int N = 100010;int main() &#123;	int n, k;    // 输入n个数，窗口大小k	cin &gt;&gt; n &gt;&gt; k;	int a[N];	for (int i = 0; i &lt; n; i++) cin &gt;&gt; a[i];	int q[N];	int hh = 0, tt = -1;	for (int i = 0; i &lt; n; i++) &#123;        // 队不为空，且队头下标小于窗口左侧，即窗口已经离开，收缩队列		if (hh &lt;= tt &amp;&amp; i - k + 1 &gt; q[hh]) hh++;         // 收缩队尾		while (hh &lt;= tt &amp;&amp; a[q[tt]] &gt;= a[i]) tt--;		q[++tt] = i;		if (i &gt;= k - 1) cout &lt;&lt; a[q[hh]]; 	&#125;        hh = 0, tt = -1;	for (int i = 0; i &lt; n; i++) &#123;        // 队不为空，且队头下标小于窗口左侧，即窗口已经离开，收缩队列		if (hh &lt;= tt &amp;&amp; i - k + 1 &gt; q[hh]) hh++;         // 收缩队尾		while (hh &lt;= tt &amp;&amp; a[q[tt]] &lt;= a[i]) tt--;// 这里改成&lt;=就是求窗口最大值		q[++tt] = i;		if (i &gt;= k - 1) cout &lt;&lt; a[q[hh]]; 	&#125;	return 0;&#125;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL查询异常(err:1630)</title>
+    <url>/2022/05/10/mysql-cha-xun-yi-chang-err-1630/</url>
+    <content><![CDATA[
+记录一次查询异常
+
+
+
+使用mysql进行字符串相关函数的学习时发现，当时用函数substring时，可以正常运行，但是使用SQLyog的SQL格式器格式化SQL语句后报错，后来经过排查发现，格式化后自动在函数名后面加了空格，导致错误
+-- 格式化前：SELECT  SUBSTRING(ename, 1, 2)FROM  emp;  -- 格式化后：SELECT  SUBSTRING (ename, 1, 2)FROM  emp;
+
+后来发现，大部分的函数名和参数列表之间添加空格都不会影响SQL语句的执行，但是为了一劳永逸，查找了解决办法在mysql的安装路径的个人配置文件my.ini文件中添加下面语句，切记不要在末尾添加分号！
+sql_mode=&#x27;IGNORE_SPACE&#x27;
+
+添加完毕后使用管理员身份运行cmd,输入以下指令重启mysql服务器
+net stop mysqlnet start mysql
+
+这样即使函数之间有空格也不会报错啦！
+]]></content>
+      <categories>
+        <category>Bug记录</category>
+      </categories>
+      <tags>
+        <tag>Mysql查询异常</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>group by分组异常</title>
+    <url>/2022/05/10/group-by-fen-zu-yi-chang/</url>
+    <content><![CDATA[
+ 记录今天使用group by对数据进行分组查询，发现的问题
+
+
+
+SELECT 	deptno AS &#x27;部门编号&#x27;, 	COUNT(empno) AS &#x27;人数&#x27;,FROM emp,WHERE temp.deptno = emp.`deptno`GROUP BY &#x27;部门编号&#x27;
+
+这样的查询结果是错误的，这样的结果等价于不进行分组，这是为什么呢，我找了好些资料，如果这是发生在标准的SQL里是非常正常的，这是因为在标准的SQL里，是有执行顺序的
+
+FROM…
+WHERE…
+GROUP BY…
+SELECT…按照执行顺序，在执行到GROUP BY的时候，还没有执行到SELECT语句，所以就获取不到AS的别名，因此分组失败！
+
+
+但是这里是mysql，mysql是支持group by使用别名分组的，但是为什么不行呢，我测试了一下，当别名不使用单引号包围，这样的话是可以成功分组的，但是一旦使用单引号包围的别名就会导致分组失败也就是说这样使可以分组成功的，但是为了保险起见，顺便遵循标准的SQL语法，group by后面还是尽量不要使用别名！
+SELECT 	deptno AS asdf, 	COUNT(empno) AS &#x27;人数&#x27;,FROM empWHERE temp.deptno = emp.`deptno`GROUP BY asdf
+
+顺便一提，当子查询表的字段取的别名加了引号后，在select中查询这个带引号的字段就会报错
+-- 正常查询SELECT  dept.`dname`,dept.loc, temp.哈哈 FROM dept, 	(	SELECT deptno, COUNT(*) AS 哈哈 FROM emp	GROUP BY deptno	) tempWHERE temp.deptno = dept.`deptno`-- 随便取啥别名都报错SELECT  dept.`dname`,dept.loc, temp.&#x27;随便放啥都报错&#x27; FROM dept, 	(	SELECT deptno, COUNT(*) AS &#x27;随便方啥都报错&#x27; FROM emp	GROUP BY deptno	) tempWHERE temp.deptno = dept.`deptno`
+
+总结：
+
+取别名不要加引号，即使是中文别名（所有问题都解决）
+GROUP BY 后待分组字段名尽量不要使用别名，即使用了也一定要用不带引号的别名，否则不报错但是查询结果错误
+
+]]></content>
+      <categories>
+        <category>Bug记录</category>
+      </categories>
+      <tags>
+        <tag>group by分组异常</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Mysql批处理失效</title>
+    <url>/2022/05/10/mysql-pi-chu-li-shi-xiao-ji-lu/</url>
+    <content><![CDATA[
+记录一次批处理失效
+
+
+
+
+配置文件的url没有添加参数 rewriteBatchedStatements=true
+url=jdbc:mysql://localhost:3306/db00?rewriteBatchedStatements=true
+
+sql语句的问题，插入语句中values后面要加空格
+insert into table values (?);// trueinsert into table values(?);// false
+
+]]></content>
+      <categories>
+        <category>Bug记录</category>
+      </categories>
+      <tags>
+        <tag>mysql批处理失效</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java_Scanner类详解</title>
+    <url>/2022/05/15/java-scanner-lei-xiang-jie/</url>
+    <content><![CDATA[前言：前些日子在写一道算法题的时候遇到一件怪事，关于输入输出格式化的问题，当时稀里糊涂的就Ac了，现在来研究一下。
+
+
+问题回顾：输入一个整数N，接下来输入大于N行的字符串
+要求：前N行数据直接输出，剩余行数据按照空格分割输出。
+input3aa aaabbb bbcccc caa bb cc dd
+
+printaa aaabbb bbcccc caabbccdd
+
+代码回顾：import java.util.*;public class Main &#123;    public static void main(String[] args) &#123;        Scanner s = new Scanner(System.in);        int N = s.nextInt();        while (s.hasNextLine())&#123;            String cin = s.nextLine();            N--;            if (N &gt;= 0) &#123;                System.out.println(cin);            &#125; else &#123;                String[] arr = cin.split(&quot; &quot;);                for (String str : arr) &#123;                    System.out.println(str);                &#125;            &#125;        &#125;    &#125;&#125;
+
+我的第一版代码是这样的，可是wa了，运行结果和我想的有点出入，我调试了一下，发现少了一行数据，输出结果是这样的：
+aa aaabbb bbcccc caabbccdd
+
+原本应该输出3行原格式字符串的，这是为什么呢？
+后来我才while循环外面加了一个s.nextLine()结果就Ac了。
+我看了一下源码，并结合调试结果找到了答案。
+首先nextInt()方法是没法读入回车的，这就导致在输入3之后的那个回车留在了while循环里读了，所以这个回车就占了一次输入次数，所以结果少了一次。
+源码解析字段//缓冲区是特定原始类型元素的线性、有限序列。除了内容之外，缓冲区的基本属性还有capacity、limit和position：capacity //缓冲区的容量是它包含的元素数。缓冲区的容量永远不会是负数，也永远不会改变。limit //缓冲区的限制是不应读取或写入的第一个元素的索引。缓冲区的限制永远不会是负数，也永远不会大于其容量。position //缓冲区的位置是要读取或写入的下一个元素的索引。缓冲区的位置永远不会是负数，也永远不会大于其限制
+
+next方法public String next() &#123;    ensureOpen();    //清理规则缓存和类型缓存 hasNextPattern = null;typeCache = null;    clearCaches();    while (true) &#123;        String token = getCompleteTokenInBuffer(null);        if (token != null) &#123;            matchValid = true;            skipped = false;            return token;        &#125;        if (needInput)            readInput();        else            throwFor();    &#125;&#125;
+
+getCompleteTokenInBuffer方法private String getCompleteTokenInBuffer(Pattern pattern) &#123;    matchValid = false;    // 首先跳过delim    //设置matcher的parentPattern为delimPattern    matcher.usePattern(delimPattern);    if (!skipped) &#123; // 仅强制执行前导delim的一次跳过        // 设定matcher匹配区域，默认from=0，end=0        matcher.region(position, buf.limit());        if (matcher.lookingAt()) &#123;            //如果更多的输入可以扩展分隔符，那么我们必须等待            //获得更多输入            if (matcher.hitEnd() &amp;&amp; !sourceClosed) &#123;                needInput = true;                return null;            &#125;            // delims 是完整的，matcher 应该跳过它们            skipped = true;            position = matcher.end();        &#125;    &#125;    // If we are sitting at the end, no more tokens in buffer    if (position == buf.limit()) &#123;        if (sourceClosed)            return null;        needInput = true;        return null;    &#125;    // Must look for next delims. Simply attempting to match the    // pattern at this point may find a match but it might not be    // the first longest match because of missing input, or it might    // match a partial token instead of the whole thing.    // Then look for next delims    matcher.region(position, buf.limit());    boolean foundNextDelim = matcher.find();    if (foundNextDelim &amp;&amp; (matcher.end() == position)) &#123;        // Zero length delimiter match; we should find the next one        // using the automatic advance past a zero length match;        // Otherwise we have just found the same one we just skipped        foundNextDelim = matcher.find();    &#125;    if (foundNextDelim) &#123;        // In the rare case that more input could cause the match        // to be lost and there is more input coming we must wait        // for more input. Note that hitting the end is okay as long        // as the match cannot go away. It is the beginning of the        // next delims we want to be sure about, we don&#x27;t care if        // they potentially extend further.        if (matcher.requireEnd() &amp;&amp; !sourceClosed) &#123;            needInput = true;            return null;        &#125;        int tokenEnd = matcher.start();        // There is a complete token.        if (pattern == null) &#123;            // Must continue with match to provide valid MatchResult            pattern = FIND_ANY_PATTERN;        &#125;        //  Attempt to match against the desired pattern        matcher.usePattern(pattern);        matcher.region(position, tokenEnd);        if (matcher.matches()) &#123;            String s = matcher.group();            position = matcher.end();            return s;        &#125; else &#123; // Complete token but it does not match            return null;        &#125;    &#125;    // If we can&#x27;t find the next delims but no more input is coming,    // then we can treat the remainder as a whole token    if (sourceClosed) &#123;        if (pattern == null) &#123;            // Must continue with match to provide valid MatchResult            pattern = FIND_ANY_PATTERN;        &#125;        // Last token; Match the pattern here or throw        matcher.usePattern(pattern);        matcher.region(position, buf.limit());        if (matcher.matches()) &#123;            String s = matcher.group();            position = matcher.end();            return s;        &#125;        // Last piece does not match        return null;    &#125;    // There is a partial token in the buffer; must read more    // to complete it    needInput = true;    return null;&#125;
+
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Scanner输入类</tag>
+      </tags>
   </entry>
 </search>
