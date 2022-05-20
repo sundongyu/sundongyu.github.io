@@ -1478,4 +1478,28 @@
         <tag>Scanner输入类</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Centos7使用</title>
+    <url>/2022/05/20/centos7-shi-yong/</url>
+    <content><![CDATA[<blockquote>
+<p>通过Centos7学习Linux操作系统</p>
+</blockquote>
+<span id="more"></span>
+
+<p>安装步骤参考一下链接：</p>
+<p><a href="https://cloud.tencent.com/developer/article/1854155">https://cloud.tencent.com/developer/article/1854155</a> </p>
+<p>CentOS 7学习笔记<br><a href="https://cloud.tencent.com/developer/article/1488389">https://cloud.tencent.com/developer/article/1488389</a> </p>
+<p><a href="https://blog.csdn.net/u010993514/article/details/83188197">https://blog.csdn.net/u010993514/article/details/83188197</a> </p>
+<p>关于Linux更完整的教程，推荐菜鸟网络的Linux教程：</p>
+<p><a href="https://www.runoob.com/linux/linux-tutorial.html">https://www.runoob.com/linux/linux-tutorial.html</a> </p>
+<p>在Windows系统中安装SSH连接工具 XShell，并掌握使用XShell访问Linux虚拟机的方法。</p>
+<p><a href="https://blog.csdn.net/qq_43585157/article/details/106992907">https://blog.csdn.net/qq_43585157/article/details/106992907</a> </p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Centos7</tag>
+      </tags>
+  </entry>
 </search>
