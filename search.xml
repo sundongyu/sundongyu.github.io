@@ -1592,14 +1592,14 @@
 </ul>
 </li>
 </ul>
-<p>&#x3D;&#x3D;默认类型&#x3D;&#x3D;</p>
+<p><code>默认类型</code></p>
 <p>整数 -&gt; int</p>
 <p>小数 -&gt; double</p>
 <p>###2.3.1细节问题</p>
-<p>浮点数在机器中存储形式： 是&#x3D;&#x3D;符号位 + 指数位 +  尾数位&#x3D;&#x3D;，所以小数都是&#x3D;&#x3D;近似值&#x3D;&#x3D;</p>
+<p>浮点数在机器中存储形式： 是<code>符号位 + 指数位 +  尾数位</code>，所以小数都是<code>近似值</code></p>
 <p>例如：8.1  &#x2F;  3 &#x3D; 2.699999997 !&#x3D; 2.7</p>
-<p>java整型默认为int类型，申明long需在结尾加l或者&#x3D;&#x3D;L&#x3D;&#x3D;</p>
-<p>&#x3D;&#x3D;注意点&#x3D;&#x3D;</p>
+<p>java整型默认为int类型，申明long需在结尾加l或者<code>L</code></p>
+<p><code>注意点</code></p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">long</span> d;</span><br><span class="line">Integer.MAX_VALUE = <span class="number">21247483647</span>;</span><br><span class="line">d = <span class="number">2147483648</span>;<span class="comment">//整数太大，超过整型，因为一个数字，默认为整型，变量d可以储存这么大的数，但是这个数本身是整型，不行</span></span><br><span class="line">d = <span class="number">2147483648L</span>;<span class="comment">//正常</span></span><br><span class="line">d = <span class="number">2147483647</span>;<span class="comment">//正常</span></span><br><span class="line"><span class="type">short</span> <span class="variable">y</span> <span class="operator">=</span> <span class="number">6</span>;</span><br><span class="line"><span class="type">byte</span> <span class="variable">b</span> <span class="operator">=</span> (<span class="type">byte</span>)y;<span class="comment">//true</span></span><br><span class="line"><span class="type">byte</span> <span class="variable">b</span> <span class="operator">=</span> y;<span class="comment">//从short转换到byte可能会有损失,需强制类型转换</span></span><br><span class="line"><span class="type">int</span> <span class="variable">c</span> <span class="operator">=</span> <span class="number">9</span>;</span><br><span class="line">y = c<span class="comment">//true</span></span><br><span class="line">y = c;<span class="comment">//从int转换到byte可能会有损失,但是可以直接给他赋值，y = 9;没问题</span></span><br></pre></td></tr></table></figure>
 
 <p>浮点型默认为double，定义float类型变量时必须在末尾加上f</p>
@@ -1607,13 +1607,13 @@
 <h2 id="2-4编码"><a href="#2-4编码" class="headerlink" title="2.4编码"></a>2.4编码</h2><p><img src="/../../assets/java/image-20220101141318873.png" alt="image-20220101141318873"></p>
 <h2 id="2-5数据类型的转换"><a href="#2-5数据类型的转换" class="headerlink" title="2.5数据类型的转换"></a>2.5数据类型的转换</h2><p><img src="/../../assets/java/image-20220101141325286.png" alt="image-20220101141325286"></p>
 <p>低精度转高精度自动类型转换，高精度转低精度会损失精度</p>
-<p>byte和short无法&#x3D;&#x3D;自动转换&#x3D;&#x3D;为&#x3D;&#x3D;char&#x3D;&#x3D;</p>
+<p>byte和short无法<code>自动转换</code>为<code>char</code></p>
 <p>byte。short。int可以相互运算，先自动转化为int（两两之间，即使是和自己运算也会转化为int）</p>
 <p>byte a &#x3D; 1;</p>
 <p>byte b &#x3D; 0;</p>
 <p>byte c &#x3D; a+b;&#x2F;&#x2F;错误！！！</p>
 <p>多种数据类型混合运算会先转化为容量最大的数据类型，再进行计算</p>
-<p>申明byte，short，char时只要不超过范围，就可以直接&#x3D;&#x3D;赋值一个整数&#x3D;&#x3D;（具体的值，不能用变量），不需要强制类型转换，这是给程序员方便，其他所有数据类型都不能</p>
+<p>申明byte，short，char时只要不超过范围，就可以直接<code>赋值一个整数</code>（具体的值，不能用变量），不需要强制类型转换，这是给程序员方便，其他所有数据类型都不能</p>
 <p>布尔不参与运算</p>
 <h1 id="3-运算符"><a href="#3-运算符" class="headerlink" title="3.运算符"></a>3.运算符</h1><p>三目运算符是一个整体，无论判断结果如何都相当于在一起运算</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> <span class="literal">true</span> ? <span class="keyword">new</span> <span class="title class_">Integer</span>(<span class="number">1</span>) : <span class="keyword">new</span> <span class="title class_">Double</span>(<span class="number">2.0</span>);</span><br><span class="line">System.out.println(obj.toString());</span><br><span class="line"><span class="comment">//1.0</span></span><br><span class="line"><span class="comment">//int 和  double 相互运算转化为精度高的double了</span></span><br></pre></td></tr></table></figure>
@@ -1640,10 +1640,10 @@
 <p>每位转成4位二进制</p>
 </li>
 </ul>
-<h2 id="4-2位运算"><a href="#4-2位运算" class="headerlink" title="4.2位运算"></a>4.2位运算</h2><p>&#x3D;&#x3D;所有运算都是以补码形式运算的！！！！&#x3D;&#x3D;</p>
+<h2 id="4-2位运算"><a href="#4-2位运算" class="headerlink" title="4.2位运算"></a>4.2位运算</h2><p><code>所有运算都是以补码形式运算的！！！！</code></p>
 <p><img src="/../../assets/java/image-20220101141411352.png" alt="image-20220101141411352"></p>
 <p><img src="/../../assets/java/image-20220101141415462.png" alt="image-20220101141415462"></p>
-<p>原码-&gt;补码-&gt;运算 &#x3D; 结果的补码 -&gt; &#x3D;&#x3D;结果的原码&#x3D;&#x3D;  </p>
+<p>原码-&gt;补码-&gt;运算 &#x3D; 结果的补码 -&gt; <code>结果的原码</code>  </p>
 <h2 id="4-3原码反码补码（重点）"><a href="#4-3原码反码补码（重点）" class="headerlink" title="4.3原码反码补码（重点）"></a>4.3原码反码补码（重点）</h2><p><img src="/../../assets/java/image-20220101141420428.png" alt="image-20220101141420428"></p>
 <h1 id="5-流程控制"><a href="#5-流程控制" class="headerlink" title="5.流程控制"></a>5.流程控制</h1><h1 id="6-数组"><a href="#6-数组" class="headerlink" title="6.数组"></a>6.数组</h1><p>值传递和引用传递</p>
 <p>​		基本数据类型传递值，引用数据类型传递地址</p>
@@ -1660,7 +1660,7 @@
 </blockquote>
 <p>定义</p>
 <blockquote>
-<p>一组&#x3D;&#x3D;常量&#x3D;&#x3D;（static final ）的集合</p>
+<p>一组<code>常量</code>（static final ）的集合</p>
 </blockquote>
 <p>实现方法</p>
 <ul>
@@ -1943,7 +1943,7 @@
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">f</span><span class="params">()</span>&#123;</span><br><span class="line">       System.out.println(<span class="keyword">new</span> <span class="title class_">MemberInnerClass</span>().a);<span class="comment">//100</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>外部其他类访问</p>
-<p>成员内部类是以成员变量的形式存在，在外部其他类想访问这个外部类里面的内部类，首先要创建一个外部类对象，&#x3D;&#x3D;new 外部类（）&#x3D;&#x3D;，通过这个对象操作外部类里面的内部类，而想操作内部类里面内容还要创建一个内部类对象&#x3D;&#x3D;new 内部类()&#x3D;&#x3D;,通过	new 外部类（）. new 内部类().成员     来操作   </p>
+<p>成员内部类是以成员变量的形式存在，在外部其他类想访问这个外部类里面的内部类，首先要创建一个外部类对象，<code>new 外部类（）</code>，通过这个对象操作外部类里面的内部类，而想操作内部类里面内容还要创建一个内部类对象<code>new 内部类()</code>,通过	new 外部类（）. new 内部类().成员     来操作   </p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">f</span><span class="params">()</span>&#123;</span><br><span class="line">     </span><br><span class="line">       System.out.println(<span class="keyword">new</span> <span class="title class_">Outer</span>().<span class="keyword">new</span> <span class="title class_">MemberInnerClass</span>().a);<span class="comment">//100</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
@@ -1958,7 +1958,7 @@
 <ol>
 <li>放在外部类成员位置</li>
 <li>static修饰</li>
-<li>可以直接访问外部类&#x3D;&#x3D;静态成员&#x3D;&#x3D;，不能直接访问成员变量</li>
+<li>可以直接访问外部类<code>静态成员</code>，不能直接访问成员变量</li>
 <li>可以添加任意访问修饰符</li>
 <li>作用域：整个类体</li>
 </ol>
@@ -1984,7 +1984,7 @@
 </blockquote>
 <p>定义在外部类局部位置（比如方法体内）</p>
 <ul>
-<li><p>局部内部类（&#x3D;&#x3D;有类名&#x3D;&#x3D;）</p>
+<li><p>局部内部类（<code>有类名</code>）</p>
 <ol>
 <li>局部内部类可以访问外部类私有属性和和方法</li>
 <li>定义在外部类的局部位置，通常在方法中</li>
@@ -2029,7 +2029,7 @@
 <li><p>外部类访问先创建对象</p>
 </li>
 <li><p>外部其他类访问2种方法</p>
-<p>成员内部类是以成员变量的形式存在，在外部其他类想访问这个外部类里面的内部类，首先要创建一个外部类对象，&#x3D;&#x3D;new 外部类（）&#x3D;&#x3D;，通过这个对象操作外部类里面的内部类，而想操作内部类里面内容还要创建一个内部类对象&#x3D;&#x3D;new 内部类()&#x3D;&#x3D;,通过	new 外部类（）. new 内部类().成员     来操作   </p>
+<p>成员内部类是以成员变量的形式存在，在外部其他类想访问这个外部类里面的内部类，首先要创建一个外部类对象，<code>new 外部类（）</code>，通过这个对象操作外部类里面的内部类，而想操作内部类里面内容还要创建一个内部类对象<code>new 内部类()</code>,通过	new 外部类（）. new 内部类().成员     来操作   </p>
 <p>两种方法本质上一样</p>
 <ol>
 <li><p>外部类.new 内部类();</p>
@@ -2049,7 +2049,7 @@
 <ol>
 <li>放在外部类成员位置</li>
 <li>static修饰</li>
-<li>可以直接访问外部类&#x3D;&#x3D;静态成员&#x3D;&#x3D;，不能直接访问成员变量客</li>
+<li>可以直接访问外部类<code>静态成员</code>，不能直接访问成员变量客</li>
 <li>可以添加任意访问修饰符</li>
 <li>作用域：整个类体</li>
 <li>访问外部类，直接访问（所有静态成员）</li>
@@ -2116,7 +2116,7 @@
 
 <p>问题：就像代码中所说，因为ArrayList可以接受任意类型的对象，如果添加进ArrayList的对象的类型出错，那么在强制类型转化的时候就会出错，而且如果数据太多不停地强制类型转化会影响效率</p>
 <h2 id="快速入门-1"><a href="#快速入门-1" class="headerlink" title="快速入门"></a>快速入门</h2><p>使用泛型实现上面需求</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1. 当我们 ArrayList&lt;Dog&gt; 表示存放到 ArrayList 集合中的元素必须是 Dog 类型 (细节后面说...)</span></span><br><span class="line"><span class="comment">//2. 如果编译器发现添加的类型，不满足要求，就会报错</span></span><br><span class="line"><span class="comment">//3. 在遍历的时候，可以直接取出 Dog 类型而不是 Object</span></span><br><span class="line"><span class="comment">//4. public class ArrayList&lt;E&gt; &#123;&#125; E 称为泛型,那么 Dog-&gt;E</span></span><br><span class="line">ArrayList&lt;Dog&gt; arrayList = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;Dog&gt;();</span><br><span class="line">arrayList.add(<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;旺财&quot;</span>, <span class="number">10</span>));</span><br><span class="line">arrayList.add(<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;发财&quot;</span>, <span class="number">1</span>));</span><br><span class="line">arrayList.add(<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;小黄&quot;</span>, <span class="number">5</span>));</span><br><span class="line"><span class="comment">//假如我们的程序员，不小心，添加了一只猫</span></span><br><span class="line">韩顺平循序渐进学 Java 零基础</span><br><span class="line">第 <span class="number">705</span>页</span><br><span class="line"><span class="comment">//arrayList.add(new Cat(&quot;招财猫&quot;, 8));</span></span><br><span class="line">System.out.println(<span class="string">&quot;===使用泛型====&quot;</span>);</span><br><span class="line"><span class="keyword">for</span> (Dog dog : arrayList) &#123;</span><br><span class="line">	System.out.println(dog.getName() + <span class="string">&quot;-&quot;</span> + dog.getAge());</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1. 当我们 ArrayList&lt;Dog&gt; 表示存放到 ArrayList 集合中的元素必须是 Dog 类型 (细节后面说...)</span></span><br><span class="line"><span class="comment">//2. 如果编译器发现添加的类型，不满足要求，就会报错</span></span><br><span class="line"><span class="comment">//3. 在遍历的时候，可以直接取出 Dog 类型而不是 Object</span></span><br><span class="line"><span class="comment">//4. public class ArrayList&lt;E&gt; &#123;&#125; E 称为泛型,那么 Dog-&gt;E</span></span><br><span class="line">ArrayList&lt;Dog&gt; arrayList = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;Dog&gt;();</span><br><span class="line">arrayList.add(<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;旺财&quot;</span>, <span class="number">10</span>));</span><br><span class="line">arrayList.add(<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;发财&quot;</span>, <span class="number">1</span>));</span><br><span class="line">arrayList.add(<span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;小黄&quot;</span>, <span class="number">5</span>));</span><br><span class="line"><span class="comment">//假如我们的程序员，不小心，添加了一只猫</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//arrayList.add(new Cat(&quot;招财猫&quot;, 8));</span></span><br><span class="line">System.out.println(<span class="string">&quot;===使用泛====&quot;</span>);</span><br><span class="line"><span class="keyword">for</span> (Dog dog : arrayList) &#123;</span><br><span class="line">	System.out.println(dog.getName() + <span class="string">&quot;-&quot;</span> + dog.getAge());</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h2 id="使用泛型的好处"><a href="#使用泛型的好处" class="headerlink" title="使用泛型的好处"></a>使用泛型的好处</h2><ol>
 <li>编译时检查添加元素的类型，提高安全性</li>
@@ -2306,7 +2306,7 @@
 </li>
 <li><p>throws上抛</p>
 <p>出现异常的方法将异常上抛，交给上一级处理（每一级都可以选择是cry捕获还是上抛），一直上抛到jvm（jvm直接打印异常信息中断程序）</p>
-<p>如果没有显式使用throws和cry，&#x3D;&#x3D;默认&#x3D;&#x3D;使用throws Exception</p>
+<p>如果没有显式使用throws和cry，<code>默认</code>使用throws Exception</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Excecption&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
 <h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><ol>
@@ -2314,7 +2314,7 @@
 </li>
 <li><p>如果没有异常不会执行catch块</p>
 </li>
-<li><p>如果try块可能有多种异常，可以有多个catch，分别捕获不同异常，子类在&#x3D;&#x3D;前&#x3D;&#x3D;，父类在&#x3D;&#x3D;后&#x3D;&#x3D;，因为只会匹配到一个异常就结束了</p>
+<li><p>如果try块可能有多种异常，可以有多个catch，分别捕获不同异常，子类在<code>前</code>，父类在<code>后</code>，因为只会匹配到一个异常就结束了</p>
 <p><img src="/../../assets/java/image-20220101141717594.png" alt="image-20220101141717594"></p>
 </li>
 <li><p>throws抛出异常列表，可以抛出多个异常，也可以是异常父类</p>
@@ -2752,10 +2752,10 @@
 <h3 id="类加载"><a href="#类加载" class="headerlink" title="类加载"></a>类加载</h3><p>基本说明：</p>
 <p>反射机制是java实现动态语言的关键，也是通过反射实现类的动态加载</p>
 <ol>
-<li><p>静态加载：&#x3D;&#x3D;<strong>编译时</strong>&#x3D;&#x3D;加载相关的类，如果没有则报错，依赖性太强</p>
+<li><p>静态加载：<code>**编译时**</code>加载相关的类，如果没有则报错，依赖性太强</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">Dog</span>();</span><br><span class="line"><span class="comment">//new Dog()是静态加载，因此必须编写Dog类</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p>动态加载：&#x3D;&#x3D;<strong>运行时</strong>&#x3D;&#x3D;加载需要的类，如果运行时用不到该类即使不存在，也不会报错，降低了依赖性</p>
+<li><p>动态加载：<code>**运行时**</code>加载需要的类，如果运行时用不到该类即使不存在，也不会报错，降低了依赖性</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Class</span> <span class="variable">cls</span> <span class="operator">=</span> Class.forName(<span class="string">&quot;Persion&quot;</span>);</span><br><span class="line"><span class="comment">// 这是动态加载，只要不执行到这个语句就不会报错</span></span><br></pre></td></tr></table></figure></li>
 </ol>
 <h3 id="类加载时机"><a href="#类加载时机" class="headerlink" title="类加载时机"></a>类加载时机</h3><ol>
