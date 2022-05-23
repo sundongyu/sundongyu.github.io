@@ -1486,7 +1486,7 @@
 </blockquote>
 <span id="more"></span>
 
-<h1 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h1><p>安装步骤参考一下链接：</p>
+<h1 id="1-相关资料"><a href="#1-相关资料" class="headerlink" title="1. 相关资料"></a>1. 相关资料</h1><p>安装步骤参考一下链接：</p>
 <p><a href="https://cloud.tencent.com/developer/article/1854155">https://cloud.tencent.com/developer/article/1854155</a> </p>
 <p>CentOS 7学习笔记<br><a href="https://cloud.tencent.com/developer/article/1488389">https://cloud.tencent.com/developer/article/1488389</a> </p>
 <p><a href="https://blog.csdn.net/u010993514/article/details/83188197">https://blog.csdn.net/u010993514/article/details/83188197</a> </p>
@@ -1494,22 +1494,48 @@
 <p><a href="https://www.runoob.com/linux/linux-tutorial.html">https://www.runoob.com/linux/linux-tutorial.html</a> </p>
 <p>在Windows系统中安装SSH连接工具 XShell，并掌握使用XShell访问Linux虚拟机的方法。</p>
 <p><a href="https://blog.csdn.net/qq_43585157/article/details/106992907">https://blog.csdn.net/qq_43585157/article/details/106992907</a> </p>
-<h1 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h1><p>以磁盘总空间20G为例</p>
+<h1 id="2-分区"><a href="#2-分区" class="headerlink" title="2. 分区"></a>2. 分区</h1><p>以磁盘总空间20G为例</p>
 <p>bool分区 —– 1G    标准分区   ext4</p>
 <p>swap分区 ——内存大小  标准分区   swap</p>
 <blockquote>
 <p> 内存不够时将临时充当内存</p>
 </blockquote>
 <p>根分区 —– 剩余空间   标准分区   ext4</p>
-<h1 id="三种网络连接方式"><a href="#三种网络连接方式" class="headerlink" title="三种网络连接方式"></a>三种网络连接方式</h1><h2 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h2><blockquote>
-<p> 直接连接物理网络</p>
+<h1 id="3-三种网络连接方式"><a href="#3-三种网络连接方式" class="headerlink" title="3. 三种网络连接方式"></a>3. 三种网络连接方式</h1><h2 id="3-1-桥接模式"><a href="#3-1-桥接模式" class="headerlink" title="3.1 桥接模式"></a>3.1 桥接模式</h2><blockquote>
+<p> 直接连接物理网络，和主机IP在同一个网段，虚拟系统，可以和外界通讯，但是容易造成IP冲突。</p>
 </blockquote>
-<h2 id="NAT模式"><a href="#NAT模式" class="headerlink" title="NAT模式"></a>NAT模式</h2><blockquote>
-<p> 用于共享主机的IP地址</p>
+<h2 id="3-2-NAT模式"><a href="#3-2-NAT模式" class="headerlink" title="3.2 NAT模式"></a>3.2 NAT模式</h2><blockquote>
+<p> 用于共享主机的IP地址，网络地址转换模式，虚拟系统可以通过代理和外界通讯，不造成ip冲突。但是外界没法和内网通讯。</p>
 </blockquote>
-<h2 id="仅主机模式"><a href="#仅主机模式" class="headerlink" title="仅主机模式"></a>仅主机模式</h2><blockquote>
+<h2 id="3-3-仅主机模式"><a href="#3-3-仅主机模式" class="headerlink" title="3.3 仅主机模式"></a>3.3 仅主机模式</h2><blockquote>
 <p> 与主机共享的专用网络</p>
 </blockquote>
+<p><img src="/../../../studynotes/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/assets/Centos7%E4%BD%BF%E7%94%A8/image-20220521230705687.png" alt="image-20220521230705687"></p>
+<h1 id="4-VMtools"><a href="#4-VMtools" class="headerlink" title="4. VMtools"></a>4. VMtools</h1><blockquote>
+<p>一款VMware的用于帮助我们更好的管理vm虚拟机的工具，可以设置windows和centos共享文件夹。</p>
+</blockquote>
+<p>windows端设置的共享文件夹在centos中保存在<code>/mnt/hgfs</code>位置。</p>
+<p><strong>&#x2F;mnt</strong>：系统提供该目录是为了让用户临时挂载别的文件系统的，我们可以将光驱挂载在 &#x2F;mnt&#x2F; 上，然后进入该目录就可以查看光驱里的内容了。</p>
+<p>注意事项：在实际生产工程中时使用远程方式实现文件传输和共享。</p>
+<h1 id="5-Linux的目录结构"><a href="#5-Linux的目录结构" class="headerlink" title="5. Linux的目录结构"></a>5. Linux的目录结构</h1><p>主体结构要记住。</p>
+<p><a href="https://www.runoob.com/linux/linux-system-contents.html">Linux系统目录结构</a></p>
+<p>LInux下面一切皆为文件，硬件都当做一个文件对待。</p>
+<h1 id="6-远程登录Linux服务器"><a href="#6-远程登录Linux服务器" class="headerlink" title="6. 远程登录Linux服务器"></a>6. 远程登录Linux服务器</h1><p><strong>为什么要远程登录？</strong></p>
+<ol>
+<li>linux服务器是开发小组共享</li>
+<li>正式上线的项目是运行在公网上的</li>
+</ol>
+<p><strong>怎么远程登录？</strong></p>
+<p>使用工具<code>xshell</code></p>
+<p><strong>怎么文件上传下载？</strong></p>
+<p>使用工具<code>xftp</code></p>
+<h2 id="6-1-xshell"><a href="#6-1-xshell" class="headerlink" title="6.1 xshell"></a>6.1 xshell</h2><p>第一步：获取centosip地址</p>
+<p>使用指令：<code>ifconfig</code></p>
+<p>第二步：在windows端测试能不能ping通这个ip地址</p>
+<p>第三步：打开xshell(或者使用windows的powershell进行ssh连接)，输入主机：ip地址。</p>
+<h2 id="6-2-xftp"><a href="#6-2-xftp" class="headerlink" title="6.2 xftp"></a>6.2 xftp</h2><p>协议：SFTP</p>
+<p>端口号：22</p>
+<p>注意：中文乱码设置编码为UTF-8</p>
 ]]></content>
       <categories>
         <category>Linux</category>
@@ -1542,8 +1568,7 @@
 <p>JDK &#x3D; JRE + java开发工具</p>
 <p>JRE &#x3D; JVM + 核心类库</p>
 </blockquote>
-<h1 id="2-变量"><a href="#2-变量" class="headerlink" title="2.变量"></a>2.变量</h1><p>##2.1变量的介绍</p>
-<blockquote>
+<h1 id="2-变量"><a href="#2-变量" class="headerlink" title="2.变量"></a>2.变量</h1><h2 id="2-1变量的介绍"><a href="#2-1变量的介绍" class="headerlink" title="2.1变量的介绍"></a>2.1变量的介绍</h2><blockquote>
 <p>程序的基本组成</p>
 <p>三要素：</p>
 <p>​	1.类型</p>
@@ -1551,15 +1576,13 @@
 <p>​	3.值</p>
 </blockquote>
 <p>注意点：变量表示内存中一个存储区域，先申明后使用，作用域内不能重名</p>
-<p>##2.2+号的使用</p>
-<blockquote>
+<h2 id="2-2-号的使用"><a href="#2-2-号的使用" class="headerlink" title="2.2+号的使用"></a>2.2+号的使用</h2><blockquote>
 <ol>
 <li>左右数值，加法运算</li>
 <li>左右有一方为字符串，拼接</li>
 </ol>
 </blockquote>
-<p>##2.3数据类型</p>
-<ul>
+<h2 id="2-3数据类型"><a href="#2-3数据类型" class="headerlink" title="2.3数据类型"></a>2.3数据类型</h2><ul>
 <li><p>基本数据类型</p>
 <ul>
 <li><p>数值型</p>
@@ -1592,11 +1615,10 @@
 </ul>
 </li>
 </ul>
-<p><code>默认类型</code></p>
+<p><strong>默认类型</strong></p>
 <p>整数 -&gt; int</p>
 <p>小数 -&gt; double</p>
-<p>###2.3.1细节问题</p>
-<p>浮点数在机器中存储形式： 是<code>符号位 + 指数位 +  尾数位</code>，所以小数都是<code>近似值</code></p>
+<h3 id="2-3-1细节问题"><a href="#2-3-1细节问题" class="headerlink" title="2.3.1细节问题"></a>2.3.1细节问题</h3><p>浮点数在机器中存储形式： 是<code>符号位 + 指数位 +  尾数位</code>，所以小数都是<code>近似值</code></p>
 <p>例如：8.1  &#x2F;  3 &#x3D; 2.699999997 !&#x3D; 2.7</p>
 <p>java整型默认为int类型，申明long需在结尾加l或者<code>L</code></p>
 <p><code>注意点</code></p>
