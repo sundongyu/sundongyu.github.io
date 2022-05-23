@@ -11,15 +11,6 @@
   </url>
   
   <url>
-    <loc>https://sundongyu.github.io/2022/05/21/javase/</loc>
-    
-    <lastmod>2022-05-21</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://sundongyu.github.io/2022/05/07/trie-shu-bing-cha-ji/</loc>
     
     <lastmod>2022-05-19</lastmod>
@@ -93,15 +84,6 @@
   
   <url>
     <loc>https://sundongyu.github.io/2022/05/10/group-by-fen-zu-yi-chang/</loc>
-    
-    <lastmod>2022-05-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sundongyu.github.io/2022/05/07/da-shu-ju-dao-lun/</loc>
     
     <lastmod>2022-05-19</lastmod>
     
@@ -242,13 +224,6 @@
     <priority>0.2</priority>
   </url>
   
-  <url>
-    <loc>https://sundongyu.github.io/tags/JavaSE/</loc>
-    <lastmod>2022-05-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
 
   
   <url>
@@ -267,13 +242,6 @@
   
   <url>
     <loc>https://sundongyu.github.io/categories/Git/</loc>
-    <lastmod>2022-05-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sundongyu.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%AF%BC%E8%AE%BA/</loc>
     <lastmod>2022-05-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
