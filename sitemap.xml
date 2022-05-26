@@ -2,18 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://sundongyu.github.io/2022/05/15/java/</loc>
-    
-    <lastmod>2022-05-26</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://sundongyu.github.io/2022/05/20/centos7-shi-yong/</loc>
     
-    <lastmod>2022-05-25</lastmod>
+    <lastmod>2022-05-26</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
