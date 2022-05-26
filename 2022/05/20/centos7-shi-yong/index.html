@@ -86,7 +86,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">630</span>
+            <span class="post-count">1k</span>
         </span>
     </span>
 
@@ -95,7 +95,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">2 分钟</span>
+            <span class="post-count">3 分钟</span>
         </span>
     </span>
 </div>
@@ -165,6 +165,30 @@
 <h2 id="6-2-xftp"><a href="#6-2-xftp" class="headerlink" title="6.2 xftp"></a>6.2 xftp</h2><p>协议：SFTP</p>
 <p>端口号：22</p>
 <p>注意：中文乱码设置编码为UTF-8</p>
+<h2 id="7-关机和重启"><a href="#7-关机和重启" class="headerlink" title="7. 关机和重启"></a>7. 关机和重启</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">shutdown -h now    // 立刻关机</span><br><span class="line">shutdown -h 1		// 一分钟后关机</span><br><span class="line">halt			// 关机</span><br><span class="line">reboot			// 重启</span><br><span class="line">sync			// 把内存的数据同步到磁盘</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>不管是重启系统还是关闭系统，首先要运行sync命令，把内存的数据写入文件。</li>
+<li>目前shutdown&#x2F;reboot&#x2F;halt 等均已经在关机之前进行了sync，小心使得万年船。</li>
+</ol>
+<h2 id="8-用户登录和注销"><a href="#8-用户登录和注销" class="headerlink" title="8. 用户登录和注销"></a>8. 用户登录和注销</h2><blockquote>
+<p>一般不使用root账号登录，因为他的权限最大，避免误操作，可以利用普通用户登录，然后需要的时候切换到root用户。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 切换普通用户</span><br><span class="line">su 用户名</span><br><span class="line">// 切换root用户</span><br><span class="line">su</span><br><span class="line">su - root</span><br></pre></td></tr></table></figure>
+
+<h3 id="su-与-su-root-的区别"><a href="#su-与-su-root-的区别" class="headerlink" title="su 与 su-root 的区别"></a>su 与 su-root 的区别</h3><p><strong>1.共同点：都是切换进入root用户</strong><br><strong>2.不同点：</strong></p>
+<ol>
+<li>su切换后只获得权限，工作环境不改变，su - 不仅获得权限，而且改变工作环境</li>
+<li>最直接的区别还是：su之后你的目录依然是你的用户端的目录，但是su-之后你的目录就真的变成了root的目录</li>
+</ol>
+<p>注意：当使用su - root 进入root环境时，可以输入<code>logout</code>退出root环境。</p>
+<h2 id="9-用户管理"><a href="#9-用户管理" class="headerlink" title="9. 用户管理"></a>9. 用户管理</h2><h3 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h3><h4 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">useradd [-d 目录] 用户名   // 新建用户【指定home目录】</span><br><span class="line">passwd 用户名			// 设置密码</span><br></pre></td></tr></table></figure>
+
+<p>默认添加的用户的<code>home</code>目录在<code>/home</code></p>
+<h4 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">userdel [-r] 用户名   // 删除用户【是否删除home目录】</span><br></pre></td></tr></table></figure>
+
+<h4 id="查询用户"><a href="#查询用户" class="headerlink" title="查询用户"></a>查询用户</h4><p><code>id 用户名</code></p>
+<h3 id="切换用户"><a href="#切换用户" class="headerlink" title="切换用户"></a>切换用户</h3><p><code>su - 用户名</code></p>
  
       <!-- reward -->
       
