@@ -1,116 +1,312 @@
+
+
 <!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
 
 
-<html lang="zh-CN">
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="dongyu sun">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="记录sql的学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySql的使用">
+<meta property="og:url" content="https://sundongyu.github.io/2022/05/02/mysql-de-shi-yong/index.html">
+<meta property="og:site_name" content="樱花小镇">
+<meta property="og:description" content="记录sql的学习">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2022/05/02/2835b9df1a06e8b7.png">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2022/05/02/a72c5862877f04ed.png">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2022/05/02/c9002809fc7aca6c.png">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2022/05/02/024017424e7ad1ea.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/1caba7ed17a44c48a17b46d5babbfa6c.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/8bd7591b407047818af75efde8dc319e.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/d3e87f56037542de89d3edb31ca5c8a6.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/ca1ce577ab6a4beb89f411a3a35ba626.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/64c1a2eff6444b2dba7a91b64bb0d0f2.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/18a3ed77fefe4b589aade51be42ad40b.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/f63a554bc5da461cb331972bf19daf88.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/ae1fc97bf72a4e709c514802e42ff22d.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/52eaf493859d4317904beab711ab5822.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/18adc3bd879d4cc680c109865f1aca0d.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/8d46ea2436c349579f254262eaec6da0.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/146d0e4315d34fad829462a15492c4f9.png">
+<meta property="og:image" content="https://sundongyu.github.io/studynotes/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/assets/MySql%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220403150433964.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/8d639d9d7f954056bbf22380c767d5be.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/e5c2b2d7bd1949cba0d8dfa8c1aab235.png">
+<meta property="og:image" content="https://sundongyu.github.io/studynotes/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/assets/MySql%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220405091058425.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/27a7c230b32f476fbadbf308514e82fa.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/3839a0a13be2453a9fed4d7145d3c1e5.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/69f42db38215410591ea2605fcea78f1.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/e5e631b96f1142f3853a39aa9b97ae10.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/8a8bc3415c014ee9a07e6222cfd67a46.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/ecc47ff046df45d4aecb1efc9ca2c056.png">
+<meta property="article:published_time" content="2022-05-02T14:04:20.000Z">
+<meta property="article:modified_time" content="2022-05-19T14:41:09.869Z">
+<meta property="article:author" content="dongyu sun">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s3.bmp.ovh/imgs/2022/05/02/2835b9df1a06e8b7.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>MySql的使用 - 樱花小镇</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
-    <head>
-      <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8" />
-        
-      <meta name="description" content="临渊羡鱼，不如退而结网" />
-      
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, maximum-scale=1"
-      />
-      <title>MySql的使用 |  樱花小镇</title>
-  <meta name="generator" content="hexo-theme-ayer">
-      
-      <link rel="shortcut icon" href="/favicon.ico" />
-       
-<link rel="stylesheet" href="/dist/main.css">
 
-      
-<link rel="stylesheet" href="/css/fonts/remixicon.css">
 
-      
-<link rel="stylesheet" href="/css/custom.css">
- 
-      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
-       
- 
 
-      <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
-      />
-      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"sundongyu.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"java"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
-      <!-- mermaid -->
-      
-      <style>
-        .swal2-styled.swal2-confirm {
-          font-size: 1.6rem;
-        }
-      </style><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-    </head>
-  </html>
-</html>
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.1.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 
 
 <body>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="app">
-    
-      
-    <main class="content on">
-      <section class="outer">
-  <article
-  id="post-MySql的使用"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  MySql的使用
-</h1>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2022/05/02/mysql-de-shi-yong/" class="article-date">
-  <time datetime="2022-05-02T14:04:20.000Z" itemprop="datePublished">2022-05-02</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/MySql/">MySql</a>
-  </div>
   
-<div class="word_count">
-    <span class="post-time">
-        <span class="post-meta-item-icon">
-            <i class="ri-quill-pen-line"></i>
-            <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">8.1k</span>
-        </span>
-    </span>
 
-    <span class="post-time">
-        &nbsp; | &nbsp;
-        <span class="post-meta-item-icon">
-            <i class="ri-book-open-line"></i>
-            <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">34 分钟</span>
-        </span>
-    </span>
-</div>
- 
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>樱花小镇</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
     </div>
-      
-    <div class="tocbot"></div>
-
-
-
+  </div>
+</nav>
 
   
-    <div class="article-entry" itemprop="articleBody">
-       
-  <blockquote>
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="MySql的使用"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-05-02 22:04" pubdate>
+          2022年5月2日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          undefined 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          NaN 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">MySql的使用</h1>
+            
+            <div class="markdown-body">
+              
+              <blockquote>
 <p>记录sql的学习</p>
 </blockquote>
 <span id="more"></span>
@@ -125,7 +321,7 @@
 </li>
 <li>所谓安装数据库就是在主机上安装了一个数据库管理系统DBMS，这个管理程序可以管理多个数据库</li>
 <li>一个数据库中可以创建多个表，用来保存数据</li>
-<li><img src="https://s3.bmp.ovh/imgs/2022/05/02/2835b9df1a06e8b7.png" alt="image-20220326104452895"></li>
+<li><img src="https://s3.bmp.ovh/imgs/2022/05/02/2835b9df1a06e8b7.png" srcset="/img/loading.gif" lazyload alt="image-20220326104452895"></li>
 <li>数据库储存在哪<ol>
 <li>安装路径下data目录下</li>
 <li>表 在数据库目录下</li>
@@ -144,7 +340,7 @@
 <li>DCL:数据控制语句【管理数据库：不如用户权限，grant， revoke】</li>
 </ol>
 </li>
-<li><img src="https://s3.bmp.ovh/imgs/2022/05/02/a72c5862877f04ed.png" alt="image-20220326105909403"></li>
+<li><img src="https://s3.bmp.ovh/imgs/2022/05/02/a72c5862877f04ed.png" srcset="/img/loading.gif" lazyload alt="image-20220326105909403"></li>
 <li>启动mysql 服务 : net start mysql</li>
 <li>停止mysql服务指令 : net stop mysql</li>
 </ol>
@@ -189,7 +385,7 @@
 
 <h2 id="3-4-写入数据"><a href="#3-4-写入数据" class="headerlink" title="3.4 写入数据"></a>3.4 写入数据</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> 表名 <span class="keyword">VALUES</span> ()</span><br></pre></td></tr></table></figure>
 
-<h1 id="4-mysql数据库常用的数据类型类型（列类型）"><a href="#4-mysql数据库常用的数据类型类型（列类型）" class="headerlink" title="4. mysql数据库常用的数据类型类型（列类型）"></a>4. mysql数据库常用的数据类型类型（列类型）</h1><p><img src="https://s3.bmp.ovh/imgs/2022/05/02/c9002809fc7aca6c.png" alt="image-20220326212031092"><img src="https://s3.bmp.ovh/imgs/2022/05/02/024017424e7ad1ea.png" alt="image-20220326214324523"></p>
+<h1 id="4-mysql数据库常用的数据类型类型（列类型）"><a href="#4-mysql数据库常用的数据类型类型（列类型）" class="headerlink" title="4. mysql数据库常用的数据类型类型（列类型）"></a>4. mysql数据库常用的数据类型类型（列类型）</h1><p><img src="https://s3.bmp.ovh/imgs/2022/05/02/c9002809fc7aca6c.png" srcset="/img/loading.gif" lazyload alt="image-20220326212031092"><img src="https://s3.bmp.ovh/imgs/2022/05/02/024017424e7ad1ea.png" srcset="/img/loading.gif" lazyload alt="image-20220326214324523"></p>
 <h2 id="4-1-数值型（整数）的基本使用："><a href="#4-1-数值型（整数）的基本使用：" class="headerlink" title="4.1 数值型（整数）的基本使用："></a>4.1 数值型（整数）的基本使用：</h2><p>说明，使用规范：在能满足需求的情况下使用占用空间最小的数据类型</p>
 <h2 id="4-2-bit类型使用"><a href="#4-2-bit类型使用" class="headerlink" title="4.2 bit类型使用"></a>4.2 bit类型使用</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 创建bit表</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> t (</span><br><span class="line">    num bit(<span class="number">8</span>)</span><br><span class="line">);</span><br><span class="line"># 插入数据<span class="number">2</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t <span class="keyword">values</span>(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
 
@@ -271,7 +467,7 @@
 </ol>
 <h3 id="5-4-1-where子句"><a href="#5-4-1-where子句" class="headerlink" title="5.4.1 where子句"></a>5.4.1 where子句</h3><p>在where字句中经常用的运算符</p>
 <p>使用where子句进行过滤查询</p>
-<p><img src="https://static01.imgkr.com/temp/1caba7ed17a44c48a17b46d5babbfa6c.png" alt="image-20220328150718941"></p>
+<p><img src="https://static01.imgkr.com/temp/1caba7ed17a44c48a17b46d5babbfa6c.png" srcset="/img/loading.gif" lazyload alt="image-20220328150718941"></p>
 <h3 id="5-4-2-order-by子句"><a href="#5-4-2-order-by子句" class="headerlink" title="5.4.2 order by子句"></a>5.4.2 order by子句</h3><p>排序查询结果</p>
 <p>SELECT * FROM 表名</p>
 <p>ORDER BY  XXX   [DESC] [, xxx [DESC]]            – desc是descend（下降）的缩写</p>
@@ -282,7 +478,7 @@
 <h3 id="5-4-3-group-by子句"><a href="#5-4-3-group-by子句" class="headerlink" title="5.4.3 group by子句"></a>5.4.3 group by子句</h3><blockquote>
 <p>将待查询序列按照要求分组，对每个组进行过滤查找查找</p>
 </blockquote>
-<p><img src="https://static01.imgkr.com/temp/8bd7591b407047818af75efde8dc319e.png" alt="image-20220328160431019"></p>
+<p><img src="https://static01.imgkr.com/temp/8bd7591b407047818af75efde8dc319e.png" srcset="/img/loading.gif" lazyload alt="image-20220328160431019"></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> dept (</span><br><span class="line">  <span class="comment">/*部门表*/</span></span><br><span class="line">  deptno MEDIUMINT UNSIGNED <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">0</span>,</span><br><span class="line">  dname <span class="type">VARCHAR</span> (<span class="number">20</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">  loc <span class="type">VARCHAR</span> (<span class="number">13</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  dept</span><br><span class="line">  <span class="keyword">INSERT</span> <span class="keyword">INTO</span> dept</span><br><span class="line">  <span class="keyword">VALUES</span></span><br><span class="line">    (<span class="number">10</span>, <span class="string">&#x27;ACCOUNTING&#x27;</span>, <span class="string">&#x27;NEW YORK&#x27;</span>),</span><br><span class="line">    (<span class="number">20</span>, <span class="string">&#x27;RESEARCH&#x27;</span>, <span class="string">&#x27;DALLAS&#x27;</span>),</span><br><span class="line">    (<span class="number">30</span>, <span class="string">&#x27;SALES&#x27;</span>, <span class="string">&#x27;CHICAGO&#x27;</span>),</span><br><span class="line">    (<span class="number">40</span>, <span class="string">&#x27;OPERATIONS&#x27;</span>, <span class="string">&#x27;BOSTON&#x27;</span>);</span><br><span class="line"></span><br><span class="line">#创建表EMP雇员</span><br><span class="line"> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> emp (</span><br><span class="line">  empno MEDIUMINT UNSIGNED <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">0</span>,</span><br><span class="line">  <span class="comment">/*编号*/</span></span><br><span class="line">  ename <span class="type">VARCHAR</span> (<span class="number">20</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> &quot;&quot;,</span><br><span class="line">  <span class="comment">/*名字*/</span></span><br><span class="line">  job <span class="type">VARCHAR</span> (<span class="number">9</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> &quot;&quot;,</span><br><span class="line">  <span class="comment">/*工作*/</span></span><br><span class="line">  mgr MEDIUMINT UNSIGNED,</span><br><span class="line">  <span class="comment">/*上级编号*/</span></span><br><span class="line">  hiredate <span class="type">DATE</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  <span class="comment">/*入职时间*/</span></span><br><span class="line">  sal <span class="type">DECIMAL</span> (<span class="number">7</span>, <span class="number">2</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  <span class="comment">/*薪水*/</span></span><br><span class="line">  comm <span class="type">DECIMAL</span> (<span class="number">7</span>, <span class="number">2</span>),</span><br><span class="line">  <span class="comment">/*红利*/</span></span><br><span class="line">  deptno MEDIUMINT UNSIGNED <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">0</span></span><br><span class="line">  <span class="comment">/*部门编号*/</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  emp</span><br><span class="line"></span><br><span class="line">#工资级别表</span><br><span class="line"> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> salgrade (</span><br><span class="line">  grade MEDIUMINT UNSIGNED <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">0</span>,</span><br><span class="line">  losal <span class="type">DECIMAL</span> (<span class="number">17</span>, <span class="number">2</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  hisal <span class="type">DECIMAL</span> (<span class="number">17</span>, <span class="number">2</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  salgrade</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 部门平均工资和最高工资</span></span><br><span class="line"> <span class="keyword">SELECT</span></span><br><span class="line">  <span class="built_in">AVG</span> (sal),</span><br><span class="line">  <span class="built_in">MAX</span> (sal),</span><br><span class="line">  deptno</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  emp</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> deptno;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 每个岗位的平均工资和最低工资</span></span><br><span class="line"> <span class="keyword">SELECT</span></span><br><span class="line">  <span class="built_in">AVG</span> (sal),</span><br><span class="line">  <span class="built_in">MIN</span> (sal),</span><br><span class="line">  deptno</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  emp</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> deptno;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  <span class="built_in">AVG</span> (sal),</span><br><span class="line">  <span class="built_in">MAX</span> (sal),</span><br><span class="line">  deptno,</span><br><span class="line">  job</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  emp</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> deptno,</span><br><span class="line">  job;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 显示各个部门平均工资低于2000的平均工资和部门号</span></span><br><span class="line"> <span class="keyword">SELECT</span></span><br><span class="line">  <span class="built_in">AVG</span> (sal) <span class="keyword">AS</span> avg_sal,</span><br><span class="line">  deptno</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  emp</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> deptno</span><br><span class="line"><span class="keyword">HAVING</span> avg_sal <span class="operator">&lt;</span> <span class="number">2000</span></span><br></pre></td></tr></table></figure>
 
 <p>当一个语句中同时含有where、group by 、having及聚集函数时，执行顺序如下：</p>
@@ -363,23 +559,23 @@
 
 
 
-<h1 id="6-函数"><a href="#6-函数" class="headerlink" title="6. 函数"></a>6. 函数</h1><h3 id="6-1-合计-x2F-统计函数"><a href="#6-1-合计-x2F-统计函数" class="headerlink" title="6.1 合计&#x2F;统计函数"></a>6.1 合计&#x2F;统计函数</h3><p><img src="https://static01.imgkr.com/temp/d3e87f56037542de89d3edb31ca5c8a6.png" alt="image-20220328154621669"><img src="https://static01.imgkr.com/temp/ca1ce577ab6a4beb89f411a3a35ba626.png" alt="image-20220328155342445"></p>
+<h1 id="6-函数"><a href="#6-函数" class="headerlink" title="6. 函数"></a>6. 函数</h1><h3 id="6-1-合计-x2F-统计函数"><a href="#6-1-合计-x2F-统计函数" class="headerlink" title="6.1 合计&#x2F;统计函数"></a>6.1 合计&#x2F;统计函数</h3><p><img src="https://static01.imgkr.com/temp/d3e87f56037542de89d3edb31ca5c8a6.png" srcset="/img/loading.gif" lazyload alt="image-20220328154621669"><img src="https://static01.imgkr.com/temp/ca1ce577ab6a4beb89f411a3a35ba626.png" srcset="/img/loading.gif" lazyload alt="image-20220328155342445"></p>
 <p>注意：sum函数仅对数值起作用，否则报错</p>
-<p><img src="https://static01.imgkr.com/temp/64c1a2eff6444b2dba7a91b64bb0d0f2.png" alt="image-20220328160024993"><img src="https://static01.imgkr.com/temp/18a3ed77fefe4b589aade51be42ad40b.png" alt="image-20220328160126194"></p>
+<p><img src="https://static01.imgkr.com/temp/64c1a2eff6444b2dba7a91b64bb0d0f2.png" srcset="/img/loading.gif" lazyload alt="image-20220328160024993"><img src="https://static01.imgkr.com/temp/18a3ed77fefe4b589aade51be42ad40b.png" srcset="/img/loading.gif" lazyload alt="image-20220328160126194"></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> student</span><br><span class="line"># 统计有多少学生</span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="keyword">FROM</span> student;</span><br><span class="line"><span class="comment">-- 数学大于80</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="keyword">FROM</span> student</span><br><span class="line">	<span class="keyword">WHERE</span> math <span class="operator">&gt;</span> <span class="number">80</span></span><br><span class="line"><span class="comment">-- sount(*) 和 count(列)区别</span></span><br><span class="line"><span class="comment">-- count（列）返回该列非空的条数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 统计数学总成绩</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">SUM</span>(math) <span class="keyword">FROM</span> student;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 统计各科总成绩</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">SUM</span>(math),<span class="built_in">SUM</span>(english) <span class="keyword">FROM</span> student</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 统计英语均分</span></span><br><span class="line"><span class="keyword">SELECT</span> (<span class="built_in">SUM</span>(english) <span class="operator">/</span> <span class="built_in">COUNT</span>(english)) <span class="keyword">AS</span> <span class="string">&#x27;均分&#x27;</span> <span class="keyword">FROM</span> student</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 数学均分</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">AVG</span>(math) <span class="keyword">FROM</span> student;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 最高分</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">MAX</span>(math) <span class="keyword">FROM</span> student</span><br></pre></td></tr></table></figure>
 
-<h3 id="6-3-字符串相关函数"><a href="#6-3-字符串相关函数" class="headerlink" title="6.3 字符串相关函数"></a>6.3 字符串相关函数</h3><p><img src="https://static01.imgkr.com/temp/f63a554bc5da461cb331972bf19daf88.png" alt="image-20220328195542102"></p>
+<h3 id="6-3-字符串相关函数"><a href="#6-3-字符串相关函数" class="headerlink" title="6.3 字符串相关函数"></a>6.3 字符串相关函数</h3><p><img src="https://static01.imgkr.com/temp/f63a554bc5da461cb331972bf19daf88.png" srcset="/img/loading.gif" lazyload alt="image-20220328195542102"></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 返回字串字符集</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  CHARSET (ename)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  emp;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 连接字符串</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  CONCAT (ename, <span class="string">&#x27; job is &#x27;</span>, job)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  emp;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 返回出现位置类似indexof</span></span><br><span class="line"><span class="comment">-- DUAL 亚元表，可以作为测试表使用</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  INSTR (<span class="string">&#x27;sdy&#x27;</span>, <span class="string">&#x27;d&#x27;</span>)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  DUAL;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 转换为大写</span></span><br><span class="line"> <span class="keyword">SELECT</span></span><br><span class="line">  UCASE (ename)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  emp;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 转换为小写</span></span><br><span class="line"> <span class="keyword">SELECT</span></span><br><span class="line">  LCASE (ename)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  emp;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- LEFT (string, length)从字符串左边起取length个字符</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  <span class="keyword">LEFT</span> (ename, <span class="number">2</span>)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  emp;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  <span class="keyword">RIGHT</span> (ename, <span class="number">2</span>)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  emp;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- LENGHT(string) string 长度（按照  字节  ）</span></span><br><span class="line"> <span class="keyword">SELECT</span></span><br><span class="line">  LENGTH (<span class="string">&#x27;速度&#x27;</span>)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  DUAL;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- replace(str, search_str, replace_str)</span></span><br><span class="line"> <span class="keyword">SELECT</span></span><br><span class="line">  ename,</span><br><span class="line">  REPLACE (job, <span class="string">&#x27;MANAGER&#x27;</span>, <span class="string">&#x27;经理&#x27;</span>)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  emp <span class="comment">-- STRCMP(string1, string2) 逐字符比较字符串</span></span><br><span class="line">   <span class="keyword">SELECT</span></span><br><span class="line">    STRCMP (<span class="string">&#x27;qwe&#x27;</span>, <span class="string">&#x27;asd&#x27;</span>)</span><br><span class="line">  <span class="keyword">FROM</span></span><br><span class="line">    DUAL;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- substring(str, position [, length]) 从str的第一个位置，取length个字符</span></span><br><span class="line"> <span class="keyword">SELECT</span></span><br><span class="line">  <span class="built_in">SUBSTRING</span> (ename, <span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  emp;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- ltrim rtrim trim 取出左，右， 左右空格</span></span><br><span class="line"> <span class="keyword">SELECT</span></span><br><span class="line">  LTRIM (<span class="string">&#x27;   sdf&#x27;</span>)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  DUAL <span class="comment">-- 将首字母转化为小写</span></span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">   <span class="keyword">SELECT</span></span><br><span class="line">    CONCAT (</span><br><span class="line">      LCASE (<span class="keyword">LEFT</span> (<span class="string">&#x27;Sundongyu&#x27;</span>, <span class="number">1</span>)),</span><br><span class="line">      <span class="built_in">SUBSTRING</span> (</span><br><span class="line">        <span class="string">&#x27;Sundongyu&#x27;</span>,</span><br><span class="line">        <span class="number">2</span>,</span><br><span class="line">        (LENGTH (<span class="string">&#x27;Sundongyu&#x27;</span>) <span class="operator">-</span> <span class="number">1</span>)</span><br><span class="line">      )</span><br><span class="line">    ) <span class="keyword">AS</span> <span class="keyword">NEW</span></span><br><span class="line">  <span class="keyword">FROM</span></span><br><span class="line">    DUAL</span><br></pre></td></tr></table></figure>
 
-<h3 id="6-4-数学相关函数"><a href="#6-4-数学相关函数" class="headerlink" title="6.4 数学相关函数"></a>6.4 数学相关函数</h3><p><img src="https://static01.imgkr.com/temp/ae1fc97bf72a4e709c514802e42ff22d.png" alt="-+"></p>
+<h3 id="6-4-数学相关函数"><a href="#6-4-数学相关函数" class="headerlink" title="6.4 数学相关函数"></a>6.4 数学相关函数</h3><p><img src="https://static01.imgkr.com/temp/ae1fc97bf72a4e709c514802e42ff22d.png" srcset="/img/loading.gif" lazyload alt="-+"></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- abs绝对值</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">ABS</span>(<span class="number">-100</span>) <span class="keyword">FROM</span> DUAL;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 十进制转二进制</span></span><br><span class="line"><span class="keyword">SELECT</span> BIN (<span class="number">10</span>) <span class="keyword">FROM</span> DUAL;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- ceiling 向上取整</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">CEILING</span> (<span class="number">1.1</span>) <span class="keyword">FROM</span> DUAL;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- conv ()进制转换</span></span><br><span class="line"><span class="keyword">SELECT</span> CONV (<span class="number">8</span>, <span class="number">10</span>, <span class="number">2</span>) <span class="keyword">FROM</span> DUAL;# 将十进制的<span class="number">8</span> 转化为<span class="number">2</span>进制</span><br><span class="line"></span><br><span class="line"><span class="comment">-- floor 向下取整</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">FLOOR</span>(<span class="number">1.2</span>) <span class="keyword">FROM</span> DUAL;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- format(number) 保留小数位数</span></span><br><span class="line"><span class="keyword">SELECT</span> FORMAT(<span class="number">78.1234</span>,<span class="number">2</span>) <span class="keyword">FROM</span> DUAL;# 对小数进行保留<span class="number">2</span>位小数，四舍五入</span><br><span class="line"></span><br><span class="line"><span class="comment">-- hex()转为16进制</span></span><br><span class="line"><span class="comment">-- least (num1, num2, num3) 集合最小值</span></span><br><span class="line"><span class="keyword">SELECT</span> LEAST(<span class="number">1</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>) <span class="keyword">FROM</span> DUAL;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- mod(num, num1) 求余数 num % num1</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">MOD</span>(<span class="number">3</span>, <span class="number">2</span>) <span class="keyword">FROM</span> DUAL;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- rand([seed])随机数范围[0,1]</span></span><br><span class="line"><span class="comment">-- 当给seed赋值后，随机数将不变</span></span><br><span class="line"><span class="keyword">SELECT</span> RAND() <span class="keyword">FROM</span> DUAL;</span><br></pre></td></tr></table></figure>
 
-<h3 id="6-5-时间日期相关函数"><a href="#6-5-时间日期相关函数" class="headerlink" title="6.5 时间日期相关函数"></a>6.5 时间日期相关函数</h3><p><img src="https://static01.imgkr.com/temp/52eaf493859d4317904beab711ab5822.png" alt="image-20220328204359630"><img src="https://static01.imgkr.com/temp/18adc3bd879d4cc680c109865f1aca0d.png" alt="image-20220329162516312"></p>
+<h3 id="6-5-时间日期相关函数"><a href="#6-5-时间日期相关函数" class="headerlink" title="6.5 时间日期相关函数"></a>6.5 时间日期相关函数</h3><p><img src="https://static01.imgkr.com/temp/52eaf493859d4317904beab711ab5822.png" srcset="/img/loading.gif" lazyload alt="image-20220328204359630"><img src="https://static01.imgkr.com/temp/18adc3bd879d4cc680c109865f1aca0d.png" srcset="/img/loading.gif" lazyload alt="image-20220329162516312"></p>
 <h3 id="6-6-加密和系统函数"><a href="#6-6-加密和系统函数" class="headerlink" title="6.6 加密和系统函数"></a>6.6 加密和系统函数</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- user 查询用户</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">USER</span>() <span class="keyword">FROM</span> DUAL;<span class="comment">-- 可以查看登录到mysql的有哪些用户和ip</span></span><br><span class="line"><span class="comment">-- databade 数据库名称</span></span><br><span class="line"><span class="keyword">SELECT</span> DATABASE();</span><br><span class="line"></span><br><span class="line"><span class="comment">-- md5(str) 为字符串算出一个md5 32 的字符串，常用（用户密码）加密</span></span><br><span class="line"><span class="keyword">SELECT</span> MD5(<span class="string">&#x27;sdy&#x27;</span>) <span class="keyword">FROM</span> DUAL;</span><br><span class="line"><span class="keyword">SELECT</span> LENGTH(MD5(<span class="string">&#x27;sdy&#x27;</span>)) <span class="keyword">FROM</span> DUAL; <span class="comment">-- 32 位</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 演示用户表，存放密码时 时md5</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> users2 (</span><br><span class="line"></span><br><span class="line">  id <span class="type">INT</span>,</span><br><span class="line">  name1 <span class="type">VARCHAR</span>(<span class="number">32</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">  pwd <span class="type">CHAR</span>(<span class="number">32</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> users2</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users2 <span class="keyword">VALUES</span>(<span class="number">100</span>, <span class="string">&#x27;sdy&#x27;</span>, MD5(<span class="string">&#x27;sdy&#x27;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">-- password (str) 加密函数 mysql数据库密码就是用这个函数加密的</span></span><br><span class="line"><span class="keyword">SELECT</span> PASSWORD (<span class="string">&#x27;sdy&#x27;</span>) <span class="keyword">FROM</span> DUAL;</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="6-7-流程控制函数"><a href="#6-7-流程控制函数" class="headerlink" title="6.7 流程控制函数"></a>6.7 流程控制函数</h3><p><img src="https://static01.imgkr.com/temp/8d46ea2436c349579f254262eaec6da0.png" alt="image-20220329170407635"></p>
+<h3 id="6-7-流程控制函数"><a href="#6-7-流程控制函数" class="headerlink" title="6.7 流程控制函数"></a>6.7 流程控制函数</h3><p><img src="https://static01.imgkr.com/temp/8d46ea2436c349579f254262eaec6da0.png" srcset="/img/loading.gif" lazyload alt="image-20220329170407635"></p>
 <h1 id="7-表复制"><a href="#7-表复制" class="headerlink" title="7. 表复制"></a>7. 表复制</h1><p>为了对某个sql语句进行效率测试，使用此法为表创建海量数据</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> my (</span><br><span class="line">    id <span class="type">INT</span>,</span><br><span class="line">    `name` <span class="type">VARCHAR</span>(<span class="number">32</span>),</span><br><span class="line">    sal <span class="keyword">DOUBLE</span>,</span><br><span class="line">    job <span class="type">VARCHAR</span>(<span class="number">32</span>),</span><br><span class="line">    deptno <span class="type">INT</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> my</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 把emp表的数据复制到my</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> my</span><br><span class="line">    (id, `name`, sal, job, deptno)</span><br><span class="line"><span class="keyword">SELECT</span> empno, ename, sal, job, deptno </span><br><span class="line"><span class="keyword">FROM</span> emp</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 自我赋值 把my表中的数据插入my表</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> my</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> my</span><br></pre></td></tr></table></figure>
 
@@ -495,7 +691,7 @@
 <p>一般开发不使用mysql自带的全文索引，而是使用全文搜索Solr和ElasticSearch（Es）</p>
 </li>
 </ol>
-<h2 id="索引使用"><a href="#索引使用" class="headerlink" title="索引使用"></a>索引使用</h2><p><img src="https://static01.imgkr.com/temp/146d0e4315d34fad829462a15492c4f9.png" alt="image-20220403150419317"><img src="/../../../studynotes/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/assets/MySql%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220403150433964.png" alt="image-20220403150433964"></p>
+<h2 id="索引使用"><a href="#索引使用" class="headerlink" title="索引使用"></a>索引使用</h2><p><img src="https://static01.imgkr.com/temp/146d0e4315d34fad829462a15492c4f9.png" srcset="/img/loading.gif" lazyload alt="image-20220403150419317"><img src="/../../../studynotes/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/assets/MySql%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220403150433964.png" srcset="/img/loading.gif" lazyload alt="image-20220403150433964"></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> t99 (</span><br><span class="line">	id <span class="type">INT</span>,</span><br><span class="line">	`name` <span class="type">VARCHAR</span>(<span class="number">32</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 添加[唯一]索引方式1</span></span><br><span class="line"><span class="keyword">CREATE</span> [<span class="keyword">unique</span>] INDEX id_index <span class="keyword">ON</span> t99 (id);</span><br><span class="line"><span class="comment">-- 索引方法2</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> t99 <span class="keyword">ADD</span> [<span class="keyword">unique</span>] INDEX id_index (id)</span><br><span class="line"><span class="comment">-- 删除索引（普通索引和唯一索引）</span></span><br><span class="line"><span class="keyword">DROP</span> INDEX id_index <span class="keyword">ON</span> t99</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> table_name <span class="keyword">drop</span> index index_name</span><br><span class="line"><span class="comment">-- 添加主键索引方法1，创建时设置为主键</span></span><br><span class="line"><span class="keyword">PRIMARY</span> KEY (id)</span><br><span class="line">id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY</span><br><span class="line"><span class="comment">-- 添加主键索引方法2</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> t99 <span class="keyword">ADD</span> <span class="keyword">PRIMARY</span> KEY (id)</span><br><span class="line"><span class="comment">-- 删除主键索引</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> t99 <span class="keyword">DROP</span> <span class="keyword">PRIMARY</span> KEY</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 修改索引 先删除再添加新的索引</span></span><br><span class="line"><span class="comment">-- 查询索引</span></span><br><span class="line"><span class="comment">-- 1. </span></span><br><span class="line"><span class="keyword">SHOW</span> INDEX <span class="keyword">FROM</span> t99</span><br><span class="line"><span class="comment">-- 2.</span></span><br><span class="line"><span class="keyword">SHOW</span> INDEXES <span class="keyword">FROM</span> t99</span><br><span class="line"><span class="comment">-- 3. </span></span><br><span class="line"><span class="keyword">SHOW</span> KEYS <span class="keyword">FROM</span> t99</span><br><span class="line"><span class="comment">-- 4. </span></span><br><span class="line"><span class="keyword">DESC</span> t99</span><br></pre></td></tr></table></figure>
 
 
@@ -600,11 +796,11 @@
 <li><p>mysql默认事务等级是repeatable read</p>
 </li>
 </ul>
-<h2 id="14-3-mysql-事务ACID"><a href="#14-3-mysql-事务ACID" class="headerlink" title="14.3 mysql 事务ACID"></a>14.3 mysql 事务ACID</h2><p><img src="https://static01.imgkr.com/temp/8d639d9d7f954056bbf22380c767d5be.png" alt="image-20220403220131908"></p>
-<h1 id="15-mysql表的类型和存储引擎"><a href="#15-mysql表的类型和存储引擎" class="headerlink" title="15. mysql表的类型和存储引擎"></a>15. mysql表的类型和存储引擎</h1><p><img src="https://static01.imgkr.com/temp/e5c2b2d7bd1949cba0d8dfa8c1aab235.png" alt="image-20220403224741408"><img src="/../../../studynotes/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/assets/MySql%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220405091058425.png" alt="image-20220405091058425"></p>
-<p><img src="https://static01.imgkr.com/temp/27a7c230b32f476fbadbf308514e82fa.png" alt="image-20220405091159532"></p>
+<h2 id="14-3-mysql-事务ACID"><a href="#14-3-mysql-事务ACID" class="headerlink" title="14.3 mysql 事务ACID"></a>14.3 mysql 事务ACID</h2><p><img src="https://static01.imgkr.com/temp/8d639d9d7f954056bbf22380c767d5be.png" srcset="/img/loading.gif" lazyload alt="image-20220403220131908"></p>
+<h1 id="15-mysql表的类型和存储引擎"><a href="#15-mysql表的类型和存储引擎" class="headerlink" title="15. mysql表的类型和存储引擎"></a>15. mysql表的类型和存储引擎</h1><p><img src="https://static01.imgkr.com/temp/e5c2b2d7bd1949cba0d8dfa8c1aab235.png" srcset="/img/loading.gif" lazyload alt="image-20220403224741408"><img src="/../../../studynotes/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/assets/MySql%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220405091058425.png" srcset="/img/loading.gif" lazyload alt="image-20220405091058425"></p>
+<p><img src="https://static01.imgkr.com/temp/27a7c230b32f476fbadbf308514e82fa.png" srcset="/img/loading.gif" lazyload alt="image-20220405091159532"></p>
 <p>如何选择存储引擎？</p>
-<p><img src="https://static01.imgkr.com/temp/3839a0a13be2453a9fed4d7145d3c1e5.png" alt="image-20220405092654434"></p>
+<p><img src="https://static01.imgkr.com/temp/3839a0a13be2453a9fed4d7145d3c1e5.png" srcset="/img/loading.gif" lazyload alt="image-20220405092654434"></p>
 <p>测试：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- innodb 存储引擎，支持事务，支持外键，支持行级锁</span></span><br><span class="line"><span class="comment">-- myisam 1. 添加速度快，2. 不支持外键和事务，支持表级锁</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> myisam_table (</span><br><span class="line">	id <span class="type">INT</span>,</span><br><span class="line">	`name` <span class="type">VARCHAR</span>(<span class="number">32</span>)</span><br><span class="line"></span><br><span class="line">) ENGINE MYISAM;</span><br><span class="line"></span><br><span class="line"><span class="keyword">START</span> TRANSACTION;</span><br><span class="line"><span class="keyword">SAVEPOINT</span> t1;</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> myisam_table <span class="keyword">VALUES</span>(<span class="number">3</span>, <span class="string">&#x27;sdy&#x27;</span>);</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> myisam_table;</span><br><span class="line"><span class="keyword">ROLLBACK</span> <span class="keyword">TO</span> t1;<span class="operator">/</span><span class="operator">/</span>报警告，不支持事务，回滚失败</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">-- memory 存储引擎</span></span><br><span class="line"><span class="comment">-- 1. 数据存储在内存中(重启Mysql服务将会丢失数据)，执行速度很快（没有IO读写），默认支持索引（hash索引）</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> memory_table (</span><br><span class="line">	id <span class="type">INT</span>,</span><br><span class="line">	`name` <span class="type">VARCHAR</span>(<span class="number">32</span>)) ENGINE MEMORY</span><br><span class="line">	</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> memory_table</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> memory_table <span class="keyword">VALUES</span>(<span class="number">1</span>, <span class="string">&#x27;sdy&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 指令修改存储引擎</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> memory_table ENGINE <span class="operator">=</span> MYISAM;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
@@ -626,9 +822,9 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 视图的作用</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> emp_view <span class="keyword">AS</span> <span class="keyword">SELECT</span> empno, ename, job, deptno <span class="keyword">FROM</span> emp;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查看视图</span></span><br><span class="line"><span class="keyword">DESC</span> emp_view</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> emp_view</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查看创建视图的指令</span></span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> <span class="keyword">VIEW</span> emp_view</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 删除视图</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">VIEW</span> emp_view</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 通过修改视图</span></span><br><span class="line"><span class="keyword">UPDATE</span> emp_view </span><br><span class="line"><span class="keyword">SET</span> job <span class="operator">=</span> <span class="string">&#x27;sdy&#x27;</span> </span><br><span class="line"><span class="keyword">WHERE</span> empno <span class="operator">=</span> <span class="number">7369</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> emp</span><br><span class="line"></span><br><span class="line"><span class="keyword">UPDATE</span> emp <span class="keyword">SET</span> job <span class="operator">=</span> <span class="string">&#x27;sss&#x27;</span> <span class="keyword">WHERE</span> empno <span class="operator">=</span> <span class="number">7369</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 视图中可以在视图，比如从emp_view中选出两列作为新视图</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> emp_view2</span><br><span class="line"><span class="keyword">AS</span> <span class="keyword">SELECT</span> empno, ename <span class="keyword">FROM</span> emp_view;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> emp_view2</span><br></pre></td></tr></table></figure>
 
 <p>视图最佳实践：  </p>
-<p><img src="https://static01.imgkr.com/temp/69f42db38215410591ea2605fcea78f1.png" alt="image-20220405104538093"></p>
+<p><img src="https://static01.imgkr.com/temp/69f42db38215410591ea2605fcea78f1.png" srcset="/img/loading.gif" lazyload alt="image-20220405104538093"></p>
 <p>多表联合查询使用视图：</p>
-<p><img src="https://static01.imgkr.com/temp/e5e631b96f1142f3853a39aa9b97ae10.png" alt="image-20220405113344900"></p>
+<p><img src="https://static01.imgkr.com/temp/e5e631b96f1142f3853a39aa9b97ae10.png" srcset="/img/loading.gif" lazyload alt="image-20220405113344900"></p>
 <h1 id="17-mysql管理"><a href="#17-mysql管理" class="headerlink" title="17. mysql管理"></a>17. mysql管理</h1><h2 id="mysql用户"><a href="#mysql用户" class="headerlink" title="mysql用户"></a>mysql用户</h2><p>创建用户</p>
 <p><code>create user &#39;用户名&#39; @ 允许登陆位置 IDENTIFIED BY &#39;setpassword&#39;</code></p>
 <p>修改密码</p>
@@ -636,8 +832,8 @@
 <p>查询用户 </p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- mysql用户管理</span></span><br><span class="line"><span class="comment">-- 根据不同的开发人员，赋给它相应的权限</span></span><br><span class="line"><span class="comment">-- root用户根据需要创建不同的用户，赋给不同的权限，共开发人员使用</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 1. 创建新用户</span></span><br><span class="line"><span class="comment">-- 解读&#x27;sdy&#x27; @ &#x27;localhost&#x27; 用户完整信息，用户名和登录的ip</span></span><br><span class="line"><span class="comment">-- 123456 是登录密码，但是存放是password加密存放的</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">USER</span> <span class="string">&#x27;hbusdy&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> </span><br><span class="line">IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;123456&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询用户</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="string">&#x27;user&#x27;</span>, <span class="string">&#x27;host&#x27;</span>, <span class="string">&#x27;autentication&#x27;</span> <span class="keyword">FROM</span> mysql.user</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 创建用户时报错</span></span><br><span class="line">FLUSH PRIVILEGES</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 删除用户</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">USER</span> <span class="string">&#x27;hbusdy&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 修改密码（可以修改自己密码，修改他人密码需要权限）</span></span><br><span class="line"><span class="keyword">SET</span> PASSWORD <span class="operator">=</span> PASSWORD(<span class="string">&#x27;xxxxx&#x27;</span>)</span><br><span class="line"><span class="comment">-- 修改他人</span></span><br><span class="line"><span class="keyword">SET</span> PASSWORD <span class="keyword">FOR</span> <span class="string">&#x27;用户名&#x27;</span>@<span class="string">&#x27;登录位置&#x27;</span> <span class="operator">=</span> PASSWORD(<span class="string">&#x27;密码&#x27;</span>)</span><br></pre></td></tr></table></figure>
 
-<h2 id="用户权限"><a href="#用户权限" class="headerlink" title="用户权限"></a>用户权限</h2><p><img src="https://static01.imgkr.com/temp/8a8bc3415c014ee9a07e6222cfd67a46.png" alt="image-20220405155629719"></p>
-<p><img src="https://static01.imgkr.com/temp/ecc47ff046df45d4aecb1efc9ca2c056.png" alt="image-20220405155856386"></p>
+<h2 id="用户权限"><a href="#用户权限" class="headerlink" title="用户权限"></a>用户权限</h2><p><img src="https://static01.imgkr.com/temp/8a8bc3415c014ee9a07e6222cfd67a46.png" srcset="/img/loading.gif" lazyload alt="image-20220405155629719"></p>
+<p><img src="https://static01.imgkr.com/temp/ecc47ff046df45d4aecb1efc9ca2c056.png" srcset="/img/loading.gif" lazyload alt="image-20220405155856386"></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建用户，sundongyu 密码 123</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">USER</span>  <span class="string">&#x27;sundongyu&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;123&#x27;</span>; </span><br><span class="line"></span><br><span class="line"><span class="comment">-- 创建testdb， 表news</span></span><br><span class="line"><span class="keyword">CREATE</span> DATABASE testdb</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> news (</span><br><span class="line">	id <span class="type">INT</span>,</span><br><span class="line">	content <span class="type">VARCHAR</span>(<span class="number">32</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> news <span class="keyword">VALUES</span>(<span class="number">100</span>, <span class="string">&#x27;北京新闻&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> news</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 给sundongyu用户分配查看news表和添加news的权限</span></span><br><span class="line"><span class="keyword">GRANT</span> <span class="keyword">SELECT</span> , <span class="keyword">INSERT</span> <span class="keyword">ON</span> testdb.news</span><br><span class="line"><span class="keyword">TO</span> <span class="string">&#x27;sundongyu&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> mysql.user</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 修改密码为’abc‘</span></span><br><span class="line"><span class="keyword">SET</span> PASSWORD <span class="keyword">FOR</span> <span class="string">&#x27;sundongyu&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> <span class="operator">=</span> PASSWORD(<span class="string">&#x27;abc&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 回收所有权限</span></span><br><span class="line"><span class="keyword">REVOKE</span> <span class="keyword">INSERT</span> , <span class="keyword">SELECT</span>  <span class="keyword">ON</span> testdb.`news` <span class="keyword">FROM</span> <span class="string">&#x27;sundongyu&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span></span><br><span class="line"><span class="keyword">REVOKE</span> <span class="keyword">ALL</span> <span class="keyword">ON</span> testdb.`news` <span class="keyword">FROM</span> <span class="string">&#x27;sundongyu&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 删除用户</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">USER</span> <span class="string">&#x27;hbusdy&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="细节-1"><a href="#细节-1" class="headerlink" title="细节"></a>细节</h2><ol>
@@ -645,466 +841,407 @@
 <li>可以像  192.168.1.*   这样指定登录ip范围，都可以登录</li>
 <li>删除用户时如果host不是%，必须明确确定  ‘user‘@’host’</li>
 </ol>
- 
-      <!-- reward -->
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
       
-    </div>
+
+<span class="category-chains">
+  
+  
     
-
-    <!-- copyright -->
-    
-    <div class="declare">
-      <ul class="post-copyright">
-        <li>
-          <i class="ri-copyright-line"></i>
-          <strong>版权声明： </strong>
-          
-          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
-          
-        </li>
-      </ul>
-    </div>
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-   
-  <nav class="article-nav">
-    
-      <a href="/2022/05/06/git-xue-xi/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            Git学习
-          
-        </div>
-      </a>
-    
-    
-      <a href="/2022/05/02/mysql-an-zhuang-yu-pei-zhi/" class="article-nav-link">
-        <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">MySql安装与配置</div>
-      </a>
-    
-  </nav>
-
-   
-<!-- valine评论 -->
-<div id="vcomments-box">
-  <div id="vcomments"></div>
-</div>
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="https://cdn.staticfile.org/valine/1.4.16/Valine.min.js"></script>
-<script>
-  new Valine({
-    el: "#vcomments",
-    app_id: "7fmVNU1rnfX3SER1Vc6icbGj-gzGzoHsz",
-    app_key: "UKXhxHwWFH07WuTFirdHiNMP",
-    path: window.location.pathname,
-    avatar: "monsterid",
-    placeholder: "给我的文章加点评论吧~",
-    recordIP: true,
-  });
-  const infoEle = document.querySelector("#vcomments .info");
-  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
-    infoEle.childNodes.forEach(function (item) {
-      item.parentNode.removeChild(item);
-    });
-  }
-</script>
-<style>
-  #vcomments-box {
-    padding: 5px 30px;
-  }
-
-  @media screen and (max-width: 800px) {
-    #vcomments-box {
-      padding: 5px 0px;
-    }
-  }
-
-  #vcomments-box #vcomments {
-    background-color: #fff;
-  }
-
-  .v .vlist .vcard .vh {
-    padding-right: 20px;
-  }
-
-  .v .vlist .vcard {
-    padding-left: 10px;
-  }
-</style>
-
- 
-   
-    
-    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
-    <div id="twikoo" class="twikoo"></div>
-    <script>
-        twikoo.init({
-            envId: ""
-        })
-    </script>
- 
-</article>
-
-</section>
-      <footer class="footer">
-  <div class="outer">
-    <ul>
-      <li>
-        Copyrights &copy;
-        2022
-        <i class="ri-heart-fill heart_icon"></i> dongyu sun
-      </li>
-    </ul>
-    <ul>
-      <li>
+      <span class="category-chain">
         
-      </li>
-    </ul>
-    <ul>
-      <li>
-        
-        
-        <span>
-  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
-  <span class="division">|</span>
-  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+  <a href="/categories/MySql/" class="category-chain-item">MySql</a>
+  
+  
+
+      </span>
+    
+  
 </span>
-        
-      </li>
-    </ul>
-    <ul>
-      
-    </ul>
-    <ul>
-      
-    </ul>
-    <ul>
-      <li>
-        <!-- cnzz统计 -->
-        
-        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1281106713&amp;web_id=1281106713'></script>
-        
-      </li>
-    </ul>
-  </div>
-</footer>    
-    </main>
-    <div class="float_btns">
-      <div class="totop" id="totop">
-  <i class="ri-arrow-up-line"></i>
-</div>
-
-<div class="todark" id="todark">
-  <i class="ri-moon-line"></i>
-</div>
 
     </div>
-    <aside class="sidebar on">
-      <button class="navbar-toggle"></button>
-<nav class="navbar">
   
-  <div class="logo">
-    <a href="/"><img src="/images/ayer.png" alt="樱花小镇"></a>
-  </div>
   
-  <ul class="nav nav-main">
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/">主页</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/archives">归档</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/categories">分类</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/tags">标签</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/about">关于我</a>
-    </li>
-    
-  </ul>
-</nav>
-<nav class="navbar navbar-bottom">
-  <ul class="nav">
-    <li class="nav-item">
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>MySql的使用</div>
+      <div>https://sundongyu.github.io/2022/05/02/mysql-de-shi-yong/</div>
+    </div>
+    <div class="license-meta">
       
-      <a class="nav-item-link nav-item-search"  title="搜索">
-        <i class="ri-search-line"></i>
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>dongyu sun</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年5月2日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/05/06/git-xue-xi/" title="Git学习">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Git学习</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/05/02/mysql-an-zhuang-yu-pei-zhi/" title="MySql安装与配置">
+                        <span class="hidden-mobile">MySql安装与配置</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
       </a>
-      
-      
-    </li>
-  </ul>
-</nav>
-<div class="search-form-wrap">
-  <div class="local-search local-search-plugin">
-  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
-  <div id="local-search-result" class="local-search-result"></div>
-</div>
-</div>
-    </aside>
-    <div id="mask"></div>
+    
 
-<!-- #reward -->
-<div id="reward">
-  <span class="close"><i class="ri-close-line"></i></span>
-  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
-  <div class="reward-box">
     
-    <div class="reward-item">
-      <img class="reward-img" src="/images/alipay.jpg">
-      <span class="reward-type">支付宝</span>
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
     </div>
-    
-    
-    <div class="reward-item">
-      <img class="reward-img" src="/images/wechat.jpg">
-      <span class="reward-type">微信</span>
-    </div>
-    
   </div>
 </div>
+
     
-<script src="/js/jquery-3.6.0.min.js"></script>
- 
-<script src="/js/lazyload.min.js"></script>
 
-<!-- Tocbot -->
- 
-<script src="/js/tocbot.min.js"></script>
+    
+  </main>
 
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
 <script>
-  tocbot.init({
-    tocSelector: ".tocbot",
-    contentSelector: ".article-entry",
-    headingSelector: "h1, h2, h3, h4, h5, h6",
-    hasInnerContainers: true,
-    scrollSmooth: true,
-    scrollContainer: "main",
-    positionFixedSelector: ".tocbot",
-    positionFixedClass: "is-position-fixed",
-    fixedSidebarOffset: "auto",
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
   });
 </script>
 
-<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
-<link
-  rel="stylesheet"
-  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
-/>
-<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
 
-<script src="/dist/main.js"></script>
-
-<!-- ImageViewer -->
- <!-- Root element of PhotoSwipe. Must have class pswp. -->
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-    <!-- Background of PhotoSwipe. 
-         It's a separate element as animating opacity is faster than rgba(). -->
-    <div class="pswp__bg"></div>
-
-    <!-- Slides wrapper with overflow:hidden. -->
-    <div class="pswp__scroll-wrap">
-
-        <!-- Container that holds slides. 
-            PhotoSwipe keeps only 3 of them in the DOM to save memory.
-            Don't modify these 3 pswp__item elements, data is added later on. -->
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-
-        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-        <div class="pswp__ui pswp__ui--hidden">
-
-            <div class="pswp__top-bar">
-
-                <!--  Controls are self-explanatory. Order can be changed. -->
-
-                <div class="pswp__counter"></div>
-
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-
-                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
-
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-
-                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-                <!-- element will get class pswp__preloader--active when preloader is running -->
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                        <div class="pswp__preloader__cut">
-                            <div class="pswp__preloader__donut"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div>
-            </div>
-
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
-<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
-<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
-<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
-
-<script>
-    function viewer_init() {
-        let pswpElement = document.querySelectorAll('.pswp')[0];
-        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
-
-        $imgArr.forEach(($em, i) => {
-            $em.onclick = () => {
-                // slider展开状态
-                // todo: 这样不好，后面改成状态
-                if (document.querySelector('.left-col.show')) return
-                let items = []
-                $imgArr.forEach(($em2, i2) => {
-                    let img = $em2.getAttribute('data-idx', i2)
-                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
-                    let title = $em2.getAttribute('alt')
-                    // 获得原图尺寸
-                    const image = new Image()
-                    image.src = src
-                    items.push({
-                        src: src,
-                        w: image.width || $em2.width,
-                        h: image.height || $em2.height,
-                        title: title
-                    })
-                })
-                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
-                    index: parseInt(i)
-                });
-                gallery.init()
-            }
-        })
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
     }
-    viewer_init()
-</script> 
-<!-- MathJax -->
 
-<!-- Katex -->
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
 
-<!-- busuanzi  -->
- 
-<script src="/js/busuanzi-2.3.pure.min.js"></script>
- 
-<!-- ClickLove -->
- 
-<script src="/js/clickLove.js"></script>
- 
-<!-- ClickBoom1 -->
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
 
-<!-- ClickBoom2 -->
+      var lang = '';
 
-<!-- CodeCopy -->
- 
-<link rel="stylesheet" href="/css/clipboard.css">
- <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
-<script>
-  function wait(callback, seconds) {
-    var timelag = null;
-    timelag = window.setTimeout(callback, seconds);
-  }
-  !function (e, t, a) {
-    var initCopyCode = function(){
-      var copyHtml = '';
-      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
-      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
-      copyHtml += '</button>';
-      $(".highlight .code pre").before(copyHtml);
-      $(".article pre code").before(copyHtml);
-      var clipboard = new ClipboardJS('.btn-copy', {
-        target: function(trigger) {
-          return trigger.nextElementSibling;
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
         }
-      });
-      clipboard.on('success', function(e) {
-        let $btn = $(e.trigger);
-        $btn.addClass('copied');
-        let $icon = $($btn.find('i'));
-        $icon.removeClass('ri-file-copy-2-line');
-        $icon.addClass('ri-checkbox-circle-line');
-        let $span = $($btn.find('span'));
-        $span[0].innerText = 'COPIED';
-        
-        wait(function () { // 等待两秒钟后恢复
-          $icon.removeClass('ri-checkbox-circle-line');
-          $icon.addClass('ri-file-copy-2-line');
-          $span[0].innerText = 'COPY';
-        }, 2000);
-      });
-      clipboard.on('error', function(e) {
-        e.clearSelection();
-        let $btn = $(e.trigger);
-        $btn.addClass('copy-failed');
-        let $icon = $($btn.find('i'));
-        $icon.removeClass('ri-file-copy-2-line');
-        $icon.addClass('ri-time-line');
-        let $span = $($btn.find('span'));
-        $span[0].innerText = 'COPY FAILED';
-        
-        wait(function () { // 等待两秒钟后恢复
-          $icon.removeClass('ri-time-line');
-          $icon.addClass('ri-file-copy-2-line');
-          $span[0].innerText = 'COPY';
-        }, 2000);
-      });
-    }
-    initCopyCode();
-  }(window, document);
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
 </script>
- 
-<!-- CanvasBackground -->
- 
-<script src="/js/dz.js"></script>
- 
+
+
+  
 <script>
-  if (window.mermaid) {
-    mermaid.initialize({ theme: "forest" });
-  }
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
 </script>
 
 
-    
-    
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
 
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
-
 </html>

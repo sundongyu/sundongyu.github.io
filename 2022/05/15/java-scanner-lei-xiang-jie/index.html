@@ -1,601 +1,717 @@
+
+
 <!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
 
 
-<html lang="zh-CN">
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="dongyu sun">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="前言：前些日子在写一道算法题的时候遇到一件怪事，关于输入输出格式化的问题，当时稀里糊涂的就Ac了，现在来研究一下。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java_Scanner类详解">
+<meta property="og:url" content="https://sundongyu.github.io/2022/05/15/java-scanner-lei-xiang-jie/index.html">
+<meta property="og:site_name" content="樱花小镇">
+<meta property="og:description" content="前言：前些日子在写一道算法题的时候遇到一件怪事，关于输入输出格式化的问题，当时稀里糊涂的就Ac了，现在来研究一下。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-15T15:37:36.000Z">
+<meta property="article:modified_time" content="2022-05-29T12:26:30.072Z">
+<meta property="article:author" content="dongyu sun">
+<meta property="article:tag" content="Scanner输入类">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Java_Scanner类详解 - 樱花小镇</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
-    <head>
-      <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8" />
-        
-      <meta name="description" content="临渊羡鱼，不如退而结网" />
-      
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, maximum-scale=1"
-      />
-      <title>Java_Scanner类详解 |  樱花小镇</title>
-  <meta name="generator" content="hexo-theme-ayer">
-      
-      <link rel="shortcut icon" href="/favicon.ico" />
-       
-<link rel="stylesheet" href="/dist/main.css">
 
-      
-<link rel="stylesheet" href="/css/fonts/remixicon.css">
 
-      
-<link rel="stylesheet" href="/css/custom.css">
- 
-      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
-       
- 
 
-      <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
-      />
-      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"sundongyu.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"java"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
-      <!-- mermaid -->
-      
-      <style>
-        .swal2-styled.swal2-confirm {
-          font-size: 1.6rem;
-        }
-      </style><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-    </head>
-  </html>
-</html>
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.1.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 
 
 <body>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="app">
-    
-      
-    <main class="content on">
-      <section class="outer">
-  <article
-  id="post-Java-Scanner类详解"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  Java_Scanner类详解
-</h1>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2022/05/15/java-scanner-lei-xiang-jie/" class="article-date">
-  <time datetime="2022-05-15T15:37:36.000Z" itemprop="datePublished">2022-05-15</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java/">Java</a>
-  </div>
   
-<div class="word_count">
-    <span class="post-time">
-        <span class="post-meta-item-icon">
-            <i class="ri-quill-pen-line"></i>
-            <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">1.1k</span>
-        </span>
-    </span>
 
-    <span class="post-time">
-        &nbsp; | &nbsp;
-        <span class="post-meta-item-icon">
-            <i class="ri-book-open-line"></i>
-            <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">5 分钟</span>
-        </span>
-    </span>
-</div>
- 
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>樱花小镇</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
     </div>
-      
-    <div class="tocbot"></div>
-
-
-
+  </div>
+</nav>
 
   
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><p>前些日子在写一道算法题的时候遇到一件怪事，关于输入输出格式化的问题，当时稀里糊涂的就Ac了，现在来研究一下。</p>
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Java_Scanner类详解"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-05-15 23:37" pubdate>
+          2022年5月15日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          34 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Java_Scanner类详解</h1>
+            
+            <div class="markdown-body">
+              
+              <h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><p>前些日子在写一道算法题的时候遇到一件怪事，关于输入输出格式化的问题，当时稀里糊涂的就Ac了，现在来研究一下。</p>
 <span id="more"></span>
 
 <h2 id="问题回顾："><a href="#问题回顾：" class="headerlink" title="问题回顾："></a>问题回顾：</h2><p>输入一个整数N，接下来输入大于N行的字符串</p>
 <p>要求：前N行数据直接输出，剩余行数据按照空格分割输出。</p>
-<h2 id="input"><a href="#input" class="headerlink" title="input"></a>input</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">aa aaa</span><br><span class="line">bbb bb</span><br><span class="line">cccc c</span><br><span class="line">aa bb cc dd</span><br></pre></td></tr></table></figure>
+<h2 id="input"><a href="#input" class="headerlink" title="input"></a>input</h2><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><span class="hljs-number">3</span><br>aa aaa<br><span class="hljs-keyword">bbb </span><span class="hljs-keyword">bb</span><br><span class="hljs-keyword"></span>cccc c<br>aa <span class="hljs-keyword">bb </span>cc dd<br></code></pre></td></tr></table></figure>
 
-<h2 id="print"><a href="#print" class="headerlink" title="print"></a>print</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">aa aaa</span><br><span class="line">bbb bb</span><br><span class="line">cccc c</span><br><span class="line">aa</span><br><span class="line">bb</span><br><span class="line">cc</span><br><span class="line">dd</span><br></pre></td></tr></table></figure>
+<h2 id="print"><a href="#print" class="headerlink" title="print"></a>print</h2><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">aa aaa<br><span class="hljs-keyword">bbb </span><span class="hljs-keyword">bb</span><br><span class="hljs-keyword"></span>cccc c<br>aa<br><span class="hljs-keyword">bb</span><br><span class="hljs-keyword"></span>cc<br>dd<br></code></pre></td></tr></table></figure>
 
-<h2 id="代码回顾："><a href="#代码回顾：" class="headerlink" title="代码回顾："></a>代码回顾：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Scanner</span> <span class="variable">s</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">        <span class="type">int</span> <span class="variable">N</span> <span class="operator">=</span> s.nextInt();</span><br><span class="line">        <span class="keyword">while</span> (s.hasNextLine())&#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">cin</span> <span class="operator">=</span> s.nextLine();</span><br><span class="line">            N--;</span><br><span class="line">            <span class="keyword">if</span> (N &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                System.out.println(cin);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                String[] arr = cin.split(<span class="string">&quot; &quot;</span>);</span><br><span class="line">                <span class="keyword">for</span> (String str : arr) &#123;</span><br><span class="line">                    System.out.println(str);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="代码回顾："><a href="#代码回顾：" class="headerlink" title="代码回顾："></a>代码回顾：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.*;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">Scanner</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(System.in);<br>        <span class="hljs-type">int</span> <span class="hljs-variable">N</span> <span class="hljs-operator">=</span> s.nextInt();<br>        <span class="hljs-keyword">while</span> (s.hasNextLine())&#123;<br>            <span class="hljs-type">String</span> <span class="hljs-variable">cin</span> <span class="hljs-operator">=</span> s.nextLine();<br>            N--;<br>            <span class="hljs-keyword">if</span> (N &gt;= <span class="hljs-number">0</span>) &#123;<br>                System.out.println(cin);<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                String[] arr = cin.split(<span class="hljs-string">&quot; &quot;</span>);<br>                <span class="hljs-keyword">for</span> (String str : arr) &#123;<br>                    System.out.println(str);<br>                &#125;<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>我的第一版代码是这样的，可是wa了，运行结果和我想的有点出入，我调试了一下，发现少了一行数据，输出结果是这样的：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">aa aaa</span><br><span class="line">bbb bb</span><br><span class="line">cccc </span><br><span class="line">c</span><br><span class="line">aa</span><br><span class="line">bb</span><br><span class="line">cc</span><br><span class="line">dd</span><br></pre></td></tr></table></figure>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">aa aaa<br><span class="hljs-keyword">bbb </span><span class="hljs-keyword">bb</span><br><span class="hljs-keyword"></span>cccc <br>c<br>aa<br><span class="hljs-keyword">bb</span><br><span class="hljs-keyword"></span>cc<br>dd<br></code></pre></td></tr></table></figure>
 
 <p>原本应该输出3行原格式字符串的，这是为什么呢？</p>
 <p>后来我才while循环外面加了一个<code>s.nextLine()</code>结果就Ac了。</p>
 <p>我看了一下源码，并结合调试结果找到了答案。</p>
 <p>首先<code>nextInt()</code>方法是没法读入回车的，这就导致在输入3之后的那个回车留在了while循环里读了，所以这个回车就占了一次输入次数，所以结果少了一次。</p>
-<h2 id="源码解析"><a href="#源码解析" class="headerlink" title="源码解析"></a>源码解析</h2><h3 id="字段"><a href="#字段" class="headerlink" title="字段"></a>字段</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//缓冲区是特定原始类型元素的线性、有限序列。除了内容之外，缓冲区的基本属性还有capacity、limit和position：</span></span><br><span class="line">capacity <span class="comment">//缓冲区的容量是它包含的元素数。缓冲区的容量永远不会是负数，也永远不会改变。</span></span><br><span class="line">limit <span class="comment">//缓冲区的限制是不应读取或写入的第一个元素的索引。缓冲区的限制永远不会是负数，也永远不会大于其容量。</span></span><br><span class="line">position <span class="comment">//缓冲区的位置是要读取或写入的下一个元素的索引。缓冲区的位置永远不会是负数，也永远不会大于其限制</span></span><br></pre></td></tr></table></figure>
+<h2 id="源码解析"><a href="#源码解析" class="headerlink" title="源码解析"></a>源码解析</h2><h3 id="字段"><a href="#字段" class="headerlink" title="字段"></a>字段</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//缓冲区是特定原始类型元素的线性、有限序列。除了内容之外，缓冲区的基本属性还有capacity、limit和position：</span><br>capacity <span class="hljs-comment">//缓冲区的容量是它包含的元素数。缓冲区的容量永远不会是负数，也永远不会改变。</span><br>limit <span class="hljs-comment">//缓冲区的限制是不应读取或写入的第一个元素的索引。缓冲区的限制永远不会是负数，也永远不会大于其容量。</span><br>position <span class="hljs-comment">//缓冲区的位置是要读取或写入的下一个元素的索引。缓冲区的位置永远不会是负数，也永远不会大于其限制</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="next方法"><a href="#next方法" class="headerlink" title="next方法"></a>next方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> String <span class="title function_">next</span><span class="params">()</span> &#123;</span><br><span class="line">    ensureOpen();</span><br><span class="line">    <span class="comment">//清理规则缓存和类型缓存 hasNextPattern = null;typeCache = null;</span></span><br><span class="line">    clearCaches();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">token</span> <span class="operator">=</span> getCompleteTokenInBuffer(<span class="literal">null</span>);</span><br><span class="line">        <span class="keyword">if</span> (token != <span class="literal">null</span>) &#123;</span><br><span class="line">            matchValid = <span class="literal">true</span>;</span><br><span class="line">            skipped = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">return</span> token;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (needInput)</span><br><span class="line">            readInput();</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            throwFor();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="next方法"><a href="#next方法" class="headerlink" title="next方法"></a>next方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> String <span class="hljs-title function_">next</span><span class="hljs-params">()</span> &#123;<br>    ensureOpen();<br>    <span class="hljs-comment">//清理规则缓存和类型缓存 hasNextPattern = null;typeCache = null;</span><br>    clearCaches();<br><br>    <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">token</span> <span class="hljs-operator">=</span> getCompleteTokenInBuffer(<span class="hljs-literal">null</span>);<br>        <span class="hljs-keyword">if</span> (token != <span class="hljs-literal">null</span>) &#123;<br>            matchValid = <span class="hljs-literal">true</span>;<br>            skipped = <span class="hljs-literal">false</span>;<br>            <span class="hljs-keyword">return</span> token;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (needInput)<br>            readInput();<br>        <span class="hljs-keyword">else</span><br>            throwFor();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h3 id="getCompleteTokenInBuffer方法"><a href="#getCompleteTokenInBuffer方法" class="headerlink" title="getCompleteTokenInBuffer方法"></a>getCompleteTokenInBuffer方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> String <span class="title function_">getCompleteTokenInBuffer</span><span class="params">(Pattern pattern)</span> &#123;</span><br><span class="line">    matchValid = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 首先跳过delim</span></span><br><span class="line">    <span class="comment">//设置matcher的parentPattern为delimPattern</span></span><br><span class="line">    matcher.usePattern(delimPattern);</span><br><span class="line">    <span class="keyword">if</span> (!skipped) &#123; <span class="comment">// 仅强制执行前导delim的一次跳过</span></span><br><span class="line">        <span class="comment">// 设定matcher匹配区域，默认from=0，end=0</span></span><br><span class="line">        matcher.region(position, buf.limit());</span><br><span class="line">        <span class="keyword">if</span> (matcher.lookingAt()) &#123;</span><br><span class="line">            <span class="comment">//如果更多的输入可以扩展分隔符，那么我们必须等待</span></span><br><span class="line">            <span class="comment">//获得更多输入</span></span><br><span class="line">            <span class="keyword">if</span> (matcher.hitEnd() &amp;&amp; !sourceClosed) &#123;</span><br><span class="line">                needInput = <span class="literal">true</span>;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// delims 是完整的，matcher 应该跳过它们</span></span><br><span class="line">            skipped = <span class="literal">true</span>;</span><br><span class="line">            position = matcher.end();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// If we are sitting at the end, no more tokens in buffer</span></span><br><span class="line">    <span class="keyword">if</span> (position == buf.limit()) &#123;</span><br><span class="line">        <span class="keyword">if</span> (sourceClosed)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        needInput = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Must look for next delims. Simply attempting to match the</span></span><br><span class="line">    <span class="comment">// pattern at this point may find a match but it might not be</span></span><br><span class="line">    <span class="comment">// the first longest match because of missing input, or it might</span></span><br><span class="line">    <span class="comment">// match a partial token instead of the whole thing.</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Then look for next delims</span></span><br><span class="line">    matcher.region(position, buf.limit());</span><br><span class="line">    <span class="type">boolean</span> <span class="variable">foundNextDelim</span> <span class="operator">=</span> matcher.find();</span><br><span class="line">    <span class="keyword">if</span> (foundNextDelim &amp;&amp; (matcher.end() == position)) &#123;</span><br><span class="line">        <span class="comment">// Zero length delimiter match; we should find the next one</span></span><br><span class="line">        <span class="comment">// using the automatic advance past a zero length match;</span></span><br><span class="line">        <span class="comment">// Otherwise we have just found the same one we just skipped</span></span><br><span class="line">        foundNextDelim = matcher.find();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (foundNextDelim) &#123;</span><br><span class="line">        <span class="comment">// In the rare case that more input could cause the match</span></span><br><span class="line">        <span class="comment">// to be lost and there is more input coming we must wait</span></span><br><span class="line">        <span class="comment">// for more input. Note that hitting the end is okay as long</span></span><br><span class="line">        <span class="comment">// as the match cannot go away. It is the beginning of the</span></span><br><span class="line">        <span class="comment">// next delims we want to be sure about, we don&#x27;t care if</span></span><br><span class="line">        <span class="comment">// they potentially extend further.</span></span><br><span class="line">        <span class="keyword">if</span> (matcher.requireEnd() &amp;&amp; !sourceClosed) &#123;</span><br><span class="line">            needInput = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> <span class="variable">tokenEnd</span> <span class="operator">=</span> matcher.start();</span><br><span class="line">        <span class="comment">// There is a complete token.</span></span><br><span class="line">        <span class="keyword">if</span> (pattern == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="comment">// Must continue with match to provide valid MatchResult</span></span><br><span class="line">            pattern = FIND_ANY_PATTERN;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//  Attempt to match against the desired pattern</span></span><br><span class="line">        matcher.usePattern(pattern);</span><br><span class="line">        matcher.region(position, tokenEnd);</span><br><span class="line">        <span class="keyword">if</span> (matcher.matches()) &#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> matcher.group();</span><br><span class="line">            position = matcher.end();</span><br><span class="line">            <span class="keyword">return</span> s;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123; <span class="comment">// Complete token but it does not match</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// If we can&#x27;t find the next delims but no more input is coming,</span></span><br><span class="line">    <span class="comment">// then we can treat the remainder as a whole token</span></span><br><span class="line">    <span class="keyword">if</span> (sourceClosed) &#123;</span><br><span class="line">        <span class="keyword">if</span> (pattern == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="comment">// Must continue with match to provide valid MatchResult</span></span><br><span class="line">            pattern = FIND_ANY_PATTERN;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// Last token; Match the pattern here or throw</span></span><br><span class="line">        matcher.usePattern(pattern);</span><br><span class="line">        matcher.region(position, buf.limit());</span><br><span class="line">        <span class="keyword">if</span> (matcher.matches()) &#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> matcher.group();</span><br><span class="line">            position = matcher.end();</span><br><span class="line">            <span class="keyword">return</span> s;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// Last piece does not match</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// There is a partial token in the buffer; must read more</span></span><br><span class="line">    <span class="comment">// to complete it</span></span><br><span class="line">    needInput = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="getCompleteTokenInBuffer方法"><a href="#getCompleteTokenInBuffer方法" class="headerlink" title="getCompleteTokenInBuffer方法"></a>getCompleteTokenInBuffer方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> String <span class="hljs-title function_">getCompleteTokenInBuffer</span><span class="hljs-params">(Pattern pattern)</span> &#123;<br>    matchValid = <span class="hljs-literal">false</span>;<br><br>    <span class="hljs-comment">// 首先跳过delim</span><br>    <span class="hljs-comment">//设置matcher的parentPattern为delimPattern</span><br>    matcher.usePattern(delimPattern);<br>    <span class="hljs-keyword">if</span> (!skipped) &#123; <span class="hljs-comment">// 仅强制执行前导delim的一次跳过</span><br>        <span class="hljs-comment">// 设定matcher匹配区域，默认from=0，end=0</span><br>        matcher.region(position, buf.limit());<br>        <span class="hljs-keyword">if</span> (matcher.lookingAt()) &#123;<br>            <span class="hljs-comment">//如果更多的输入可以扩展分隔符，那么我们必须等待</span><br>            <span class="hljs-comment">//获得更多输入</span><br>            <span class="hljs-keyword">if</span> (matcher.hitEnd() &amp;&amp; !sourceClosed) &#123;<br>                needInput = <span class="hljs-literal">true</span>;<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>            &#125;<br>            <span class="hljs-comment">// delims 是完整的，matcher 应该跳过它们</span><br>            skipped = <span class="hljs-literal">true</span>;<br>            position = matcher.end();<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">// If we are sitting at the end, no more tokens in buffer</span><br>    <span class="hljs-keyword">if</span> (position == buf.limit()) &#123;<br>        <span class="hljs-keyword">if</span> (sourceClosed)<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>        needInput = <span class="hljs-literal">true</span>;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br><br>    <span class="hljs-comment">// Must look for next delims. Simply attempting to match the</span><br>    <span class="hljs-comment">// pattern at this point may find a match but it might not be</span><br>    <span class="hljs-comment">// the first longest match because of missing input, or it might</span><br>    <span class="hljs-comment">// match a partial token instead of the whole thing.</span><br><br>    <span class="hljs-comment">// Then look for next delims</span><br>    matcher.region(position, buf.limit());<br>    <span class="hljs-type">boolean</span> <span class="hljs-variable">foundNextDelim</span> <span class="hljs-operator">=</span> matcher.find();<br>    <span class="hljs-keyword">if</span> (foundNextDelim &amp;&amp; (matcher.end() == position)) &#123;<br>        <span class="hljs-comment">// Zero length delimiter match; we should find the next one</span><br>        <span class="hljs-comment">// using the automatic advance past a zero length match;</span><br>        <span class="hljs-comment">// Otherwise we have just found the same one we just skipped</span><br>        foundNextDelim = matcher.find();<br>    &#125;<br>    <span class="hljs-keyword">if</span> (foundNextDelim) &#123;<br>        <span class="hljs-comment">// In the rare case that more input could cause the match</span><br>        <span class="hljs-comment">// to be lost and there is more input coming we must wait</span><br>        <span class="hljs-comment">// for more input. Note that hitting the end is okay as long</span><br>        <span class="hljs-comment">// as the match cannot go away. It is the beginning of the</span><br>        <span class="hljs-comment">// next delims we want to be sure about, we don&#x27;t care if</span><br>        <span class="hljs-comment">// they potentially extend further.</span><br>        <span class="hljs-keyword">if</span> (matcher.requireEnd() &amp;&amp; !sourceClosed) &#123;<br>            needInput = <span class="hljs-literal">true</span>;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>        &#125;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">tokenEnd</span> <span class="hljs-operator">=</span> matcher.start();<br>        <span class="hljs-comment">// There is a complete token.</span><br>        <span class="hljs-keyword">if</span> (pattern == <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-comment">// Must continue with match to provide valid MatchResult</span><br>            pattern = FIND_ANY_PATTERN;<br>        &#125;<br>        <span class="hljs-comment">//  Attempt to match against the desired pattern</span><br>        matcher.usePattern(pattern);<br>        matcher.region(position, tokenEnd);<br>        <span class="hljs-keyword">if</span> (matcher.matches()) &#123;<br>            <span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> matcher.group();<br>            position = matcher.end();<br>            <span class="hljs-keyword">return</span> s;<br>        &#125; <span class="hljs-keyword">else</span> &#123; <span class="hljs-comment">// Complete token but it does not match</span><br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">// If we can&#x27;t find the next delims but no more input is coming,</span><br>    <span class="hljs-comment">// then we can treat the remainder as a whole token</span><br>    <span class="hljs-keyword">if</span> (sourceClosed) &#123;<br>        <span class="hljs-keyword">if</span> (pattern == <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-comment">// Must continue with match to provide valid MatchResult</span><br>            pattern = FIND_ANY_PATTERN;<br>        &#125;<br>        <span class="hljs-comment">// Last token; Match the pattern here or throw</span><br>        matcher.usePattern(pattern);<br>        matcher.region(position, buf.limit());<br>        <span class="hljs-keyword">if</span> (matcher.matches()) &#123;<br>            <span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> matcher.group();<br>            position = matcher.end();<br>            <span class="hljs-keyword">return</span> s;<br>        &#125;<br>        <span class="hljs-comment">// Last piece does not match</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br><br>    <span class="hljs-comment">// There is a partial token in the buffer; must read more</span><br>    <span class="hljs-comment">// to complete it</span><br>    needInput = <span class="hljs-literal">true</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
- 
-      <!-- reward -->
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
       
-    </div>
+
+<span class="category-chains">
+  
+  
     
-
-    <!-- copyright -->
-    
-    <div class="declare">
-      <ul class="post-copyright">
-        <li>
-          <i class="ri-copyright-line"></i>
-          <strong>版权声明： </strong>
-          
-          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
-          
-        </li>
-      </ul>
-    </div>
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scanner%E8%BE%93%E5%85%A5%E7%B1%BB/" rel="tag">Scanner输入类</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-  <nav class="article-nav">
-    
-      <a href="/2022/05/20/centos7-shi-yong/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            Centos7使用
-          
-        </div>
-      </a>
-    
-    
-      <a href="/2022/05/10/group-by-fen-zu-yi-chang/" class="article-nav-link">
-        <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">group by分组异常</div>
-      </a>
-    
-  </nav>
-
-   
-<!-- valine评论 -->
-<div id="vcomments-box">
-  <div id="vcomments"></div>
-</div>
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="https://cdn.staticfile.org/valine/1.4.16/Valine.min.js"></script>
-<script>
-  new Valine({
-    el: "#vcomments",
-    app_id: "7fmVNU1rnfX3SER1Vc6icbGj-gzGzoHsz",
-    app_key: "UKXhxHwWFH07WuTFirdHiNMP",
-    path: window.location.pathname,
-    avatar: "monsterid",
-    placeholder: "给我的文章加点评论吧~",
-    recordIP: true,
-  });
-  const infoEle = document.querySelector("#vcomments .info");
-  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
-    infoEle.childNodes.forEach(function (item) {
-      item.parentNode.removeChild(item);
-    });
-  }
-</script>
-<style>
-  #vcomments-box {
-    padding: 5px 30px;
-  }
-
-  @media screen and (max-width: 800px) {
-    #vcomments-box {
-      padding: 5px 0px;
-    }
-  }
-
-  #vcomments-box #vcomments {
-    background-color: #fff;
-  }
-
-  .v .vlist .vcard .vh {
-    padding-right: 20px;
-  }
-
-  .v .vlist .vcard {
-    padding-left: 10px;
-  }
-</style>
-
- 
-   
-    
-    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
-    <div id="twikoo" class="twikoo"></div>
-    <script>
-        twikoo.init({
-            envId: ""
-        })
-    </script>
- 
-</article>
-
-</section>
-      <footer class="footer">
-  <div class="outer">
-    <ul>
-      <li>
-        Copyrights &copy;
-        2022
-        <i class="ri-heart-fill heart_icon"></i> dongyu sun
-      </li>
-    </ul>
-    <ul>
-      <li>
+      <span class="category-chain">
         
-      </li>
-    </ul>
-    <ul>
-      <li>
-        
-        
-        <span>
-  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
-  <span class="division">|</span>
-  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  
+  
+
+      </span>
+    
+  
 </span>
-        
-      </li>
-    </ul>
-    <ul>
-      
-    </ul>
-    <ul>
-      
-    </ul>
-    <ul>
-      <li>
-        <!-- cnzz统计 -->
-        
-        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1281106713&amp;web_id=1281106713'></script>
-        
-      </li>
-    </ul>
-  </div>
-</footer>    
-    </main>
-    <div class="float_btns">
-      <div class="totop" id="totop">
-  <i class="ri-arrow-up-line"></i>
-</div>
-
-<div class="todark" id="todark">
-  <i class="ri-moon-line"></i>
-</div>
 
     </div>
-    <aside class="sidebar on">
-      <button class="navbar-toggle"></button>
-<nav class="navbar">
   
-  <div class="logo">
-    <a href="/"><img src="/images/ayer.png" alt="樱花小镇"></a>
-  </div>
   
-  <ul class="nav nav-main">
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/">主页</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/archives">归档</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/categories">分类</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/tags">标签</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/about">关于我</a>
-    </li>
-    
-  </ul>
-</nav>
-<nav class="navbar navbar-bottom">
-  <ul class="nav">
-    <li class="nav-item">
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
       
-      <a class="nav-item-link nav-item-search"  title="搜索">
-        <i class="ri-search-line"></i>
+        <a href="/tags/Scanner%E8%BE%93%E5%85%A5%E7%B1%BB/">#Scanner输入类</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Java_Scanner类详解</div>
+      <div>https://sundongyu.github.io/2022/05/15/java-scanner-lei-xiang-jie/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>dongyu sun</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年5月15日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/05/20/centos7-shi-yong/" title="Centos7使用">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Centos7使用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/05/10/group-by-fen-zu-yi-chang/" title="group by分组异常">
+                        <span class="hidden-mobile">group by分组异常</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
       </a>
-      
-      
-    </li>
-  </ul>
-</nav>
-<div class="search-form-wrap">
-  <div class="local-search local-search-plugin">
-  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
-  <div id="local-search-result" class="local-search-result"></div>
-</div>
-</div>
-    </aside>
-    <div id="mask"></div>
+    
 
-<!-- #reward -->
-<div id="reward">
-  <span class="close"><i class="ri-close-line"></i></span>
-  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
-  <div class="reward-box">
     
-    <div class="reward-item">
-      <img class="reward-img" src="/images/alipay.jpg">
-      <span class="reward-type">支付宝</span>
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
     </div>
-    
-    
-    <div class="reward-item">
-      <img class="reward-img" src="/images/wechat.jpg">
-      <span class="reward-type">微信</span>
-    </div>
-    
   </div>
 </div>
+
     
-<script src="/js/jquery-3.6.0.min.js"></script>
- 
-<script src="/js/lazyload.min.js"></script>
 
-<!-- Tocbot -->
- 
-<script src="/js/tocbot.min.js"></script>
+    
+  </main>
 
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
 <script>
-  tocbot.init({
-    tocSelector: ".tocbot",
-    contentSelector: ".article-entry",
-    headingSelector: "h1, h2, h3, h4, h5, h6",
-    hasInnerContainers: true,
-    scrollSmooth: true,
-    scrollContainer: "main",
-    positionFixedSelector: ".tocbot",
-    positionFixedClass: "is-position-fixed",
-    fixedSidebarOffset: "auto",
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
   });
 </script>
 
-<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
-<link
-  rel="stylesheet"
-  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
-/>
-<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
 
-<script src="/dist/main.js"></script>
-
-<!-- ImageViewer -->
- <!-- Root element of PhotoSwipe. Must have class pswp. -->
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-    <!-- Background of PhotoSwipe. 
-         It's a separate element as animating opacity is faster than rgba(). -->
-    <div class="pswp__bg"></div>
-
-    <!-- Slides wrapper with overflow:hidden. -->
-    <div class="pswp__scroll-wrap">
-
-        <!-- Container that holds slides. 
-            PhotoSwipe keeps only 3 of them in the DOM to save memory.
-            Don't modify these 3 pswp__item elements, data is added later on. -->
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-
-        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-        <div class="pswp__ui pswp__ui--hidden">
-
-            <div class="pswp__top-bar">
-
-                <!--  Controls are self-explanatory. Order can be changed. -->
-
-                <div class="pswp__counter"></div>
-
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-
-                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
-
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-
-                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-                <!-- element will get class pswp__preloader--active when preloader is running -->
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                        <div class="pswp__preloader__cut">
-                            <div class="pswp__preloader__donut"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div>
-            </div>
-
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
-<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
-<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
-<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
-
-<script>
-    function viewer_init() {
-        let pswpElement = document.querySelectorAll('.pswp')[0];
-        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
-
-        $imgArr.forEach(($em, i) => {
-            $em.onclick = () => {
-                // slider展开状态
-                // todo: 这样不好，后面改成状态
-                if (document.querySelector('.left-col.show')) return
-                let items = []
-                $imgArr.forEach(($em2, i2) => {
-                    let img = $em2.getAttribute('data-idx', i2)
-                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
-                    let title = $em2.getAttribute('alt')
-                    // 获得原图尺寸
-                    const image = new Image()
-                    image.src = src
-                    items.push({
-                        src: src,
-                        w: image.width || $em2.width,
-                        h: image.height || $em2.height,
-                        title: title
-                    })
-                })
-                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
-                    index: parseInt(i)
-                });
-                gallery.init()
-            }
-        })
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
     }
-    viewer_init()
-</script> 
-<!-- MathJax -->
 
-<!-- Katex -->
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
 
-<!-- busuanzi  -->
- 
-<script src="/js/busuanzi-2.3.pure.min.js"></script>
- 
-<!-- ClickLove -->
- 
-<script src="/js/clickLove.js"></script>
- 
-<!-- ClickBoom1 -->
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
 
-<!-- ClickBoom2 -->
+      var lang = '';
 
-<!-- CodeCopy -->
- 
-<link rel="stylesheet" href="/css/clipboard.css">
- <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
-<script>
-  function wait(callback, seconds) {
-    var timelag = null;
-    timelag = window.setTimeout(callback, seconds);
-  }
-  !function (e, t, a) {
-    var initCopyCode = function(){
-      var copyHtml = '';
-      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
-      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
-      copyHtml += '</button>';
-      $(".highlight .code pre").before(copyHtml);
-      $(".article pre code").before(copyHtml);
-      var clipboard = new ClipboardJS('.btn-copy', {
-        target: function(trigger) {
-          return trigger.nextElementSibling;
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
         }
-      });
-      clipboard.on('success', function(e) {
-        let $btn = $(e.trigger);
-        $btn.addClass('copied');
-        let $icon = $($btn.find('i'));
-        $icon.removeClass('ri-file-copy-2-line');
-        $icon.addClass('ri-checkbox-circle-line');
-        let $span = $($btn.find('span'));
-        $span[0].innerText = 'COPIED';
-        
-        wait(function () { // 等待两秒钟后恢复
-          $icon.removeClass('ri-checkbox-circle-line');
-          $icon.addClass('ri-file-copy-2-line');
-          $span[0].innerText = 'COPY';
-        }, 2000);
-      });
-      clipboard.on('error', function(e) {
-        e.clearSelection();
-        let $btn = $(e.trigger);
-        $btn.addClass('copy-failed');
-        let $icon = $($btn.find('i'));
-        $icon.removeClass('ri-file-copy-2-line');
-        $icon.addClass('ri-time-line');
-        let $span = $($btn.find('span'));
-        $span[0].innerText = 'COPY FAILED';
-        
-        wait(function () { // 等待两秒钟后恢复
-          $icon.removeClass('ri-time-line');
-          $icon.addClass('ri-file-copy-2-line');
-          $span[0].innerText = 'COPY';
-        }, 2000);
-      });
-    }
-    initCopyCode();
-  }(window, document);
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
 </script>
- 
-<!-- CanvasBackground -->
- 
-<script src="/js/dz.js"></script>
- 
+
+
+  
 <script>
-  if (window.mermaid) {
-    mermaid.initialize({ theme: "forest" });
-  }
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
 </script>
 
 
-    
-    
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
 
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
-
 </html>
