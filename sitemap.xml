@@ -2,7 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://sundongyu.github.io/2022/05/07/trie-shu-bing-cha-ji/</loc>
+    
+    <lastmod>2022-05-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sundongyu.github.io/2022/05/20/centos7-shi-yong/</loc>
+    
+    <lastmod>2022-05-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://sundongyu.github.io/2022/05/10/jdbc-de-shi-yong/</loc>
+    
+    <lastmod>2022-05-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sundongyu.github.io/2022/05/06/git-xue-xi/</loc>
     
     <lastmod>2022-05-29</lastmod>
     
@@ -47,34 +74,7 @@
   </url>
   
   <url>
-    <loc>https://sundongyu.github.io/2022/05/20/centos7-shi-yong/</loc>
-    
-    <lastmod>2022-05-29</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sundongyu.github.io/2022/05/07/trie-shu-bing-cha-ji/</loc>
-    
-    <lastmod>2022-05-29</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://sundongyu.github.io/2022/05/28/lu-fei-de-java-xue-xi-lu-xian/</loc>
-    
-    <lastmod>2022-05-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sundongyu.github.io/2022/05/06/git-xue-xi/</loc>
     
     <lastmod>2022-05-28</lastmod>
     

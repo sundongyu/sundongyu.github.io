@@ -679,11 +679,11 @@
 </li>
 </ol>
 <h3 id="Push-amp-Pull"><a href="#Push-amp-Pull" class="headerlink" title="Push &amp; Pull"></a>Push &amp; Pull</h3><p>Push ：直译过来就是「推」的意思，什么意思呢？如果你本地代码有更新了，那么就需要把 本地代码推到远程仓库，这样本地仓库跟远程仓库就可以保持同步了。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 将本地代码提交到master分支</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+<figure class="highlight arcade"><table><tr><td class="code"><pre><code class="hljs arcade"><span class="hljs-comment">// 将本地代码提交到master分支</span><br>git <span class="hljs-built_in">push</span> origin master<br></code></pre></td></tr></table></figure>
 
 <hr>
 <p>Pull：直译过来就是「拉」的意思，如果别人提交代码到远程仓库，这个时候你需要把远程仓 库的最新代码拉下来，然后保证两端代码的同步。 </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git pull origin master</span><br></pre></td></tr></table></figure>
+<figure class="highlight crmsh"><table><tr><td class="code"><pre><code class="hljs crmsh">git pull origin <span class="hljs-literal">master</span><br></code></pre></td></tr></table></figure>
 
 <p>意思就是把远程最新的代码更新到本地。一般我们在 push 之前都会先 pull ，这样不容易冲突。</p>
 <h3 id="提交代码"><a href="#提交代码" class="headerlink" title="提交代码"></a>提交代码</h3><p>添加 SSH key 成功之后，我们就有权限向 GitHub 上我们自己的项目提交代码了，而提交代 码有两种方法：</p>
@@ -696,50 +696,50 @@
 <li><p>关联本地已有项目</p>
 <p>假设我们本地有个 test2 的项目，我们需要的是在 GitHub 上建一个 test 的项目，然后把本地 test2 上的所有代码 commit 记录提交到 GitHub 上的 test 项目。</p>
 <p>第一步就是在 GitHub 上建一个 test 项目，这个想必大家都会了，就不用多讲了。<br>第二步把本地 test2 项目与 GitHub 上的 test 项目进行关联，切换到 test2 目录，执行如下命令：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git remote add origin https://github.com/sundongyu/sundongyu.github.io.git</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">git remote add origin https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/sundongyu/</span>sundongyu.github.io.git<br></code></pre></td></tr></table></figure>
 
 <p>添加一个远程仓库，他的地址是 <a href="https://github.com/sundongyu/sundongyu.github.io.git">https://github.com/sundongyu/sundongyu.github.io.git</a> ， 而 origin 是给这个项目的远程仓库起的名字，只不过只有一个远程仓库时名字公认为 origin ，为什么要给远程仓库取名字？因为我们可能一个项目 有多个远程仓库？比如 GitHub 一个，比如公司一个，这样的话提交到不同的远程仓库就需要指定不同的仓库名字了。</p>
 </li>
 </ol>
 <p>查看当前项目有哪些远程仓库</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">git remote -v</span><br></code></pre></td></tr></table></figure>
 
 <h1 id="Git进阶"><a href="#Git进阶" class="headerlink" title="Git进阶"></a>Git进阶</h1><h2 id="1-用户名和邮箱"><a href="#1-用户名和邮箱" class="headerlink" title="1.用户名和邮箱"></a>1.用户名和邮箱</h2><p>每一次commit都会产生一条log，这条log标记了提交人的姓名与邮箱，以 便其他人方便的查看与联系提交人，所以我们在进行提交代码的第一步就是要设置自己的用<br>户名与邮箱。执行以下代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 全局设置，如果不想全局设置去掉global即可</span><br><span class="line">git config --global user.name &quot;sundongyu&quot; </span><br><span class="line">git config --global user.email &quot;dongyusun@hotmail.com&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">// 全局设置，如果不想全局设置去掉global即可</span><br>git config <span class="hljs-attr">--global</span> user<span class="hljs-selector-class">.name</span> <span class="hljs-string">&quot;sundongyu&quot;</span> <br>git config <span class="hljs-attr">--global</span> user<span class="hljs-selector-class">.email</span> <span class="hljs-string">&quot;dongyusun@hotmail.com&quot;</span><br></code></pre></td></tr></table></figure>
 
 <p>ps：我们在 GitHub 的每次提交理论上都会在 主页的下面产生一条绿色小方块的记录，如果提交了，但是没有绿色方块显示，那肯定是你提交代码配置的邮箱跟你 GitHub 上的邮箱不一致，GitHub 上的邮箱可以到 Setting -&gt; Emails里查看。</p>
 <h2 id="2-alias（别名）"><a href="#2-alias（别名）" class="headerlink" title="2.alias（别名）"></a>2.alias（别名）</h2><p>很多Git命令使用频繁，每次输入有些麻烦，因此可以使用别名，进行缩写</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global alias.co checkout # 别名 </span><br><span class="line">git config --global alias.ci commit </span><br><span class="line">git config --global alias.st status</span><br><span class="line">git config --global alias.br branch</span><br></pre></td></tr></table></figure>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><code class="hljs verilog">git <span class="hljs-keyword">config</span> --<span class="hljs-keyword">global</span> <span class="hljs-keyword">alias</span><span class="hljs-variable">.co</span> checkout # 别名 <br>git <span class="hljs-keyword">config</span> --<span class="hljs-keyword">global</span> <span class="hljs-keyword">alias</span><span class="hljs-variable">.ci</span> commit <br>git <span class="hljs-keyword">config</span> --<span class="hljs-keyword">global</span> <span class="hljs-keyword">alias</span><span class="hljs-variable">.st</span> status<br>git <span class="hljs-keyword">config</span> --<span class="hljs-keyword">global</span> <span class="hljs-keyword">alias</span><span class="hljs-variable">.br</span> branch<br></code></pre></td></tr></table></figure>
 
 <p>当然以上别名不是固定的，你完全可以根据自己的习惯去定制，除此之外还可以设置组合， 比如：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global alias.psm &#x27;push origin master&#x27; </span><br><span class="line">git config --global alias.plm &#x27;pull origin master&#x27;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><code class="hljs csharp">git config --<span class="hljs-keyword">global</span> <span class="hljs-keyword">alias</span>.psm <span class="hljs-string">&#x27;push origin master&#x27;</span> <br>git config --<span class="hljs-keyword">global</span> <span class="hljs-keyword">alias</span>.plm <span class="hljs-string">&#x27;pull origin master&#x27;</span><br></code></pre></td></tr></table></figure>
 
 <p>之后经常用到的git push origin master 和 git pull origin master 直接就用 git psm 和 git plm 代替了。</p>
 <p>告诉大家一个比较屌的命令，优化了log的显示</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git log --graph --pretty=format:&#x27;%Cred%h%Creset %C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#x27; --abbrev-commit --date=relative</span><br></pre></td></tr></table></figure>
+<figure class="highlight cos"><table><tr><td class="code"><pre><code class="hljs cos">git log --graph --pretty=format:&#x27;<span class="hljs-built_in">%Cred</span><span class="hljs-built_in">%h</span><span class="hljs-built_in">%Creset</span> <span class="hljs-built_in">%C</span>(yellow)<span class="hljs-built_in">%d</span><span class="hljs-built_in">%Creset</span> <span class="hljs-built_in">%s</span> <span class="hljs-built_in">%Cgreen</span>(<span class="hljs-built_in">%cr</span>) <span class="hljs-built_in">%C</span>(bold blue)&lt;<span class="hljs-built_in">%an</span>&gt;<span class="hljs-built_in">%Creset</span>&#x27; --abbrev-commit --date=relative<br></code></pre></td></tr></table></figure>
 
 <p>但是每次都要输这么一大串是不是也很烦？这 时候你就该想到 alias 啊：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global alias.lg &quot;log --graph --pretty=format:&#x27;%Cred%h%Creset -%C(yellow)% d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#x27; --abbrev-commit --date=relative&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight perl"><table><tr><td class="code"><pre><code class="hljs perl">git config --global alias.lg <span class="hljs-string">&quot;log --graph --pretty=format:&#x27;%Cred%h%Creset -%C(yellow)% d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#x27; --abbrev-commit --date=relative&quot;</span><br></code></pre></td></tr></table></figure>
 
-<h2 id="3-diff"><a href="#3-diff" class="headerlink" title="3.diff"></a>3.diff</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git diff</span><br></pre></td></tr></table></figure>
+<h2 id="3-diff"><a href="#3-diff" class="headerlink" title="3.diff"></a>3.diff</h2><figure class="highlight ebnf"><table><tr><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">git diff</span><br></code></pre></td></tr></table></figure>
 
 <blockquote>
 <p>用来查看代码改动</p>
 </blockquote>
 <p>值得一提的是直接输入 git diff 只能比较当前文件和暂存区文件差异，什么是暂存区？就是你 还没有执行 git add 的文件。</p>
 <p>当然跟暂存区做比较之外，他还可以有其他用法，如比较两次 commit 之间的差异，比较两个 分支之间的差异，比较暂存区和版本库之间的差异等，具体用法如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git diff &lt;$id1&gt; &lt;$id2&gt; # 比较两次提交之间的差异 </span><br><span class="line">git diff &lt;branch1&gt;..&lt;branch2&gt; # 在两个分支之间比较</span><br><span class="line">git diff --staged # 比较暂存区和版本库差异</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell">git <span class="hljs-built_in">diff</span> &lt;<span class="hljs-variable">$id1</span>&gt; &lt;<span class="hljs-variable">$id2</span>&gt; <span class="hljs-comment"># 比较两次提交之间的差异 </span><br>git <span class="hljs-built_in">diff</span> &lt;branch1&gt;..&lt;branch2&gt; <span class="hljs-comment"># 在两个分支之间比较</span><br>git <span class="hljs-built_in">diff</span> <span class="hljs-literal">--staged</span> <span class="hljs-comment"># 比较暂存区和版本库差异</span><br></code></pre></td></tr></table></figure>
 
 <h2 id="4-checkout"><a href="#4-checkout" class="headerlink" title="4.checkout"></a>4.checkout</h2><ol>
 <li>切换分支</li>
 <li>切换tag</li>
 <li>切换到某次commit</li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git checkout v1.0   //切换到1.0版本</span><br><span class="line">git checkout commit_id  //commitid可以通过git log查看</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">git checkout v1.<span class="hljs-number">0</span>   <span class="hljs-regexp">//</span>切换到<span class="hljs-number">1.0</span>版本<br>git checkout commit_id  <span class="hljs-regexp">//</span>commitid可以通过git log查看<br></code></pre></td></tr></table></figure>
 
 <p>除了切换，<strong>checkout</strong>还有撤销的意思</p>
 <p>如果你在一个分支开发，结果需求变化，之前写的代码全部用不了，但是你没有将代码提交到缓存区(<strong>git add .</strong>)，这个时候可以还原</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git checkout xxx(文件名)</span><br><span class="line">git checkout a.md</span><br></pre></td></tr></table></figure>
+<figure class="highlight isbl"><table><tr><td class="code"><pre><code class="hljs isbl"><span class="hljs-variable">git</span> <span class="hljs-variable">checkout</span> <span class="hljs-function"><span class="hljs-title">xxx</span>(文件名)</span><br><span class="hljs-variable">git</span> <span class="hljs-variable">checkout</span> <span class="hljs-variable">a.md</span><br></code></pre></td></tr></table></figure>
 
 <p>注意：只能撤销没有add进缓存区的文件</p>
 <h2 id="5-stash"><a href="#5-stash" class="headerlink" title="5.stash"></a>5.stash</h2><p>这里知鸟大佬讲过，如果我代码写了一般，但是来了紧急的bug需要修复，而且修复完就要上线，现在只有两个选择，第一个是将写一半的代码提交，然后转到bug分支修复</p>
@@ -748,33 +748,33 @@
 <hr>
 <p>前提：代码没有<strong>commit</strong>，哪怕执行了add也没事。</p>
 <p>第一步：把当前分支所有没有 commit 的代码先暂存起来。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git stash</span><br></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">git stash</span><br></code></pre></td></tr></table></figure>
 
 <p>第二步：查看被藏匿起来的代码。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git stash list</span><br></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">git stash list</span><br></code></pre></td></tr></table></figure>
 
 <p>第三步：切换回其他分支，赶紧把bug修复好，然后发布。</p>
 <p>第四步：还原之前藏匿的代码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git stash apply</span><br></pre></td></tr></table></figure>
+<figure class="highlight coq"><table><tr><td class="code"><pre><code class="hljs coq">git stash <span class="hljs-built_in">apply</span><br></code></pre></td></tr></table></figure>
 
 <p>第五步：清楚缓存区中的<strong>stash</strong>记录。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git stash drop</span><br></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">git stash drop</span><br></code></pre></td></tr></table></figure>
 
 <p> 第四步和第五步经常一起使用，两条命令太过于麻烦，所以：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 替代 apply 命令和 drop 命令</span><br><span class="line">git stash pop</span><br></pre></td></tr></table></figure>
+<figure class="highlight arcade"><table><tr><td class="code"><pre><code class="hljs arcade"><span class="hljs-comment">// 替代 apply 命令和 drop 命令</span><br>git stash <span class="hljs-built_in">pop</span><br></code></pre></td></tr></table></figure>
 
 <p>最后一条命令：</p>
 <p>清除所有stash记录</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git stash clear</span><br></pre></td></tr></table></figure>
+<figure class="highlight arduino"><table><tr><td class="code"><pre><code class="hljs arduino">git stash clear<br></code></pre></td></tr></table></figure>
 
 <p>就是清空所有暂存区的记录，drop 是只删除一条，当然后面可以跟 stash_id 参数来删除指 定的某条记录，不跟参数就是删除最近的，而 clear 是清空。</p>
 <h2 id="6-merge-amp-rebase"><a href="#6-merge-amp-rebase" class="headerlink" title="6.merge &amp; rebase"></a>6.merge &amp; rebase</h2><p>分支合并该如何进行？</p>
 <p>场景：现在在dev分支完成了功能的开发，想在想把这个功能合并到主分支</p>
 <p>第一步：回到主分支</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git checkout master</span><br></pre></td></tr></table></figure>
+<figure class="highlight crmsh"><table><tr><td class="code"><pre><code class="hljs crmsh">git checkout <span class="hljs-literal">master</span><br></code></pre></td></tr></table></figure>
 
 <p>第二步：合并</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git merge dev</span><br></pre></td></tr></table></figure>
+<figure class="highlight cos"><table><tr><td class="code"><pre><code class="hljs cos">git <span class="hljs-keyword">merge</span> dev<br></code></pre></td></tr></table></figure>
 
 <p>merge 可以用 rebase 来替代</p>
 <p>两者有什么区别？</p>
@@ -784,59 +784,59 @@
 <p>各有好处，各有用处。</p>
 <h2 id="7-解决冲突"><a href="#7-解决冲突" class="headerlink" title="7.解决冲突"></a>7.解决冲突</h2><p>两个不同分支，开发不同功能，两个分支都同时master中的一个内容进行了改动，然后功能开发完毕，A分支合并到主分支，OK合并完毕，但是当B分支想合并到主分支的时候就出现了冲突。</p>
 <p>因为A和B同时改了同一个地方，Git本身没法判断谁改的对，但是他会提示conflicts，需要手动解决冲突后重新进行commit提交。</p>
-<p><img src="https://s3.bmp.ovh/imgs/2022/05/06/7992b4c809e4fdfe.png" alt="demo"></p>
+<p><img src="https://img-blog.csdnimg.cn/7280ea7195c04d9bb6d5aa7b6e7a3b9b.png" alt="demo"></p>
 <p>以上截图里就是冲突的示例，冲突的地方由 <code>====</code>  分出了上下两个部分，上部分一个叫 HEAD 的字样代表是我当前所在分支的代码，下半部分是一个叫 baidu_activity 分支的代 码，可以看到 HEAD 对 gradle 插件进行了升级，同时新增了一个插件，所以我们很容易判断 哪些代码该保留，哪些代码该删除，我们只需要移除掉那些老旧代码，而且同时也要把那些 &lt;&lt;&lt; HEAD、&#x3D;&#x3D;&#x3D;&#x3D; 以及 &gt;&gt;&gt;&gt;&gt;&gt;baidu_activity 这些标记符号也一并删除，最后进行一次<br>commit 就ok了。</p>
 <h1 id="Git分支管理"><a href="#Git分支管理" class="headerlink" title="Git分支管理"></a>Git分支管理</h1><h2 id="1-什么是分支？"><a href="#1-什么是分支？" class="headerlink" title="1.什么是分支？"></a>1.什么是分支？</h2><p>可以这么理解，几个人一 起去旅行，中间走到一个三岔口，每条路可能有不同的风景，你们约定 3 天之后在某地汇 聚，然后各自出发了。而这三条分叉路就可以理解成你们各自的分支，而等你们汇聚的时候相当于把你们的分支进行了合并。</p>
 <h2 id="2-分支的常用操作"><a href="#2-分支的常用操作" class="headerlink" title="2.分支的常用操作"></a>2.分支的常用操作</h2><ul>
 <li>新建名叫develop的分支</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git branch develop</span><br></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">git branch develop</span><br></code></pre></td></tr></table></figure>
 
 <p>提醒：当前在哪个分支，新建的分支就是基于这个分支建立的，新建分支的内容适合当前分支完全相同的。</p>
 <ul>
 <li>切换到develop分支</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git checkout develop</span><br></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">git checkout develop</span><br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>如果把以上两步合并，即新建并且自动切换到 develop 分支：</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git checkout -b develop</span><br></pre></td></tr></table></figure>
+<figure class="highlight armasm"><table><tr><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">git</span> checkout -<span class="hljs-keyword">b</span> develop<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>推送develop分支到远程仓库</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push origin develop</span><br></pre></td></tr></table></figure>
+<figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima">git <span class="hljs-built_in">push</span> <span class="hljs-built_in">origin</span> develop<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>查看本地分支</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">git branch</span><br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>查看远程分支列表</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git branch -r</span><br></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">git branch -r</span><br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>删除本地分支</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git branch -d develop</span><br><span class="line">git branch -D develop(强制删除)</span><br></pre></td></tr></table></figure>
+<figure class="highlight isbl"><table><tr><td class="code"><pre><code class="hljs isbl"><span class="hljs-variable">git</span> <span class="hljs-variable">branch</span> -<span class="hljs-variable">d</span> <span class="hljs-variable">develop</span><br><span class="hljs-variable">git</span> <span class="hljs-variable">branch</span> -<span class="hljs-variable">D</span> <span class="hljs-function"><span class="hljs-title">develop</span>(强制删除)</span><br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>删除远程分支</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push origin :develop</span><br></pre></td></tr></table></figure>
+<figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima">git <span class="hljs-built_in">push</span> <span class="hljs-built_in">origin</span> :develop<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>如果远程分支有个 develop，而本地没有，把远程分支迁移到本地</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git checkout develop origin/develop</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git checkout develop origin/develop<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>同样的把远程分支迁到本地顺便切换到该分支：</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git checkout -b develop origin/develop</span><br></pre></td></tr></table></figure>
+<figure class="highlight armasm"><table><tr><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">git</span> checkout -<span class="hljs-keyword">b</span> develop origin/develop<br></code></pre></td></tr></table></figure>
 
 <h2 id="3-基本的团队协作流程"><a href="#3-基本的团队协作流程" class="headerlink" title="3.基本的团队协作流程"></a>3.基本的团队协作流程</h2><p>一般来说，如果你是一个人开发，可能只需要 master、develop 两个分支就 ok 了。</p>
 <p>平时开发 在 develop 分支进行，开发完成之后，发布之前合并到 master 分支，这个流程没啥大问题。</p>
@@ -856,14 +856,14 @@
 </ul>
 <p>什么意思呢？ </p>
 <p>举个例子，假设我们已经有 master 和 develop 两个分支了，这个时候我们准备做一个功能A，第一步我们要做的，就是基于 develop 分支新建个分支：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git branch feature/A</span><br></pre></td></tr></table></figure>
+<figure class="highlight arcade"><table><tr><td class="code"><pre><code class="hljs arcade">git branch <span class="hljs-built_in">feature</span>/A<br></code></pre></td></tr></table></figure>
 
 <p>看到了吧，其实就是一个规范，规定了所有开发的功能分支都以 feature 为前缀。</p>
 <p>但是这个时候做着做着发现线上有一个紧急的 bug 需要修复，那赶紧停下手头的工作，立刻 切换到 master 分支，然后再此基础上新建一个分支：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git branch hotfix/B</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css">git branch hotfix/<span class="hljs-selector-tag">B</span><br></code></pre></td></tr></table></figure>
 
 <p>代表新建了一个紧急修复分支，修复完成之后直接合并到 develop 和 master ，然后发布。 然后再切回我们的 feature&#x2F;A 分支继续着我们的开发，如果开发完了，那么合并回 develop 分 支，然后在 develop 分支属于测试环境，跟后端对接并且测试的差不多了，感觉可以发布到正式环境了，这个时候再新建一个 release 分支：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git branch release/1.0</span><br></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">git</span> branch release/<span class="hljs-number">1</span>.<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
 
 <p>这个时候所有的 api、数据等都是正式环境，然后在这个分支上进行最后的测试，发现 bug 直 接进行修改，直到测试 ok 达到了发布的标准，最后把该分支合并到 develop 和 master 然后 进行发布。<br>以上就是 Git Flow 的概念与大概流程，看起来很复杂，但是对于人数比较多的团队协作现实开发中确实会遇到这么复杂的情况，是目前很流行的一套分支管理流程。</p>
 <p>每次都要各种操作，合并来合并去，有点麻烦，哈哈，这点 Git Flow 早就想到了，为此还专门推 出了一个 Git Flow 的工具，并且是开源的：<br>GitHub 开源地址：<a href="https://github.com/nvie/gitflow">https://github.com/nvie/gitflow</a></p>
@@ -949,7 +949,7 @@
 </blockquote>
 <span id="more"></span>
 
-<h4 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h4><p>在计算机科学中，trie，又称前缀树或字典树，是一种有序树，用于保存关联数组，其中的键通常是字符串。与二叉查找树不同，键不是直接保存在节点中，而是由节点在树中的位置决定。一个节点的所有子孙都有相同的前缀，也就是这个节点对应的字符串，而根节点对应空字符串。一般情况下，不是所有的节点都有对应的值，只有叶子节点和部分内部节点所对应的键才有相关的值。<br><img src="https://i.bmp.ovh/imgs/2022/05/07/b1da1ebf4a25d7e4.png" alt="结构介绍"></p>
+<h4 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h4><p>在计算机科学中，trie，又称前缀树或字典树，是一种有序树，用于保存关联数组，其中的键通常是字符串。与二叉查找树不同，键不是直接保存在节点中，而是由节点在树中的位置决定。一个节点的所有子孙都有相同的前缀，也就是这个节点对应的字符串，而根节点对应空字符串。一般情况下，不是所有的节点都有对应的值，只有叶子节点和部分内部节点所对应的键才有相关的值。<br><img src="https://img-blog.csdnimg.cn/a8983fbd1ee4428d92c6c5abd7391eab.png" alt="结构介绍"></p>
 <h4 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h4><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Template</span> &#123;<br><br>    <span class="hljs-comment">// 下标是0的点既是根节点也是空节点</span><br>    <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-variable">N</span> <span class="hljs-operator">=</span> <span class="hljs-number">1000</span>, idx;<br><br>    <span class="hljs-comment">// 每个节点所有儿子</span><br>    <span class="hljs-keyword">static</span> <span class="hljs-type">int</span>[][] son = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[N][<span class="hljs-number">26</span>];<br>    <span class="hljs-comment">// 当前这个节点结尾的单词有多少个</span><br>    <span class="hljs-keyword">static</span> <span class="hljs-type">int</span>[] cnt = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[N];<br><br>    <span class="hljs-comment">// 向树中插入字符串</span><br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">insert</span><span class="hljs-params">(String str)</span> &#123;<br>        <span class="hljs-comment">// 用来记录最后一个字母</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">p</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; str.length(); i++) &#123;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">u</span> <span class="hljs-operator">=</span> str.charAt(i) - <span class="hljs-string">&#x27;a&#x27;</span>;<br>            <span class="hljs-comment">// 如果这个节点没有被走过，就新建里一个节点</span><br>            <span class="hljs-keyword">if</span> (son[p][u] == <span class="hljs-number">0</span>) son[p][u] = ++ idx;<br>            p = son[p][u];<br>        &#125;<br>        cnt[p]++;<br>    &#125;<br><br>    <span class="hljs-comment">// 返回树中的字符串出现的次数</span><br>    <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">query</span><span class="hljs-params">(String str)</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">p</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; str.length(); i++) &#123;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">u</span> <span class="hljs-operator">=</span> str.charAt(i) - <span class="hljs-string">&#x27;a&#x27;</span>;<br>            <span class="hljs-comment">// 如果这里没有被走过，直接退出，因为这条路已经到头了</span><br>            <span class="hljs-keyword">if</span> (son[p][u] == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>            p = son[p][u];<br>        &#125;<br>        <span class="hljs-keyword">return</span> cnt[p];<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h1 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h1><h4 id="快速处理："><a href="#快速处理：" class="headerlink" title="快速处理："></a>快速处理：</h4><ol>
@@ -1031,12 +1031,12 @@
 <li><p>JDBC为了访问不同的数据库提供了统一的接口，为使用者屏蔽细节问题</p>
 </li>
 <li><p>规定一套接口规范，让不同的数据库厂商实现，在java程序中统计调用接口的方法即可  </p>
-<p><img src="https://s3.bmp.ovh/imgs/2022/05/10/507113deee40bd71.png"></p>
+<p><img src="https://img-blog.csdnimg.cn/15eaf09c37ca4601845a81e03d8b5673.png"></p>
 </li>
 <li><p>JDBC API 是一系列的接口，他统一和规范了应用程序和数据库之间的链接，执行sql语句，并得到返回结果等各种操作，java关于jdbc相关的类和接口在java.sql和javax.sql(扩展包)中</p>
 </li>
 </ul>
-<p><img src="https://s3.bmp.ovh/imgs/2022/05/10/5027c30204ca871e.png"></p>
+<p><img src="https://img-blog.csdnimg.cn/ac51440f023647f4a7387ca2e3694bdf.png"></p>
 <h2 id="JDBC程序编写步骤"><a href="#JDBC程序编写步骤" class="headerlink" title="JDBC程序编写步骤"></a>JDBC程序编写步骤</h2><blockquote>
 <p>相关的jar包（数据库厂商根据java提供的jdbc接口做的相应实现）在使用之前必须引入项目中！</p>
 <p>在项目下创建一个文件夹比如 libs  </p>
@@ -1085,7 +1085,7 @@
 </blockquote>
 <h3 id="底层实现"><a href="#底层实现" class="headerlink" title="底层实现"></a>底层实现</h3><p>resuletSet对象底层有一个属性rowData属性，用于存放各种数据，rowDate中有metedata数组用于存放数据库表的字段field，index表示当前指针指向哪个位置，owner表示一个引用数据类型，表示的是JDBC4Result</p>
 <p>Set类，该类实现了Result接口是resultSet对象的运行时类型，rows属性(ArrayList类型)用于保存具体查询到的数据，以byte类型数组保存</p>
-<p><img src="https://s3.bmp.ovh/imgs/2022/05/10/c20a6e26e7c723c1.png"></p>
+<p><img src="https://img-blog.csdnimg.cn/2f6e45e389a14b9ca86b554bd9580e61.png"></p>
 <p>查询语句实例：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 查询语句的执行使用excuteQuery(sql),返回一个结果集</span><br><span class="hljs-comment">// excuteUpdata(sql)用于执行增删改操作，返回受影响的行数</span><br><span class="hljs-type">ResultSet</span> <span class="hljs-variable">resultSet</span> <span class="hljs-operator">=</span> statement.executeQuery(sql);<br><span class="hljs-comment">// 取出数据 boolean next()</span><br><span class="hljs-keyword">while</span> (resultSet.next()) &#123;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">anInt</span> <span class="hljs-operator">=</span> resultSet.getInt(<span class="hljs-number">1</span>);<br>    <span class="hljs-type">String</span> <span class="hljs-variable">string</span> <span class="hljs-operator">=</span> resultSet.getString(<span class="hljs-number">2</span>);<br>    <span class="hljs-type">int</span> <span class="hljs-variable">age</span> <span class="hljs-operator">=</span> resultSet.getInt(<span class="hljs-number">3</span>);<br>    System.out.println(anInt + <span class="hljs-string">&quot;\t&quot;</span> + string + <span class="hljs-string">&quot;\t&quot;</span> + age);<br>&#125;<br><br><span class="hljs-comment">// 对比集合中迭代器的使用 boolean hasNext()  E next();</span><br><span class="hljs-type">Iterator</span> <span class="hljs-variable">iterator</span> <span class="hljs-operator">=</span> List1.iterator();<br><span class="hljs-keyword">while</span> (iterator.hasNext()) &#123;<br>   <span class="hljs-type">Object</span> <span class="hljs-variable">next</span> <span class="hljs-operator">=</span>  iterator.next();<br>   System.out.println(next);<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -1117,9 +1117,9 @@
 </ol>
 <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-type">Scanner</span> <span class="hljs-variable">scanner</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(System.in);<br><span class="hljs-type">String</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> scanner.next();<br><span class="hljs-type">ResourceBundle</span> <span class="hljs-variable">bundle</span> <span class="hljs-operator">=</span> ResourceBundle.getBundle(<span class="hljs-string">&quot;mysql&quot;</span>);<br><span class="hljs-type">String</span> <span class="hljs-variable">url</span> <span class="hljs-operator">=</span> bundle.getString(<span class="hljs-string">&quot;url&quot;</span>);<br><span class="hljs-type">String</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> bundle.getString(<span class="hljs-string">&quot;user&quot;</span>);<br><span class="hljs-type">String</span> <span class="hljs-variable">password</span> <span class="hljs-operator">=</span> bundle.getString(<span class="hljs-string">&quot;password&quot;</span>);<br><span class="hljs-type">Connection</span> <span class="hljs-variable">connection</span> <span class="hljs-operator">=</span> DriverManager.getConnection(url, user, password);<br><span class="hljs-comment">// sql语句的问号就相当于占位符</span><br><span class="hljs-type">String</span> <span class="hljs-variable">sql</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;select * from news where age = ? and id = ? and name = ?&quot;</span>;<br><span class="hljs-type">PreparedStatement</span> <span class="hljs-variable">preparedStatement</span> <span class="hljs-operator">=</span> connection.prepareStatement(sql);<br><br><span class="hljs-comment">// 给问号赋值</span><br>preparedStatement.setInt(<span class="hljs-number">1</span>, <span class="hljs-number">25</span>);<br>preparedStatement.setInt(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>);<br>preparedStatement.setString(<span class="hljs-number">3</span>, <span class="hljs-string">&quot;sll&quot;</span>);<br><br><span class="hljs-comment">// 这里执行的时候不要再赋值sql了，因为sql已经被处理过了！！！</span><br><span class="hljs-type">ResultSet</span> <span class="hljs-variable">resultSet</span> <span class="hljs-operator">=</span> preparedStatement.executeQuery();<br><br><span class="hljs-keyword">while</span> (resultSet.next()) &#123;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">id</span> <span class="hljs-operator">=</span> resultSet.getInt(<span class="hljs-string">&quot;id&quot;</span>);<br>    <span class="hljs-type">String</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span> resultSet.getString(<span class="hljs-string">&quot;name&quot;</span>);<br>    <span class="hljs-type">int</span> <span class="hljs-variable">age</span> <span class="hljs-operator">=</span> resultSet.getInt(<span class="hljs-string">&quot;age&quot;</span>);<br>    System.out.println(id + name + age);<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h2 id="JDBC-API-小结"><a href="#JDBC-API-小结" class="headerlink" title="JDBC API 小结"></a>JDBC API 小结</h2><p><img src="https://s3.bmp.ovh/imgs/2022/05/10/2d9fc1a494ca3b08.png"></p>
-<p><img src="https://s3.bmp.ovh/imgs/2022/05/10/f6c65b1ab4403599.png"></p>
-<p><img src="https://s3.bmp.ovh/imgs/2022/05/10/ab756a5c229acd89.png"></p>
+<h2 id="JDBC-API-小结"><a href="#JDBC-API-小结" class="headerlink" title="JDBC API 小结"></a>JDBC API 小结</h2><p><img src="https://img-blog.csdnimg.cn/f35c328cd81541279e1676f99df7e78e.png"></p>
+<p><img src="https://img-blog.csdnimg.cn/accf3f6fc63c43c4816dd155c140a0e0.png"></p>
+<p><img src="https://img-blog.csdnimg.cn/edf2cf8b1a5e42708f94b7eaa41de1af.png"></p>
 <h2 id="封装JDBCUtils"><a href="#封装JDBCUtils" class="headerlink" title="封装JDBCUtils"></a>封装JDBCUtils</h2><blockquote>
 <p>在操作中获取连接和释放资源操作是非常&#x3D;&#x3D;<strong>常用</strong>&#x3D;&#x3D;的，为了使用方便可以包装成工具类 </p>
 </blockquote>
@@ -1163,8 +1163,8 @@
 <li>数据库连接池负责分配管理和释放数据库连接，他允许应用程序重复使用一个现有的数据库连接，而不是重新创建一个</li>
 <li>当应用程序向连接池请求的连接数超过最大连接数量时，这些请求将会被添加到等待队列中</li>
 </ol>
-<h3 id="原理图"><a href="#原理图" class="headerlink" title="原理图"></a>原理图</h3><p><img src="https://s3.bmp.ovh/imgs/2022/05/10/0a103c045b4c4944.png"></p>
-<h3 id="常用的连接池种类"><a href="#常用的连接池种类" class="headerlink" title="常用的连接池种类"></a>常用的连接池种类</h3><p><img src="/../../../studynotes/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/assets/JDBC%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220426232043875.png" alt="image-20220426232043875"></p>
+<h3 id="原理图"><a href="#原理图" class="headerlink" title="原理图"></a>原理图</h3><p><img src="https://img-blog.csdnimg.cn/b0b69983cfa34272b4718e538e2c4697.png"></p>
+<h3 id="常用的连接池种类"><a href="#常用的连接池种类" class="headerlink" title="常用的连接池种类"></a>常用的连接池种类</h3><p><img src="https://img-blog.csdnimg.cn/5ef53eeb1a9b4cdbb04a526cdcebf32a.png"></p>
 <p>Druid最常用，C3P0也比较常用</p>
 <blockquote>
 <p>由于DaraSource是一个接口，由各种数据库去实现，所有使用之前需要引入数据库提供的相应版本的jar包，到项目目录，并将这个jar包添加到<strong>库</strong>中</p>
@@ -1186,7 +1186,7 @@
 <li>使用返回信息不太方便</li>
 </ol>
 <p>解决：</p>
-<p><img src="https://s3.bmp.ovh/imgs/2022/05/10/83f680f1fb61c2a0.png"></p>
+<p><img src="https://img-blog.csdnimg.cn/be99ebe86a1145fcb1e931468a310491.png"></p>
 <p>创建一个java类（JavaBean,PoJO,Domain），将resultset结果集内容映射成java对象。一个对象对应一条表中的记录，然后将所有对象放进ArrayList&lt;java对象&gt;中，这样表中的所有数据都保存下来了，connection连接就可以断开了，resultset结果集也用不到了。</p>
 <p>土方法解决resultset封装：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 1. 得到连接</span><br><span class="hljs-type">Connection</span> <span class="hljs-variable">connection</span> <span class="hljs-operator">=</span> JDBCUtilsByDruid.getConnection();<br><span class="hljs-type">ResultSet</span> <span class="hljs-variable">set</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br>ArrayList&lt;Actor&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;Actor&gt;();<br><br><span class="hljs-comment">// 2. 组织sql语句</span><br><span class="hljs-type">String</span> <span class="hljs-variable">sql</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;select * from actor&quot;</span>;<br><br><span class="hljs-comment">// 3. 创建PreparedStatement</span><br><span class="hljs-type">PreparedStatement</span> <span class="hljs-variable">preparedStatement</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br><span class="hljs-keyword">try</span> &#123;<br>    preparedStatement = connection.prepareStatement(sql);<br><br>    set = preparedStatement.executeQuery();<br>    <span class="hljs-keyword">while</span> (set.next()) &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span> set.getString(<span class="hljs-string">&quot;name&quot;</span>);<br>        <span class="hljs-type">int</span> <span class="hljs-variable">id</span> <span class="hljs-operator">=</span> set.getInt(<span class="hljs-string">&quot;id&quot;</span>);<br>        <span class="hljs-type">String</span> <span class="hljs-variable">sex</span> <span class="hljs-operator">=</span> set.getString(<span class="hljs-string">&quot;sex&quot;</span>);<br>        <span class="hljs-type">Date</span> <span class="hljs-variable">date</span> <span class="hljs-operator">=</span> set.getDate(<span class="hljs-string">&quot;borndate&quot;</span>);<br>        <span class="hljs-type">String</span> <span class="hljs-variable">phone</span> <span class="hljs-operator">=</span> set.getString(<span class="hljs-string">&quot;phone&quot;</span>);<br>        <span class="hljs-comment">// 把得到的resultset集合所有内容全部放进列表中</span><br>        list.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Actor</span>(id, name, sex, date, phone));<br>    &#125;<br>    System.out.println(list);<br>&#125; <span class="hljs-keyword">catch</span> (SQLException e) &#123;<br>    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(e);<br>&#125; <span class="hljs-keyword">finally</span> &#123;<br>    JDBCUtilsByDruid.close(set, preparedStatement, connection);<br>&#125;<br></code></pre></td></tr></table></figure>
@@ -1417,7 +1417,7 @@
 <h2 id="3-3-仅主机模式"><a href="#3-3-仅主机模式" class="headerlink" title="3.3 仅主机模式"></a>3.3 仅主机模式</h2><blockquote>
 <p> 与主机共享的专用网络</p>
 </blockquote>
-<p><img src="https://s3.bmp.ovh/imgs/2022/05/26/a01b4e2675751288.png" alt="网络连接三种模式图"></p>
+<p><img src="https://img-blog.csdnimg.cn/8db82b9b9ee543c5b81288572b5ea197.png" alt="网络连接三种模式图"></p>
 <h1 id="4-VMtools"><a href="#4-VMtools" class="headerlink" title="4. VMtools"></a>4. VMtools</h1><blockquote>
 <p>一款VMware的用于帮助我们更好的管理vm虚拟机的工具，可以设置windows和centos共享文件夹。</p>
 </blockquote>
