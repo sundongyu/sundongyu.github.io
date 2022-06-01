@@ -16,26 +16,24 @@
   <meta name="author" content="dongyu sun">
   <meta name="keywords" content="">
   
-    <meta name="description" content="通过Centos7学习Linux操作系统，记录LInux知识及使用方法。">
+    <meta name="description" content="由于经常使用Java写算法题，遇到各种超时，都是由于Java的输入(Scaner)输入太慢导致的，今天总结一下JavaIO中的快速读入类和输出类，封装成一个读入类，以便日后使用。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Centos7使用">
-<meta property="og:url" content="https://sundongyu.github.io/2022/05/20/centos7-shi-yong/index.html">
+<meta property="og:title" content="Java快读">
+<meta property="og:url" content="https://sundongyu.github.io/2022/06/01/java-kuai-du/index.html">
 <meta property="og:site_name" content="樱花小镇">
-<meta property="og:description" content="通过Centos7学习Linux操作系统，记录LInux知识及使用方法。">
+<meta property="og:description" content="由于经常使用Java写算法题，遇到各种超时，都是由于Java的输入(Scaner)输入太慢导致的，今天总结一下JavaIO中的快速读入类和输出类，封装成一个读入类，以便日后使用。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/8db82b9b9ee543c5b81288572b5ea197.png">
-<meta property="article:published_time" content="2022-05-20T04:16:39.000Z">
-<meta property="article:modified_time" content="2022-06-01T02:06:22.007Z">
+<meta property="article:published_time" content="2022-06-01T10:45:05.000Z">
+<meta property="article:modified_time" content="2022-06-01T14:16:40.137Z">
 <meta property="article:author" content="dongyu sun">
-<meta property="article:tag" content="Centos7">
+<meta property="article:tag" content="快读">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/8db82b9b9ee543c5b81288572b5ea197.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Centos7使用 - 樱花小镇</title>
+  <title>Java快读 - 樱花小镇</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -198,7 +196,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Centos7使用"></span>
+            <span id="subtitle" data-typed-text="Java快读"></span>
           
         </div>
 
@@ -209,8 +207,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-05-20 12:16" pubdate>
-          2022年5月20日 中午
+        <time datetime="2022-06-01 18:45" pubdate>
+          2022年6月1日 晚上
         </time>
       </span>
     
@@ -221,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.7k 字
+          1.6k 字
         
       </span>
     
@@ -232,7 +230,7 @@
         
         
         
-          15 分钟
+          14 分钟
         
       </span>
     
@@ -288,89 +286,30 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Centos7使用</h1>
+            <h1 style="display: none">Java快读</h1>
             
             <div class="markdown-body">
               
               <blockquote>
-<p>通过Centos7学习Linux操作系统，记录LInux知识及使用方法。</p>
+<p>由于经常使用Java写算法题，遇到各种超时，都是由于Java的输入(Scaner)输入太慢导致的，今天总结一下JavaIO中的快速读入类和输出类，封装成一个读入类，以便日后使用。</p>
 </blockquote>
 <span id="more"></span>
 
-<h1 id="1-相关资料"><a href="#1-相关资料" class="headerlink" title="1. 相关资料"></a>1. 相关资料</h1><p>安装步骤参考一下链接：</p>
-<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1854155">https://cloud.tencent.com/developer/article/1854155</a> </p>
-<p>CentOS 7学习笔记<br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1488389">https://cloud.tencent.com/developer/article/1488389</a> </p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u010993514/article/details/83188197">https://blog.csdn.net/u010993514/article/details/83188197</a> </p>
-<p>关于Linux更完整的教程，推荐菜鸟网络的Linux教程：</p>
-<p><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-tutorial.html">https://www.runoob.com/linux/linux-tutorial.html</a> </p>
-<p>在Windows系统中安装SSH连接工具 XShell，并掌握使用XShell访问Linux虚拟机的方法。</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43585157/article/details/106992907">https://blog.csdn.net/qq_43585157/article/details/106992907</a> </p>
-<h1 id="2-分区"><a href="#2-分区" class="headerlink" title="2. 分区"></a>2. 分区</h1><p>以磁盘总空间20G为例</p>
-<p>bool分区 —– 1G    标准分区   ext4</p>
-<p>swap分区 ——内存大小  标准分区   swap</p>
-<blockquote>
-<p> 内存不够时将临时充当内存</p>
-</blockquote>
-<p>根分区 —– 剩余空间   标准分区   ext4</p>
-<h1 id="3-三种网络连接方式"><a href="#3-三种网络连接方式" class="headerlink" title="3. 三种网络连接方式"></a>3. 三种网络连接方式</h1><h2 id="3-1-桥接模式"><a href="#3-1-桥接模式" class="headerlink" title="3.1 桥接模式"></a>3.1 桥接模式</h2><blockquote>
-<p> 直接连接物理网络，和主机IP在同一个网段，虚拟系统，可以和外界通讯，但是容易造成IP冲突。</p>
-</blockquote>
-<h2 id="3-2-NAT模式"><a href="#3-2-NAT模式" class="headerlink" title="3.2 NAT模式"></a>3.2 NAT模式</h2><blockquote>
-<p> 用于共享主机的IP地址，网络地址转换模式，虚拟系统可以通过代理和外界通讯，不造成ip冲突。但是外界没法和内网通讯。</p>
-</blockquote>
-<h2 id="3-3-仅主机模式"><a href="#3-3-仅主机模式" class="headerlink" title="3.3 仅主机模式"></a>3.3 仅主机模式</h2><blockquote>
-<p> 与主机共享的专用网络</p>
-</blockquote>
-<p><img src="https://img-blog.csdnimg.cn/8db82b9b9ee543c5b81288572b5ea197.png" srcset="/img/loading.gif" lazyload alt="网络连接三种模式图"></p>
-<h1 id="4-VMtools"><a href="#4-VMtools" class="headerlink" title="4. VMtools"></a>4. VMtools</h1><blockquote>
-<p>一款VMware的用于帮助我们更好的管理vm虚拟机的工具，可以设置windows和centos共享文件夹。</p>
-</blockquote>
-<p>windows端设置的共享文件夹在centos中保存在<code>/mnt/hgfs</code>位置。</p>
-<p><strong>&#x2F;mnt</strong>：系统提供该目录是为了让用户临时挂载别的文件系统的，我们可以将光驱挂载在 &#x2F;mnt&#x2F; 上，然后进入该目录就可以查看光驱里的内容了。</p>
-<p>注意事项：在实际生产工程中时使用远程方式实现文件传输和共享。</p>
-<h1 id="5-Linux的目录结构"><a href="#5-Linux的目录结构" class="headerlink" title="5. Linux的目录结构"></a>5. Linux的目录结构</h1><p>主体结构要记住。</p>
-<p><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-system-contents.html">Linux系统目录结构</a></p>
-<p>LInux下面一切皆为文件，硬件都当做一个文件对待。</p>
-<h1 id="6-远程登录Linux服务器"><a href="#6-远程登录Linux服务器" class="headerlink" title="6. 远程登录Linux服务器"></a>6. 远程登录Linux服务器</h1><p><strong>为什么要远程登录？</strong></p>
-<ol>
-<li>linux服务器是开发小组共享</li>
-<li>正式上线的项目是运行在公网上的</li>
-</ol>
-<p><strong>怎么远程登录？</strong></p>
-<p>使用工具<code>xshell</code></p>
-<p><strong>怎么文件上传下载？</strong></p>
-<p>使用工具<code>xftp</code></p>
-<h2 id="6-1-xshell"><a href="#6-1-xshell" class="headerlink" title="6.1 xshell"></a>6.1 xshell</h2><p>第一步：获取centosip地址</p>
-<p>使用指令：<code>ifconfig</code></p>
-<p>第二步：在windows端测试能不能ping通这个ip地址</p>
-<p>第三步：打开xshell(或者使用windows的powershell进行ssh连接)，输入主机：ip地址。</p>
-<h2 id="6-2-xftp"><a href="#6-2-xftp" class="headerlink" title="6.2 xftp"></a>6.2 xftp</h2><p>协议：SFTP</p>
-<p>端口号：22</p>
-<p>注意：中文乱码设置编码为UTF-8</p>
-<h2 id="7-关机和重启"><a href="#7-关机和重启" class="headerlink" title="7. 关机和重启"></a>7. 关机和重启</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs awk">shutdown -h now    <span class="hljs-regexp">//</span> 立刻关机<br>shutdown -h <span class="hljs-number">1</span>		<span class="hljs-regexp">//</span> 一分钟后关机<br>halt			<span class="hljs-regexp">//</span> 关机<br>reboot			<span class="hljs-regexp">//</span> 重启<br>sync			<span class="hljs-regexp">//</span> 把内存的数据同步到磁盘<br></code></pre></td></tr></table></figure>
+<h2 id="StreamTokenizer"><a href="#StreamTokenizer" class="headerlink" title="StreamTokenizer"></a>StreamTokenizer</h2><p>我们在使用StreamTokenizer时一般只用来处理数字的输入(type : double)，对于字符串不使用上面的<code>sval</code>即上面的readLine()方法，因为<code>sval</code>只会读取字母，对于特殊符号和数字不会读取，读入的会是null。</p>
+<p>所以如果我们遇到读字符串的还是老老实实的使用BufferedReader。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">StreamTokenizer</span> <span class="hljs-variable">token</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StreamTokenizer</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InputStreamReader</span>(System.in)));<br>token.nextToken(); <span class="hljs-comment">// 获取下一个令牌，每次输入之前都必须写一次</span><br><span class="hljs-comment">// 读入int</span><br><span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> (<span class="hljs-type">int</span>)token.nval;<br><span class="hljs-comment">// 读入double</span><br>token.nextToken();<br><span class="hljs-type">double</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> token.nval;<br>System.out.println(i);<br>System.out.println(j);<br></code></pre></td></tr></table></figure>
 
-<ol>
-<li>不管是重启系统还是关闭系统，首先要运行sync命令，把内存的数据写入文件。</li>
-<li>目前shutdown&#x2F;reboot&#x2F;halt 等均已经在关机之前进行了sync，小心使得万年船。</li>
-</ol>
-<h2 id="8-用户登录和注销"><a href="#8-用户登录和注销" class="headerlink" title="8. 用户登录和注销"></a>8. 用户登录和注销</h2><blockquote>
-<p>一般不使用root账号登录，因为他的权限最大，避免误操作，可以利用普通用户登录，然后需要的时候切换到root用户。</p>
-</blockquote>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs stata"><span class="hljs-comment">// 切换普通用户</span><br><span class="hljs-keyword">su</span> 用户名<br><span class="hljs-comment">// 切换root用户</span><br><span class="hljs-keyword">su</span><br><span class="hljs-keyword">su</span> - root<br></code></pre></td></tr></table></figure>
+<p>每次输入都需要<code>token.nextToken()</code>，很麻烦，后面将他写进输入类。</p>
+<h2 id="BufferReader"><a href="#BufferReader" class="headerlink" title="BufferReader"></a>BufferReader</h2><p>读取字符串比较方便，可以直接读进缓存区中，但是读取整数比较麻烦，是通过字符转换为整型的方式，范围较小。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">BufferedReader</span> <span class="hljs-variable">buff</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InputStreamReader</span>(System.in));<br>buff.readLine(); <span class="hljs-comment">// 读取一行字符串</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="su-与-su-root-的区别"><a href="#su-与-su-root-的区别" class="headerlink" title="su 与 su-root 的区别"></a>su 与 su-root 的区别</h3><p><strong>1.共同点：都是切换进入root用户</strong><br><strong>2.不同点：</strong></p>
-<ol>
-<li>su切换后只获得权限，工作环境不改变，su - 不仅获得权限，而且改变工作环境</li>
-<li>最直接的区别还是：su之后你的目录依然是你的用户端的目录，但是su-之后你的目录就真的变成了root的目录</li>
-</ol>
-<p>注意：当使用su - root 进入root环境时，可以输入<code>logout</code>退出root环境。</p>
-<h2 id="9-用户管理"><a href="#9-用户管理" class="headerlink" title="9. 用户管理"></a>9. 用户管理</h2><h3 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h3><h4 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h4><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">useradd [-d 目录] 用户名   <span class="hljs-regexp">//</span> 新建用户【指定home目录】<br>passwd 用户名			<span class="hljs-regexp">//</span> 设置密码<br></code></pre></td></tr></table></figure>
+<h2 id="PrintWriter"><a href="#PrintWriter" class="headerlink" title="PrintWriter"></a>PrintWriter</h2><p>快速输出已经做到了小而美，又快又好，所以没有必要封装成工具类，而且输出是有异常抛出的，处理异常严重影响做题效率的，而且输出就一句代码，没有必要封装成工具类了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">PrintWriter</span> <span class="hljs-variable">print</span> <span class="hljs-operator">=</span> ne w <span class="hljs-title function_">PrintWriter</span><span class="hljs-params">(new BufferedWriter(System.out)</span>);<br>print.print(<span class="hljs-type">int</span>/<span class="hljs-type">double</span>/<span class="hljs-type">float</span>/<span class="hljs-type">char</span>/String/<span class="hljs-type">boolean</span>/<span class="hljs-type">char</span>[]/object/);<br>print.println(<span class="hljs-string">&quot;参数同上&quot;</span>)<br><span class="hljs-comment">// 注意：代码结束一定要将缓冲刷新</span><br>print.flush();<br></code></pre></td></tr></table></figure>
 
-<p>默认添加的用户的<code>home</code>目录在<code>/home</code></p>
-<h4 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h4><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">userdel [-r] 用户名   <span class="hljs-regexp">//</span> 删除用户【是否删除home目录】<br></code></pre></td></tr></table></figure>
 
-<h4 id="查询用户"><a href="#查询用户" class="headerlink" title="查询用户"></a>查询用户</h4><p><code>id 用户名</code></p>
-<h3 id="切换用户"><a href="#切换用户" class="headerlink" title="切换用户"></a>切换用户</h3><p><code>su - 用户名</code></p>
+
+<h2 id="封装工具类Read"><a href="#封装工具类Read" class="headerlink" title="封装工具类Read"></a>封装工具类Read</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.io.*;<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> 孙东宇</span><br><span class="hljs-comment"> * 创建时间：2022/06/01</span><br><span class="hljs-comment"> * 介绍：每次写题是可以直接粘贴到代码中，实现快速读写。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Read</span> &#123;<br>    <span class="hljs-keyword">static</span> <span class="hljs-type">BufferedReader</span> <span class="hljs-variable">bufferedReader</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InputStreamReader</span>(System.in));<br>    <span class="hljs-keyword">static</span> <span class="hljs-type">StreamTokenizer</span> <span class="hljs-variable">streamTokenizer</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StreamTokenizer</span>(bufferedReader);<br><br>    <span class="hljs-comment">// 读数字</span><br>    <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">nextInt</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        streamTokenizer.nextToken();<br>        <span class="hljs-keyword">return</span> (<span class="hljs-type">int</span>) streamTokenizer.nval;<br>    &#125;<br><br>    <span class="hljs-keyword">static</span> <span class="hljs-type">double</span> <span class="hljs-title function_">nextDouble</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        streamTokenizer.nextToken();<br>        <span class="hljs-keyword">return</span> streamTokenizer.nval;<br>    &#125;<br><br>    <span class="hljs-comment">// 读取字符串</span><br>    <span class="hljs-keyword">static</span> String <span class="hljs-title function_">next</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-keyword">return</span> bufferedReader.readLine();<br>    &#125;<br>    <br>&#125;<br><br></code></pre></td></tr></table></figure>
+
 
               
             </div>
@@ -388,7 +327,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Linux/" class="category-chain-item">Linux</a>
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
   
   
 
@@ -403,7 +342,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Centos7/">#Centos7</a>
+        <a href="/tags/%E5%BF%AB%E8%AF%BB/">#快读</a>
       
     </div>
   
@@ -415,8 +354,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Centos7使用</div>
-      <div>https://sundongyu.github.io/2022/05/20/centos7-shi-yong/</div>
+      <div>Java快读</div>
+      <div>https://sundongyu.github.io/2022/06/01/java-kuai-du/</div>
     </div>
     <div class="license-meta">
       
@@ -428,7 +367,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年5月20日</div>
+          <div>2022年6月1日</div>
         </div>
       
       
@@ -458,18 +397,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/05/24/shu-qi-ji-hua/" title="暑期计划">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">暑期计划</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/05/15/java-scanner-lei-xiang-jie/" title="Java_Scanner类详解">
-                        <span class="hidden-mobile">Java_Scanner类详解</span>
+                      <a href="/2022/05/28/lu-fei-de-java-xue-xi-lu-xian/" title="路飞的java学习路线">
+                        <span class="hidden-mobile">路飞的java学习路线</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
