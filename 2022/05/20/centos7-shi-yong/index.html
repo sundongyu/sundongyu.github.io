@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/8db82b9b9ee543c5b81288572b5ea197.png">
 <meta property="article:published_time" content="2022-05-20T04:16:39.000Z">
-<meta property="article:modified_time" content="2022-06-01T02:06:22.007Z">
+<meta property="article:modified_time" content="2022-06-18T03:53:03.531Z">
 <meta property="article:author" content="dongyu sun">
 <meta property="article:tag" content="Centos7">
 <meta name="twitter:card" content="summary_large_image">
@@ -221,7 +221,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.7k 字
+          2.1k 字
         
       </span>
     
@@ -232,7 +232,7 @@
         
         
         
-          15 分钟
+          18 分钟
         
       </span>
     
@@ -347,13 +347,13 @@
 <h2 id="6-2-xftp"><a href="#6-2-xftp" class="headerlink" title="6.2 xftp"></a>6.2 xftp</h2><p>协议：SFTP</p>
 <p>端口号：22</p>
 <p>注意：中文乱码设置编码为UTF-8</p>
-<h2 id="7-关机和重启"><a href="#7-关机和重启" class="headerlink" title="7. 关机和重启"></a>7. 关机和重启</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs awk">shutdown -h now    <span class="hljs-regexp">//</span> 立刻关机<br>shutdown -h <span class="hljs-number">1</span>		<span class="hljs-regexp">//</span> 一分钟后关机<br>halt			<span class="hljs-regexp">//</span> 关机<br>reboot			<span class="hljs-regexp">//</span> 重启<br>sync			<span class="hljs-regexp">//</span> 把内存的数据同步到磁盘<br></code></pre></td></tr></table></figure>
+<h1 id="7-关机和重启"><a href="#7-关机和重启" class="headerlink" title="7. 关机和重启"></a>7. 关机和重启</h1><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs awk">shutdown -h now    <span class="hljs-regexp">//</span> 立刻关机<br>shutdown -h <span class="hljs-number">1</span>		<span class="hljs-regexp">//</span> 一分钟后关机<br>halt			<span class="hljs-regexp">//</span> 关机<br>reboot			<span class="hljs-regexp">//</span> 重启<br>sync			<span class="hljs-regexp">//</span> 把内存的数据同步到磁盘<br></code></pre></td></tr></table></figure>
 
 <ol>
 <li>不管是重启系统还是关闭系统，首先要运行sync命令，把内存的数据写入文件。</li>
 <li>目前shutdown&#x2F;reboot&#x2F;halt 等均已经在关机之前进行了sync，小心使得万年船。</li>
 </ol>
-<h2 id="8-用户登录和注销"><a href="#8-用户登录和注销" class="headerlink" title="8. 用户登录和注销"></a>8. 用户登录和注销</h2><blockquote>
+<h1 id="8-用户登录和注销"><a href="#8-用户登录和注销" class="headerlink" title="8. 用户登录和注销"></a>8. 用户登录和注销</h1><blockquote>
 <p>一般不使用root账号登录，因为他的权限最大，避免误操作，可以利用普通用户登录，然后需要的时候切换到root用户。</p>
 </blockquote>
 <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs stata"><span class="hljs-comment">// 切换普通用户</span><br><span class="hljs-keyword">su</span> 用户名<br><span class="hljs-comment">// 切换root用户</span><br><span class="hljs-keyword">su</span><br><span class="hljs-keyword">su</span> - root<br></code></pre></td></tr></table></figure>
@@ -364,14 +364,28 @@
 <li>最直接的区别还是：su之后你的目录依然是你的用户端的目录，但是su-之后你的目录就真的变成了root的目录</li>
 </ol>
 <p>注意：当使用su - root 进入root环境时，可以输入<code>logout</code>退出root环境。</p>
-<h2 id="9-用户管理"><a href="#9-用户管理" class="headerlink" title="9. 用户管理"></a>9. 用户管理</h2><h3 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h3><h4 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h4><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">useradd [-d 目录] 用户名   <span class="hljs-regexp">//</span> 新建用户【指定home目录】<br>passwd 用户名			<span class="hljs-regexp">//</span> 设置密码<br></code></pre></td></tr></table></figure>
+<h1 id="9-用户管理"><a href="#9-用户管理" class="headerlink" title="9. 用户管理"></a>9. 用户管理</h1><h3 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h3><h4 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h4><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">useradd [-d 目录] 用户名   <span class="hljs-regexp">//</span> 新建用户【指定home目录】<br>passwd 用户名			<span class="hljs-regexp">//</span> 设置密码<br></code></pre></td></tr></table></figure>
 
 <p>默认添加的用户的<code>home</code>目录在<code>/home</code></p>
 <h4 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h4><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">userdel [-r] 用户名   <span class="hljs-regexp">//</span> 删除用户【是否删除home目录】<br></code></pre></td></tr></table></figure>
 
 <h4 id="查询用户"><a href="#查询用户" class="headerlink" title="查询用户"></a>查询用户</h4><p><code>id 用户名</code></p>
 <h3 id="切换用户"><a href="#切换用户" class="headerlink" title="切换用户"></a>切换用户</h3><p><code>su - 用户名</code></p>
-
+<h3 id="查看当前用户"><a href="#查看当前用户" class="headerlink" title="查看当前用户"></a>查看当前用户</h3><p><code>who am i</code></p>
+<h1 id="10-用户组"><a href="#10-用户组" class="headerlink" title="10.用户组"></a>10.用户组</h1><blockquote>
+<p>将相关用户添加到一个组中，方便统一管理</p>
+</blockquote>
+<h3 id="添加删除组"><a href="#添加删除组" class="headerlink" title="添加删除组"></a>添加删除组</h3><p><code>groupadd 组名</code></p>
+<p><code>groupdel 组名</code></p>
+<h3 id="增加用户时直接加上组"><a href="#增加用户时直接加上组" class="headerlink" title="增加用户时直接加上组"></a><strong>增加用户时直接加上组</strong></h3><p><code>useradd -g 用户组 用户名</code></p>
+<h3 id="修改用户组名"><a href="#修改用户组名" class="headerlink" title="修改用户组名"></a>修改用户组名</h3><p><code>usermod -g 组名 用户名</code></p>
+<h1 id="11-用户相关文件"><a href="#11-用户相关文件" class="headerlink" title="11.用户相关文件"></a>11.用户相关文件</h1><h3 id="x2F-etc-x2F-passwd"><a href="#x2F-etc-x2F-passwd" class="headerlink" title="&#x2F;etc&#x2F;passwd"></a>&#x2F;etc&#x2F;passwd</h3><p>用户的配置文件，记录用户的各种信息</p>
+<p>用户名：口令：用户标识号：组标识号：注释性描述：主目录：登录shell</p>
+<h3 id="x2F-etc-x2F-shadow"><a href="#x2F-etc-x2F-shadow" class="headerlink" title="&#x2F;etc&#x2F;shadow"></a>&#x2F;etc&#x2F;shadow</h3><p>口令的配置文件</p>
+<p>登录名：加密口令：最后一次修改时间：最小时间间隔：最大时间间隔：警告时间：不活动时间：失效时间：标志</p>
+<h3 id="x2F-etc-x2F-group"><a href="#x2F-etc-x2F-group" class="headerlink" title="&#x2F;etc&#x2F;group"></a>&#x2F;etc&#x2F;group</h3><p>组的配置文件，记录Linux包含的组的信息</p>
+<p>组名：口令：组织标号：组内用户列表</p>
+<h1 id="12-运行界别"><a href="#12-运行界别" class="headerlink" title="12.运行界别"></a>12.运行界别</h1>
               
             </div>
             <hr/>
