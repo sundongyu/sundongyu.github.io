@@ -2432,4 +2432,34 @@
         <tag>LeetCode</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Git安装教程</title>
+    <url>/2022/06/25/git-an-zhuang-jiao-cheng/</url>
+    <content><![CDATA[<blockquote>
+<p>记录给git安装过程，防止以后忘记，从安装到绑定远程仓库</p>
+</blockquote>
+<span id="more"></span>
+
+<ol>
+<li><p>官网下载安装包</p>
+</li>
+<li><p><code>git --version</code>检测是否安装成功</p>
+</li>
+<li><p>添加密钥</p>
+<p><code>ssh-keygen -t rsa -C &quot;xxx@xxx.com&quot;</code>，三次回车</p>
+</li>
+<li><p>到<code>/c/Users/dongyusun/.ssh/id_rsa.pub</code>寻找ssh公钥</p>
+</li>
+<li><p>添加到gitee中(查看详细教程)</p>
+<p><code>https://gitee.com/help/articles/4181#article-header0</code></p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
 </search>
