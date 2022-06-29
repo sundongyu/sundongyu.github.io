@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/8db82b9b9ee543c5b81288572b5ea197.png">
 <meta property="article:published_time" content="2022-05-20T04:16:39.000Z">
-<meta property="article:modified_time" content="2022-06-18T03:53:03.531Z">
+<meta property="article:modified_time" content="2022-06-29T14:16:43.597Z">
 <meta property="article:author" content="dongyu sun">
 <meta property="article:tag" content="Centos7">
 <meta name="twitter:card" content="summary_large_image">
@@ -221,7 +221,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.1k 字
+          3.4k 字
         
       </span>
     
@@ -232,7 +232,7 @@
         
         
         
-          18 分钟
+          29 分钟
         
       </span>
     
@@ -297,7 +297,7 @@
 </blockquote>
 <span id="more"></span>
 
-<h1 id="1-相关资料"><a href="#1-相关资料" class="headerlink" title="1. 相关资料"></a>1. 相关资料</h1><p>安装步骤参考一下链接：</p>
+<h1 id="1、相关资料"><a href="#1、相关资料" class="headerlink" title="1、相关资料"></a>1、相关资料</h1><p>安装步骤参考一下链接：</p>
 <p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1854155">https://cloud.tencent.com/developer/article/1854155</a> </p>
 <p>CentOS 7学习笔记<br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1488389">https://cloud.tencent.com/developer/article/1488389</a> </p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u010993514/article/details/83188197">https://blog.csdn.net/u010993514/article/details/83188197</a> </p>
@@ -305,14 +305,14 @@
 <p><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-tutorial.html">https://www.runoob.com/linux/linux-tutorial.html</a> </p>
 <p>在Windows系统中安装SSH连接工具 XShell，并掌握使用XShell访问Linux虚拟机的方法。</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43585157/article/details/106992907">https://blog.csdn.net/qq_43585157/article/details/106992907</a> </p>
-<h1 id="2-分区"><a href="#2-分区" class="headerlink" title="2. 分区"></a>2. 分区</h1><p>以磁盘总空间20G为例</p>
+<h1 id="2、分区"><a href="#2、分区" class="headerlink" title="2、分区"></a>2、分区</h1><p>以磁盘总空间20G为例</p>
 <p>bool分区 —– 1G    标准分区   ext4</p>
 <p>swap分区 ——内存大小  标准分区   swap</p>
 <blockquote>
 <p> 内存不够时将临时充当内存</p>
 </blockquote>
 <p>根分区 —– 剩余空间   标准分区   ext4</p>
-<h1 id="3-三种网络连接方式"><a href="#3-三种网络连接方式" class="headerlink" title="3. 三种网络连接方式"></a>3. 三种网络连接方式</h1><h2 id="3-1-桥接模式"><a href="#3-1-桥接模式" class="headerlink" title="3.1 桥接模式"></a>3.1 桥接模式</h2><blockquote>
+<h1 id="3、三种网络连接方式"><a href="#3、三种网络连接方式" class="headerlink" title="3、三种网络连接方式"></a>3、三种网络连接方式</h1><h2 id="3-1-桥接模式"><a href="#3-1-桥接模式" class="headerlink" title="3.1 桥接模式"></a>3.1 桥接模式</h2><blockquote>
 <p> 直接连接物理网络，和主机IP在同一个网段，虚拟系统，可以和外界通讯，但是容易造成IP冲突。</p>
 </blockquote>
 <h2 id="3-2-NAT模式"><a href="#3-2-NAT模式" class="headerlink" title="3.2 NAT模式"></a>3.2 NAT模式</h2><blockquote>
@@ -322,16 +322,16 @@
 <p> 与主机共享的专用网络</p>
 </blockquote>
 <p><img src="https://img-blog.csdnimg.cn/8db82b9b9ee543c5b81288572b5ea197.png" srcset="/img/loading.gif" lazyload alt="网络连接三种模式图"></p>
-<h1 id="4-VMtools"><a href="#4-VMtools" class="headerlink" title="4. VMtools"></a>4. VMtools</h1><blockquote>
+<h1 id="4、VMtools"><a href="#4、VMtools" class="headerlink" title="4、VMtools"></a>4、VMtools</h1><blockquote>
 <p>一款VMware的用于帮助我们更好的管理vm虚拟机的工具，可以设置windows和centos共享文件夹。</p>
 </blockquote>
 <p>windows端设置的共享文件夹在centos中保存在<code>/mnt/hgfs</code>位置。</p>
 <p><strong>&#x2F;mnt</strong>：系统提供该目录是为了让用户临时挂载别的文件系统的，我们可以将光驱挂载在 &#x2F;mnt&#x2F; 上，然后进入该目录就可以查看光驱里的内容了。</p>
 <p>注意事项：在实际生产工程中时使用远程方式实现文件传输和共享。</p>
-<h1 id="5-Linux的目录结构"><a href="#5-Linux的目录结构" class="headerlink" title="5. Linux的目录结构"></a>5. Linux的目录结构</h1><p>主体结构要记住。</p>
+<h1 id="5、Linux的目录结构"><a href="#5、Linux的目录结构" class="headerlink" title="5、Linux的目录结构"></a>5、Linux的目录结构</h1><p>主体结构要记住。</p>
 <p><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-system-contents.html">Linux系统目录结构</a></p>
 <p>LInux下面一切皆为文件，硬件都当做一个文件对待。</p>
-<h1 id="6-远程登录Linux服务器"><a href="#6-远程登录Linux服务器" class="headerlink" title="6. 远程登录Linux服务器"></a>6. 远程登录Linux服务器</h1><p><strong>为什么要远程登录？</strong></p>
+<h1 id="6、远程登录Linux服务器"><a href="#6、远程登录Linux服务器" class="headerlink" title="6、远程登录Linux服务器"></a>6、远程登录Linux服务器</h1><p><strong>为什么要远程登录？</strong></p>
 <ol>
 <li>linux服务器是开发小组共享</li>
 <li>正式上线的项目是运行在公网上的</li>
@@ -347,13 +347,13 @@
 <h2 id="6-2-xftp"><a href="#6-2-xftp" class="headerlink" title="6.2 xftp"></a>6.2 xftp</h2><p>协议：SFTP</p>
 <p>端口号：22</p>
 <p>注意：中文乱码设置编码为UTF-8</p>
-<h1 id="7-关机和重启"><a href="#7-关机和重启" class="headerlink" title="7. 关机和重启"></a>7. 关机和重启</h1><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs awk">shutdown -h now    <span class="hljs-regexp">//</span> 立刻关机<br>shutdown -h <span class="hljs-number">1</span>		<span class="hljs-regexp">//</span> 一分钟后关机<br>halt			<span class="hljs-regexp">//</span> 关机<br>reboot			<span class="hljs-regexp">//</span> 重启<br>sync			<span class="hljs-regexp">//</span> 把内存的数据同步到磁盘<br></code></pre></td></tr></table></figure>
+<h1 id="7、关机和重启"><a href="#7、关机和重启" class="headerlink" title="7、关机和重启"></a>7、关机和重启</h1><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs awk">shutdown -h now    <span class="hljs-regexp">//</span> 立刻关机<br>shutdown -h <span class="hljs-number">1</span>		<span class="hljs-regexp">//</span> 一分钟后关机<br>halt			<span class="hljs-regexp">//</span> 关机<br>reboot			<span class="hljs-regexp">//</span> 重启<br>sync			<span class="hljs-regexp">//</span> 把内存的数据同步到磁盘<br></code></pre></td></tr></table></figure>
 
 <ol>
 <li>不管是重启系统还是关闭系统，首先要运行sync命令，把内存的数据写入文件。</li>
 <li>目前shutdown&#x2F;reboot&#x2F;halt 等均已经在关机之前进行了sync，小心使得万年船。</li>
 </ol>
-<h1 id="8-用户登录和注销"><a href="#8-用户登录和注销" class="headerlink" title="8. 用户登录和注销"></a>8. 用户登录和注销</h1><blockquote>
+<h1 id="8、用户登录和注销"><a href="#8、用户登录和注销" class="headerlink" title="8、用户登录和注销"></a>8、用户登录和注销</h1><blockquote>
 <p>一般不使用root账号登录，因为他的权限最大，避免误操作，可以利用普通用户登录，然后需要的时候切换到root用户。</p>
 </blockquote>
 <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs stata"><span class="hljs-comment">// 切换普通用户</span><br><span class="hljs-keyword">su</span> 用户名<br><span class="hljs-comment">// 切换root用户</span><br><span class="hljs-keyword">su</span><br><span class="hljs-keyword">su</span> - root<br></code></pre></td></tr></table></figure>
@@ -364,7 +364,7 @@
 <li>最直接的区别还是：su之后你的目录依然是你的用户端的目录，但是su-之后你的目录就真的变成了root的目录</li>
 </ol>
 <p>注意：当使用su - root 进入root环境时，可以输入<code>logout</code>退出root环境。</p>
-<h1 id="9-用户管理"><a href="#9-用户管理" class="headerlink" title="9. 用户管理"></a>9. 用户管理</h1><h3 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h3><h4 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h4><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">useradd [-d 目录] 用户名   <span class="hljs-regexp">//</span> 新建用户【指定home目录】<br>passwd 用户名			<span class="hljs-regexp">//</span> 设置密码<br></code></pre></td></tr></table></figure>
+<h1 id="9、用户管理"><a href="#9、用户管理" class="headerlink" title="9、用户管理"></a>9、用户管理</h1><h3 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h3><h4 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h4><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">useradd [-d 目录] 用户名   <span class="hljs-regexp">//</span> 新建用户【指定home目录】<br>passwd 用户名			<span class="hljs-regexp">//</span> 设置密码<br></code></pre></td></tr></table></figure>
 
 <p>默认添加的用户的<code>home</code>目录在<code>/home</code></p>
 <h4 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h4><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">userdel [-r] 用户名   <span class="hljs-regexp">//</span> 删除用户【是否删除home目录】<br></code></pre></td></tr></table></figure>
@@ -372,20 +372,120 @@
 <h4 id="查询用户"><a href="#查询用户" class="headerlink" title="查询用户"></a>查询用户</h4><p><code>id 用户名</code></p>
 <h3 id="切换用户"><a href="#切换用户" class="headerlink" title="切换用户"></a>切换用户</h3><p><code>su - 用户名</code></p>
 <h3 id="查看当前用户"><a href="#查看当前用户" class="headerlink" title="查看当前用户"></a>查看当前用户</h3><p><code>who am i</code></p>
-<h1 id="10-用户组"><a href="#10-用户组" class="headerlink" title="10.用户组"></a>10.用户组</h1><blockquote>
+<h1 id="10、用户组"><a href="#10、用户组" class="headerlink" title="10、用户组"></a>10、用户组</h1><blockquote>
 <p>将相关用户添加到一个组中，方便统一管理</p>
 </blockquote>
 <h3 id="添加删除组"><a href="#添加删除组" class="headerlink" title="添加删除组"></a>添加删除组</h3><p><code>groupadd 组名</code></p>
 <p><code>groupdel 组名</code></p>
 <h3 id="增加用户时直接加上组"><a href="#增加用户时直接加上组" class="headerlink" title="增加用户时直接加上组"></a><strong>增加用户时直接加上组</strong></h3><p><code>useradd -g 用户组 用户名</code></p>
 <h3 id="修改用户组名"><a href="#修改用户组名" class="headerlink" title="修改用户组名"></a>修改用户组名</h3><p><code>usermod -g 组名 用户名</code></p>
-<h1 id="11-用户相关文件"><a href="#11-用户相关文件" class="headerlink" title="11.用户相关文件"></a>11.用户相关文件</h1><h3 id="x2F-etc-x2F-passwd"><a href="#x2F-etc-x2F-passwd" class="headerlink" title="&#x2F;etc&#x2F;passwd"></a>&#x2F;etc&#x2F;passwd</h3><p>用户的配置文件，记录用户的各种信息</p>
+<h1 id="11、用户相关文件"><a href="#11、用户相关文件" class="headerlink" title="11、用户相关文件"></a>11、用户相关文件</h1><h3 id="x2F-etc-x2F-passwd"><a href="#x2F-etc-x2F-passwd" class="headerlink" title="&#x2F;etc&#x2F;passwd"></a>&#x2F;etc&#x2F;passwd</h3><p>用户的配置文件，记录用户的各种信息</p>
 <p>用户名：口令：用户标识号：组标识号：注释性描述：主目录：登录shell</p>
 <h3 id="x2F-etc-x2F-shadow"><a href="#x2F-etc-x2F-shadow" class="headerlink" title="&#x2F;etc&#x2F;shadow"></a>&#x2F;etc&#x2F;shadow</h3><p>口令的配置文件</p>
 <p>登录名：加密口令：最后一次修改时间：最小时间间隔：最大时间间隔：警告时间：不活动时间：失效时间：标志</p>
 <h3 id="x2F-etc-x2F-group"><a href="#x2F-etc-x2F-group" class="headerlink" title="&#x2F;etc&#x2F;group"></a>&#x2F;etc&#x2F;group</h3><p>组的配置文件，记录Linux包含的组的信息</p>
 <p>组名：口令：组织标号：组内用户列表</p>
-<h1 id="12-运行界别"><a href="#12-运行界别" class="headerlink" title="12.运行界别"></a>12.运行界别</h1>
+<h1 id="12、运行级别"><a href="#12、运行级别" class="headerlink" title="12、运行级别"></a>12、运行级别</h1><p>运行级别说明：</p>
+<p>0：关机</p>
+<p>1：单用户（找回丢失密码）</p>
+<p>2：多用户状态没有网络</p>
+<p>3：多用户状态有网络</p>
+<p>4：系统未使用保留给用户</p>
+<p>5：图形界面</p>
+<p>6：系统重启</p>
+<p><strong>常用运行级别为3和5</strong></p>
+<h2 id="切换运行级别"><a href="#切换运行级别" class="headerlink" title="切换运行级别"></a>切换运行级别</h2><p>直接在终端输入即可。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">init 0 // 关机<br>init 3 // 无界面<br>init 5 // 图形界面<br>init 6 // 重启<br></code></pre></td></tr></table></figure>
+
+<h2 id="Centos7后运行级别说明"><a href="#Centos7后运行级别说明" class="headerlink" title="Centos7后运行级别说明"></a>Centos7后运行级别说明</h2><p>在centos7之前， &#x2F;etc&#x2F;inittab 文件中，</p>
+<p>centos7之后，进行简化为两个级别：</p>
+<p>multi-user.target：级别3</p>
+<p>graphical.tatarget：级别5</p>
+<h3 id="查看默认级别"><a href="#查看默认级别" class="headerlink" title="查看默认级别"></a>查看默认级别</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">systemctl get-default<br></code></pre></td></tr></table></figure>
+
+<h3 id="设置默认界别"><a href="#设置默认界别" class="headerlink" title="设置默认界别"></a>设置默认界别</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">systemctl set-default multi-user.target   // 默认级别3<br>systemctl set-default graphical.target    // 默认级别5<br></code></pre></td></tr></table></figure>
+
+<h2 id="找回ROOT密码"><a href="#找回ROOT密码" class="headerlink" title="找回ROOT密码"></a>找回ROOT密码</h2><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1721895">博客教程</a></p>
+<h1 id="13、帮助指令"><a href="#13、帮助指令" class="headerlink" title="13、帮助指令"></a>13、帮助指令</h1><h2 id="13-1-man"><a href="#13-1-man" class="headerlink" title="13.1 man"></a>13.1 man</h2><p>基本语法：man [命令或配置文件] (功能描述：获取帮助信息)</p>
+<p>tips：在LInux下，隐藏文件是以<code>.</code> 开头</p>
+<p>选项可以组合使用</p>
+<h2 id="13-2-help"><a href="#13-2-help" class="headerlink" title="13.2 help"></a>13.2 help</h2><p>查询shell内置的帮助文档</p>
+<h2 id="13-3-借助搜索引擎"><a href="#13-3-借助搜索引擎" class="headerlink" title="13.3 借助搜索引擎"></a>13.3 借助搜索引擎</h2><ul>
+<li>百度</li>
+<li>google</li>
+<li>必应</li>
+</ul>
+<h1 id="14、文件目录"><a href="#14、文件目录" class="headerlink" title="14、文件目录"></a>14、文件目录</h1><h2 id="14-1-pwd"><a href="#14-1-pwd" class="headerlink" title="14.1 pwd"></a>14.1 pwd</h2><blockquote>
+<p>显示当前的决定路径</p>
+</blockquote>
+<h2 id="14-2-cd"><a href="#14-2-cd" class="headerlink" title="14.2 cd"></a>14.2 cd</h2><blockquote>
+<p>切换到指定路径</p>
+</blockquote>
+<h3 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h3><p><code>cd ~</code> ：回到当前用户的 <code>home</code> 目录</p>
+<p><code>cd ..</code> ：返回当前目录的上一级目录</p>
+<p><code>cd /</code> ：返回当根目录</p>
+<h2 id="14-3-mkdir"><a href="#14-3-mkdir" class="headerlink" title="14.3 mkdir"></a>14.3 mkdir</h2><blockquote>
+<p>创建目录</p>
+</blockquote>
+<h3 id="基本语法："><a href="#基本语法：" class="headerlink" title="基本语法："></a>基本语法：</h3><p>mkdir [选项] 要创建的目录</p>
+<h3 id="常见选项："><a href="#常见选项：" class="headerlink" title="常见选项："></a>常见选项：</h3><p>-p：创建多级目录</p>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">mkdir test<br>mkdir -p hello/world<br></code></pre></td></tr></table></figure>
+
+<h2 id="14-4-rmdir"><a href="#14-4-rmdir" class="headerlink" title="14.4 rmdir"></a>14.4 rmdir</h2><blockquote>
+<p>删除空目录</p>
+</blockquote>
+<h3 id="基本语法-1"><a href="#基本语法-1" class="headerlink" title="基本语法"></a>基本语法</h3><p>rmdir [选项] 要删除的<strong>空目录</strong></p>
+<p>怎么删除非空的文件夹？</p>
+<p>rm -rf &#x2F;xx&#x2F;xx&#x2F;xx</p>
+<p>这个命令是强制递归删除此文件夹下的所有东西！！！使用需要谨慎</p>
+<h2 id="14-5-touch"><a href="#14-5-touch" class="headerlink" title="14.5 touch"></a>14.5 touch</h2><blockquote>
+<p>创建一个新文件</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">touch hello.txt<br></code></pre></td></tr></table></figure>
+
+<h2 id="14-6-cp"><a href="#14-6-cp" class="headerlink" title="14.6 cp"></a>14.6 cp</h2><blockquote>
+<p>拷贝文件到指定目录</p>
+</blockquote>
+<h3 id="基本语法-2"><a href="#基本语法-2" class="headerlink" title="基本语法"></a>基本语法</h3><p>cp [选项] source dest</p>
+<h3 id="常用选项"><a href="#常用选项" class="headerlink" title="常用选项"></a>常用选项</h3><p>-r：递归复制整个文件夹</p>
+<h3 id="实例-1"><a href="#实例-1" class="headerlink" title="实例"></a>实例</h3><p>将<code>/home/sdy/desktop/test/hello.java</code> 拷贝到<code>/home/sdy/desktop/test2</code>下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">cp /home/sdy/desktop/test/hello.java /home/sdy/desktop/test2<br></code></pre></td></tr></table></figure>
+
+<h3 id="14-7-rm"><a href="#14-7-rm" class="headerlink" title="14.7 rm"></a>14.7 rm</h3><blockquote>
+<p>删除文件或者文件夹</p>
+</blockquote>
+<p>rm [选项] 要删除的文件或者目录</p>
+<h3 id="常用选项-1"><a href="#常用选项-1" class="headerlink" title="常用选项"></a>常用选项</h3><p>-r：递归删除整个文件夹</p>
+<p>-f：强制删除不提示</p>
+<h3 id="14-8-mv"><a href="#14-8-mv" class="headerlink" title="14.8 mv"></a>14.8 mv</h3><blockquote>
+<p>移动文件位置或者重命名</p>
+</blockquote>
+<p>重命名</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">mv xxname xxxname<br></code></pre></td></tr></table></figure>
+
+<p>移动文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">mv /xxx/xxx/name /yyy/yyy/name<br></code></pre></td></tr></table></figure>
+
+<p>移动整个目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">mv dirname dirname2<br></code></pre></td></tr></table></figure>
+
+<h2 id="14-9-cat"><a href="#14-9-cat" class="headerlink" title="14.9 cat"></a>14.9 cat</h2><blockquote>
+<p>查看文件内容</p>
+</blockquote>
+<p>cat [选项] 要查看的文件</p>
+<h3 id="常用选项："><a href="#常用选项：" class="headerlink" title="常用选项："></a>常用选项：</h3><p>-n：显示行号</p>
+<h3 id="使用细节"><a href="#使用细节" class="headerlink" title="使用细节"></a>使用细节</h3><p>cat 只能浏览文件，而不修改文件，一般配合管道命令 |more 处理</p>
+<h2 id="14-10-more"><a href="#14-10-more" class="headerlink" title="14.10 more"></a>14.10 more</h2><blockquote>
+<p>一个基于vi的文本过滤器，可以直接使用，也可以同过 | 和cat 组合使用</p>
+</blockquote>
+<p>空格：下翻一页</p>
+<p>回车：下翻一行</p>
+<p>q：离开，结束查看</p>
+<p>ctrl + F：向下一个屏幕</p>
+<p>ctrl + B：向上一个屏幕</p>
+<p>&#x3D; ：当前行号</p>
+<p>:f ：输出文件名和当前行的行号</p>
+
               
             </div>
             <hr/>
