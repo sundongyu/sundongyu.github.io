@@ -2561,10 +2561,4 @@
         <tag>Git</tag>
       </tags>
   </entry>
-  <entry>
-    <title>构建失败测试</title>
-    <url>/2022/06/30/gou-jian-shi-bai-ce-shi/</url>
-    <content><![CDATA[<p>今天使用githubpages 构建项目失败，现在进行测试发布博客</p>
-]]></content>
-  </entry>
 </search>
