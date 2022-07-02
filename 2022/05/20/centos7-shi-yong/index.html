@@ -24,8 +24,9 @@
 <meta property="og:description" content="通过Centos7学习Linux操作系统，记录LInux知识及使用方法。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/8db82b9b9ee543c5b81288572b5ea197.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/f5143acdbd284e5093ebcae4fd3154dc.png">
 <meta property="article:published_time" content="2022-05-20T04:16:39.000Z">
-<meta property="article:modified_time" content="2022-07-01T13:33:23.594Z">
+<meta property="article:modified_time" content="2022-07-02T12:13:19.405Z">
 <meta property="article:author" content="dongyu sun">
 <meta property="article:tag" content="Centos7">
 <meta name="twitter:card" content="summary_large_image">
@@ -221,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.5k 字
+          7.1k 字
         
       </span>
     
@@ -232,7 +233,7 @@
         
         
         
-          46 分钟
+          60 分钟
         
       </span>
     
@@ -527,7 +528,7 @@
 <p>软链接，也称为符号链接，类似于快捷方式，存放了链接其他文件的路径</p>
 </blockquote>
 <h3 id="基本语法-7"><a href="#基本语法-7" class="headerlink" title="基本语法"></a>基本语法</h3><p>ln -s [原文件或目录] [软链接名]    （功能描述：给原文件或者目录创建了一个软链接）</p>
-<h3 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h3><p>当我们使用 <code>pwd</code> 查看当前路径的时候任然看到的是软链接目录</p>
+<h3 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h3><p>当我们使用 <code>pw4d</code> 查看当前路径的时候任然看到的是软链接目录</p>
 <h2 id="14-17-history"><a href="#14-17-history" class="headerlink" title="14.17 history"></a>14.17 history</h2><blockquote>
 <p> 查看当前设备历史使用过那些指令，也可以执行历史命令</p>
 </blockquote>
@@ -618,6 +619,106 @@
 <h3 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">tar -zxvf xxx.tar.gz -C /home<br></code></pre></td></tr></table></figure>
 
 <h3 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">tar -zcvf xxx.tar.gz xxx.txt<br>tar -zcvf xxx.tar.gz xxx.txt xxx.txt xxx.txt<br>tar -zcvf xxx.tar.gz /home/<br></code></pre></td></tr></table></figure>
+
+<h1 id="18、组"><a href="#18、组" class="headerlink" title="18、组"></a>18、组</h1><blockquote>
+<p>在linux中每个用户都必须属于一个组</p>
+<p>在linux中每个文件都有所有者（一般是创建者，可以修改），所在组（组内成员对该文件拥有一定权限），其他组（所在组之外的组），三个概念</p>
+</blockquote>
+<h2 id="18-1-文件-x2F-目录所有者"><a href="#18-1-文件-x2F-目录所有者" class="headerlink" title="18.1 文件&#x2F;目录所有者"></a>18.1 文件&#x2F;目录所有者</h2><ul>
+<li><p>查看文件所有者</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">ls -ahl<br><span class="hljs-meta prompt_"># </span><span class="language-bash">-h 参数的意思以容易理解的格式列出文件大小</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>修改文件所有者</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">chown [-r] 用户名 文件名  # 是否递归子目录所有内容<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>组的创建</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">groupadd userName<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>当某一个用户创建了一个文件以后，这个文件所在组就是该用户所在的组</p>
+</blockquote>
+</li>
+<li><p>修改文件所在组</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">chgrp [-r] 组名 文件名<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="18-2-其他组"><a href="#18-2-其他组" class="headerlink" title="18.2 其他组"></a>18.2 其他组</h2><blockquote>
+<p>除文件的所有者所在的组内的用户，所有其他用户都是文件的其他组</p>
+</blockquote>
+<p>1、改变用户所在组</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">usermod -g 新组名 用户名<br></code></pre></td></tr></table></figure>
+
+<p>2、修改用户登录的初始化目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">usermod -d 目录名 用户名<br></code></pre></td></tr></table></figure>
+
+<p>:warning: 用户需要有进入到新目录的权限</p>
+<h1 id="19、权限"><a href="#19、权限" class="headerlink" title="19、权限"></a>19、权限</h1><blockquote>
+<p>当我们在终端中使用<code>ll</code>命令或者<code>ls -l</code>命令的时候显示在终端中的内容是什么意思呢？</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs shell">-rw-rw-r--. 1 sdy sdy  0 7月   2 12:46 apple.txt<br>drwxr-xr-x. 2 sdy sdy  6 6月  27 14:46 公共<br>drwxr-xr-x. 2 sdy sdy  6 6月  27 14:46 模板<br>drwxr-xr-x. 2 sdy sdy  6 6月  27 14:46 视频<br>drwxr-xr-x. 2 sdy sdy  6 6月  27 14:46 图片<br>drwxr-xr-x. 2 sdy sdy  6 6月  27 14:46 文档<br>drwxr-xr-x. 2 sdy sdy  6 6月  27 14:46 下载<br>drwxr-xr-x. 2 sdy sdy  6 6月  27 14:46 音乐<br>drwxr-xr-x. 3 sdy sdy 15 7月   2 12:39 桌面<br></code></pre></td></tr></table></figure>
+
+<p>以我的为例，每一行的第一个就是权限信息，由10个字符组成，第二个是数量（连接数量或者子目录数量），第三个是所有者，第四个是所在组，第五个是文件大小（字节数），后面是修改日期时间和文件名</p>
+<p>1、第 0 个字符表示文件类型</p>
+<p>​		l 是链接，相当于windows中的快捷方式</p>
+<p>​		d 是目录，相当于windows中的文件夹</p>
+<p>​		c 是字符设备文件，例如鼠标，键盘</p>
+<p>​		b 是块设备，比如硬盘</p>
+<p>2、第 1-3 个字符表示所有者权限</p>
+<p>3、第 4-6 个字符表示所在组（同用户组的成员）拥有该文件的权限</p>
+<p>4、第 7-9 个字符表示其他用户拥有的权限</p>
+<p><img src="https://img-blog.csdnimg.cn/f5143acdbd284e5093ebcae4fd3154dc.png" srcset="/img/loading.gif" lazyload alt="文件权限"></p>
+<h2 id="rwx权限"><a href="#rwx权限" class="headerlink" title="rwx权限"></a>rwx权限</h2><p>权限分为 3 种，<code>r,w,x</code> </p>
+<p>rwx作用到文件</p>
+<p>r             读权限（read）：读取，查看</p>
+<p>w            写权限（write）：可以修改，但是不一定能删除（当拥有上级目录的 <code>写</code> 权限时才可以删除）</p>
+<p>x             执行权限（excute）：可以被执行</p>
+<p>rwx作用到目录</p>
+<p>r             读权限（read）：可以使用 <code>ls</code> 命令查看目录内容</p>
+<p>w            写权限（write）：可以对目录内文件创建，删除及重命名目录</p>
+<p>x             执行权限（excute）：可以进入该目录</p>
+<p>也可以使用数字来表示各种权限</p>
+<p>r &#x3D; 4</p>
+<p>w &#x3D; 2</p>
+<p>x &#x3D; 1</p>
+<p>因此rwx &#x3D; 4 + 2 + 1 &#x3D; 7</p>
+<h2 id="修改rwx权限"><a href="#修改rwx权限" class="headerlink" title="修改rwx权限"></a>修改rwx权限</h2><blockquote>
+<p>通过 <code>chmod</code> 可以修改文件或者目录的权限</p>
+</blockquote>
+<p>1、使用 + - &#x3D; 变更权限</p>
+<p>u：所有者</p>
+<p>g：所有组</p>
+<p>o：其他人</p>
+<p>a：所有人</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">chmod u=rwx,g=rx,o=rx apple.txt<br><span class="hljs-meta prompt_"># </span><span class="language-bash">除去所有者执行权限</span><br>chmod u-x apple.txt<br><span class="hljs-meta prompt_"># </span><span class="language-bash">给所有用户添加读</span><br>chmod a+r apple.txt<br></code></pre></td></tr></table></figure>
+
+<p>2、 直接使用数字赋值</p>
+<p>r &#x3D; 4</p>
+<p>w &#x3D; 2</p>
+<p>x &#x3D; 1</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">chmod 777 apple.txt<br>chmod 722 apple.txt<br></code></pre></td></tr></table></figure>
+
+<h2 id="修改文件-x2F-目录所有者（owner）"><a href="#修改文件-x2F-目录所有者（owner）" class="headerlink" title="修改文件&#x2F;目录所有者（owner）"></a>修改文件&#x2F;目录所有者（owner）</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">chown newowner 文件/目录     		 # 改变所有者<br>chown newowner:newgroup 文件/目录    # 改变所有者和所在组<br>-R			      				    # 如果是目录，则使旗下所有子文件或者目录生效<br></code></pre></td></tr></table></figure>
+
+<h2 id="修改文件-x2F-目录所在组（group）"><a href="#修改文件-x2F-目录所在组（group）" class="headerlink" title="修改文件&#x2F;目录所在组（group）"></a>修改文件&#x2F;目录所在组（group）</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">chgrp newgroup 文件/目录       # 改变所有组<br>-R			      		      # 如果是目录，则使旗下所有子文件或者目录生效<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
               
