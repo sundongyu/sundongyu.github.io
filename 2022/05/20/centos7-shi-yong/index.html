@@ -25,8 +25,13 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/8db82b9b9ee543c5b81288572b5ea197.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/f5143acdbd284e5093ebcae4fd3154dc.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/1109edcad889448a8eea4329b7b38b5f.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/69e53de0b86b4cb7b0c12cfc2c06131d.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/c111a0c478af4160b6bad67ae5ac1b3c.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/33120e8917ce48d0bde4bd3cda76a875.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/d6707f4f3e854a2cae676a5f2118fc19.png">
 <meta property="article:published_time" content="2022-05-20T04:16:39.000Z">
-<meta property="article:modified_time" content="2022-07-02T12:13:19.405Z">
+<meta property="article:modified_time" content="2022-07-03T15:17:57.452Z">
 <meta property="article:author" content="dongyu sun">
 <meta property="article:tag" content="Centos7">
 <meta name="twitter:card" content="summary_large_image">
@@ -222,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          7.1k 字
+          11k 字
         
       </span>
     
@@ -233,7 +238,7 @@
         
         
         
-          60 分钟
+          90 分钟
         
       </span>
     
@@ -700,26 +705,216 @@
 
 <h2 id="修改文件-x2F-目录所在组（group）"><a href="#修改文件-x2F-目录所在组（group）" class="headerlink" title="修改文件&#x2F;目录所在组（group）"></a>修改文件&#x2F;目录所在组（group）</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">chgrp newgroup 文件/目录       # 改变所有组<br>-R			      		      # 如果是目录，则使旗下所有子文件或者目录生效<br></code></pre></td></tr></table></figure>
 
+<h1 id="20、定时任务调度"><a href="#20、定时任务调度" class="headerlink" title="20、定时任务调度"></a>20、定时任务调度</h1><h2 id="20-1-crond-任务调度"><a href="#20-1-crond-任务调度" class="headerlink" title="20.1 crond 任务调度"></a>20.1 crond 任务调度</h2><blockquote>
+<p>定时任务和程序</p>
+</blockquote>
+<h3 id="基本语法-17"><a href="#基本语法-17" class="headerlink" title="基本语法"></a>基本语法</h3><p>crontab [选项]</p>
+<h3 id="常用选项-4"><a href="#常用选项-4" class="headerlink" title="常用选项"></a>常用选项</h3><p>-e     编辑定时任务</p>
+<p>-l      列出所有任务</p>
+<p>-r     删除当前用户所有定时任务<img src="https://img-blog.csdnimg.cn/1109edcad889448a8eea4329b7b38b5f.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://img-blog.csdnimg.cn/69e53de0b86b4cb7b0c12cfc2c06131d.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://img-blog.csdnimg.cn/c111a0c478af4160b6bad67ae5ac1b3c.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="20-2-at-定时任务"><a href="#20-2-at-定时任务" class="headerlink" title="20.2 at 定时任务"></a>20.2 at 定时任务</h2><blockquote>
+<p>一次性定时任务（执行完就不在执行了），at 的守护进程atd会在后台运行，检查作业队列，默认情况下atd每隔60s检查作业队列，有作业是会检查运行时间，如果时间和当前时间匹配，则运行次作业</p>
+<p>注意：使用at命令是要保证at的守护进程atd在后台运行</p>
+</blockquote>
+<p>可以使用</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">ps -ef | grep &quot;atd&quot;<br></code></pre></td></tr></table></figure>
 
+<p>来查看atd是否在后台运行</p>
+<h3 id="基本语法-18"><a href="#基本语法-18" class="headerlink" title="基本语法"></a>基本语法</h3><p>at [选项] [时间]</p>
+<p>输入两次，ctrl + D 输入结束at</p>
+<p><img src="https://img-blog.csdnimg.cn/33120e8917ce48d0bde4bd3cda76a875.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://img-blog.csdnimg.cn/d6707f4f3e854a2cae676a5f2118fc19.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="应用实例-1"><a href="#应用实例-1" class="headerlink" title="应用实例"></a>应用实例</h3><p>1、两天后的下午5点执行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">at 5pm + 2 days<br></code></pre></td></tr></table></figure>
 
+<p>2、明天17点</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">at 5pm tomorrow<br></code></pre></td></tr></table></figure>
 
+<p>3、查看当前没执行的任务</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">atq<br></code></pre></td></tr></table></figure>
 
+<p>4、删除指定任务</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">atrm num(这个是任务编号，可以输入atq查看)<br></code></pre></td></tr></table></figure>
 
+<h1 id="21、磁盘"><a href="#21、磁盘" class="headerlink" title="21、磁盘"></a>21、磁盘</h1><p>查看所有设备挂载情况</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">lsblk<br>lsblk -f   # 更清晰<br></code></pre></td></tr></table></figure>
 
+<h2 id="原理介绍"><a href="#原理介绍" class="headerlink" title="原理介绍"></a>原理介绍</h2><blockquote>
+<p>linux来说无论有几个分区，分给哪一个目录使用，他归根结底只有一个根目录，一个独立且唯一的文件结构，linux中的每个分区都是用来组成整个文件系统的一部分</p>
+<p>linux采用了一种载入的方法，他的整个文件系统中包含了一整套的文件和目录，且将一个分区和一个目录联系起来，这是要载入的一个分区将使他的存储空间在一个目录下获得</p>
+<p>意思就是说，linux会将硬盘的某个分区挂载到某一个目录下，当你想要访问这个分区的内容，就到这个目录下即可。</p>
+</blockquote>
+<h2 id="硬盘说明"><a href="#硬盘说明" class="headerlink" title="硬盘说明"></a>硬盘说明</h2><p>1、linux硬盘分为另种IDE和SCSI硬盘，目前基本是后者</p>
+<p>2、IDE硬盘标识符为hdx~</p>
+<p>3、SCSI硬盘标识符为sax~</p>
+<p>4、x表示盘号（a为基本盘，b为从属盘，c为辅助盘，d为辅助从属盘）</p>
+<p>5、~代表分区，前四个分区用1-4表示，他们是主分区或扩展分区，从5开始是逻辑分区。</p>
+<h2 id="磁盘情况查询"><a href="#磁盘情况查询" class="headerlink" title="磁盘情况查询"></a>磁盘情况查询</h2><blockquote>
+<p>查看使用情况，选择是否要加硬盘，确保程序正常运行</p>
+</blockquote>
+<h3 id="基本语法-19"><a href="#基本语法-19" class="headerlink" title="基本语法"></a>基本语法</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">df -h<br></code></pre></td></tr></table></figure>
 
+<p>查询指定目录的磁盘使用情况</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">du -h<br></code></pre></td></tr></table></figure>
 
+<p>默认为当前目录</p>
+<p>-s                               指定目录占用大小汇总</p>
+<p>-h                              带计量单位</p>
+<p>-a                              含文件</p>
+<p>–max-depth&#x3D;1         子目录深度</p>
+<p>-c                               列出明细的同时增加汇总值</p>
+<h2 id="磁盘情况工作实用指令"><a href="#磁盘情况工作实用指令" class="headerlink" title="磁盘情况工作实用指令"></a>磁盘情况工作实用指令</h2><p>1、统计&#x2F;opt文件夹下文件的个数</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">ls -l | grep &quot;^-&quot; | wc -l<br></code></pre></td></tr></table></figure>
 
+<p>wc               统计个数</p>
+<p>grep “^-“    过滤出-开头的普通文件</p>
+<p>2、目录的个数</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">ls -l | grep &quot;^d&quot; | wc -l<br></code></pre></td></tr></table></figure>
 
+<p>3、文件的个数，包括子文件夹</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">ls -lR | grep &quot;^-&quot; | wc -l<br></code></pre></td></tr></table></figure>
 
+<p>4、目录总数，包括子目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">ls -lR | grep &quot;^d&quot; | wc -l<br></code></pre></td></tr></table></figure>
 
+<p>5、以树状显示目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">tree /home<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">如果没有该命令，使用 yum 安装</span><br>sudo yum -y install tree<br></code></pre></td></tr></table></figure>
 
+<h1 id="22、网络配置"><a href="#22、网络配置" class="headerlink" title="22、网络配置"></a>22、网络配置</h1><h2 id="22-1-linux网络环境配置"><a href="#22-1-linux网络环境配置" class="headerlink" title="22.1 linux网络环境配置"></a>22.1 linux网络环境配置</h2><p>1、自动获取IP地址</p>
+<p>服务器地址一般来说都是指定不变的</p>
+<p>2、指定ip</p>
+<p>直接修改配置文件来指定ip</p>
+<p>编辑</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">vim /etc/sysconfig/network-scripts/ifcfg-ens33<br></code></pre></td></tr></table></figure>
 
+<p>中的配置文件，修改</p>
+<p>重启网络服务</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">service networrk restart<br><span class="hljs-meta prompt_"># </span><span class="language-bash">或者重启系统</span><br>reboot<br></code></pre></td></tr></table></figure>
 
+<h2 id="22-2-设置主机名和host映射"><a href="#22-2-设置主机名和host映射" class="headerlink" title="22.2 设置主机名和host映射"></a>22.2 设置主机名和host映射</h2><p>修改&#x2F;etc&#x2F;hostname文件，该文件是主机名</p>
+<h2 id="设置hosts映射"><a href="#设置hosts映射" class="headerlink" title="设置hosts映射"></a>设置hosts映射</h2><blockquote>
+<p>思考如何通过主机名来找到（比如 ping）linux系统？</p>
+</blockquote>
+<ul>
+<li>window ：修改\windows\Stsyem32\drivers\etc\hosts 文件即可</li>
+<li>linux：修改&#x2F;etc&#x2F;hosts 文件即可</li>
+</ul>
+<h2 id="hosts-是什么？"><a href="#hosts-是什么？" class="headerlink" title="hosts 是什么？"></a>hosts 是什么？</h2><blockquote>
+<p>一个文本文件，用来记录ip和hostname之间的映射关系</p>
+</blockquote>
+<h3 id="NDS"><a href="#NDS" class="headerlink" title="NDS"></a>NDS</h3><blockquote>
+<p>Domain Name System   域名系统</p>
+<p>是互联网上的一个域名和ip地址相互映射的一个分布式数据库</p>
+</blockquote>
+<h3 id="主机名解析机制分析"><a href="#主机名解析机制分析" class="headerlink" title="主机名解析机制分析"></a>主机名解析机制分析</h3><p>当在浏览器中输入链接后，会按照一下的顺序查找域名的ip映射</p>
+<ol>
+<li>浏览器缓存</li>
+<li>DNS解析器缓存</li>
+</ol>
+<p>1,2是本地解析器缓存</p>
+<ol start="3">
+<li>检查系统hosts文件</li>
+<li>域名服务DNS进行解析</li>
+</ol>
+<h1 id="23、进程管理"><a href="#23、进程管理" class="headerlink" title="23、进程管理"></a>23、进程管理</h1><blockquote>
+<p>每个执行的程序都称为一个进程，每一个进程都分配一个ID号（pid，进程号）</p>
+</blockquote>
+<p>进程分为<strong>前台</strong>和<strong>后台</strong></p>
+<h2 id="查看进程"><a href="#查看进程" class="headerlink" title="查看进程"></a>查看进程</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">ps -uxa<br><br>USER        PID  %CPU %MEM    VSZ   RSS TTY      STAT      START   TIME COMMAND<br>用户名               物理内存 虚拟内存            终端状态                 启动进程的命令和参数<br></code></pre></td></tr></table></figure>
 
+<p>STAT：进程状态</p>
+<p>S：睡眠</p>
+<p>D：短期等待</p>
+<p>Z：僵尸进程</p>
+<p>T：被跟踪或者停止</p>
+<p>N：比普通进程优先级低</p>
+<h2 id="父子进程"><a href="#父子进程" class="headerlink" title="父子进程"></a>父子进程</h2><p>案例：以全格式显示当前所有的进程，查看进程的父进程</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">ps -ef<br><span class="hljs-meta prompt_"># </span><span class="language-bash">父进程的pid为该进程的ppid</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">ppid为0的无父进程</span><br>-e 所有进程<br>-f 全格式<br></code></pre></td></tr></table></figure>
 
+<ul>
+<li>UID：用户进程</li>
+<li>PID：进程id</li>
+<li>PPID：父进程id</li>
+<li>C：CPU用于计算执行优先级的因子，数值越大，表明进程是CPU密集型运算，执行优先级会降低，数值越小，表名进程是I&#x2F;O密集型运算，执行优先级会提高</li>
+<li>TTY：完整的终端名称</li>
+<li>CMD：和command一样，是启动进程所用的命令和参数</li>
+</ul>
+<h2 id="终止进程"><a href="#终止进程" class="headerlink" title="终止进程"></a>终止进程</h2><h3 id="基本语法-20"><a href="#基本语法-20" class="headerlink" title="基本语法"></a>基本语法</h3><p>kill [选项] 进程号</p>
+<p>killall 进程名</p>
+<h3 id="常用选项-5"><a href="#常用选项-5" class="headerlink" title="常用选项"></a>常用选项</h3><p>-9 ：强迫进程立刻停止</p>
+<h3 id="应用实例-2"><a href="#应用实例-2" class="headerlink" title="应用实例"></a>应用实例</h3><p>1、踢掉非法用户</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">kill 进程号<br></code></pre></td></tr></table></figure>
 
+<p>2、终止远程ssh登录服务</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">kill sshd对应的进程号<br></code></pre></td></tr></table></figure>
 
+<p>3、重启ssh服务</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">/bin/systemctl start sshd.service<br></code></pre></td></tr></table></figure>
 
+<p>4、终止多个gedit</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">killall gedit<br></code></pre></td></tr></table></figure>
+
+<p>5、强制杀掉一个终端</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">kill -9 bash进程号<br></code></pre></td></tr></table></figure>
+
+<p>为什么要-9？</p>
+<p>因为系统会认为你正在工作，认为你是误操作，会忽落掉，所以要先-9强制停止再杀掉。</p>
+<h2 id="查看进程树pstree"><a href="#查看进程树pstree" class="headerlink" title="查看进程树pstree"></a>查看进程树pstree</h2><p>pstree [选项]，可以更加直观的来看进程信息</p>
+<h3 id="常用选项-6"><a href="#常用选项-6" class="headerlink" title="常用选项"></a>常用选项</h3><p>-p：显示进程的ID</p>
+<p>-u：显示进程的所属用户</p>
+<h2 id="服务管理（service）"><a href="#服务管理（service）" class="headerlink" title="服务管理（service）"></a>服务管理（service）</h2><blockquote>
+<p>服务本质就是进程，但是运行在后台，通常会监听某个端口，等待其他程序的请求，比如（mysqld，sshd，防火墙 等），因此我们又称为守护进程</p>
+</blockquote>
+<ul>
+<li>service 管理指令</li>
+<li>service 服务名 [start | restart | stop | status | reload]</li>
+<li>在 centos 7 以后 <strong>很多服务不在使用 service 管理，而是使用 systemctl 管理</strong></li>
+<li>使用 service 管理的指令在  &#x2F;etc&#x2F;init.d&#x2F;  目录中查看</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">/etc/init.d</span><br>-rw-r--r--. 1 root root  18K 5月  22 2020 functions<br>-rwxr-xr-x. 1 root root 4.5K 5月  22 2020 netconsole<br>-rwxr-xr-x. 1 root root 7.8K 5月  22 2020 network<br>-rw-r--r--. 1 root root 1.2K 10月  2 2020 README<br></code></pre></td></tr></table></figure>
+
+<h3 id="查看服务名"><a href="#查看服务名" class="headerlink" title="查看服务名"></a>查看服务名</h3><ol>
+<li>使用<code>setup</code>指令即可看到全部服务，带 * 号的是开机自启动服务</li>
+<li>&#x2F;etc&#x2F;init.d 文件夹中的 service 管理的服务</li>
+</ol>
+<h3 id="自启动管理"><a href="#自启动管理" class="headerlink" title="自启动管理"></a>自启动管理</h3><h4 id="chkconfig"><a href="#chkconfig" class="headerlink" title="chkconfig"></a>chkconfig</h4><p><strong>介绍：</strong></p>
+<ol>
+<li>通过 <code>chkconfig</code> 指令可以给服务的各个运行级别设置&#x2F;关闭 自启动</li>
+<li><code>chkconfig</code> 指令管理的服务在 &#x2F;etc&#x2F;init.d 查看</li>
+<li>centos7 以后很多服务使用 <code>systemctl</code> 管理</li>
+</ol>
+<p><strong>基本语法：</strong></p>
+<ol>
+<li>chkconfig –list [| grep xxx]              查看所有服务</li>
+<li>chkconfig –level 运行级别 服务名 on&#x2F;off</li>
+</ol>
+<h4 id="systemctl"><a href="#systemctl" class="headerlink" title="systemctl"></a>systemctl</h4><p><strong>基本语法：</strong></p>
+<p>systemctl [strt | stop | restart | status] 服务名</p>
+<p>systemctl指令管理的服务在&#x2F;usr&#x2F;lib&#x2F;systemd&#x2F;system 查看</p>
+<p><strong>设置服务的自启动状态</strong></p>
+<ol>
+<li>systemctl list-unit-files [ | grep 服务名]</li>
+<li>systemctl enable 服务名（设置开机自启动）</li>
+<li>systemctl disable 服务名 （关闭开机自启动）</li>
+<li>systemctl is-enabled 服务名 （查询某个服务开机自启动情况）</li>
+</ol>
+<p><strong>案例</strong></p>
+<p>关闭防火墙</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">systemctl stop firewalld.service<br></code></pre></td></tr></table></figure>
+
+<p>开启防火墙</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">systemctl start firewalld.service<br></code></pre></td></tr></table></figure>
+
+<h2 id="打开或者关闭端口"><a href="#打开或者关闭端口" class="headerlink" title="打开或者关闭端口"></a>打开或者关闭端口</h2><blockquote>
+<p>在防火墙打开的状态下，打开或者关闭某个端口，来单独定义某个端口的权限</p>
+</blockquote>
+<p>:exclamation: 注意需要用 root 用户来操作防火墙</p>
+<p>打开端口：firewall-cmd –permanent –add-port&#x3D;端口号&#x2F;协议</p>
+<p>关闭端口：firewall-cmd –permanent –remove-port&#x3D;端口&#x2F;协议</p>
+<p>重新载入才能生效：firewall-cmd –reload</p>
+<p>查询端口是否开放：firewall-cmd –query-port&#x3D;端口&#x2F;协议</p>
 
               
             </div>
