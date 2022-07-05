@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/33120e8917ce48d0bde4bd3cda76a875.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/d6707f4f3e854a2cae676a5f2118fc19.png">
 <meta property="article:published_time" content="2022-05-20T04:16:39.000Z">
-<meta property="article:modified_time" content="2022-07-03T15:17:57.452Z">
+<meta property="article:modified_time" content="2022-07-04T14:45:39.113Z">
 <meta property="article:author" content="dongyu sun">
 <meta property="article:tag" content="Centos7">
 <meta name="twitter:card" content="summary_large_image">
@@ -227,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          11k 字
+          14k 字
         
       </span>
     
@@ -238,7 +238,7 @@
         
         
         
-          90 分钟
+          119 分钟
         
       </span>
     
@@ -567,6 +567,7 @@
 <h3 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h3><p>-name&lt;查询方式&gt;      按照名字查询</p>
 <p>-user&lt;用户名&gt;            查找属于指定用户名的所有文件</p>
 <p>-size&lt;文件大小&gt;         按照指定的文件大小查找文件</p>
+<p>-atime </p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">find /home -name list.txt<br>find /opt -user sdy<br>find / -size +200M<br>// +n 大于  -n 小于  n等于，单位有M， G， K<br></code></pre></td></tr></table></figure>
 
 <h2 id="16-2-locate"><a href="#16-2-locate" class="headerlink" title="16.2 locate"></a>16.2 locate</h2><blockquote>
@@ -915,6 +916,247 @@
 <p>关闭端口：firewall-cmd –permanent –remove-port&#x3D;端口&#x2F;协议</p>
 <p>重新载入才能生效：firewall-cmd –reload</p>
 <p>查询端口是否开放：firewall-cmd –query-port&#x3D;端口&#x2F;协议</p>
+<h2 id="动态监控进程"><a href="#动态监控进程" class="headerlink" title="动态监控进程"></a>动态监控进程</h2><p>top指令：</p>
+<p>和ps很相似，都是可以查看正在执行的进程，但是不同的是，top可以在执行一段时间更新正在运行的进程</p>
+<h3 id="基本语法-21"><a href="#基本语法-21" class="headerlink" title="基本语法"></a>基本语法</h3><p>top [选项]</p>
+<h3 id="选项说明"><a href="#选项说明" class="headerlink" title="选项说明"></a>选项说明</h3><p>-d 秒数             指定top更新间隔，默认3s</p>
+<p>-i                       使top不显示闲置或者僵死进程</p>
+<p>-p                      通过指定监控进程ID来仅仅监控某个进程的状态</p>
+<h3 id="交互操作说明"><a href="#交互操作说明" class="headerlink" title="交互操作说明"></a>交互操作说明</h3><p>P        以cpu使用率排序</p>
+<p>M       以内存使用率排序</p>
+<p>N       PID排序</p>
+<p>q        退出</p>
+<h3 id="实例-4"><a href="#实例-4" class="headerlink" title="实例"></a>实例</h3><p>1、监控指定用户sdy</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">top u sdy<br></code></pre></td></tr></table></figure>
+
+<p>2、终止指定的进程</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">k   <br>pid # 输入想要结束的pid<br>9   # 强制结束<br></code></pre></td></tr></table></figure>
+
+<p>3、指定刷新时间为10秒</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">top -d 10<br></code></pre></td></tr></table></figure>
+
+<h2 id="监控网络状态"><a href="#监控网络状态" class="headerlink" title="监控网络状态"></a>监控网络状态</h2><h3 id="基本语法-22"><a href="#基本语法-22" class="headerlink" title="基本语法"></a>基本语法</h3><p>netstat [选项]</p>
+<h3 id="选项说明-1"><a href="#选项说明-1" class="headerlink" title="选项说明"></a>选项说明</h3><p>-an  按一定顺序输出</p>
+<p>-p    显示那个进程在调用</p>
+<h3 id="实例-5"><a href="#实例-5" class="headerlink" title="实例"></a>实例</h3><p>查看sshd服务的网路状态</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">netstat -anp | grep sshd<br></code></pre></td></tr></table></figure>
+
+<p>:exclamation: 注意，这个指令需要root权限</p>
+<h1 id="24、rpm包的管理"><a href="#24、rpm包的管理" class="headerlink" title="24、rpm包的管理"></a>24、rpm包的管理</h1><blockquote>
+<p>redhat package manager (红帽的软件管理)</p>
+</blockquote>
+<h2 id="常用指令-1"><a href="#常用指令-1" class="headerlink" title="常用指令"></a>常用指令</h2><p>查询所有安装的rpm包，可以和 more 或者 grep 搭配使用</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">rpm -qa <br>rpm -qa | more<br>rpm -qa | grep 包名<br></code></pre></td></tr></table></figure>
+
+<p>查询软件是否安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">rpm -q 软件名<br></code></pre></td></tr></table></figure>
+
+<p>查询软件包信息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">rpm -qi 软件名<br></code></pre></td></tr></table></figure>
+
+<p>查询软件包中的文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">rpm -ql 软件名<br></code></pre></td></tr></table></figure>
+
+<p>通过文件查询该文件属于哪个包</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">rpm -qf 路径<br></code></pre></td></tr></table></figure>
+
+<p>卸载 rpm 包</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">rpm -e 包名<br><span class="hljs-meta prompt_"># </span><span class="language-bash">处理依赖，强制删除</span><br>rpm -e --nodeps 包名<br></code></pre></td></tr></table></figure>
+
+<p>安装 rpm 包</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">rpm -ivh 包名全称<br></code></pre></td></tr></table></figure>
+
+<p>参数说明</p>
+<p>i &#x3D; install      安装</p>
+<p>v &#x3D; verbose  提示信息</p>
+<p>h &#x3D; hash       进度条</p>
+<h1 id="25、yum"><a href="#25、yum" class="headerlink" title="25、yum"></a>25、yum</h1><blockquote>
+<p>shell 前端软件包管理器，基于RPM 包管理，从指定服务器下载RPM 包并安装，可以自动处理依赖问题，并且一次安装所有依赖的软件包</p>
+</blockquote>
+<h2 id="常用指令-2"><a href="#常用指令-2" class="headerlink" title="常用指令"></a>常用指令</h2><p>查询服务器软件列表</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">yum list | grep xxx<br></code></pre></td></tr></table></figure>
+
+<p>安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">yum install -y xxx<br><span class="hljs-meta prompt_"># </span><span class="language-bash">-y 的意思是所有选择全部 <span class="hljs-built_in">yes</span></span><br></code></pre></td></tr></table></figure>
+
+<h1 id="26、shell编程"><a href="#26、shell编程" class="headerlink" title="26、shell编程"></a>26、shell编程</h1><blockquote>
+<p>shell 是一个命令行解释器，他为用户提供了一个向Linux内核发送请求以便运行程序的界面系统级程序，用户可以用shell 来启动，挂起，停止甚至是编写一些程序</p>
+</blockquote>
+<h2 id="脚本格式要求"><a href="#脚本格式要求" class="headerlink" title="脚本格式要求"></a>脚本格式要求</h2><ol>
+<li>脚本要以 <code>#!/bin/bash</code> 开头</li>
+<li>脚本要有可执行权限（无可执行权限需要使用 sh 命令运行）</li>
+</ol>
+<h2 id="执行方式"><a href="#执行方式" class="headerlink" title="执行方式"></a>执行方式</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">./hello.sh     # 有执行权限<br>sh ./hello.sh  # 有无执行权限均可<br></code></pre></td></tr></table></figure>
+
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><blockquote>
+<p>变量分为系统变量和用户自定义变量</p>
+<p>系统变量：$HOME   $PATH等等</p>
+<p>显示当前系统变量：<code>set</code></p>
+</blockquote>
+<h3 id="shell-变量的定义"><a href="#shell-变量的定义" class="headerlink" title="shell 变量的定义"></a>shell 变量的定义</h3><p>变量定义的时候不能加空格在等号左右！</p>
+<p>不要乱打空格！</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">!/bin/bash</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">定义变量a</span><br>a=100<br><span class="hljs-meta prompt_"># </span><span class="language-bash">输出变量a</span><br>echo $a<br><span class="hljs-meta prompt_"># </span><span class="language-bash">按格式输出变量a</span><br>echo a=$a<br><span class="hljs-meta prompt_"># </span><span class="language-bash">销毁变量a</span><br>unset a<br><span class="hljs-meta prompt_"># </span><span class="language-bash">定义静态变量</span><br>readonly b=100<br>echo b=$b<br></code></pre></td></tr></table></figure>
+
+<h3 id="定义变量的规范"><a href="#定义变量的规范" class="headerlink" title="定义变量的规范"></a>定义变量的规范</h3><ol>
+<li>变量名是字母，数字，下划线，组成，但是不能数字开头</li>
+<li>等号两侧不能有空格</li>
+<li>习惯大写</li>
+</ol>
+<h3 id="将指令返回的结果赋值给变量"><a href="#将指令返回的结果赋值给变量" class="headerlink" title="将指令返回的结果赋值给变量"></a>将指令返回的结果赋值给变量</h3><ol>
+<li>使用反引号</li>
+<li>使用<code>$</code> 符号</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">!/bin/bash</span><br>A=date<br>echo A=$A  # date<br>A=&quot;date&quot;<br>echo A=$A  # date<br>A=`date`<br>echo A=$A<br>A=$(date)<br>echo A=$A<br><span class="hljs-meta prompt_"># </span><span class="language-bash">A=2022年 07月 04日 星期一 13:44:09 CST</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">A=2022年 07月 04日 星期一 13:44:09 CST</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h2><blockquote>
+<p>环境变量可以理解为linux系统中的全局变量</p>
+</blockquote>
+<h3 id="基本语法-23"><a href="#基本语法-23" class="headerlink" title="基本语法"></a>基本语法</h3><ol>
+<li>export   变量名&#x3D;变量值      （将shell变量<strong>输出</strong>为环境变量&#x2F;全局变量）</li>
+<li>source   配置文件                （让修改后的配置信息生效）</li>
+<li>echo $变量名                       （查询变量的值）</li>
+</ol>
+<h3 id="实例-6"><a href="#实例-6" class="headerlink" title="实例"></a>实例</h3><p>添加环境变量<code>SDY_HOME</code>，<code>SDY_AGE</code></p>
+<p>添加环境变量修改 <code>/etc/profile</code> 文件即可，在文件中添加</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">export SDY_HOME=/home/sdy<br>export SDY_AGE=20<br></code></pre></td></tr></table></figure>
+
+<p>保存配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">source /etc/profile<br></code></pre></td></tr></table></figure>
+
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><h3 id="单行注释"><a href="#单行注释" class="headerlink" title="单行注释"></a>单行注释</h3><p><code>#</code></p>
+<h3 id="多行注释"><a href="#多行注释" class="headerlink" title="多行注释"></a>多行注释</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">:&lt;&lt;!<br>export<br>!<br></code></pre></td></tr></table></figure>
+
+<h2 id="位置参数变量"><a href="#位置参数变量" class="headerlink" title="位置参数变量"></a>位置参数变量</h2><blockquote>
+<p>在shell脚本中接收来自终端的输入信息，就可以使用位置参数</p>
+</blockquote>
+<p>$n        (n是数字，$0代表命令本身，$1-$9表示参数1-9，第10以上的参数要用括号)</p>
+<p>$*         (命令中的所有参数看做一个整体)</p>
+<p>$@       (也是所有参数，不过吧每个参数区分对待)</p>
+<p>$#        (参数个数)</p>
+<h3 id="实例-7"><a href="#实例-7" class="headerlink" title="实例"></a>实例</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">echo $1 $2<br>echo $*<br>echo $@<br>echo $#<br></code></pre></td></tr></table></figure>
+
+<h2 id="预定义变量"><a href="#预定义变量" class="headerlink" title="预定义变量"></a>预定义变量</h2><blockquote>
+<p>shell设计者事先定义好的变量，可以直接在shell脚本中使用，用的不多</p>
+</blockquote>
+<p>$$ ：当前进程的PID</p>
+<p>$!：后台运行的最后一个进程的PID</p>
+<p>$?：最后一次执行的命令的返回状态，如果为0执行成功</p>
+<p>tips：如果想要程序后台运行，可以在命令后面加上<code>&amp;</code></p>
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><ol>
+<li>$((3 + 2))  # 2 个括号</li>
+<li>$[3 + 2]</li>
+<li>exp m + n  # 使用expr必须要有空格，在运算符前后（这种写法过于麻烦！！尽量不要用）</li>
+</ol>
+<h3 id="实例-8"><a href="#实例-8" class="headerlink" title="实例"></a>实例</h3><p>两数之和</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">!/bin/bash</span><br>echo 两数之和为：$[$1+$2]<br>echo 两数之和为：$(($1 + $2))<br></code></pre></td></tr></table></figure>
+
+<h2 id="条件判断"><a href="#条件判断" class="headerlink" title="条件判断"></a>条件判断</h2><h3 id="基本语法-24"><a href="#基本语法-24" class="headerlink" title="基本语法"></a>基本语法</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell">if [ xxx ]   # 【】中前后要有空格<br>then <br>	····<br>else <br>	````<br>fi           # 以if开头fi结尾<br></code></pre></td></tr></table></figure>
+
+<p>[ condition ]   注意condition前后要有空格</p>
+<p>非空返回true</p>
+<h3 id="常用的判断条件"><a href="#常用的判断条件" class="headerlink" title="常用的判断条件"></a>常用的判断条件</h3><ol>
+<li>&#x3D; 字符串比较</li>
+<li>两个字符串比较<ol>
+<li>-lt 小于</li>
+<li>-le 小于等于</li>
+<li>-gt   大于</li>
+<li>-ge   大于等于</li>
+<li>-eq   等于</li>
+<li>-ne   不等于</li>
+</ol>
+</li>
+<li>按照文件权限判断<ol>
+<li>-r 有读的权限</li>
+<li>-w 有写的权限</li>
+<li>-x 有执行的权限</li>
+</ol>
+</li>
+<li>按照文件类型判断<ol>
+<li>-f 文件存在并且是常规文件</li>
+<li>-e 文件存在</li>
+<li>-d 文件存在并且是目录</li>
+</ol>
+</li>
+</ol>
+<h3 id="实例-9"><a href="#实例-9" class="headerlink" title="实例"></a>实例</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">!/bin/bash</span><br>if [ -x ./if.sh ]<br>then <br>	echo &quot;hello world&quot;<br>else <br>	echo &quot;hh&quot;<br>fi<br><br>A=100<br>B=200<br>if [ $A -lt $B ]<br>then <br>	echo &quot;a &lt; b&quot;<br>else <br>	echo &quot;a &gt;= b&quot;<br>fi<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h2><h3 id="if-判断"><a href="#if-判断" class="headerlink" title="if 判断"></a>if 判断</h3><p>基本语法：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell">if [ 条件判断式 ]<br>then <br>	代码<br>elif [ 条件判断式 ]<br>	代码<br>fi<br></code></pre></td></tr></table></figure>
+
+<p>注意事项： [ 条件判断式 ]，中括号和判断式之间必须有空格</p>
+<h3 id="case语句"><a href="#case语句" class="headerlink" title="case语句"></a>case语句</h3><p>语法：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">!/bin/bash</span><br>case $1 in    # case xx in  开头<br>&quot;1&quot;)          # 当参数是1时。。。<br>echo &quot;周一&quot; <br>;;            # 两个分号结束一个分支<br>&quot;2&quot;)<br>echo &quot;周二&quot;<br>;;<br>*)            # default<br>echo &quot;其他&quot;<br>;;            <br>esac          # case 反写结尾<br></code></pre></td></tr></table></figure>
+
+<h3 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h3><p>语法1：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">for 变量 in 值1 值2  值3.。。<br>do<br>代码<br>done<br></code></pre></td></tr></table></figure>
+
+<p>实例</p>
+<p>input：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">./xxx.sh 2 3<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">!/bin/bash</span><br>for i in &quot;$@&quot;<br>do <br>	echo &quot;num is $i&quot;<br>done<br><span class="hljs-meta prompt_"># </span><span class="language-bash">num is 2</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">num is 3</span><br><br><br>for i in &quot;$*&quot;<br>do <br>	echo &quot;num is $i&quot;<br>done<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">num is 2 3</span><br></code></pre></td></tr></table></figure>
+
+<p>语法2：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">!/bin/bash</span><br>sum=0<br>j=$1<br>for((i=1; i&lt;=$j; i++))<br>do<br>    sum=$[$sum+$i]<br>done<br><br>echo sum=$sum <br></code></pre></td></tr></table></figure>
+
+<h3 id="while-语句"><a href="#while-语句" class="headerlink" title="while 语句"></a>while 语句</h3><p>语法：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">while [ 条件 ]<br>do<br>	....<br>done<br></code></pre></td></tr></table></figure>
+
+<h3 id="read-读取控制台输入"><a href="#read-读取控制台输入" class="headerlink" title="read 读取控制台输入"></a>read 读取控制台输入</h3><p>read [选项] [参数]</p>
+<p>选项：</p>
+<p>-p：指定读取时的提示符</p>
+<p>-t：指定读取时等待时间，如果没有在指定时间内输入，就不再等待</p>
+<p>实例</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">read -p &quot;输入&quot; -t 10 num1<br><span class="hljs-meta prompt_"># </span><span class="language-bash">等待10s 输入</span><br>echo $num1<br></code></pre></td></tr></table></figure>
+
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>系统函数：</p>
+<h3 id="basename"><a href="#basename" class="headerlink" title="basename"></a>basename</h3><blockquote>
+<p>获取路径中的最后一部分文件名</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">basename /home/sdy/hello.txt<br>hello.txt<br><br>basename /home/sdy/hello.txt .txt<br>hello<br></code></pre></td></tr></table></figure>
+
+<h3 id="dirname"><a href="#dirname" class="headerlink" title="dirname"></a>dirname</h3><blockquote>
+<p>返回路径前面部分，和basename相反</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">dirname /home/sdy/hello.txt<br>/home/sdy<br></code></pre></td></tr></table></figure>
+
+<p>自定义函数：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs shell">function getSum() &#123;<br><br>	SUM=$[$n1+$n2]<br>	echo sum=$SUM<br>&#125;<br><br><br>read -p &quot;输入1&quot; n1<br>read -p &quot;输入2&quot; n2<br><br>getSum $n1 $n2<br><br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
               
             </div>
