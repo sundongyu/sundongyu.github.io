@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/33120e8917ce48d0bde4bd3cda76a875.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/d6707f4f3e854a2cae676a5f2118fc19.png">
 <meta property="article:published_time" content="2022-05-20T04:16:39.000Z">
-<meta property="article:modified_time" content="2022-07-04T14:45:39.113Z">
+<meta property="article:modified_time" content="2022-07-05T05:25:26.047Z">
 <meta property="article:author" content="dongyu sun">
 <meta property="article:tag" content="Centos7">
 <meta name="twitter:card" content="summary_large_image">
@@ -533,7 +533,7 @@
 <p>软链接，也称为符号链接，类似于快捷方式，存放了链接其他文件的路径</p>
 </blockquote>
 <h3 id="基本语法-7"><a href="#基本语法-7" class="headerlink" title="基本语法"></a>基本语法</h3><p>ln -s [原文件或目录] [软链接名]    （功能描述：给原文件或者目录创建了一个软链接）</p>
-<h3 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h3><p>当我们使用 <code>pw4d</code> 查看当前路径的时候任然看到的是软链接目录</p>
+<h3 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h3><p>当我们使用 <code>pwd</code> 查看当前路径的时候任然看到的是软链接目录</p>
 <h2 id="14-17-history"><a href="#14-17-history" class="headerlink" title="14.17 history"></a>14.17 history</h2><blockquote>
 <p> 查看当前设备历史使用过那些指令，也可以执行历史命令</p>
 </blockquote>
@@ -570,6 +570,7 @@
 <p>-atime </p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">find /home -name list.txt<br>find /opt -user sdy<br>find / -size +200M<br>// +n 大于  -n 小于  n等于，单位有M， G， K<br></code></pre></td></tr></table></figure>
 
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-find.html">更多用法</a></p>
 <h2 id="16-2-locate"><a href="#16-2-locate" class="headerlink" title="16.2 locate"></a>16.2 locate</h2><blockquote>
 <p>功能：快速定位文件路径。</p>
 <p>原理：利用事先建立的系统中的所有文件名和路径的 <code>locate</code> 数据库实现快速定位给定的文件。</p>
@@ -577,7 +578,7 @@
 <p>locate指令无需遍历整个文件系统，查询效率高，为了保证查询准确，需要定期更新数据库。</p>
 <h3 id="基本语法-12"><a href="#基本语法-12" class="headerlink" title="基本语法"></a>基本语法</h3><p>locate 搜索文件</p>
 <h3 id="特别说明"><a href="#特别说明" class="headerlink" title="特别说明"></a>特别说明</h3><p>创建数据库：updatedb</p>
-<p>:warning:<a target="_blank" rel="noopener" href="https://www.cnblogs.com/byx1024/p/12315225.html">执行<code>updatedb</code> 失败博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/byx1024/p/12315225.html">执行<code>updatedb</code> 失败博客</a></p>
 <h3 id="which"><a href="#which" class="headerlink" title="which"></a>which</h3><blockquote>
 <p>这个指令可以查看 某个指令的所在位置</p>
 </blockquote>
@@ -805,7 +806,7 @@
 <h2 id="hosts-是什么？"><a href="#hosts-是什么？" class="headerlink" title="hosts 是什么？"></a>hosts 是什么？</h2><blockquote>
 <p>一个文本文件，用来记录ip和hostname之间的映射关系</p>
 </blockquote>
-<h3 id="NDS"><a href="#NDS" class="headerlink" title="NDS"></a>NDS</h3><blockquote>
+<h3 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h3><blockquote>
 <p>Domain Name System   域名系统</p>
 <p>是互联网上的一个域名和ip地址相互映射的一个分布式数据库</p>
 </blockquote>
@@ -911,7 +912,7 @@
 <h2 id="打开或者关闭端口"><a href="#打开或者关闭端口" class="headerlink" title="打开或者关闭端口"></a>打开或者关闭端口</h2><blockquote>
 <p>在防火墙打开的状态下，打开或者关闭某个端口，来单独定义某个端口的权限</p>
 </blockquote>
-<p>:exclamation: 注意需要用 root 用户来操作防火墙</p>
+<p>注意需要用 root 用户来操作防火墙</p>
 <p>打开端口：firewall-cmd –permanent –add-port&#x3D;端口号&#x2F;协议</p>
 <p>关闭端口：firewall-cmd –permanent –remove-port&#x3D;端口&#x2F;协议</p>
 <p>重新载入才能生效：firewall-cmd –reload</p>
