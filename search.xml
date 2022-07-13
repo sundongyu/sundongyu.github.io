@@ -3284,7 +3284,7 @@
       </tags>
   </entry>
   <entry>
-    <title>前端杂记</title>
+    <title></title>
     <url>/2022/07/11/qian-duan-za-ji/</url>
     <content><![CDATA[<blockquote>
 <p>最近为了学习 <code>web</code> 知识，提前学了点前端知识为下面的学习做准备，由于前端知识碎而杂，所以本文主要是记录我的学习过程所遇知识，非系统学习。</p>
@@ -3686,45 +3686,260 @@
 <li>both：清除两侧中影响最大的一侧</li>
 </ol>
 <h4 id="原理："><a href="#原理：" class="headerlink" title="原理："></a>原理：</h4><p>设置清除浮动后，浏览器会自动为元素添加上外边距，以使其位置不受其他元素的影响。</p>
-<p>高度塌陷问题终极解决方案</p>
+<p>高度塌陷问题</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css">&lt;!DOCTYPE <span class="hljs-selector-tag">html</span>&gt;<br>&lt;<span class="hljs-selector-tag">html</span> lang=&quot;en&quot;&gt;<br>&lt;head&gt;<br>    &lt;meta charset=&quot;UTF-<span class="hljs-number">8</span>&quot;&gt;<br>    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; <span class="hljs-attribute">content</span>=&quot;IE=edge&quot;&gt;<br>    &lt;meta name=&quot;viewport&quot; <span class="hljs-attribute">content</span>=&quot;<span class="hljs-attribute">width</span>=device-<span class="hljs-attribute">width</span>, initial-scale=<span class="hljs-number">1.0</span>&quot;&gt;<br>    &lt;title&gt;Document&lt;/title&gt;<br>    &lt;style&gt;<br>        <span class="hljs-selector-class">.box1</span>&#123;<br>            <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> red solid;<br>        &#125;<br>        <br>        <span class="hljs-selector-class">.box3</span>&#123;<br>            <span class="hljs-attribute">background-color</span>: black;<br>            <span class="hljs-attribute">width</span>: <span class="hljs-number">50px</span>;<br>            <span class="hljs-attribute">height</span>: <span class="hljs-number">500px</span>;<br>            <span class="hljs-attribute">float</span>: left;<br>        &#125;<br>		// 通过伪元素解决高度塌陷，给末尾添加一个元素，然后清除浮动影响<br>        <span class="hljs-selector-class">.box1</span><span class="hljs-selector-pseudo">::after</span>&#123;<br>            <span class="hljs-attribute">content</span>:<span class="hljs-string">&quot;&quot;</span>;<br>            <span class="hljs-attribute">display</span>: block;<br>            <span class="hljs-attribute">clear</span>: both;<br>        &#125;<br>    &lt;/style&gt;<br>&lt;/head&gt;<br>&lt;<span class="hljs-selector-tag">body</span>&gt;<br>    <br>    &lt;<span class="hljs-selector-tag">div</span> class=&quot;box1&quot;&gt;<br>        &lt;<span class="hljs-selector-tag">div</span> class=&quot;box3&quot;&gt;&lt;/<span class="hljs-selector-tag">div</span>&gt;<br>    &lt;/<span class="hljs-selector-tag">div</span>&gt;<br>&lt;/<span class="hljs-selector-tag">body</span>&gt;<br>&lt;/<span class="hljs-selector-tag">html</span>&gt;<br></code></pre></td></tr></table></figure>
 
+<p>主要是将元素隔开就行</p>
+<ol>
+<li>可以使用 <code>display:table</code> 就可以隔开两个元素且不占地方</li>
+</ol>
+<p>终极方案</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css">:clearfix::before.<br>:clerafix::arter&#123;<br>    <span class="hljs-attribute">content</span>:<span class="hljs-string">&quot;&quot;</span>;<br>    <span class="hljs-attribute">display</span>:table;<br>    <span class="hljs-attribute">clear</span>:both;<br>&#125;<br></code></pre></td></tr></table></figure>
 
+<p>这个样式可以<strong>同时</strong>解决<strong>高度塌陷，和外边距重叠</strong>的问题。这个代码来自于“css权威指南”</p>
+<p>当在遇到这个问题直接使用这个clearfix类即可！！</p>
+<h1 id="定位"><a href="#定位" class="headerlink" title="定位"></a>定位</h1><figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css">&lt;!DOCTYPE <span class="hljs-selector-tag">html</span>&gt;<br>&lt;<span class="hljs-selector-tag">html</span> lang=&quot;en&quot;&gt;<br>&lt;head&gt;<br>    &lt;meta charset=&quot;UTF-<span class="hljs-number">8</span>&quot;&gt;<br>    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; <span class="hljs-attribute">content</span>=&quot;IE=edge&quot;&gt;<br>    &lt;meta name=&quot;viewport&quot; <span class="hljs-attribute">content</span>=&quot;<span class="hljs-attribute">width</span>=device-<span class="hljs-attribute">width</span>, initial-scale=<span class="hljs-number">1.0</span>&quot;&gt;<br>    &lt;title&gt;Document&lt;/title&gt;<br>    &lt;style&gt;<br>        *&#123;<br>            <span class="hljs-attribute">font-size</span>: <span class="hljs-number">20px</span>;<br>        &#125;<br>        <span class="hljs-selector-class">.box1</span>&#123;<br>            <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;<br>            <span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;<br>            <span class="hljs-attribute">background-color</span>: antiquewhite;<br>        &#125;<br>        <span class="hljs-selector-class">.box2</span>&#123;<br>            <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;<br>            <span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;<br>            <span class="hljs-attribute">background-color</span>: orange;<br>        &#125; <br>        <span class="hljs-selector-class">.box3</span>&#123;<br>            <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;<br>            <span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;<br>            <span class="hljs-attribute">background-color</span>: red;<br>        &#125;<br>    &lt;/style&gt;<br>&lt;/head&gt;<br>&lt;<span class="hljs-selector-tag">body</span>&gt;<br>    &lt;<span class="hljs-selector-tag">div</span> class=&quot;box1&quot;&gt;<span class="hljs-number">1</span>&lt;/<span class="hljs-selector-tag">div</span>&gt;<br>    &lt;<span class="hljs-selector-tag">div</span> class=&quot;box2&quot;&gt;<span class="hljs-number">2</span>&lt;/<span class="hljs-selector-tag">div</span>&gt;<br>    &lt;<span class="hljs-selector-tag">div</span> class=&quot;box3&quot;&gt;<span class="hljs-number">3</span>&lt;/<span class="hljs-selector-tag">div</span>&gt;<br>&lt;/<span class="hljs-selector-tag">body</span>&gt;<br>&lt;/<span class="hljs-selector-tag">html</span>&gt;<br></code></pre></td></tr></table></figure>
 
+<p>三个盒子，如果想要让中间的盒子跑到第一个盒子旁边，其他盒子不动，怎么办？</p>
+<p>传统方法：</p>
+<ol>
+<li>设置盒子2的marginleft让他向左</li>
+<li>设置margintop，让他向上</li>
+<li>但是盒子3也上去了</li>
+<li>设置3的上外边距将位置调回去</li>
+</ol>
+<p>这样的方法，耦合太高，调一个元素的位置，需要调整好几个元素</p>
+<blockquote>
+<p>position 一种更加高级的布局手段，通过定位可以把元素摆放到页面的任意一个位置</p>
+</blockquote>
+<p>使用属性<code>position</code></p>
+<p>参数值：</p>
+<ol>
+<li>static 默认值，没有开启定位</li>
+<li>relative  开启元素的相对定位</li>
+<li>absolute  开启元素的绝对定位</li>
+<li>fixed    开启元素的固定定位</li>
+<li>sticky  开启元素的粘滞定位</li>
+</ol>
+<h2 id="相对定位"><a href="#相对定位" class="headerlink" title="相对定位"></a>相对定位</h2><p>开启相对定位后如果不设置偏移量，没有任何变化</p>
+<h3 id="偏移量（offset）："><a href="#偏移量（offset）：" class="headerlink" title="偏移量（offset）："></a>偏移量（offset）：</h3><p>可以设置元素的位置</p>
+<ul>
+<li>left<ul>
+<li>定位元素和定位位置上边的距离，可以想象为外边距，但是不会影响别人，下面的属性以此类推</li>
+</ul>
+</li>
+<li>right</li>
+<li>top</li>
+<li>bottom</li>
+</ul>
+<p>特点：</p>
+<ul>
+<li>相对定位会提升元素的层级</li>
+<li>相对定位不会使元素脱离文档流</li>
+<li>相对定位不会改变元素的性质（行内还是行内）</li>
+</ul>
+<p>包含块：</p>
+<ul>
+<li>正常情况下是离当前元素最近的祖先块元素</li>
+<li>绝对定位的包含块：包含块就是离他最近的开启了定位的祖先元素</li>
+<li>如果所有的祖先元素都没有开启定位，则相对于根元素进行定位</li>
+</ul>
+<h2 id="绝对定位"><a href="#绝对定位" class="headerlink" title="绝对定位"></a>绝对定位</h2><p>特点：</p>
+<ul>
+<li>开启绝对定位后，如果不设置偏移量，元素的位置不会发生变化</li>
+<li>开启绝对定位后，元素会从文档流中脱离</li>
+<li>绝对定位会改变元素的性质（行内变成块， 块的宽高被内容撑开）</li>
+<li>绝对定位会使元素提升层级</li>
+<li>绝对定位元素元素是相对于其包含块进行定位</li>
+</ul>
+<h2 id="固定定位"><a href="#固定定位" class="headerlink" title="固定定位"></a>固定定位</h2><p>也是一种绝对定位，大部分特点都要和绝对定位一样</p>
+<p>唯一不同的是固定定位永远参考与浏览器的 视口 进行定位</p>
+<p>固定定位的元素不会随着网页滚动条的滚动</p>
+<h2 id="粘滞定位"><a href="#粘滞定位" class="headerlink" title="粘滞定位"></a>粘滞定位</h2><p>粘滞定位和相对定位的特点基本相同，不同的是可以在元素到达某个位置将其固定</p>
+<h3 id="绝对定位元素的位置"><a href="#绝对定位元素的位置" class="headerlink" title="绝对定位元素的位置"></a>绝对定位元素的位置</h3><ul>
+<li>当我们开启绝对定位后，水平方向的布局就要添加两个元素，left 和 right ，此时的规则和以前一样，只是多了两个值</li>
+<li>当发生过度约束的时候：<ul>
+<li>如果没有auto 自动调整 right</li>
+<li>如果有auto则调整auto</li>
+</ul>
+</li>
+<li>可以设置auto的值：<ul>
+<li>margin  width left  right</li>
+</ul>
+</li>
+<li>因为 left 和 right 的默认值就是auto， 所以当等式不满足的时候就会自动调整auto的值，以使等式成立</li>
+<li>垂直方向的布局同样如此</li>
+</ul>
+<h3 id="层级"><a href="#层级" class="headerlink" title="层级"></a>层级</h3><p>对于开启了定位的元素，可以通过z-index属性来制定元素的层级，z-index 需要一个整数作为参数，值越大，元素的层级越高，元素的层级越高越优先显示</p>
+<ul>
+<li>祖先元素的层级再高，也没法盖住后代元素</li>
+</ul>
+<h2 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h2><p>字体相关的样式：</p>
+<ol>
+<li><p>color：设置字体颜色（前景色）</p>
+</li>
+<li><p>font - size ：字体大小</p>
+</li>
+<li><p>font - family：字体格式</p>
+<ol>
+<li>serif：衬线字体</li>
+<li>sans - serif：非衬线字体</li>
+<li>monospace：等宽字体</li>
+<li>可以同时指定多个字体，多个字体间使用，隔开，字体生效时，优先使用第一个，第一个无法使用则使用第二个</li>
+</ol>
+</li>
+<li><p>font-face：可以将服务器中的字体直接提供给用户使用</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-keyword">@font-face</span>&#123;<br>    fotn-family:<span class="hljs-string">&quot;&quot;</span>;<br>    // 服务器中字体的路径<br>    <span class="hljs-attribute">src</span>: <span class="hljs-built_in">url</span>();<br>&#125;<br></code></pre></td></tr></table></figure>
 
+<ul>
+<li><p>加载速度比较慢</p>
+</li>
+<li><p>版权问题</p>
+</li>
+<li><p>字体格式</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="图标字体"><a href="#图标字体" class="headerlink" title="图标字体"></a>图标字体</h2><blockquote>
+<p>在网页中经常需要使用一些图标，可以通过图片来引入图标但是大小太大，并且非常的不灵活</p>
+<p>所以我们可以将图标设置为字体，然后通过font-face的形式来对字体进行引入</p>
+<p>这样我们就可以通过使用字体的形式来使用图标</p>
+</blockquote>
+<p>使用方法，以fontawesome为例：</p>
+<ol>
+<li><p>下载解压</p>
+</li>
+<li><p>将css和webfonts移到项目中</p>
+</li>
+<li><p>将all.css引入网页中</p>
+</li>
+<li><p>使用图标字体：</p>
+<ol>
+<li><p>直接通过类名<code>class = fas（除了fas或者fab） 图标名</code></p>
+</li>
+<li><p>找到要设置的图标的元素，通过before或者after选中</p>
+</li>
+<li><p>在content中设置字体的编码</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">li</span><span class="hljs-selector-pseudo">::before</span>&#123;<br>    <span class="hljs-attribute">content</span>:<span class="hljs-string">&#x27;\f1b0&#x27;</span>;<br>    <span class="hljs-attribute">font-family</span>:<span class="hljs-string">&#x27;font amesome 5 free&#x27;</span>;<br>    <span class="hljs-attribute">font</span> -weight:<span class="hljs-number">900</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>通过实体来使用图标字体：</p>
+<ol>
+<li>&amp;#x图标的编码</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="行高"><a href="#行高" class="headerlink" title="行高"></a>行高</h2><p>行高指的是文字占有的实际高度</p>
+<p>可以通过line-height设置行高</p>
+<h3 id="字体框"><a href="#字体框" class="headerlink" title="字体框"></a>字体框</h3><p>字体框就是字体存在的格子，设置font-size实际上就是在设置字体框的高度</p>
+<p>行高会在字体框的上下平均分配</p>
+<p>当div高度和行高高度相同时就是垂直居中</p>
+<h3 id="行间距-x3D-行高-字体大小"><a href="#行间距-x3D-行高-字体大小" class="headerlink" title="行间距 &#x3D; 行高 - 字体大小"></a>行间距 &#x3D; 行高 - 字体大小</h3><h3 id="简写属性"><a href="#简写属性" class="headerlink" title="简写属性"></a>简写属性</h3><blockquote>
+<p>font可以设置字体相关的所有属性</p>
+</blockquote>
+<p>语法：</p>
+<p>font:  字体大小 &#x2F; 行高  字体族</p>
+<p>行高可以省略，但是省略不代表没有，是默认值</p>
+<h4 id="font-weight："><a href="#font-weight：" class="headerlink" title="font-weight："></a><strong>font-weight：</strong></h4><p>字重，字体的加粗</p>
+<p>可选值：</p>
+<ul>
+<li>normal 默认值</li>
+<li>bold 加粗</li>
+</ul>
+<h4 id="font-style："><a href="#font-style：" class="headerlink" title="font-style："></a>font-style：</h4><p>字体的风格</p>
+<p>可选值：</p>
+<ul>
+<li>normal ：默认值</li>
+<li>italic ：斜体</li>
+</ul>
+<h2 id="文本的样式"><a href="#文本的样式" class="headerlink" title="文本的样式"></a>文本的样式</h2><p>水平对其：</p>
+<p>text-align:</p>
+<p>可选值：</p>
+<ul>
+<li>left：左侧对其</li>
+<li>right：右侧对其</li>
+<li>center： 中间对其</li>
+<li>justify：两端对其</li>
+</ul>
+<p>垂直对齐：</p>
+<p>vertical-align 设置元素垂直对其的方式</p>
+<p>可选值：</p>
+<ul>
+<li>baseline ： 默认值，基线对齐</li>
+<li>top ： 顶部对齐</li>
+<li>bottom ： 底部对齐</li>
+<li>middle ： 居中对齐</li>
+</ul>
+<h2 id="其他文本样式"><a href="#其他文本样式" class="headerlink" title="其他文本样式"></a>其他文本样式</h2><ol>
+<li>text-decroration 设置文本修饰<ol>
+<li>none ：什么都没有</li>
+<li>underline ：下划线</li>
+<li>line-through ：删除线</li>
+<li>overline ：上划线</li>
+</ol>
+</li>
+</ol>
+<p>网页空白如何处理？</p>
+<p>使用white-space ：</p>
+<p>normal：正常</p>
+<p>nowrap：不换行</p>
+<p>pre：保留空白</p>
+<p>设置省略号效果</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css">// 设置宽度<br><span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;<br>// 设置多余的内容不换行<br><span class="hljs-attribute">white-space</span>: nowrap;<br>// 添加省略号<br><span class="hljs-attribute">text-overflow</span>: ellipsis;<br></code></pre></td></tr></table></figure>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p><strong>background-color：背景颜色</strong></p>
+<p><strong>background-image：背景图片</strong></p>
+<ul>
+<li>可以同时设置背景图片和背景色，这样背景颜色会成为图片的背景色</li>
+<li>如果背景图片小于元素，则背景图片会自动平铺，将元素充满</li>
+</ul>
+<p><strong>background-repeat：设置背景重复方式</strong></p>
+<ul>
+<li>repeat：默认值，背景会沿着x轴方向和y轴方向重复</li>
+<li>repeat-x：沿着x轴方向</li>
+<li>repeat-y：沿着y轴方向</li>
+<li>no-repeat：不重复</li>
+</ul>
+<p><strong>background-position：设置背景图片的位置</strong></p>
+<ul>
+<li>通过top、left、right、bottom、center基本表示方位的词来设置位置（9宫格定位，至少需要两个词，如果只写一个则第二个默认center）</li>
+<li>通过偏移量指定位置，需要两个值，水平方向和垂直方向</li>
+</ul>
+<p><strong>background-clip：设置背景的范围：</strong></p>
+<ul>
+<li>border-box：默认值，背景会出现在边框的下边</li>
+<li>padding-box：只出现在内容区和内边距，不会出现在边框下</li>
+<li>content-box：只出现在内容区下</li>
+</ul>
+<p><strong>background-origin：背景图片的偏移量计算的原点</strong></p>
+<ul>
+<li>padding-box：默认值，从内边距出开始计算</li>
+<li>conter-box：从内容区开始计算</li>
+<li>border-box：背景图片的原点从边框出开始计算</li>
+</ul>
+<p><strong>background-size：背景图片的尺寸</strong></p>
+<ul>
+<li>设置宽度和高度</li>
+<li>如果只写一个值，另一个默认 <strong>auto</strong></li>
+<li>可选值<ul>
+<li>cover：图片比例不变，将元素充满</li>
+<li>contain ：图片比例不变，将图片在元素中完整显示</li>
+</ul>
+</li>
+</ul>
+<p>background-attachment：设置元素背景图片是否跟随元素移动</p>
+<ul>
+<li>scroll：默认值，移动</li>
+<li>fixed：不移动</li>
+</ul>
+<p>background：背景相关的简写属性</p>
+<ul>
+<li>origin 和 clip 两个样式 orgin 必须在 clip 前面</li>
+<li>size 必须写在 position 后面，并且使用 <code>/</code> 隔开</li>
+</ul>
+<p>浏览器中的资源是<strong>按需加载</strong></p>
 ]]></content>
       <categories>
         <category>教程</category>
