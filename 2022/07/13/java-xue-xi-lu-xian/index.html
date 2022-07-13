@@ -1,0 +1,1135 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="dongyu sun">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="路飞的java学习路线，很赞（转载）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java学习路线">
+<meta property="og:url" content="https://sundongyu.github.io/2022/07/13/java-xue-xi-lu-xian/index.html">
+<meta property="og:site_name" content="樱花小镇">
+<meta property="og:description" content="路飞的java学习路线，很赞（转载）">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/8ecb6b2b256b428cae5e52306d9d4560.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_6,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/0954a201012c4f3ab91123dc1d34bcfb.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_6,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/29b8d716d8a9477d80e0f46654d37f1b.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_6,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/e6892ad2020b4dbb95f15f319d5e9688.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_6,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/5c2b66951c0749988c2240397e470f38.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_7,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/24b8bcb71b334f429a21830ddb476c6e.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_6,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/112964656b5b48de966c573213bbfb63.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_6,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/b8df61fb10134d70803f5add656a7a40.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_6,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/764ac9c384954c5bafb52aa09d18ab12.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_7,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/5696b76c919b41cc81e64c17763a5a16.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_6,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/38006a1a177f4fa88a07ef7a7473e981.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_6,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/d788623e79504a6a8e94f3ba6b4b00f2.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_6,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/6cc414955ed549e2b64c22ec67b34460.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_6,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/6f1a3f4546274ae2abf671d0820fe6a6.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_6,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/8b5847ddf5ae45079d48618dba7532c6.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_7,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/e6892ad2020b4dbb95f15f319d5e9688.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_6,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/5c2b66951c0749988c2240397e470f38.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_7,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/24b8bcb71b334f429a21830ddb476c6e.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_6,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/8a603830e22e4afc8662c8f62efb5aa7.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_7,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/1c682a59810248b1b649ef7048818da0.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/1a7613bdf3224d2bbfab79db040461bb.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/87330e4218c54eeebe4aa7475940f96a.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/ea165bf1d56d42018135c39cc5e67f24.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/8010ca029a284d79a203293ed0e407ee.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/b5e200ad0faf4aea9a556e94ac2230b6.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/d944b17d5d394a07a744cffc05483785.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/5cc04f74309a43669c72379ebe5beba0.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/3f77c28368d24c40a37930894ab5fed1.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/176b673d469841ec878e61b78372eb19.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/1f298c8b7c6541d6a528c2966b4dd454.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/872d094964714e7aa49f715bed576cfa.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/0545e217975f4e89b783a9d7d7209b68.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/7728dfd9ffd74586aff1a097f136b3d5.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/9fb1e10342e54c4abed228d89192153e.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/45687bcf49b340c982a3d87dfa312aff.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/f64708c675b44be497e77ad24fef12c9.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/968c09054e72423f841c356895ef115c.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2efd21320bef4a738e40f89748da67e2.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_6,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/764ac9c384954c5bafb52aa09d18ab12.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_7,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/50c60c2af4264c94a30edd9782a44498.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_7,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/d3c6688a1d294379b76e662af8c007f2.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_6,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/c3aad5fcdcbb4c39a525e83770162713.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_7,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/294c24b3158549969dc5fad599a53eff.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/af63e3278f8f4660a83d60c049ef5fd4.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/0e6a93fd83df4cc691ee9d5aab257b3a.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="article:published_time" content="2022-07-13T04:00:10.000Z">
+<meta property="article:modified_time" content="2022-07-13T04:01:18.117Z">
+<meta property="article:author" content="dongyu sun">
+<meta property="article:tag" content="学习路线">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/8ecb6b2b256b428cae5e52306d9d4560.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_6,color_FFFFFF,t_70,g_se,x_16">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Java学习路线 - 樱花小镇</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/fluid-extension.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"sundongyu.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":120,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"java"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.1.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>樱花小镇</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Java学习路线"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-07-13 12:00" pubdate>
+          2022年7月13日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          10k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          86 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Java学习路线</h1>
+            
+            <div class="markdown-body">
+              
+              <blockquote>
+<p>路飞的java学习路线，很赞（转载）</p>
+</blockquote>
+<span id="more"></span>
+
+
+<h3 id="1、JavaSE-基础知识"><a href="#1、JavaSE-基础知识" class="headerlink" title="1、JavaSE 基础知识"></a>1、JavaSE 基础知识</h3><p>JavaSE 基础知识，是大部分入坑Java的小白们必须经历的一个阶段。这里我建议那些学习时间充裕的大一的学弟们，可以参考一下尚硅谷、黑马程序员的网课，他们的课程课时较长，课程比较细致，此外，最好结合相关书籍去系统性学习；而对于大二、大三（Java基础差，之前没有好好学习，或者非科班出身）的学弟们，由于学习时间有限，即将面临实习、校招，这里我建议可以看狂神老师的Java基础课程，课时较短，比较通俗容易理解，能够帮大家快速补上Java基础知识的短板。</p>
+<ul>
+<li>视频链接（<strong>推荐</strong>）：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV12J41137hu">【狂神说Java】Java零基础学习视频通俗易懂</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1LJ411z7vY">狂神说Java——网络编程</a>、</li>
+<li>视频链接：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV18J411W7cE">黑马程序员全套Java教程_Java基础入门视频教程，零基础小白自学Java必备教程</a></li>
+<li>视频链接：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Kb411W75N">尚硅谷Java零基础入门教程（含百道Java真题，2万多行Java代码实战）</a></li>
+<li>推荐书籍（<strong>推荐</strong>）：《Java编程思想》、《Java核心技术卷 I》、《Java核心技术卷 II》</li>
+<li>书籍获取：<a href="#pdf">推荐书籍汇总</a></li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/8ecb6b2b256b428cae5e52306d9d4560.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_6,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<hr>
+<p><img src="https://img-blog.csdnimg.cn/0954a201012c4f3ab91123dc1d34bcfb.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_6,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<hr>
+<p><img src="https://img-blog.csdnimg.cn/29b8d716d8a9477d80e0f46654d37f1b.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_6,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>综合案例练习：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1HE41127CV">Java实现贪吃蛇小游戏</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1MJ411x77d">Java实现坦克大战小游戏</a></li>
+</ul>
+<blockquote>
+<p><strong>注</strong>：非常建议0基础的小伙伴，可以先看一看狂神老师的JavaSE课程，快速入门一下，然后回头看书复习一遍，可以学得很扎实哦！</p>
+</blockquote>
+<h3 id="2、JavaWeb-阶段"><a href="#2、JavaWeb-阶段" class="headerlink" title="2、JavaWeb 阶段"></a>2、JavaWeb 阶段</h3><h4 id="2-1-Web-基础——前端知识（HTML、CSS、JavaScript）"><a href="#2-1-Web-基础——前端知识（HTML、CSS、JavaScript）" class="headerlink" title="2.1 Web 基础——前端知识（HTML、CSS、JavaScript）"></a>2.1 Web 基础——前端知识（HTML、CSS、JavaScript）</h4><p>作为一个后端开发者，不仅要精通后端方向的技术栈，前端方向的一些基础知识也是要了解一下的！同样的，对于大三、大四急需投递实习或者校招的同学，可以选择看狂神老师的快速入门版本；而对于大一、大二的同学，学习时间充裕的情况下，尽量以硅谷和传智的完整教程为主！</p>
+<blockquote>
+<p>狂神老师快速入门版：</p>
+</blockquote>
+<ul>
+<li>HTML教程链接：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1x4411V75C">【狂神说Java】HTML5完整教学通俗易懂</a></li>
+<li>CSS教程链接：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1YJ411a7dy">【狂神说Java】CSS3最新教程快速入门通俗易懂</a></li>
+<li>JavaScript教程链接：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1JJ41177di">【狂神说Java】JavaScript最新教程通俗易懂</a></li>
+</ul>
+<blockquote>
+<p>尚硅谷、黑马程序员完整版：</p>
+</blockquote>
+<ul>
+<li>视频链接：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1XJ411X7Ud">【尚硅谷】Web前端零基础入门HTML5+CSS3基础教程</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1YW411T7GX">【尚硅谷】JavaScript基础&amp;实战丨JS入门到精通全套完整版</a></li>
+<li>视频链接：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1cf4y1j7hL">【黑马程序员】前端HTML5+CSS3+移动Web全套教程</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ux411d75J?spm_id_from=333.999.0.0">【黑马程序员】JavaScript全套教程</a></li>
+</ul>
+<h4 id="2-2-Web基础——前端知识（jQuery、Ajax、Vue、UI框架）"><a href="#2-2-Web基础——前端知识（jQuery、Ajax、Vue、UI框架）" class="headerlink" title="2.2 Web基础——前端知识（jQuery、Ajax、Vue、UI框架）"></a>2.2 Web基础——前端知识（jQuery、Ajax、Vue、UI框架）</h4><p>对于jQuery、Ajax的掌握程度，大家会使用即可，并不需要去看一些很细致很完整的教程，因为后期自己在做项目的时候，这部分东西写着写着就熟悉了。而对于Vue，我是很建议大家花时间细致去学一学的（如果学习时间充裕的话）！至于UI框架的话，其实会搬运组件即可，知道一些栅格布局知识等等就可以啦！</p>
+<blockquote>
+<p>快速入门版：</p>
+</blockquote>
+<ul>
+<li>视频链接：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Kt411u7BV">【狂神说Java】一小时掌握Ajax</a></li>
+<li>视频链接：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1pt411H7D6">【黑马程序员】4天快速掌握jQuery</a></li>
+<li>视频链接：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV18E411a7mC">【【狂神说Java】Vue最新快速上手教程通俗易懂】</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Lo4y1R7hc">【编程不良人】2021最新Vue全家桶系列教程</a></li>
+<li>视频链接（了解即可）：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1pi4y1G7Ut">【编程不良人】适合后端开发人员的bootstrap超详细使用教程</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1NK4y187XH">【编程不良人】适合后端编程人员的 ElementUI教程</a></li>
+</ul>
+<blockquote>
+<p><strong>注</strong>：前端方向的学习内容远远不止这些，但是对于后端方向的校招生，会使用上面的一些内容即可，毕竟术业有专攻，各有各的侧重点。如果对前端方向感兴趣的小伙伴们，可以私信或者留言给我，有时间也可以给大家出一篇前端学习路线文章。</p>
+</blockquote>
+<p>前端这些知识，不要求每一位同学深入掌握，所以就不推荐书籍了，直接看视频教程即可！</p>
+<h4 id="2-3-Web基础——MySQL数据库"><a href="#2-3-Web基础——MySQL数据库" class="headerlink" title="2.3  Web基础——MySQL数据库"></a>2.3  Web基础——MySQL数据库</h4><p>数据库的种类很多，对于校招生，我们把侧重点放在MySQL数据库上就行啦，这一小节只是入门学习MySQL阶段，后面小节会继续总结MySQL进阶学习教程。</p>
+<blockquote>
+<p>视频教程：</p>
+</blockquote>
+<ul>
+<li>视频地址（<strong>推荐</strong>）：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1NJ411J79W">【狂神说Java】MySQL最新教程通俗易懂</a></li>
+<li>视频地址（<strong>推荐</strong>）：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1H64y1U7GJ">【韩顺平讲MySQL】零基础一周学会MySQL -sql mysql教程 mysql视频 mysql入门</a></li>
+<li>视频地址：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV12b411K7Zu">【尚硅谷】MySQL数据库入门全套视频</a></li>
+<li>菜鸟教程：<a target="_blank" rel="noopener" href="https://www.runoob.com/sql/sql-tutorial.html">SQL语法入门</a></li>
+<li>推荐书籍：《高性能MySQL》、《深入浅出MySQL》、《MySQL权威指南 第3版》</li>
+<li>书籍获取：<a href="#pdf">推荐书籍汇总</a></li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/e6892ad2020b4dbb95f15f319d5e9688.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_6,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<hr>
+<p><img src="https://img-blog.csdnimg.cn/5c2b66951c0749988c2240397e470f38.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_7,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<hr>
+<p><img src="https://img-blog.csdnimg.cn/24b8bcb71b334f429a21830ddb476c6e.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_6,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p><strong>注</strong>：MySQL基础入门阶段，可以先以网课为主，先学会用，之后深入学习MySQL阶段再看书去追求深入学习！</p>
+</blockquote>
+<h4 id="2-4-Web基础——Servlet、JSP、JDBC"><a href="#2-4-Web基础——Servlet、JSP、JDBC" class="headerlink" title="2.4 Web基础——Servlet、JSP、JDBC"></a>2.4 Web基础——Servlet、JSP、JDBC</h4><p>JavaWeb学习阶段要重视Servlet、JDBC、 Tomcat这部分的学习，而JSP标签语法可以作为次要（目前很少有公司继续使用JSP作为页面渲染了），这里直接推荐狂神老师的课程，硅谷和黑马程序员也有类似的课程，但是课时比较长。我认为应该先快速入门一下，然后做综合案例沉淀即可！</p>
+<ul>
+<li>视频地址（<strong>推荐</strong>）：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV12J411M7Sj">【狂神说Java】JavaWeb入门到实战</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1eJ411c7rf">尚硅谷JDBC核心技术</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Y7411K7zz">尚硅谷最新版JavaWeb全套教程，Java Web零基础入门完整版</a></li>
+<li>综合案例练习：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV18s411u7EH">JavaWeb视频教程（JSP&#x2F;Servlet&#x2F;上传&#x2F;下载&#x2F;分页&#x2F;MVC&#x2F;三层架构&#x2F;Ajax）</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Sb411E7uQ">黑马JavaWeb网上商城</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1d4411t7ve">Java Web项目实战 黑马旅游网（IDEA版）</a></li>
+</ul>
+<blockquote>
+<p>注：对于大三学生即将面临实习、校招，如果时间不充裕的情况下，可以跳过JavaWeb阶段的综合案例练习，直接看框架阶段的项目练习教程，而大一大二学生，学习时间充裕的话，尽量学习完Web阶段后，就做一下上面的几个小案例练习一下（任选一个即可）。</p>
+</blockquote>
+<h3 id="3、后端框架阶段"><a href="#3、后端框架阶段" class="headerlink" title="3、后端框架阶段"></a>3、后端框架阶段</h3><p>框架阶段的学习是整个Java阶段技术体系最繁琐最重要的阶段，其中主要以SSM：Spring（Java后端的核心灵魂）、Spring MVC、Mybatis为基础，在SSM三大框架掌握的基础之上，可以继续学习Spring Boot（以后吃饭的工具）等进一步封装Spring的框架。</p>
+<p>框架阶段学习很重要，但是对于目前还是学生的大家，千万不要以堆积框架为方向去准备校招求职面试，学几个重要的框架即可，切勿把时间都放在堆积框架而忽略基础夯实！</p>
+<p>个人建议：这一阶段在学习时，一定要反复练习使用，多做一些项目案例，提高熟练度！</p>
+<h4 id="3-1-SSM框架学习"><a href="#3-1-SSM框架学习" class="headerlink" title="3.1 SSM框架学习"></a>3.1 SSM框架学习</h4><blockquote>
+<p>SSM三大框架学习：</p>
+</blockquote>
+<ul>
+<li>狂神老师的SSM系列课程（<strong>适合快速入门</strong>）：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1WE411d7Dv">【狂神说Java】Spring5最新完整教程IDEA版通俗易懂</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1aE41167Tu">【狂神说Java】SpringMVC最新教程IDEA版通俗易懂</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1NE411Q7Nx?spm_id_from=333.999.0.0">狂神说Java】Mybatis最新完整教程IDEA版通俗易懂</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1RE41127rv">【狂神说Java】SSM框架最新整合教学IDEA版</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1PE411i7CV">【狂神说Java】SpringBoot最新教程IDEA版通俗易懂</a></li>
+<li>编程不良人SSM系列课程：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV15E411p7vk">【编程不良人】Spring 从入门到精通</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1WD4y1D7kz?spm_id_from=333.999.0.0">【编程不良人】继spring之后快速入门springmvc</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Uy4y1i76H?spm_id_from=333.999.0.0">【编程不良人】2021Mybatis基础入门篇</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV12k4y167jK?spm_id_from=333.999.0.0">【编程不良人】快速入门Spring,SpringBoot、SpringCloud学不好完全是因为Spring没有掌握!</a></li>
+<li>尚硅谷全套SSM教程（<strong>推荐</strong>）：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ME411o7Uu">Spring注解驱动开发_spring源码版-雷丰阳</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Ry4y1574R">【尚硅谷】SpringMVC 2021新版教程</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1mW411M737?spm_id_from=333.999.0.0">尚硅谷MyBatis实战教程全套完整版</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV19K4y1L7MT">雷丰阳2021版SpringBoot2零基础入门SpringBoot全套完整版</a></li>
+<li>传智播客全套SSM教程：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1WZ4y1P7Bp">黑马程序员最全SSM框架教程</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1mE411X7yp">黑马程序员SSM框架合集</a></li>
+<li>图灵学院全套SSM教程：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1yv411w7E6">2021图灵学院SSM框架教程了——0基础到精通</a></li>
+</ul>
+<blockquote>
+<p>扩展：</p>
+</blockquote>
+<p>如果时间充裕，扩展学习一些常见的框架，对大家做项目案例还是很有帮助的。</p>
+<ul>
+<li>MyBatis-Plus：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV17E411N7KN">【狂神说Java】MyBatisPlus最新完整教程通俗易懂</a></li>
+<li>Spring Data JPA：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1RE41167Pk">数据层全栈方案Spring Data高级应用</a></li>
+<li>Spring Security：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1VE411h7aL">黑马程序员快速入门Spring Security OAuth2.0认证授权</a></li>
+</ul>
+<h4 id="3-2-项目实战"><a href="#3-2-项目实战" class="headerlink" title="3.2 项目实战"></a>3.2 项目实战</h4><blockquote>
+<p>SpringBoot项目实战教程（学以致用，巩固沉淀）：</p>
+</blockquote>
+<ul>
+<li>个人博客项目实战：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1nE411r7TF">SpringBoot开发一个小而美的个人博客</a>，该项目需要提前掌握一下 Spring Data JPA，该框架和Mybatis-Plus类似，有兴趣可以单独学习一下。</li>
+<li>SpringBoot聊天App项目实战：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV18g4y1z7rL">SpringBoot+Mybatis+netty 打造高性能前后端分离的聊天应用混合式APP</a>，这个项目案例对前端掌握要求程度略高一些，因为要写很多前端代码去构建APP界面。</li>
+<li>SpringBoot论坛项目实战：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1LJ411t7Vx">Spring Boot项目实战博客Elasticsearch搜索</a>，这个项目案例用到了一些中间件（例如ElasticSearch，大家在下一个学习阶段：中间件阶段需要去学习）。</li>
+<li>Spring Boot管理系统项目实战：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1b4411q7DX">SpringBoot项目实战：企业项目管理系统</a></li>
+<li>旅游网站项目实战：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Nt4y127Jh">【编程不良人】基于springboot+vue前后端分离旅游项目实战教程</a></li>
+<li>办公系统项目实战：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1HA411p7aA">SpringBoot在线智能办公系统实战教程</a></li>
+</ul>
+<h4 id="3-3-推荐书籍"><a href="#3-3-推荐书籍" class="headerlink" title="3.3 推荐书籍"></a>3.3 推荐书籍</h4><blockquote>
+<p>推荐书籍：（框架这些东西，需要大家先跟着网课学会熟练使用，然后再追求读书深入学习！）</p>
+</blockquote>
+<ul>
+<li>书籍清单：《Spring技术内幕》、《MyBatis技术原理与实战》、《Spring源码深度解析》、《深入浅出Spring Boot》</li>
+<li>书籍获取：<a href="#pdf">推荐书籍汇总</a></li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/112964656b5b48de966c573213bbfb63.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_6,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<hr>
+<p><img src="https://img-blog.csdnimg.cn/b8df61fb10134d70803f5add656a7a40.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_6,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<hr>
+<p><img src="https://img-blog.csdnimg.cn/764ac9c384954c5bafb52aa09d18ab12.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_7,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<hr>
+<p><img src="https://img-blog.csdnimg.cn/5696b76c919b41cc81e64c17763a5a16.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_6,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<h3 id="4、中间件阶段"><a href="#4、中间件阶段" class="headerlink" title="4、中间件阶段"></a>4、中间件阶段</h3><p>中间件学习阶段，目前对于校招生来说，主要学习一下ElasticSearch、Redis、MQ（Kafka&#x2F;RabbitMQ&#x2F;RocketMQ任选其一）即可。 其中Redis不光要学会使用，更重要的是需要去了解一些其原理层面的知识。</p>
+<ul>
+<li>Redis缓存教程推荐：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1S54y1R7SB?spm_id_from=333.999.0.0">【狂神说Java】Redis最新超详细版教程通俗易懂</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1jD4y1Q7tU?spm_id_from=333.999.0.0">【编程不良人】适合后端编程人员的Redis实战教程</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV13a4y1t7Wh?spm_id_from=333.999.0.0">【编程不良人】如何基于springboot优雅设计一个秒杀系统乐观锁解决超卖、Redis缓存、令牌桶桶限流等方案</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Rv41177Af?spm_id_from=333.999.0.0">【尚硅谷】Redis 6 入门到精通 超详细 教程</a></li>
+<li>ElasticSearch教程推荐：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV17a4y1x7zq?spm_id_from=333.999.0.0">【狂神说Java】ElasticSearch7.6.x最新完整教程通俗易懂</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Nk4y1R7Hf?spm_id_from=333.999.0.0">【狂神说Java】ElasticSearch搜索实战仿京东搜索</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1FK4y1x7Dr?spm_id_from=333.999.0.0">【编程不良人】适合后端编程人员的elasticsearch快速实战教程</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1hh411D7sb">【尚硅谷】ElasticSearch教程入门到精通，基于ELK技术栈elasticsearch 7.8.x版本</a></li>
+<li>MQ消息中间件教程推荐：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1dX4y1V73G?spm_id_from=333.999.0.0">【学相伴】RabbitMQ最新完整教程IDEA版通俗易懂</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1dE411K7MG?spm_id_from=333.999.0.0">【编程不良人】MQ消息中间件之RabbitMQ以及整合SpringBoot2.x实战教程</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1cb4y1o7zz?spm_id_from=333.999.0.0">尚硅谷2021新版RabbitMQ教程丨快速掌握MQ消息中间件</a></li>
+</ul>
+<blockquote>
+<p><strong>注</strong>：中间件技术的学习，对校招学生不过多要求底层原理深度，因此主要是锻炼大家的使用能力，学习任何一项技术，都需要先会使用，然后再追究其原理！</p>
+</blockquote>
+<h3 id="5、微服务阶段"><a href="#5、微服务阶段" class="headerlink" title="5、微服务阶段"></a>5、微服务阶段</h3><p>微服务阶段的学习，需要大家掌握各种各样的组件，目前常见的开源的微服务一站式解决方案有：Spring Cloud、Spring Cloud Alibaba、Dubbo等等。</p>
+<p>由于目前各个互联网大厂的微服务解决方案都有各自的自研体系，因此，这一学习阶段主要是入门了解，不需要花过多时间在一阶段上面，但是要搞懂到底什么是微服务，它比传统的单体应用开发优势在哪里？微服务不同模块之间的调用方式是怎样实现的？</p>
+<ul>
+<li>Spring Cloud教程推荐：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1jJ411S7xr?spm_id_from=333.999.0.0">【狂神说Java】SpringCloud最新教程IDEA版——入门版</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1XE411E7uF?spm_id_from=333.999.0.0">【编程不良人】Spring CLoud 微服务从入门到精通</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1LQ4y127n4">黑马程序员Spring Cloud 全套教程</a></li>
+<li>Dubbo教程推荐：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1wE41147Fn?spm_id_from=333.999.0.0">【编程不良人】dubbo 从入门到精通</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1VE411q7dX">黑马程序员Dubbo快速入门</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Gb411T7Ha">尚硅谷雷丰阳——Dubbo快速入门教程</a></li>
+</ul>
+<blockquote>
+<p>项目案例推荐：</p>
+</blockquote>
+<ul>
+<li>【尚硅谷】金融项目——尚融宝：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1VV411n7nR">https://www.bilibili.com/video/BV1VV411n7nR</a></li>
+<li>【尚硅谷】电商项目——谷粒商城：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1np4y1C7Yf?spm_id_from=333.999.0.0">https://www.bilibili.com/video/BV1np4y1C7Yf?spm_id_from&#x3D;333.999.0.0</a></li>
+<li>【尚硅谷】在线教育项目——谷粒学院：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1fi4y1x7on?spm_id_from=333.999.0.0">https://www.bilibili.com/video/BV1fi4y1x7on?spm_id_from&#x3D;333.999.0.0</a></li>
+<li>【尚硅谷】医疗项目——尚医通：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1V5411K7rT?spm_id_from=333.999.0.0">https://www.bilibili.com/video/BV1V5411K7rT?spm_id_from&#x3D;333.999.0.0</a></li>
+<li>【黑马程序员】支付项目——闪聚支付：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV17v411V79c?spm_id_from=333.999.0.0">https://www.bilibili.com/video/BV17v411V79c?spm_id_from&#x3D;333.999.0.0</a></li>
+<li>【黑马程序员】电商项目——畅够商城：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1GE411G7Hg?spm_id_from=333.999.0.0">https://www.bilibili.com/video/BV1GE411G7Hg?spm_id_from&#x3D;333.999.0.0</a></li>
+<li>【黑马程序员】电商项目——乐优商城：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV14E411i7rc?spm_id_from=333.999.0.0">https://www.bilibili.com/video/BV14E411i7rc?spm_id_from&#x3D;333.999.0.0</a></li>
+</ul>
+<p>微服务这部分的项目练习，我觉得主要是增加大家对微服务开发流程的了解，选一个项目练习就够了，这几个项目路飞都跟着做过，有些地方其实都是千篇一律的模子，不建议把这些项目放到简历里面，更建议大家把自己做的项目或者阅读的开源项目作为自己的简历项目！</p>
+<h3 id="6、计算机基础学科知识（重中之重的基础）"><a href="#6、计算机基础学科知识（重中之重的基础）" class="headerlink" title="6、计算机基础学科知识（重中之重的基础）"></a>6、计算机基础学科知识（重中之重的基础）</h3><p>大厂校招面试中，计算机基础学科知识的考查是非常常见的，可以不夸张的说，大厂校招面试，百分之九十以上的概率都会被问到计算机基础学科相关的问题，例如计算机网络的HTTP协议，操作系统IO模型等等。</p>
+<p>培训机构的课程往往是不会花时间在这些基础学科讲解上面的，因为培训班的目的是为了让学生找一份程序员的工作，相比于花大精力在计算机基础学科教学，他们更愿意花时间在快速突击的框架课程上面（小公司更在意你能不能上手干活，而大厂更在意你的培养潜力）。</p>
+<p>对于计算机基础学科的学习，我建议大家尽量回归书本学习，高校中的应用框架教程可能没有培训班讲的那么前沿，但是高校科班的计算机基础学科课程还是很值得上课跟着老师认真听讲的。</p>
+<blockquote>
+<p>计算机网络</p>
+</blockquote>
+<ul>
+<li>教程推荐：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV19E411D78Q">王道计算机考研 计算机网络</a></li>
+<li>推荐书籍：《图解HTTP》、《HTTP权威指南》、<a target="_blank" rel="noopener" href="https://item.jd.com/32838929900.html">《TCP-IP详解（卷一、二、三）》</a>、<a target="_blank" rel="noopener" href="https://item.jd.com/12392810.html">《自顶向下计算机网络》</a></li>
+<li>书籍获取：<a href="#pdf">推荐书籍汇总</a></li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/38006a1a177f4fa88a07ef7a7473e981.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_6,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<hr>
+<p><img src="https://img-blog.csdnimg.cn/d788623e79504a6a8e94f3ba6b4b00f2.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_6,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<hr>
+<p><img src="https://img-blog.csdnimg.cn/6cc414955ed549e2b64c22ec67b34460.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_6,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>操作系统</p>
+</blockquote>
+<ul>
+<li>教程推荐：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1YE411D7nH/">王道计算机考研 操作系统</a></li>
+<li>推荐书籍：<a target="_blank" rel="noopener" href="https://item.jd.com/12006637.html">《深入理解计算机操作系统》</a></li>
+<li>书籍获取：<a href="#pdf">推荐书籍汇总</a></li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/6f1a3f4546274ae2abf671d0820fe6a6.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_6,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>计算机组成原理</p>
+</blockquote>
+<p>计组在校招中考察的比较少，所以对于不考研的同学，了解一下即可。</p>
+<ul>
+<li>教程推荐：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1BE411D7ii/">王道计算机考研 计算机组成原理</a></li>
+</ul>
+<blockquote>
+<p>数据结构与算法</p>
+</blockquote>
+<ul>
+<li>教程推荐：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1E4411H73v">尚硅谷Java数据结构与算法</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1sX4y1G7oM">【编程基础】美女老师带你轻松搞定数据结构与算法</a></li>
+<li>推荐书籍：《算法图解》</li>
+<li>书籍获取：<a href="#pdf">推荐书籍汇总</a></li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/8b5847ddf5ae45079d48618dba7532c6.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_7,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<h3 id="7、深入学习MySQL数据库"><a href="#7、深入学习MySQL数据库" class="headerlink" title="7、深入学习MySQL数据库"></a>7、深入学习MySQL数据库</h3><p>MySQL数据库是目前国内互联网企业最常用的关系型数据库之一，目前大厂校招面试中，MySQL数据库除了考察一些SQL场景问题，还会考察校招生对索引原理、数据库引擎、锁、隔离级别、日志等方面的掌握程度。</p>
+<p>对于深入学习MySQL数据库，回归书本是比较好的一种方式，这里也简单给大家推荐一些教程，但是视频教程都只是某一个侧重部分，没有权威的书籍全面。</p>
+<ul>
+<li>推荐书籍：《高性能MySQL》、《深入浅出MySQL》、《MySQL权威指南 第3版》</li>
+<li>书籍获取：<a href="#pdf">推荐书籍汇总</a></li>
+<li>推荐网课：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV19y4y127h4?spm_id_from=333.999.0.0">【编程不良人】这一次彻底搞定MySQL索引</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1KW411u7vy">尚硅谷MySQL数据库高级，mysql优化，数据库优化</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1xR4y1H7hR">【马士兵】MySQL索引原理、事务、MVCC、锁、调优、分库分表、Explain、读写分离、ACID、主从复制…教程</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1X64y1x7HT">MySQL索引+调优+事务+锁+面试题</a></li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/e6892ad2020b4dbb95f15f319d5e9688.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_6,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<hr>
+<p><img src="https://img-blog.csdnimg.cn/5c2b66951c0749988c2240397e470f38.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_7,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<hr>
+<p><img src="https://img-blog.csdnimg.cn/24b8bcb71b334f429a21830ddb476c6e.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_6,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<h3 id="8、深入学习JVM"><a href="#8、深入学习JVM" class="headerlink" title="8、深入学习JVM"></a>8、深入学习JVM</h3><ul>
+<li>推荐书籍：《深入理解Java虚拟机第3版》</li>
+<li>书籍获取：<a href="#pdf">推荐书籍汇总</a></li>
+<li>视频教程推荐：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1PJ411n7xZ">尚硅谷宋红康JVM全套教程（详解java虚拟机）</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1yE411Z7AP">黑马程序员JVM完整教程</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1BW411R7QK">深入理解Java虚拟机（JVM性能调优+内存模型+虚拟机原理）</a></li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/8a603830e22e4afc8662c8f62efb5aa7.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_7,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<h3 id="9、算法（持续刷题）"><a href="#9、算法（持续刷题）" class="headerlink" title="9、算法（持续刷题）"></a>9、算法（持续刷题）</h3><p>算法虽然放在第9这个位置，但是它的重要程度应该是最高的，建议小伙伴，学完语言的语法知识（Java或者C++均可），就开始尝试去接触数据结构与算法知识，然后累计刷题！</p>
+<p>算法能力是需要日积月累，短时间无法快速突击上来的，坚持leetcode每日一题，每天进步亿点点！</p>
+<p>下面是一些算法刷题网站：</p>
+<ul>
+<li><strong>AcWing</strong>：<a target="_blank" rel="noopener" href="https://www.acwing.com/">https://www.acwing.com/</a></li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/1c682a59810248b1b649ef7048818da0.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li><strong>LeetCode</strong>：（累计300道题，应该就可以应付校招面试了）<a target="_blank" rel="noopener" href="https://leetcode-cn.com/">https://leetcode-cn.com/</a></li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/1a7613bdf3224d2bbfab79db040461bb.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>牛客网：<a target="_blank" rel="noopener" href="https://www.nowcoder.com/activity/oj">https://www.nowcoder.com/activity/oj</a></li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/87330e4218c54eeebe4aa7475940f96a.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p><strong>注</strong>：刷题没有捷径，只有量变引起质变的一个过程。</p>
+</blockquote>
+<h3 id="10、开源项目"><a href="#10、开源项目" class="headerlink" title="10、开源项目"></a>10、开源项目</h3><h4 id="10-1-RuoYi"><a href="#10-1-RuoYi" class="headerlink" title="10.1 RuoYi"></a>10.1 RuoYi</h4><ul>
+<li>若依：<strong>RuoYi</strong>是一个后台管理系统，基于经典技术组合（Spring Boot、Apache Shiro、MyBatis、Thymeleaf）主要目的让开发者注重专注业务，降低技术难度，从而节省人力成本，缩短项目周期，提高软件安全质量。</li>
+<li>项目演示地址：<a target="_blank" rel="noopener" href="http://demo.ruoyi.vip/login">http://demo.ruoyi.vip/login</a>，账号：<code>admin</code>、密码：<code>admin123</code></li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/ea165bf1d56d42018135c39cc5e67f24.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<p>功能展示：</p>
+<p><img src="https://img-blog.csdnimg.cn/8010ca029a284d79a203293ed0e407ee.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>官网地址：<a target="_blank" rel="noopener" href="http://doc.ruoyi.vip/">http://doc.ruoyi.vip/</a></li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/b5e200ad0faf4aea9a556e94ac2230b6.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>Gitee地址：<a target="_blank" rel="noopener" href="https://gitee.com/y_project/RuoYi">https://gitee.com/y_project&#x2F;RuoYi</a></li>
+<li>GitHub地址：<a target="_blank" rel="noopener" href="https://github.com/yangzongzhuan/RuoYi">https://github.com/yangzongzhuan/RuoYi</a></li>
+<li>文档地址：<a target="_blank" rel="noopener" href="https://doc.ruoyi.vip/ruoyi/">https://doc.ruoyi.vip/ruoyi/</a></li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/d944b17d5d394a07a744cffc05483785.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<p>该项目有多种不同版本，可以分为前后端一体版本、前后端分离版本、微服务版本，大家可以根据自己的学习情况和技术栈广度自行选择。</p>
+<h4 id="10-2-EL-Admin"><a href="#10-2-EL-Admin" class="headerlink" title="10.2 EL-Admin"></a>10.2 EL-Admin</h4><ul>
+<li>EL-Admin：一个基于 Spring Boot 2.1.0 、 Spring Boot Jpa、 JWT、Spring Security、Redis、Vue、Element-UI 的前后端分离的后台管理系统。</li>
+<li>项目演示地址：<a target="_blank" rel="noopener" href="https://el-admin.xin/">https://el-admin.xin/</a>，账号：<code>admin</code>、密码：<code>123456</code></li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/5cc04f74309a43669c72379ebe5beba0.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<p>功能展示：</p>
+<p><img src="https://img-blog.csdnimg.cn/3f77c28368d24c40a37930894ab5fed1.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>官网地址：<a target="_blank" rel="noopener" href="https://el-admin.vip/">https://el-admin.vip/</a></li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/176b673d469841ec878e61b78372eb19.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>Gitee地址：<a target="_blank" rel="noopener" href="https://gitee.com/elunez/eladmin">https://gitee.com/elunez/eladmin</a></li>
+<li>GitHub地址：<a target="_blank" rel="noopener" href="https://github.com/elunez/eladmin">https://github.com/elunez/eladmin</a></li>
+<li>文档地址：<a target="_blank" rel="noopener" href="https://el-admin.vip/guide/">https://el-admin.vip/guide/</a></li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/1f298c8b7c6541d6a528c2966b4dd454.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<h4 id="10-3-蘑菇博客"><a href="#10-3-蘑菇博客" class="headerlink" title="10.3  蘑菇博客"></a>10.3  蘑菇博客</h4><ul>
+<li>蘑菇博客：一个<strong>基于微服务架构的前后端分离博客系统</strong>。<strong>Web</strong> 端使用 <strong>Vue</strong> + <strong>ElementUi</strong> , 移动端使用 <strong>uniapp</strong> 和 <strong>ColorUI</strong>。后端使用 <strong>SpringCloud</strong> + <strong>SpringBoot</strong> + <strong>Mybatis-plus</strong>进行开发，使用 <strong>Jwt</strong> + <strong>SpringSecurity</strong> 做登录验证和权限校验，使用 <strong>ElasticSearch</strong> 和 <strong>Solr</strong> 作为全文检索服务，使用 <strong>Github Actions</strong>完成博客的持续集成，使用 <strong>ElasticStack</strong> 收集博客日志，文件支持<strong>上传本地</strong>、<strong>七牛云</strong> 和 <strong>Minio</strong>。</li>
+<li>项目案例演示：</li>
+</ul>
+<p>博客前端地址：<a target="_blank" rel="noopener" href="http://demoweb.moguit.cn/#/">http://demoweb.moguit.cn/#/</a></p>
+<p><img src="https://img-blog.csdnimg.cn/872d094964714e7aa49f715bed576cfa.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<p>博客后端地址：<a target="_blank" rel="noopener" href="http://demoadmin.moguit.cn/">http://demoadmin.moguit.cn/</a>，账号：<code>mogu2022</code>、密码：<code>mogu2022</code></p>
+<p><img src="https://img-blog.csdnimg.cn/0545e217975f4e89b783a9d7d7209b68.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>文档地址：<a target="_blank" rel="noopener" href="http://moxi159753.gitee.io/mogu_blog_doc/#/">http://moxi159753.gitee.io/mogu_blog_doc&#x2F;#&#x2F;</a></li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/7728dfd9ffd74586aff1a097f136b3d5.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>Gitee地址：<a target="_blank" rel="noopener" href="https://gitee.com/moxi159753/mogu_blog_v2">https://gitee.com/moxi159753/mogu_blog_v2</a></li>
+<li>GitHub地址：<a target="_blank" rel="noopener" href="https://github.com/moxi624/mogu_blog_v2">https://github.com/moxi624/mogu_blog_v2</a></li>
+</ul>
+<h4 id="10-4-newbee-mall"><a href="#10-4-newbee-mall" class="headerlink" title="10.4 newbee-mall"></a>10.4 newbee-mall</h4><ul>
+<li>newbee-mall：是一套电商系统，包括 newbee-mall 商城系统及 newbee-mall-admin 商城后台管理系统，基于 Spring Boot 2.X 及相关技术栈开发。 前台商城系统包含首页门户、商品分类、新品上线、首页轮播、商品推荐、商品搜索、商品展示、购物车、订单结算、订单流程、个人订单管理、会员中心、帮助中心等模块。 后台管理系统包含数据面板、轮播图管理、商品管理、订单管理、会员管理、分类管理、设置等模块。</li>
+<li>演示地址：<a target="_blank" rel="noopener" href="http://mall.newbee.ltd/?from=github">http://mall.newbee.ltd/?from=github</a></li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/9fb1e10342e54c4abed228d89192153e.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>Gitee地址：<a target="_blank" rel="noopener" href="https://gitee.com/newbee-ltd/newbee-mal">https://gitee.com/newbee-ltd/newbee-mal</a></li>
+<li>GitHub地址：<a target="_blank" rel="noopener" href="https://github.com/newbee-ltd/newbee-mall">https://github.com/newbee-ltd/newbee-mall</a></li>
+</ul>
+<h4 id="10-5-SpringBoot-ElasticSearch"><a href="#10-5-SpringBoot-ElasticSearch" class="headerlink" title="10.5  SpringBoot-ElasticSearch"></a>10.5  SpringBoot-ElasticSearch</h4><ul>
+<li>SpringBoot-ElasticSearch：基于Springboot2.1.1+elasticsearch6.5.3搭建的企业级搜索平台，支持PB级数据（需要elasticsearch分布式部署），目前已经支持中文分词，检索关键词高亮操作。</li>
+<li>Gitee地址：<a target="_blank" rel="noopener" href="https://gitee.com/11230595/springboot-elasticsearch">https://gitee.com/11230595/springboot-elasticsearch</a></li>
+<li>演示截图：</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/45687bcf49b340c982a3d87dfa312aff.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://img-blog.csdnimg.cn/f64708c675b44be497e77ad24fef12c9.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p><strong>注</strong>：本篇文章只给大家推荐了5个开源项目，这些项目都是在Gitee、GitHub上的星标项目，大家可以自己去搜集一些自己感兴趣的项目，自己一个人或者几个人一起去读一读代码，去吃透项目的业务逻辑、功能模块。看开源项目非常耗费时间，但是大家花时间去掌握之后，会比看视频做的项目写在简历里更有价值。</p>
+</blockquote>
+<h3 id="12、JDK源码"><a href="#12、JDK源码" class="headerlink" title="12、JDK源码"></a>12、JDK源码</h3><p>看源码，我就不再推荐视频教程了，既然已经到了阅读源码阶段了，大家多少都已经对Java这门语言有足够的熟悉程度了，我认为最高效的学源码方式就是看博客、看书，自己搭建源码阅读环境，一步一步的去debug。</p>
+<p>对于初次接触JDK源码的同学，可以试着从简单的部分学起，比如<code>java.lang</code>包下的 Object、String、StringBuilder、StringBuffer等等，以及<code>java.util</code>包下的简单集合ArrayList、LinkedList、Hash Map等等，然后逐步去看current包（JUC）下的源码等等。</p>
+<p>这里给大家推荐一下：<a target="_blank" rel="noopener" href="https://gitee.com/alan-tang-tt/yuan/tree/master/">彤哥源码</a>，他的文章讲解的非常细致。</p>
+<p><img src="https://img-blog.csdnimg.cn/968c09054e72423f841c356895ef115c.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>推荐书籍：《并发编程之美》、《并发编程实战》</li>
+<li>书籍获取：<a href="#pdf">推荐书籍汇总</a></li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/2efd21320bef4a738e40f89748da67e2.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_6,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<h3 id="13、深入学习Spring"><a href="#13、深入学习Spring" class="headerlink" title="13、深入学习Spring"></a>13、深入学习Spring</h3><p>Spring源码非常庞大，哪些网上吹自己面试时候能手写Spring源码的，其实都是阉割版，真正的Spring源码体系是非常庞大的，就算照着源码抄，面试环节的一两个小时也根本抄不完！</p>
+<p>对于校招生面试，我们不需要把《Spring源码深度解析》这本书的十几个章节都搞懂，只需要重点去看IOC容器、AOP、Bean加载等几个核心模块的源码即可。</p>
+<ul>
+<li>推荐书籍：《<strong>Spring源码深度解析</strong>》yyds的一本书！</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/764ac9c384954c5bafb52aa09d18ab12.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_7,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<h3 id="14、设计模式"><a href="#14、设计模式" class="headerlink" title="14、设计模式"></a>14、设计模式</h3><p>23种设计模式，我们不需要全部掌握，也很难全部掌握，只需要会几种面试常考的设计模式即可。</p>
+<p>校招面试，常考设计模式有：工厂模式、单例模式、代理模式、策略模式、适配器模式、模板模式等等。</p>
+<ul>
+<li>教程推荐：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Np4y1z7BU">黑马程序员Java设计模式详解，全网最全23种Java设计模式</a></li>
+<li>推荐书籍：《大话设计模式》</li>
+</ul>
+<h3 id="15、深入学习Netty"><a href="#15、深入学习Netty" class="headerlink" title="15、深入学习Netty"></a>15、深入学习Netty</h3><ul>
+<li>推荐书籍：《Netty4核心原理与手写RPC框架实战》、《Netty权威指南》</li>
+<li>书籍获取：<a href="#pdf">推荐书籍汇总</a></li>
+<li>教程推荐：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1py4y1E7oA">黑马程序员Netty全套教程</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1DJ411m7NR">尚硅谷Netty视频教程</a></li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/50c60c2af4264c94a30edd9782a44498.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_7,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<hr>
+<p><img src="https://img-blog.csdnimg.cn/d3c6688a1d294379b76e662af8c007f2.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_6,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<h3 id="16、Linux、Docker"><a href="#16、Linux、Docker" class="headerlink" title="16、Linux、Docker"></a>16、Linux、Docker</h3><p>Linux、Docker这一学习阶段，知道一些常见命令和一些基本操作即可。</p>
+<ul>
+<li>推荐书籍：《鸟哥的Linux私房菜（第3版）》</li>
+<li>书籍获取：<a href="#pdf">推荐书籍汇总</a></li>
+<li>推荐教程：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Sv411r7vd">【小白入门 通俗易懂】2021韩顺平 一周学会Linux</a>、<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1og4y1q7M4">【狂神说Java】Docker最新超详细版教程通俗易懂</a></li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/c3aad5fcdcbb4c39a525e83770162713.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_7,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<h3 id="17、Git（会用即可）"><a href="#17、Git（会用即可）" class="headerlink" title="17、Git（会用即可）"></a>17、Git（会用即可）</h3><p>Git会使用即可，主要还是动手操作，命令行模式也好，IDEA可视化操作方式也好，自己知道怎么用就够了，平时我自己也是用IDEA操作居多。</p>
+<ul>
+<li>推荐教程：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1FE411P7B3">【狂神说Java】Git最新教程通俗易懂</a></li>
+</ul>
+<h3 id="18、面试题和八股文"><a href="#18、面试题和八股文" class="headerlink" title="18、面试题和八股文"></a>18、面试题和八股文</h3><p>Java后端校招面试，不光要掌握一些技术栈和项目经历，背八股文面试题也是必须的。这里主要给大家推荐以下几个刷八股文面试题的网址：</p>
+<h4 id="18-1-JavaGuide"><a href="#18-1-JavaGuide" class="headerlink" title="18.1 JavaGuide"></a>18.1 JavaGuide</h4><ul>
+<li>JavaGuide：<a target="_blank" rel="noopener" href="https://snailclimb.gitee.io/javaguide/#/">https://snailclimb.gitee.io/javaguide/#/</a></li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/294c24b3158549969dc5fad599a53eff.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<h4 id="18-2-牛客网"><a href="#18-2-牛客网" class="headerlink" title="18.2 牛客网"></a>18.2 牛客网</h4><ul>
+<li>牛客网：<a target="_blank" rel="noopener" href="https://www.nowcoder.com/">https://www.nowcoder.com/</a></li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/af63e3278f8f4660a83d60c049ef5fd4.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+<p>牛客网有很多大厂面经，都是一些大佬们参加校招面试上岸大厂后，对自己的面试经历进行复盘总结，他们会把一些自己面试中遇到的问题写成帖子分享出来（他们只总结面试问题，没有给出答案），我们要做的就是总结这些经常在面试环节出现的问题，自己去搜集答案，然后整理起来，尤其是对于哪些自己不会的问题，要反复研究反复理解。</p>
+<h4 id="18-3-LeetCode"><a href="#18-3-LeetCode" class="headerlink" title="18.3 LeetCode"></a>18.3 LeetCode</h4><blockquote>
+<p>LeetCode：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/leetbook/">https://leetcode-cn.com/leetbook/</a></p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/0e6a93fd83df4cc691ee9d5aab257b3a.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YW06Laj5L2_54S255qE6I2J5bi96Lev6aOe,size_20,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload></p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%99%E7%A8%8B/" class="category-chain-item">教程</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/">#学习路线</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Java学习路线</div>
+      <div>https://sundongyu.github.io/2022/07/13/java-xue-xi-lu-xian/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>dongyu sun</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年7月13日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/07/11/qian-duan-za-ji/" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <br> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
