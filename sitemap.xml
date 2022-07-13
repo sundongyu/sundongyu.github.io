@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://sundongyu.github.io/2022/07/13/java-xue-xi-lu-xian/</loc>
+    <loc>https://sundongyu.github.io/2022/07/13/shu-qi-todo/</loc>
     
     <lastmod>2022-07-13</lastmod>
     
@@ -12,6 +12,15 @@
   
   <url>
     <loc>https://sundongyu.github.io/2022/07/11/qian-duan-za-ji/</loc>
+    
+    <lastmod>2022-07-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sundongyu.github.io/2022/07/13/java-xue-xi-lu-xian/</loc>
     
     <lastmod>2022-07-13</lastmod>
     
@@ -182,24 +191,6 @@
   </url>
   
   <url>
-    <loc>https://sundongyu.github.io/2022/05/28/lu-fei-de-java-xue-xi-lu-xian/</loc>
-    
-    <lastmod>2022-05-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sundongyu.github.io/2022/05/24/shu-qi-ji-hua/</loc>
-    
-    <lastmod>2022-05-24</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://sundongyu.github.io/2022/05/02/kmp/</loc>
     
     <lastmod>2022-05-19</lastmod>
@@ -358,6 +349,13 @@
   
   <url>
     <loc>https://sundongyu.github.io/tags/%E5%89%8D%E7%AB%AF/</loc>
+    <lastmod>2022-07-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sundongyu.github.io/tags/TODO/</loc>
     <lastmod>2022-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
