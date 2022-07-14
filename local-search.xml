@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>操作系统</title>
+    <link href="/2022/07/14/cao-zuo-xi-tong/"/>
+    <url>/2022/07/14/cao-zuo-xi-tong/</url>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><h2 id="操作系统的特征"><a href="#操作系统的特征" class="headerlink" title="操作系统的特征"></a>操作系统的特征</h2><ul><li><strong>并发</strong>（交替执行），并行是同时发生</li><li><strong>共享</strong>，资源共享，供内存中多个并发的程序使用<ul><li>互斥：例如摄像头，同一时间只能一个进程访问</li><li>同时共享：例如磁盘，多个进程可同时访问，微观上是交替访问</li></ul></li><li>虚拟：把一个物理上的实体变为若干个逻辑上的对应物<ul><li>空分复用（虚拟存储技术）</li><li>时分复用（虚拟处理器）</li></ul></li><li>异步：资源有限，即使支持并发，进程的执行不是一管到底的，是走走停停的。</li></ul><p>没有并发和共享就谈不上虚拟和异步，因此并发和共享是操作系统的两个最基本的特征。</p><h2 id="操作系统的发展和分类"><a href="#操作系统的发展和分类" class="headerlink" title="操作系统的发展和分类"></a>操作系统的发展和分类</h2><ul><li>手工操作阶段</li><li>批处理阶段–单道批处理系统（引入脱机输入输出），缓解了人机速度矛盾，资源利用率任然很低</li><li>批处理阶段–多道批处理系统（多道程序并发执行，资源利用率高），不提供人机交互</li><li><strong>分时操作系统</strong> ：计算机以时间片为单位轮流为用户 &#x2F; 作业服务，各个用户可通过终端与计算机交互，解决了人机交互问题，不能处理紧急任务</li><li>实时操作系统：及时性、可靠性，能优先处理紧急任务<ul><li>硬实时：绝对严格的时间之内处理</li><li>软实时：能接受偶尔违反时间规定</li></ul></li><li>网络操作系统</li><li>分布式操作系统</li></ul><h1 id="OS-的运行机制和体系结构"><a href="#OS-的运行机制和体系结构" class="headerlink" title="OS 的运行机制和体系结构"></a>OS 的运行机制和体系结构</h1><h2 id="操作系统的运行机制"><a href="#操作系统的运行机制" class="headerlink" title="操作系统的运行机制"></a>操作系统的运行机制</h2><p>什么是指令？</p><blockquote><p>处理器能识别、执行的最基本的命令</p></blockquote><h3 id="两种指令"><a href="#两种指令" class="headerlink" title="两种指令"></a>两种指令</h3><ul><li>特权指令</li><li>非特权指令</li></ul><h3 id="两种处理器状态"><a href="#两种处理器状态" class="headerlink" title="两种处理器状态"></a>两种处理器状态</h3><blockquote><p>用程序状态寄存器（psw）中国的某标志位来标识当前处于什么状态</p></blockquote><ul><li>用户态（目态），此时只能执行非特权指令</li><li>核心态（管态）</li></ul><h3 id="两种程序"><a href="#两种程序" class="headerlink" title="两种程序"></a>两种程序</h3><ul><li>内核程序：系统的管理者，可以执行所有指令，运行在核心态</li><li>应用程序：只能执行非特权指令</li></ul><h2 id="操作系统的内核"><a href="#操作系统的内核" class="headerlink" title="操作系统的内核"></a>操作系统的内核</h2><blockquote><p>计算机上配置的底层软件，最重要、最核心、最基本的功能，时钟管理，中断管理，原语（驱动，cpu切换，最接近硬件的部分，程序运行具有原子性）</p></blockquote><ul><li>时钟管理</li><li>中断处理</li><li>原语</li><li>对系统资源进行管理的功能<ul><li>进程管理</li><li>存储器管理</li><li>设备管理</li></ul></li></ul><h2 id="操作系统的体系结构"><a href="#操作系统的体系结构" class="headerlink" title="操作系统的体系结构"></a>操作系统的体系结构</h2><ul><li>大内核<ul><li>优点：高性能</li><li>缺点：内核代码大，结构混乱，难以维护</li></ul></li><li>微内核<ul><li>优点：内核功能少，结构清晰，方便维护</li><li>缺点：需要频繁的在核心态和用户态之间切换性能低</li></ul></li></ul><h1 id="中断和异常"><a href="#中断和异常" class="headerlink" title="中断和异常"></a>中断和异常</h1><h2 id="概念和作用"><a href="#概念和作用" class="headerlink" title="概念和作用"></a>概念和作用</h2><blockquote><p>中断是指计算机运行过程中，出现某些意外情况需主机干预时，机器能自动停止正在运行的程序并转入处理新情况的程序，处理完毕后又返回原被暂停的程序继续运行。</p></blockquote><ul><li>当中断发生时，CPU会<strong>立即进入核心态</strong></li><li>当中断发生后，当前运行的进程暂停运行，并由操作系统内核对中断进行处理</li><li>对于不同的中断信号，会进行不同的处理</li></ul><p>发生了中断就意味着需要操作系统介入，开展管理工作，一般的管理工作（分配I&#x2F;O设备、进程切换）需要使用特权指令，因此CPU需要切换到核心态，使操作系统获得计算机的控制权，有了中断才有了多道程序并发执行</p><ol><li>用户态-&gt;核心态 是通过中断实现的，而且是<strong>唯一途径</strong></li><li>核心态-&gt;用户态是通过一个特权指令修改程序状态状态字</li></ol><h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><ul><li>内中断（也称为异常、例外、陷入，信号来源于CPU内部，与当前执行的指令有关）<ul><li>自愿中断：指令中断</li><li>强迫中断：<ul><li>硬件故障</li><li>软件中断</li></ul></li></ul></li><li>外中断<ul><li>外设请求</li><li>人工干预</li></ul></li></ul><h2 id="外中断的处理过程"><a href="#外中断的处理过程" class="headerlink" title="外中断的处理过程"></a>外中断的处理过程</h2><ol><li>执行完指令后cpu会检查当前是否有外部中断信号</li><li>如果有，保存当前进程方便以后恢复</li><li>根据中断信号，转入相应的中断处理程序</li><li>恢复原进程的cpu环境并退出中断，返回原进程继续往下执行</li></ol><h1 id="系统调用"><a href="#系统调用" class="headerlink" title="系统调用"></a>系统调用</h1><h2 id="概念、作用"><a href="#概念、作用" class="headerlink" title="概念、作用"></a>概念、作用</h2><blockquote><p>操作系统提供给应用程序（编程人员）使用的接口</p></blockquote><p>作用：向操作系统发送请求，完成应用程序对资源相关的操作需求，保证系统的稳定性和安全性</p><h2 id="系统调用和库函数区别"><a href="#系统调用和库函数区别" class="headerlink" title="系统调用和库函数区别"></a>系统调用和库函数区别</h2><h2 id="系统调用的过程"><a href="#系统调用的过程" class="headerlink" title="系统调用的过程"></a>系统调用的过程</h2><ol><li>传递系统调用参数</li><li>执行陷入指令（用户态），执行陷入指令（只能在用户态执行）后会引发一个内中断，立刻转化为核心态</li><li>执行系统调用相应服务程序（核心态）</li><li>放回用户程序</li></ol><h1 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><h2 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h2><h2 id="组织方式"><a href="#组织方式" class="headerlink" title="组织方式"></a>组织方式</h2>]]></content>
+    
+    
+    <categories>
+      
+      <category>教程</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>OS</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>暑期TODO</title>
     <link href="/2022/07/13/shu-qi-todo/"/>
     <url>/2022/07/13/shu-qi-todo/</url>
