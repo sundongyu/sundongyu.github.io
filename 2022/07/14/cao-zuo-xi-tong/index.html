@@ -23,11 +23,16 @@
 <meta property="og:site_name" content="樱花小镇">
 <meta property="og:description" content="前言操作系统的特征 并发（交替执行），并行是同时发生 共享，资源共享，供内存中多个并发的程序使用 互斥：例如摄像头，同一时间只能一个进程访问 同时共享：例如磁盘，多个进程可同时访问，微观上是交替访问   虚拟：把一个物理上的实体变为若干个逻辑上的对应物 空分复用（虚拟存储技术） 时分复用（虚拟处理器）   异步：资源有限，即使支持并发，进程的执行不是一管到底的，是走走停停的。  没有并发和共享就谈">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/8be4cf42116c459ea934584547ded0b5.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/c592d15360894e1ca2d17d60c515a2f3.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/fe83e9e2ff724722a1d02e5f1667c6b8.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/5e3bc9de349a4845bd7e4874847dab7d.png">
 <meta property="article:published_time" content="2022-07-14T06:50:07.000Z">
-<meta property="article:modified_time" content="2022-07-14T12:30:32.742Z">
+<meta property="article:modified_time" content="2022-07-16T08:53:05.647Z">
 <meta property="article:author" content="dongyu sun">
 <meta property="article:tag" content="OS">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/8be4cf42116c459ea934584547ded0b5.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -223,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k 字
+          2.5k 字
         
       </span>
     
@@ -234,7 +239,7 @@
         
         
         
-          13 分钟
+          21 分钟
         
       </span>
     
@@ -356,12 +361,12 @@
 </li>
 </ul>
 <h2 id="操作系统的体系结构"><a href="#操作系统的体系结构" class="headerlink" title="操作系统的体系结构"></a>操作系统的体系结构</h2><ul>
-<li>大内核<ul>
+<li>大内核：将操作系统的主要模块都作为系统内核，运行在核心态<ul>
 <li>优点：高性能</li>
 <li>缺点：内核代码大，结构混乱，难以维护</li>
 </ul>
 </li>
-<li>微内核<ul>
+<li>微内核：只把最基本的功能保留在内核<ul>
 <li>优点：内核功能少，结构清晰，方便维护</li>
 <li>缺点：需要频繁的在核心态和用户态之间切换性能低</li>
 </ul>
@@ -406,13 +411,101 @@
 <p>操作系统提供给应用程序（编程人员）使用的接口</p>
 </blockquote>
 <p>作用：向操作系统发送请求，完成应用程序对资源相关的操作需求，保证系统的稳定性和安全性</p>
-<h2 id="系统调用和库函数区别"><a href="#系统调用和库函数区别" class="headerlink" title="系统调用和库函数区别"></a>系统调用和库函数区别</h2><h2 id="系统调用的过程"><a href="#系统调用的过程" class="headerlink" title="系统调用的过程"></a>系统调用的过程</h2><ol>
+<p><img src="https://img-blog.csdnimg.cn/8be4cf42116c459ea934584547ded0b5.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="系统调用和库函数区别"><a href="#系统调用和库函数区别" class="headerlink" title="系统调用和库函数区别"></a>系统调用和库函数区别</h2><p><img src="https://img-blog.csdnimg.cn/c592d15360894e1ca2d17d60c515a2f3.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="系统调用的过程"><a href="#系统调用的过程" class="headerlink" title="系统调用的过程"></a>系统调用的过程</h2><ol>
 <li>传递系统调用参数</li>
 <li>执行陷入指令（用户态），执行陷入指令（只能在用户态执行）后会引发一个内中断，立刻转化为核心态</li>
 <li>执行系统调用相应服务程序（核心态）</li>
 <li>放回用户程序</li>
 </ol>
-<h1 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><h2 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h2><h2 id="组织方式"><a href="#组织方式" class="headerlink" title="组织方式"></a>组织方式</h2>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><img src="https://img-blog.csdnimg.cn/fe83e9e2ff724722a1d02e5f1667c6b8.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>程序：就是一个指令序列</p>
+<p><strong>程序段、数据段、PCB三</strong>部分组成了进程实体（进程映像）。一般情况下，我们吧进程实体称为进程。</p>
+<p>注意：PCB是进程存在的唯一标志。</p>
+<p>传统典型定义：</p>
+<ol>
+<li>进程是程序的一次执行过程。</li>
+<li>进程是一个程序机器数据在处理机上顺序执行时所发生的活动。</li>
+<li>进程是具有独立功能的程序在数据集合上运行的过程，他是系统进行资源分配和调度的一个独立单位。</li>
+</ol>
+<p>引入进程实体概念后：</p>
+<p>可以把进程定义为：进程实体的<strong>运行过程</strong>，是系统进行资源分配和调度的一个<strong>独立单位</strong>。</p>
+<h2 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h2><p><strong>程序段</strong>：程序代码本身、运行时所需要的数据（全局变量，局部变量等）</p>
+<p><strong>PCB</strong>：进程的管理者（OS）所需要的数据，进程存在的唯一标志</p>
+<ul>
+<li>进程描述信息<ul>
+<li>进程标识符PID：进程创建时分配的一个唯一的、不重复的ID，用于区分不同的进程</li>
+<li>用户标识符UID</li>
+</ul>
+</li>
+<li>进程控制和管理信息<ul>
+<li>进程当前状态</li>
+<li>进程优先级</li>
+</ul>
+</li>
+<li>资源分配清单<ul>
+<li>程序段指针</li>
+<li>数据段指针</li>
+<li>键鼠</li>
+</ul>
+</li>
+<li>处理机相关的信息<ul>
+<li>各种寄存器的值：进程切换时需要把进程当前的运行情况记录下来，例如程序执行到哪一句了</li>
+</ul>
+</li>
+</ul>
+<p><strong>数据段</strong>（程序运行所需的数据）：存放程序运行过程中处理的各种数据</p>
+<h2 id="组织方式"><a href="#组织方式" class="headerlink" title="组织方式"></a>组织方式</h2><ul>
+<li>链接方式<ul>
+<li>按照进程状态将PCB分为多个队列</li>
+<li>OS持有指向各个队列的指针</li>
+</ul>
+</li>
+<li>索引方式<ul>
+<li>根据进程状态的不同，建立几张索引表</li>
+<li>OS持有指向各个索引表的指针</li>
+</ul>
+</li>
+</ul>
+<h2 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h2><ul>
+<li>动态性：最基本特征</li>
+<li>并发性</li>
+<li>独立性：资源分配、调度的独立单位</li>
+<li>异步性：各进程以不可预知的速度向前推进，可能导致运行结果的不确定性</li>
+<li>结构性</li>
+</ul>
+<h2 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h2><p>三种基本状态：</p>
+<ul>
+<li>运行态（running）：占有CPU，并在CPU上运行</li>
+<li>就绪态（ready）：万事俱备，之欠CPU</li>
+<li>阻塞态（waiting&#x2F;blacked）</li>
+</ul>
+<p>其他状态：</p>
+<ul>
+<li>创建态（new）：进程在被创建，系统为其分配资源，初始化PCB</li>
+<li>终止态（terminated）：进程从系统中撤销，回收资源，撤销PCB</li>
+</ul>
+<h2 id="状态之间的转换"><a href="#状态之间的转换" class="headerlink" title="状态之间的转换"></a>状态之间的转换</h2><p><img src="https://img-blog.csdnimg.cn/5e3bc9de349a4845bd7e4874847dab7d.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="进程控制"><a href="#进程控制" class="headerlink" title="进程控制"></a>进程控制</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>什么是进程控制？</p>
+<blockquote>
+<p>实现状态之间的转换</p>
+</blockquote>
+<p>如何实现进程控制？</p>
+<ul>
+<li><p>为了防止PCB信息和状态之间出现冲突，例如因为某种原因导致PCB没有被修改就被移动到目标状态的等待队列中而引发异常。</p>
+</li>
+<li><p>使用 <strong>原语</strong> 进行进程控制，原语可以实现执行期间不被中断，这样的不被中断的操作叫“原子操作”</p>
+</li>
+</ul>
+<p>原语是怎么实现原子操作的？</p>
+<ul>
+<li>采用“关中断”和“开中断”指令实现。</li>
+<li>关中断指令执行后外部中断信号会被忽略。</li>
+<li>执行开中断指令后才可以被执行中断指令。</li>
+</ul>
+<p>“开关中断”权限很大，是特权指令。</p>
+<h3 id="进程控制相关的原语"><a href="#进程控制相关的原语" class="headerlink" title="进程控制相关的原语"></a>进程控制相关的原语</h3><h4 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h4><h4 id="终止"><a href="#终止" class="headerlink" title="终止"></a>终止</h4><h4 id="阻塞"><a href="#阻塞" class="headerlink" title="阻塞"></a>阻塞</h4><h4 id="唤醒"><a href="#唤醒" class="headerlink" title="唤醒"></a>唤醒</h4><h4 id="切换"><a href="#切换" class="headerlink" title="切换"></a>切换</h4>
               
             </div>
             <hr/>
