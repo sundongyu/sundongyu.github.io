@@ -4599,4 +4599,54 @@
         <tag>OS</tag>
       </tags>
   </entry>
+  <entry>
+    <title>集合类常用API</title>
+    <url>/2022/07/23/ji-he-lei-chang-yong-api/</url>
+    <content><![CDATA[<p>总结算法中的java类库中封装好的常用的数据结构。</p>
+<span id="more"></span>
+
+<h1 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h1><p>使用接口 <code>Deque</code> 下面的子类，常用的有 <code>LinkedList</code>，<code>ArrayDeque</code>。这里以 <code>LinkedList</code> 为例。</p>
+<p>常用方法有很多，各种组合都可以实现各种的数据结构的功能，这里以规定好的方法来理解java的栈。</p>
+<p><code>Deque</code> 中有方法 <code>push</code>，<code>pop</code>，分别是在链表的 <code>0</code> 索引处添加元素，将其他元素往后挤，和删除并返回 <code>0</code> 索引处的元素。既 <code>0</code> 索引处为栈顶。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">Deque&lt;Integer&gt; queue = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>&lt;&gt;();<br></code></pre></td></tr></table></figure>
+
+<h2 id="入栈"><a href="#入栈" class="headerlink" title="入栈"></a>入栈</h2><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">queue.push();<br>queue.addFirst();<br></code></pre></td></tr></table></figure>
+
+<h2 id="出栈"><a href="#出栈" class="headerlink" title="出栈"></a>出栈</h2><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">queue.pop();<br>queue.remove();<br>queue.removeFirst();<br>queue.poll();<br>queue.pollFirst();<br></code></pre></td></tr></table></figure>
+
+<h2 id="返回栈顶"><a href="#返回栈顶" class="headerlink" title="返回栈顶"></a>返回栈顶</h2><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">queue.peek();<br>queue.peekFirst();<br></code></pre></td></tr></table></figure>
+
+<h2 id="返回个数"><a href="#返回个数" class="headerlink" title="返回个数"></a>返回个数</h2><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">queue.size();<br></code></pre></td></tr></table></figure>
+
+<h2 id="判空"><a href="#判空" class="headerlink" title="判空"></a>判空</h2><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">queue.size() == <span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h1><p>同样使用 <code>Deque</code> 集合的实现类 <code>LinkedList</code> 为例</p>
+<p>由于栈中使用的 <code>push</code>，<code>pop</code>不适用于队列，因此可以自己选择队头，此处用 <code>0</code> 索引作为队头。</p>
+<h2 id="入队"><a href="#入队" class="headerlink" title="入队"></a>入队</h2><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">queue.add();<br>queue.addLast();<br></code></pre></td></tr></table></figure>
+
+<h2 id="出队"><a href="#出队" class="headerlink" title="出队"></a>出队</h2><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">queue.pop();<br>queue.remove();<br>queue.removeFirst();<br>queue.poll();<br>queue.pollFirst();<br></code></pre></td></tr></table></figure>
+
+<h2 id="返回对头"><a href="#返回对头" class="headerlink" title="返回对头"></a>返回对头</h2><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">queue.peek();<br>queue.peekFirst();<br></code></pre></td></tr></table></figure>
+
+<h2 id="返回长度"><a href="#返回长度" class="headerlink" title="返回长度"></a>返回长度</h2><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">queue.size();<br></code></pre></td></tr></table></figure>
+
+<h1 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h1><p>使用封装数据结构 <code>priorityQueue</code>，默认小根堆。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 初始化小根堆</span><br>PriorityQueue&lt;Integer&gt; heap = <span class="hljs-keyword">new</span> <span class="hljs-title class_">PriorityQueue</span>&lt;&gt;();<br><br><span class="hljs-comment">// 初始化大根堆</span><br>PriorityQueue&lt;Integer&gt; heap = <span class="hljs-keyword">new</span> <span class="hljs-title class_">PriorityQueue</span>&lt;&gt;(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Comparator</span>&lt;Integer&gt;() &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">compare</span><span class="hljs-params">(Integer a, Integer b)</span> &#123;<br>        <span class="hljs-keyword">return</span> b - a;<br>    &#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<h2 id="入堆"><a href="#入堆" class="headerlink" title="入堆"></a>入堆</h2><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">head.add();<br></code></pre></td></tr></table></figure>
+
+<h2 id="出堆"><a href="#出堆" class="headerlink" title="出堆"></a>出堆</h2><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">heap.poll();<br></code></pre></td></tr></table></figure>
+
+<h2 id="返回堆顶"><a href="#返回堆顶" class="headerlink" title="返回堆顶"></a>返回堆顶</h2><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">heap.peek();<br></code></pre></td></tr></table></figure>
+
+<h2 id="返回数量"><a href="#返回数量" class="headerlink" title="返回数量"></a>返回数量</h2><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">heap.<br></code></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
 </search>
