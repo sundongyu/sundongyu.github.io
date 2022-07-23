@@ -38,8 +38,11 @@
 <meta property="og:image" content="https://sundongyu.github.io/studynotes/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/assets/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/image-20220721164930250.png">
 <meta property="og:image" content="https://sundongyu.github.io/studynotes/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/assets/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/image-20220721170712421.png">
 <meta property="og:image" content="https://sundongyu.github.io/studynotes/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/assets/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/image-20220721171633294.png">
+<meta property="og:image" content="https://sundongyu.github.io/studynotes/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/assets/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/image-20220721215141058.png">
+<meta property="og:image" content="https://sundongyu.github.io/studynotes/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/assets/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/image-20220721215156656.png">
+<meta property="og:image" content="https://sundongyu.github.io/studynotes/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/assets/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/image-20220721221726361.png">
 <meta property="article:published_time" content="2022-07-14T06:50:07.000Z">
-<meta property="article:modified_time" content="2022-07-21T09:17:40.360Z">
+<meta property="article:modified_time" content="2022-07-22T06:19:43.467Z">
 <meta property="article:author" content="dongyu sun">
 <meta property="article:tag" content="OS">
 <meta name="twitter:card" content="summary_large_image">
@@ -239,7 +242,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          7.4k 字
+          8k 字
         
       </span>
     
@@ -250,7 +253,7 @@
         
         
         
-          62 分钟
+          67 分钟
         
       </span>
     
@@ -795,10 +798,10 @@
 <li>分为抢占式和非抢占式</li>
 <li>抢占式SJF调度算法的平均等待时间和平均周转时间最少</li>
 </ul>
-<p><img src="/../../../studynotes/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/assets/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/image-20220721164323831.png" srcset="/img/loading.gif" lazyload alt="image-20220721164323831"></p>
+<p><img src="/../../../studynotes/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/assets/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/image-20220721164323831.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="高响应比优先HRRN"><a href="#高响应比优先HRRN" class="headerlink" title="高响应比优先HRRN"></a>高响应比优先HRRN</h2><p>相应比：(等待时间 + 要求服务时间 ) &#x2F; 要求服务时间</p>
-<p><img src="/../../../studynotes/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/assets/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/image-20220721164853226.png" srcset="/img/loading.gif" lazyload alt="image-20220721164853226"></p>
-<h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2><p><img src="/../../../studynotes/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/assets/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/image-20220721164930250.png" srcset="/img/loading.gif" lazyload alt="image-20220721164930250"></p>
+<p><img src="/../../../studynotes/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/assets/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/image-20220721164853226.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2><p><img src="/../../../studynotes/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/assets/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/image-20220721164930250.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>这几种算法主要关心对用户的公平性，平均周转时间，平均等待时间等评价系统整体性能的指标，但是是不关心“响应时间”的，也不区分紧急程度，因此对用户来说交互性很糟糕。</li>
 <li>因此这三种算法适用于<strong>早期的批处理系统</strong></li>
@@ -807,7 +810,7 @@
 <li>如果时间片太大，使每个进程都能在一个时间片内完成，则时间片轮转调度算法退化为先来先服务算法，并且会增大进程响应时间。</li>
 <li>如果时间片太小会导致进程切换频繁</li>
 </ul>
-<p><img src="/../../../studynotes/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/assets/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/image-20220721170712421.png" srcset="/img/loading.gif" lazyload alt="image-20220721170712421"></p>
+<p><img src="/../../../studynotes/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/assets/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/image-20220721170712421.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="优先级调度算法"><a href="#优先级调度算法" class="headerlink" title="优先级调度算法"></a>优先级调度算法</h2><ul>
 <li>就绪队列未必只有一个</li>
 <li>优先级可以选择是否动态调整，设置为动态优先级、静态优先级</li>
@@ -820,8 +823,37 @@
 </ul>
 </li>
 </ul>
-<p><img src="/../../../studynotes/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/assets/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/image-20220721171633294.png" srcset="/img/loading.gif" lazyload alt="image-20220721171633294"></p>
-<h2 id="多级反馈队列调度算法"><a href="#多级反馈队列调度算法" class="headerlink" title="多级反馈队列调度算法"></a>多级反馈队列调度算法</h2>
+<p><img src="/../../../studynotes/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/assets/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/image-20220721171633294.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="多级反馈队列调度算法"><a href="#多级反馈队列调度算法" class="headerlink" title="多级反馈队列调度算法"></a>多级反馈队列调度算法</h2><ul>
+<li>设置多级就绪队列，各级队列优先级从 <strong>高</strong> 到 <strong>低</strong>，时间片从 <strong>小</strong> 到 <strong>大</strong>。</li>
+<li>新进程到达时先进入第一级队列，按照FCFS的原则排队等待分配时间片。</li>
+<li>如果用完时间片，进程还未结束则将进程添加到下一级队列队尾。</li>
+<li>如果已经是最后一级，则重新放到最下级队尾。</li>
+<li>只有第 <code>k</code> 级队列为空时才能为第 <code>k + 1</code> 级队列队头进程分配时间片</li>
+<li>被抢占处理机的进程重新放回原队列队尾（当前进程时间片没有使用完就有新的高优先级进程进入，此时会优先运行高优先级队列进程）</li>
+</ul>
+<p><img src="/../../../studynotes/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/assets/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/image-20220721215141058.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h2><p><img src="/../../../studynotes/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/assets/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/image-20220721215156656.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="11、进程同步与互斥"><a href="#11、进程同步与互斥" class="headerlink" title="11、进程同步与互斥"></a>11、进程同步与互斥</h1><p>同步：亦称为<strong>直接制约关系</strong>， 是指为了完成任务而建立的两个或者多个进程，这些进程因为需要在某些位置上协调他们的工作次序而产生的制约关系。</p>
+<p>进程之间的直接制约关系就是源自于相互合作。</p>
+<p>例如管道通信，一定是先写数据再读数据。</p>
+<p>临界资源：一个时间段内只允许一个进程使用的资源（互斥共享）。</p>
+<p>互斥：对于临界资源的访问必须是互斥的地进行。互斥也被称为间接制约关系。进程互斥值当一个进程访问临界资源时，另一个资源想要访问该临界资源的进程必须等待。当访问该临界资源的进程访问结束，释放该资源后另一个进程才能访问。</p>
+<h2 id="四个逻辑部分"><a href="#四个逻辑部分" class="headerlink" title="四个逻辑部分"></a>四个逻辑部分</h2><ul>
+<li>进入区</li>
+<li>临界区</li>
+<li>退出区</li>
+<li>剩余区</li>
+</ul>
+<p><strong>为了实现对临界资源的互斥访问，同时保证操作系统的整体性能，需要遵循一下原则：</strong></p>
+<ul>
+<li>空闲让进</li>
+<li>忙则等待</li>
+<li>有限等待：对请求访问的进程，应保证能在有限时间内进入临界区（保证不会饥饿）</li>
+<li>让权等待：进程无法进入临界时立刻释放处理机</li>
+</ul>
+<h1 id="12、进程互斥的软件实现方法"><a href="#12、进程互斥的软件实现方法" class="headerlink" title="12、进程互斥的软件实现方法"></a>12、进程互斥的软件实现方法</h1><h2 id="单标志法"><a href="#单标志法" class="headerlink" title="单标志法"></a>单标志法</h2><p><img src="/../../../studynotes/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/assets/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/image-20220721221726361.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="双标志先检查法"><a href="#双标志先检查法" class="headerlink" title="双标志先检查法"></a>双标志先检查法</h2>
               
             </div>
             <hr/>
